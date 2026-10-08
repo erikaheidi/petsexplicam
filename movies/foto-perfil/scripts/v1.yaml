@@ -1,0 +1,107 @@
+# foto-perfil - a foto de perfil do @petsexplicam: Pretinha e Paçoca juntos.
+# Elenco e descrições canônicas em ELENCO.md.
+#
+# DUAS ETAPAS (a mesma receita do template fl2va-keyframe do workspace pessoal):
+#
+#   1. Placas (text-to-image): três seeds do MESMO prompt, guardado numa âncora
+#      YAML para que a seed seja a única variável. Elas compram a composição,
+#      com uma buldogue preta genérica no lugar da Pretinha.
+#        ./mm images movies/foto-perfil/scripts/v1.yaml
+#   2. Edição (descomente `final` lá embaixo depois de escolher a placa): a
+#      placa vira <image1> e a foto da Josy <image2>, trocando a buldogue
+#      genérica pelas marcas reais da Pretinha. Precisa ser nessa ordem: o modo
+#      edição dimensiona a imagem a partir de image_1, e começar pela foto da
+#      Josy (3:4) travaria o enquadramento dela.
+#        ./mm images movies/foto-perfil/scripts/v1.yaml --image final
+#
+# QUADRADO 1024x1024: o Instagram recorta a foto de perfil num CÍRCULO e a
+# mostra minúscula. As duas cabeças ficam juntas no centro, com folga nas
+# bordas, e o fundo é uma cor lisa que contrasta com o preto dela e o amarelo
+# dele.
+#
+# A imagem final escolhida também vira a referência do Paçoca para os vídeos
+# (copie para assets/pacoca-referencia.png).
+#
+# Qwen-Image-2.1 tem licença de pesquisa (uso NÃO comercial).
+kind: images
+name: foto-perfil
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  width: 1024
+  height: 1024
+  style_suffix: >-
+    Live-action studio photograph, not an illustration, not a cartoon, not a
+    render. Shot on a fast prime lens, both dogs in sharp focus, real fur
+    texture, soft large key light from the front left with a gentle rim light,
+    seamless paper backdrop. No text, no lettering, no logo, no watermark.
+
+images:
+  - id: placa-a
+    seed: 3101
+    prompt: &placa >-
+      A square photograph of two dogs posing together like best friends,
+      against a plain, evenly lit soft teal seamless backdrop. The camera is at
+      the dogs' eye level, straight on. The two heads sit close together in the
+      middle of the frame, filling its central half, with generous empty
+      backdrop on every side; both are visible from the chest up.
+
+      ON THE LEFT: a small female French bulldog, compact and muscular, with a
+      short black coat with faint darker brindle striping, a white blaze on the
+      centre of her chest, large upright bat ears, round dark brown eyes and a
+      short wrinkled muzzle. She sits perfectly upright, mouth closed, chin
+      level, looking straight into the lens with a serious, composed,
+      slightly unimpressed expression.
+
+      ON THE RIGHT, leaning against her shoulder: a male pug, stocky and
+      round, with a short fawn-yellow coat, a jet-black mask over his muzzle
+      and around his eyes, small black folded ears, large round glossy dark
+      eyes and deep forehead wrinkles. His head is tilted to one side, his
+      mouth is open in a big goofy grin with the tip of his pink tongue
+      sticking out, and his eyes look slightly off to the side, delighted and
+      a little clueless.
+
+      Neither dog wears a collar or harness.
+  - id: placa-b
+    seed: 3102
+    prompt: *placa
+  - id: placa-c
+    seed: 3103
+    prompt: *placa
+
+  # --- etapa 2: edição da placa escolhida (placa-b) ----------------------------
+  # Guarde uma cópia da placa aprovada (foto-perfil-placa-b-ok.png) e
+  # aponte para ela: as placas são regeneradas se o script mudar.
+  #
+  - id: final
+    seed: 3201
+    resolution: 1024
+    ref_images:
+      - foto-perfil-placa-b-ok.png # image_1 - o alvo da edição
+      - pretinha-referencia.jpg    # image_2 - a identidade da Pretinha
+    prompt: >-
+      Edit the photograph <image1>. The result must remain a photograph:
+      real fur, real light - not a drawing, cartoon or illustration.
+
+      Keep everything about <image1> exactly as it is - the square framing,
+      the teal backdrop, the lighting, and the staging: both dogs stay at the
+      same position and size. Keep the pug on the right completely
+      unchanged. Change only the French bulldog on the left.
+
+      Give the French bulldog the exact appearance of the dog in <image2>:
+      the same black coat with faint brindle striping, the same white blaze
+      on the chest, the same large upright bat ears, the same wrinkled muzzle
+      and round dark eyes. Keep her pose and her serious expression from
+      <image1>, mouth closed. Take nothing else from <image2>.

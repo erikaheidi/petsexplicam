@@ -1,0 +1,47 @@
+# template: Ficha do pet - imagens de referência com Qwen-Image-2.1 (text-to-image)
+#
+# Um script `kind: images`: rode com `./mm images`, não `render`. Os PNGs caem
+# no assets/ deste filme, prontos para o ref_images de um script de vídeo. Para
+# um personagem recorrente do perfil, mande para o assets/ compartilhado:
+#   ./mm images movies/__project__/scripts/v1.yaml --dest assets
+#
+# Para EDITAR uma foto real do pet em vez de gerar do zero, adicione
+# ref_images na imagem: o primeiro é o alvo da edição (<image1>), o resto são
+# referências (<image2> ...), e `resolution` passa a controlar o tamanho.
+#
+# Qwen-Image-2.1 tem licença de pesquisa (uso NÃO comercial). Se o perfil for
+# monetizado, não use estas imagens em posts.
+kind: images
+name: CHANGE-ME
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  width: 1024
+  height: 1024
+  seed: 7
+  style_suffix: >-
+    Photorealistic studio photography, even soft light, plain light grey
+    seamless background, sharp focus, no text, no watermark.
+
+images:
+  - id: frente
+    prompt: >-
+      A full-body front view of THE PET - species, breed, size, coat colour and
+      markings - standing square, head level, looking into the lens.
+  - id: perfil
+    seed: 8
+    prompt: >-
+      The same animal in full left profile, all four legs visible and
+      separated, tail relaxed.

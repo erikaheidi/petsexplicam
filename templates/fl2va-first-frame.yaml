@@ -1,0 +1,84 @@
+# template: fl2va a partir de uma foto sua - o filme abre nela (prompt I2VA; fala em PT-BR via <d>[Portuguese] ...</d>)
+#
+# The simple form of fl2va-keyframe: no plate generation. You supply the
+# opening still, and the video starts ON it - the subject is frame 0 rather
+# than reconstructed from a description, which is why fl2va holds a face or a
+# precise composition where ref2va drifts.
+#
+#   1. Upload the image to this movie's assets/ (the project page, or
+#      `cp photo.jpg movies/__project__/assets/`).
+#   2. Set first_frame below to its filename. This file will not load until the
+#      image exists.
+#   3. moviemakr render movies/__project__/scripts/v1.yaml --dry-run
+#
+# THE IMAGE should be 9:16 portrait to match the 544x960 canvas - a different
+# aspect gets fitted, and cropping a first frame loses the composition.
+#
+# DO NOT ADD ref_images OR continuity.anchors. Either one switches the graph to
+# MiniMaxH3ReferenceToVideo, which has no first_frame input, and your image is
+# SILENTLY DROPPED.
+#
+# THE PROMPT IS I2VA: an alignment line, then integrated_multimodal_description
+# / overall_soundscape / non_diegetic_music. <Picture 1> means the first frame.
+# Not the six-section ref2va shape. Re-describe what is in the image - the
+# words and the frame must agree. Keep the camera static: a push-in is the
+# cheapest way to make a face drift.
+#
+# MORE SCENES: copy the commented scene at the bottom. A chained scene opens on
+# the previous scene's tail (overlap_frames), so it has no first_frame and no
+# <Picture> label. Write each timeline to 3.75s (90 frames at 24fps).
+#
+# If speech comes back mushy, pull the turbo LoRA first: drop `lora`, set
+# `steps: 14` (~25 min a scene instead of ~10).
+name: CHANGE-ME
+backend: comfy
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  # The LoRA must match the variant: a ref2v LoRA on this checkpoint applies
+  # cleanly and produces garbage. The dry run's pairing check catches it.
+  diffusion_model: minimax_h3_fl2va_pruned_bf16.safetensors
+  lora: minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_fp16.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  steps: 8
+
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 90
+  seed: 2909
+  overlap_frames: 5
+  style_suffix: ""
+
+continuity:
+  chain_from_previous: true
+
+output:
+  container: mp4
+  audio: keep
+
+scenes:
+  - id: opening
+    chain_from_previous: false      # first_frame and chaining both open a scene
+    first_frame: first-frame.jpg    # <- your uploaded image's filename
+    prompt: |-
+      For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.
+
+      integrated_multimodal_description: [Shot 1] Live-action, cinematic, holding the exact framing, subjects, clothing, props and lighting of <Picture 1> from the first frame onward - DESCRIBE WHAT IS IN THE IMAGE. The camera holds a completely static shot for the entire 3.75 seconds. WHAT HAPPENS: one beat, timed across the 3.75 seconds. Nothing and nobody else enters the frame.
+
+      overall_soundscape: THE ROOM TONE, and the sounds of the action. No barking, whining or panting from the dog.
+
+      non_diegetic_music: N/A
+
+  # - id: next
+  #   prompt: |-
+  #     integrated_multimodal_description: [Shot 1] Live-action, cinematic, the same static shot continues without a cut, preserving the framing and DESCRIBE THE SCENE AGAIN exactly as it is. The camera holds a completely static shot for the entire 3.75 seconds. WHAT HAPPENS NEXT.
+  #
+  #     overall_soundscape: The same room tone underneath.
+  #
+  #     non_diegetic_music: N/A
