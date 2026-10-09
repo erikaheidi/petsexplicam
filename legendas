@@ -1,0 +1,7 @@
+#!/bin/sh
+# Legendas PT-BR queimadas no vídeo (tools/legendas.py), com o Python do venv
+# do moviemakr.  ./legendas movies/<filme>/scripts/v1.yaml [--previa N]
+here=$(cd "$(dirname "$0")" && pwd)
+MOVIEMAKR_HOME=${MOVIEMAKR_HOME:-$HOME/Projects/moviemakr}
+export MOVIEMAKR_HOME
+exec "$MOVIEMAKR_HOME/.venv/bin/python" "$here/tools/legendas.py" "$@"

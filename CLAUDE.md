@@ -88,14 +88,63 @@ movies/<nome>/
 
 ## Fluxo de um vídeo
 
-1. **Rascunho** em `movies/<nome>/drafts/` (PT-BR): quem é o pet, o que ele
-   explica, as falas exatas, o tom, e a **legenda + hashtags** do post.
-2. **Roteiro**: expanda o rascunho em `scripts/v1.yaml` usando o skill
-   `h3-prompt-writing` (formato Ref2VA de seis seções, `references/ref-en.txt`;
-   para `first_frame:`/fl2va, o formato I2VA de `references/base-en.txt`).
-3. `./mm render ... --dry-run`, depois `--only 1`, depois o resto.
-4. Uma nova tentativa é um novo arquivo (`v2.yaml`), não uma edição destrutiva
-   do que já renderizou bem.
+**Vídeos de diálogo da dupla (o formato padrão do perfil) usam `./dialogo`**,
+não um script escrito à mão:
+
+```bash
+./dialogo novo  gato-gravidade     # movies/gato-gravidade/ + roteiro.yaml de exemplo
+#   edite movies/gato-gravidade/roteiro.yaml (falas em PT-BR, ações em inglês)
+./dialogo cenas gato-gravidade     # quem fala, palavras e duração de cada cena
+./dialogo gerar gato-gravidade     # roteiro.yaml -> scripts/v1.yaml
+./mm render movies/gato-gravidade/scripts/v1.yaml --dry-run
+```
+
+O `roteiro.yaml` guarda só o que muda (falas, ações). A receita validada no
+direito-de-votar mora em [tools/dialogo.py](tools/dialogo.py) e é repetida
+palavra por palavra em toda cena: elenco, cenário (`CENARIOS`, cada um com um
+frame de referência em `assets/`), enquadramento, postura, boca visível, vozes
+de referência com descrição alinhada, 8 passos sem tremor. Cenas
+independentes, sem chain - cada uma pode ser refeita sozinha. **Nunca edite o
+`scripts/vN.yaml` gerado**: mude o roteiro ou a receita e gere de novo. Um
+cenário novo = frame de referência aprovado em `assets/` + uma entrada em
+`CENARIOS`.
+
+**Cenário padrão: `sofa-frente`** - os dois de frente um para o outro no sofá,
+com plano da dupla de perfil e closes por cima do ombro de quem escuta; cada
+cena vai no close de quem fala (`camera:` no roteiro muda isso). Ficou bem
+mais natural que a dupla lado a lado falando para a câmera (`sofa`, v1 do
+pesquise-antes). Nas ações do plano da dupla, escreva "keeps looking at him in
+profile", não "turns her head towards him": ela já está virada, e o modelo lê
+"virar" como virar para a câmera. Cenários novos: imagens em
+`movies/cenarios/scripts/` (edições Qwen de um frame aprovado), a escolhida
+vira `assets/cenario-*.png` e uma entrada em `CENARIOS`.
+
+Requer o moviemakr com `ref_audios` (branch `ref-audios` do checkout).
+
+Passo a passo:
+
+1. **Rascunho** em `movies/<nome>/drafts/` (PT-BR): o que a dupla explica, as
+   falas exatas, o tom, e a **legenda + hashtags** do post. Fatos (prazos,
+   documentos, regras) de fonte oficial, como o TSE. Tom apartidário.
+2. **Roteiro**: passe o rascunho para `roteiro.yaml` - uma fala por cena,
+   `./dialogo cenas` acusa fala longa demais (divida em duas).
+3. `./dialogo gerar`, `--dry-run`, depois `--only 1` para conferir, depois o
+   resto. Peça para a Erika ouvir voz e boca: o Claude não ouve áudio, só mede
+   o tom (F0 de referência: Pretinha ~258 Hz, Paçoca ~296 Hz).
+4. Uma tentativa que muda a receita é uma nova versão (`--versao v2`); refazer
+   uma cena ruim é `seed:` nela no roteiro + `--only N`.
+5. **Legendas**: `./legendas movies/<nome>/scripts/v1.yaml` depois do
+   `./mm assemble` - gera `.ass`/`.srt` e `<nome>-legendado.mp4` no run dir,
+   que é o arquivo a postar. `--previa N` legenda só as N primeiras cenas
+   prontas, para conferir no meio do render. O texto sai do `<d>...</d>` de
+   cada cena (serve para qualquer script), os tempos dos clipes reais (corte
+   do overlap como a montagem faz + trecho com som de fala). Quebra na
+   pontuação, 2 linhas de até 24 caracteres; Paçoca amarelo, Pretinha
+   branca; posição fora da área da interface do Reels.
+
+Outros formatos (um pet só, fl2va a partir de foto) partem dos templates
+abaixo e do skill `h3-prompt-writing` (Ref2VA de seis seções,
+`references/ref-en.txt`; fl2va/I2VA em `references/base-en.txt`).
 
 ## Templates
 
@@ -123,6 +172,14 @@ linhas `# template:` / `# default:` alimentam o seletor do `./mm new`.
 - **fl2va**: `first_frame:` não pode coexistir com `ref_images` nem
   `continuity.anchors` — qualquer um troca o grafo para ref2va e a foto é
   **descartada em silêncio**.
+- **Câmera tremendo no checkpoint VSA**: use `steps: 8` com `sol_attn`
+  `start_percent: 0.2` / `end_percent: 1.0`, e diga "locked-off static camera"
+  já na frase de estilo. Com 4 passos e atenção esparsa desde o primeiro passo
+  o quadro treme (medido: ~0,6 px/frame contra ~0,02). Para medir um clipe:
+  `vidstabdetect` + `vidstabtransform=debug=1` do ffmpeg.
+- **Olhar**: "eyes on the laptop" sozinho faz o pet encarar a câmera. Descreva
+  pela cabeça: "head tilted down, eyes lowered to the screen just below her
+  chin"; olhar para o outro = "turns her head towards the right of the frame".
 - Nas trilhas, exclua explicitamente latido/miado por cima da fala no
   `overall_soundscape`.
 - O aviso `carries no fl2va/ref2va marker` no dry-run dos templates comfy é

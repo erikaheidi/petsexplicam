@@ -18,6 +18,27 @@ partir dos roteiros).
 - Um ComfyUI rodando em `http://127.0.0.1:8188` com os modelos do MiniMax-H3
   (e do Qwen-Image-2.1, para `images`). Os caminhos estão nos templates.
 
+## Vídeos de diálogo (o formato padrão)
+
+Os vídeos da dupla Pretinha e Paçoca saem de um roteiro simples, e a
+ferramenta `./dialogo` gera o script do moviemakr com a receita que já
+funcionou (cenário fixo com frame de referência, vozes de referência, fala
+visível, câmera estável):
+
+```bash
+./dialogo novo  gato-gravidade     # cria o filme com um roteiro.yaml de exemplo
+./dialogo cenas gato-gravidade     # confere falas e duração de cada cena
+./dialogo gerar gato-gravidade     # gera scripts/v1.yaml
+./mm render movies/gato-gravidade/scripts/v1.yaml --dry-run
+```
+
+Depois da montagem, `./legendas movies/gato-gravidade/scripts/v1.yaml` gera o
+vídeo legendado (`gato-gravidade-legendado.mp4`, no diretório de render), que é
+o arquivo a postar.
+
+No `roteiro.yaml` vão só as falas (PT-BR, literais) e as ações de cada cena.
+O script gerado não deve ser editado à mão. Detalhes em [CLAUDE.md](CLAUDE.md).
+
 ## Uso
 
 Use sempre o wrapper `./mm`: ele aponta o moviemakr para **este** diretório,

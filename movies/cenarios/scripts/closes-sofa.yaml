@@ -1,0 +1,77 @@
+# closes-sofa - frames de referência dos closes no cenário do sofá.
+#
+#   ./mm images movies/cenarios/scripts/closes-sofa.yaml
+#
+# Edições de cenario-sofa.png (o plano da dupla aprovado): mesmo cômodo, mesma
+# luz, a dupla com a mesma cara - só a câmera muda. Os escolhidos viram
+# assets/cenario-sofa-pretinha.png e assets/cenario-sofa-pacoca.png.
+#
+# Campo/contracampo: no close, cada um olha para o lado em que o outro está
+# (Pretinha à esquerda olha para a direita do quadro; Paçoca, para a esquerda).
+kind: images
+name: closes-sofa
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  # Close da Pretinha: ela olha para a direita do quadro, onde o Paçoca está.
+  - id: pretinha-a
+    seed: 5101
+    ref_images: [cenario-sofa.png]
+    prompt: &pretinha >-
+      Change the framing of the photograph <image1> into a medium close-up of
+      only the black French bulldog on the left. Keep her exactly as she is:
+      the same face, the same black coat with faint brindle, the same white
+      blaze on her chest, the same large upright bat ears and dark eyes. Her
+      head and upper chest fill most of the frame, her head in the upper half,
+      seen from her own eye level, slightly from her front-left. She turns her
+      head a little towards the right of the frame, as if looking at someone
+      sitting beside her. Only the soft fawn edge of the pug's shoulder may
+      show at the right edge, out of focus. Behind her, softly out of focus,
+      the same white crocheted throw on the green sofa, the bright turquoise
+      wall and the green wooden shutter window with warm late-afternoon light.
+  - id: pretinha-b
+    seed: 5102
+    ref_images: [cenario-sofa.png]
+    prompt: *pretinha
+
+  # Close do Paçoca: ele olha para a esquerda do quadro, onde a Pretinha está.
+  - id: pacoca-a
+    seed: 5201
+    ref_images: [cenario-sofa.png]
+    prompt: &pacoca >-
+      Change the framing of the photograph <image1> into a medium close-up of
+      only the fawn pug on the right. Keep him exactly as he is: the same
+      face, the same fawn-yellow coat, the same jet-black mask, the same small
+      black folded ears, large round glossy dark eyes and deep forehead
+      wrinkles. His head and upper chest fill most of the frame, his head in
+      the upper half, seen from his own eye level, slightly from his
+      front-right. He turns his head a little towards the left of the frame,
+      as if looking at someone sitting beside him. Only the soft black edge of
+      the French bulldog's shoulder may show at the left edge, out of focus.
+      Behind him, softly out of focus, the green sofa back, the bright
+      turquoise wall and the wooden side table with its lamp in warm
+      late-afternoon light.
+  - id: pacoca-b
+    seed: 5202
+    ref_images: [cenario-sofa.png]
+    prompt: *pacoca

@@ -1,0 +1,47 @@
+# Roteiro de diálogo - vira scripts/v1.yaml com:  ./dialogo gerar <filme>
+#
+# Só o que muda de um vídeo para outro mora aqui. Elenco, cenário,
+# enquadramento, vozes e regras de fala vêm de tools/dialogo.py.
+#
+# Por cena:
+#   id       slug curto e único
+#   resumo   uma frase em inglês: o que acontece (vai no `summary` do prompt)
+#   antes    ação em inglês ANTES da fala (opcional)
+#   fala     quem: pretinha | pacoca, texto: a fala LITERAL em PT-BR
+#            (números por extenso - o modelo fala o que lê; só . , ? ! :)
+#   depois   ação em inglês DEPOIS da fala (opcional)
+#   frames   opcional - por padrão sai do tamanho da fala (90/107/124)
+#   seed     opcional - para tentar de novo uma cena com outra variação
+#
+# Nas ações, escreva "Pretinha" e "Paçoca": viram os rótulos do prompt.
+# No sofa-frente eles já estão virados um para o outro: escreva "keeps looking
+# at him", não "turns her head towards him" (o modelo lê "virar" como virar
+# para a câmera). Sem `camera:`, a cena vai no close de quem fala.
+#
+# Uma fala por cena. Cena sem fala (reação) é só antes/depois.
+# Fatos (prazos, documentos, regras) devem vir de fonte oficial, como o TSE.
+# Cenários (tools/dialogo.py, CENARIOS): sofa-frente (o padrão - os dois de
+# frente um para o outro, closes por cima do ombro), sofa (lado a lado, de
+# frente para a câmera), sala (a mesa do direito-de-votar, só plano da dupla).
+cenario: sofa-frente
+seed: 2026
+
+cenas:
+  - id: pergunta
+    resumo: Paçoca asks Pretinha a question, worried.
+    antes: Paçoca looks at Pretinha, his forehead wrinkled with worry.
+    fala:
+      quem: pacoca
+      texto: "Pretinha, eu perdi meu título de eleitor. E agora?"
+
+  - id: resposta
+    resumo: Pretinha answers him calmly.
+    antes: Pretinha keeps looking at Paçoca, calm and patient.
+    fala:
+      quem: pretinha
+      texto: "Calma. Para votar, basta um documento oficial com foto."
+
+  - id: reacao
+    camera: dupla
+    resumo: Paçoca is relieved.
+    antes: Paçoca lets out a long sigh of relief, his whole round body relaxing, and his curled tail wags.
