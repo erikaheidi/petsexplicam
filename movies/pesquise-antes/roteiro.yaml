@@ -1,0 +1,92 @@
+# pesquise-antes - o Paçoca escolheu candidato pelo vídeo mais engraçado; a
+# Pretinha mostra que o que importa é o que o candidato já FEZ, e de que lado
+# ele fica. Rascunho em drafts/pesquise-antes.md.
+#
+#   ./dialogo cenas pesquise-antes     ./dialogo gerar pesquise-antes
+#
+# Fatos usados (conferir antes de postar):
+#   - Câmara (camara.leg.br) e Senado (senado.leg.br) publicam como cada
+#     parlamentar votou em cada votação nominal.
+#   - Segundo turno: último domingo de outubro (Constituição, art. 77) - 25/10/2026.
+# Câmeras: sem `camera:`, a cena vai no close de quem fala (campo/contracampo).
+# `dupla` onde a reação do outro importa: a abertura, a lista do que o
+# candidato devia ter votado (os olhos do Paçoca arregalando) e o gancho.
+cenario: sofa
+seed: 2026
+
+cenas:
+  - id: decidi
+    camera: dupla
+    resumo: Paçoca proudly announces how he picked his candidate.
+    antes: Paçoca bounces on the sofa cushion, beaming with pride, and turns towards Pretinha.
+    fala:
+      quem: pacoca
+      texto: "Já decidi meu voto! Vou no candidato do vídeo mais engraçado!"
+    depois: Pretinha turns her head slowly towards the right of the frame and stares at him.
+
+  - id: engracado
+    resumo: Pretinha, deadpan, questions his criterion.
+    antes: Pretinha looks towards the right of the frame with a flat, unimpressed stare.
+    fala:
+      quem: pretinha
+      texto: "Engraçado? Você está escolhendo quem vai cuidar do país."
+
+  - id: prometem
+    resumo: Paçoca shrugs that they all promise the same.
+    antes: Paçoca tilts his head and shrugs his round shoulders.
+    fala:
+      quem: pacoca
+      texto: "Ué, mas todo mundo promete as mesmas coisas, né?"
+
+  - id: fez
+    resumo: Pretinha says promises are cheap; the record matters.
+    antes: Pretinha shakes her head once, firmly.
+    fala:
+      quem: pretinha
+      texto: "Prometer é fácil. Importa o que ele já fez."
+
+  - id: lado
+    camera: dupla
+    resumo: Pretinha lists what a candidate should have stood for.
+    antes: Pretinha leans slightly towards Paçoca, serious, counting points with a small nod for each one.
+    fala:
+      quem: pretinha
+      texto: "Votou pelo salário mínimo? Pelo SUS? Pela escola pública?"
+    depois: Paçoca's eyes go wide.
+
+  - id: descubro
+    resumo: Paçoca realises he never checked, and asks how.
+    antes: Paçoca blinks, his forehead wrinkles deepening as he thinks hard.
+    fala:
+      quem: pacoca
+      texto: "Nunca pensei nisso. E como eu descubro?"
+
+  - id: sites
+    resumo: Pretinha tells him where the voting records are published.
+    antes: Pretinha tilts her head slightly, matter-of-fact, looking towards the right of the frame.
+    fala:
+      quem: pretinha
+      texto: "Câmara e Senado mostram na internet como cada um votou."
+
+  - id: aprendi
+    resumo: Paçoca gets it and says it back in his own words.
+    antes: Paçoca sits back up, his face lighting up with understanding.
+    fala:
+      quem: pacoca
+      texto: "Então eu tenho que ver quem fica do lado de quem trabalha!"
+
+  - id: aluguel
+    camera: dupla
+    resumo: Pretinha lands the punchline.
+    antes: Pretinha turns her head back to face the camera.
+    fala:
+      quem: pretinha
+      texto: "Isso. Vídeo engraçado não paga o seu aluguel."
+    depois: Paçoca nods slowly, convinced.
+
+  - id: dia-25
+    resumo: Pretinha addresses the viewer directly with the call to action.
+    antes: Pretinha looks straight into the lens, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "Dia vinte e cinco, vote em quem defende o povo."

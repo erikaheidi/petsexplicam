@@ -28,14 +28,20 @@ comfy:
   text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
   video_vae: minimax_h3_video_vae_int8_convrot.safetensors
   audio_vae: minimax_h3_audio_vae_fp32.safetensors
-  steps: 4
+  # 8 passos com start_percent 0.2 / end_percent 1.0 - a config estável do
+  # josy-gamer v6 e do josy-hangover-dream. Com 4 passos e a atenção esparsa
+  # ligada desde o primeiro passo a câmera TREME (medido com vidstabdetect:
+  # ~0,6-1,8 px/frame de tremor vertical contra ~0,02 nesta config). Os primeiros
+  # 20% em atenção densa fixam a estrutura global, câmera inclusive.
+  steps: 8
   # `match` mantém as refs no tamanho do canvas: refs em tamanho cheio custam ~3x.
   ref_image_size: match
   sol_attn:
     mode: vsa
     keep_percent: 20.0
     min_tokens: 4096     # o default 12288 do node é um crossover de CUDA
-    end_percent: 0.75
+    start_percent: 0.2
+    end_percent: 1.0
     verbose: true        # sem isso, toda falha deste node é silenciosa
 defaults:
   # 9:16 vertical - o formato de Reels.

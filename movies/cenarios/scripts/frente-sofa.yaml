@@ -1,0 +1,102 @@
+# frente-sofa - os dois de frente um para o outro no sofá (conversa natural).
+#
+#   ./mm images movies/cenarios/scripts/frente-sofa.yaml
+#
+# Edições de cenario-sofa.png (mesmo cômodo, luz e dupla). Três planos:
+#   dupla   os dois de perfil/três quartos, virados um para o outro
+#   pretinha  por cima do ombro do Paçoca: ombro e orelha dele desfocados em
+#           primeiro plano à direita, ela em três quartos olhando para ele
+#   pacoca  o espelho: ombro e orelha de morcego dela à esquerda, ele olhando
+#           para ela
+# Os escolhidos viram assets/cenario-sofafrente*.png e o cenário "sofa-frente"
+# no tools/dialogo.py.
+kind: images
+name: frente-sofa
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  - id: dupla-a
+    seed: 6101
+    ref_images: [cenario-sofa.png]
+    prompt: &dupla >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are: the
+      black French bulldog with the white chest blaze and the fawn pug with
+      the black mask, the same faces, coats, markings and sizes, on the same
+      green sofa with the white crocheted throw, in the same room and the same
+      warm late-afternoon light. Change only their poses: they now sit facing
+      each other on the sofa seat, as if in conversation. The French bulldog
+      on the left turns her body and head to the right and looks at the pug,
+      seen in a three-quarter profile; the pug on the right turns his body and
+      head to the left and looks at her, also in a three-quarter profile.
+      Their faces are about a head's length apart, both faces and both mouths
+      clearly visible, both dogs seen from their paws on the seat to the tips
+      of their ears. The camera stays where it is, at the height of the sofa
+      seat, straight on.
+  - id: dupla-b
+    seed: 6102
+    ref_images: [cenario-sofa.png]
+    prompt: *dupla
+
+  - id: pretinha-a
+    seed: 6201
+    ref_images: [cenario-sofa.png]
+    prompt: &pretinha >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black French bulldog, as in a film conversation. Keep her exactly as she
+      is: the same face, the same black coat with faint brindle, the same white
+      blaze on her chest, the same large upright bat ears and dark eyes. The
+      camera is just behind the pug's left shoulder: the out-of-focus fawn
+      shoulder and the back of the pug's small black folded ear fill the lower
+      right corner of the frame in the foreground. The French bulldog sits
+      facing the camera at a three-quarter angle, turned towards the pug and
+      looking at him, just to the right of the camera; her sharp face, whole
+      muzzle and upper chest fill the upper left two thirds of the frame.
+      Behind her, softly out of focus, the white crocheted throw on the green
+      sofa, the bright turquoise wall and the green shutter window with warm
+      late-afternoon light.
+  - id: pretinha-b
+    seed: 6202
+    ref_images: [cenario-sofa.png]
+    prompt: *pretinha
+
+  - id: pacoca-a
+    seed: 6301
+    ref_images: [cenario-sofa.png]
+    prompt: &pacoca >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      fawn pug, as in a film conversation. Keep him exactly as he is: the same
+      face, the same fawn-yellow coat, the same jet-black mask, the same small
+      black folded ears, large round glossy dark eyes and deep forehead
+      wrinkles. The camera is just behind the French bulldog's right shoulder:
+      the out-of-focus black shoulder and the back of her tall upright bat ear
+      fill the lower left corner of the frame in the foreground. The pug sits
+      facing the camera at a three-quarter angle, turned towards her and
+      looking at her, just to the left of the camera; his sharp face, whole
+      muzzle and upper chest fill the upper right two thirds of the frame.
+      Behind him, softly out of focus, the green sofa back, the bright
+      turquoise wall and the wooden side table with its lamp in warm
+      late-afternoon light.
+  - id: pacoca-b
+    seed: 6302
+    ref_images: [cenario-sofa.png]
+    prompt: *pacoca

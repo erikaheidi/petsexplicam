@@ -10,7 +10,10 @@ personagem mudar de cara entre vídeos.
 Buldogue francês fêmea, preta. Baseada na Josy
 (`assets/pretinha-referencia.jpg`).
 
-- **Personalidade**: séria, metódica, paciente até certo ponto. É ela quem
+- **Personalidade**: séria, metódica, paciente até certo ponto. **De
+  esquerda**: quer o melhor para a população - SUS, escola pública, salário
+  de quem trabalha - e não tem paciência para político de promessa vazia. É
+  incisiva, mas nunca inventa: o que ela afirma tem fonte. É ela quem
   explica de verdade; fala com a autoridade de uma professora que já repetiu a
   mesma coisa muitas vezes. O humor dela é seco: olhar fixo para a câmera,
   pausa, suspiro.
@@ -34,9 +37,12 @@ Paçoca é **o pug à direita**. Diga isso no prompt
 (`<Subject 2> is Paçoca, the pug on the right in <Picture N>`) para o modelo
 não tirar a Pretinha dessa referência.
 
-- **Personalidade**: atrapalhado, entusiasmado, cômico. Entende tudo pela
-  metade, tira conclusões erradas com total confiança, se distrai com comida.
-  É o melhor amigo da Pretinha e o motivo de ela suspirar.
+- **Personalidade**: atrapalhado, entusiasmado, cômico. **Desinformado, mas
+  de boa índole**: está meio perdido, vota pelo vídeo mais engraçado ou pelo
+  que viu no zap, e muda de ideia quando entende. Entende tudo pela metade,
+  tira conclusões erradas com total confiança, se distrai com comida. É o
+  melhor amigo da Pretinha e o motivo de ela suspirar. O arco de todo vídeo
+  é ele aprendendo - nunca ridicularizado: é o eleitor que queremos alcançar.
 - **Papel**: faz as perguntas que o público faria, erra para a Pretinha
   corrigir, entrega a piada no final.
 - **Voz**: young male voice, bright and slightly nasal, fast and excitable,

@@ -1,0 +1,117 @@
+# cenarios - frames de referência dos novos cenários da dupla, na mesma casa.
+#
+#   ./mm images movies/cenarios/scripts/v1.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/v1.yaml
+#
+# Cada imagem é uma EDIÇÃO de cenario-sala.png (o frame aprovado da sala, da
+# cena 3 do direito-de-votar): <image1> é o alvo, então a dupla mantém cara,
+# pelagem e proporções, e o formato 9:16 vem dele (o modo edição tira o
+# tamanho do image_1; `resolution` é o orçamento de pixels). Só o cômodo muda.
+#
+# Duas seeds por cômodo. A escolhida de cada um vira assets/cenario-<nome>.png
+# e uma entrada em CENARIOS no tools/dialogo.py, com o texto do quadro escrito
+# a partir da imagem aprovada.
+#
+# A casa é a mesma: paredes turquesa, taco em espinha de peixe, janelas de
+# madeira verdes, luz quente de fim de tarde. Nada de texto em lugar nenhum -
+# o vídeo inventaria letras em qualquer tela, placa ou embalagem.
+#
+# Qwen-Image-2.1: licença de pesquisa, uso não comercial (o perfil não é
+# monetizado).
+kind: images
+name: cenarios
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  # --- sofá com TV: reagir a jornal, horário eleitoral, debate ---------------
+  - id: sofa-a
+    seed: 4101
+    ref_images: [cenario-sala.png]
+    prompt: &sofa >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are: the
+      black French bulldog with the white chest blaze on the left and the
+      fawn pug with the black mask on the right, the same faces, coats,
+      markings, sizes and expressions, side by side and close together, both
+      facing the camera. Move them into the living room of the same house:
+      they now sit side by side on the seat of an old, soft dark-green fabric
+      sofa with a white crocheted throw draped over its back, both visible
+      from the chest up and filling the upper half of the frame, looking just
+      past the camera as if at a television in front of them. Behind the sofa
+      is the same bright turquoise wall, softly out of focus, with a green
+      wooden shutter window on the left letting in warm late-afternoon light.
+      A small wooden side table with a lamp stands at the right edge. The
+      camera is at the height of the sofa seat, straight on. Remove the
+      dining table, the tablecloth and the laptop entirely.
+  - id: sofa-b
+    seed: 4102
+    ref_images: [cenario-sala.png]
+    prompt: *sofa
+
+  # --- cozinha: preço da comida, conta de luz e gás ------------------------
+  - id: cozinha-a
+    seed: 4201
+    ref_images: [cenario-sala.png]
+    prompt: &cozinha >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are: the
+      black French bulldog with the white chest blaze on the left and the
+      fawn pug with the black mask on the right, the same faces, coats,
+      markings, sizes and expressions, side by side and close together, both
+      facing the camera. Move them into the kitchen of the same modest
+      Brazilian house: they sit on two wooden chairs at a small square kitchen
+      table covered with a red-and-white checked oilcloth, both visible from
+      the chest up and filling the upper half of the frame, the near edge of
+      the table along the bottom of the frame. On the table in front of them
+      lie a plain paper grocery bag with a few vegetables and a loaf of bread,
+      with no writing on anything. Behind them, softly out of focus: a wall of
+      pale yellow square tiles, an old white four-burner gas stove with a
+      dented aluminium pot, and an old white refrigerator with nothing stuck
+      to it. Warm late-afternoon light comes from a window on the left. The
+      camera is at table height, straight on. Remove the laptop and the
+      crocheted tablecloth.
+  - id: cozinha-b
+    seed: 4202
+    ref_images: [cenario-sala.png]
+    prompt: *cozinha
+
+  # --- varanda / portão: posto de saúde, escola, ônibus ---------------------
+  - id: varanda-a
+    seed: 4301
+    ref_images: [cenario-sala.png]
+    prompt: &varanda >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are: the
+      black French bulldog with the white chest blaze on the left and the
+      fawn pug with the black mask on the right, the same faces, coats,
+      markings, sizes and expressions, side by side and close together, both
+      facing the camera. Move them out onto the small front veranda of the
+      same house: they sit side by side on a low wooden bench, both visible
+      from the chest up and filling the upper half of the frame. Behind them,
+      softly out of focus: a low wall painted white with a green-painted iron
+      gate, terracotta pots of plants, and beyond it a quiet street of modest,
+      brightly painted Brazilian houses with tangled overhead electric wires,
+      in warm late-afternoon sun. The veranda floor is red terracotta tile. The
+      camera is at the height of the bench, straight on. Remove the dining
+      table, the tablecloth, the laptop and the chairs.
+  - id: varanda-b
+    seed: 4302
+    ref_images: [cenario-sala.png]
+    prompt: *varanda

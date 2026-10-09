@@ -1,0 +1,7 @@
+#!/bin/sh
+# Render cena a cena com QC de voz, montagem e legendas (tools/renderqc.py).
+#   ./renderqc movies/<filme>/scripts/v1.yaml [--de N] [--ate N]
+here=$(cd "$(dirname "$0")" && pwd)
+MOVIEMAKR_HOME=${MOVIEMAKR_HOME:-$HOME/Projects/moviemakr}
+export MOVIEMAKR_HOME
+exec "$MOVIEMAKR_HOME/.venv/bin/python" "$here/tools/renderqc.py" "$@"

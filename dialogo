@@ -1,0 +1,7 @@
+#!/bin/sh
+# Roteiro de diálogo -> script do moviemakr (tools/dialogo.py), com o Python
+# do venv do moviemakr (tem PyYAML).
+#   ./dialogo novo <filme> | gerar <filme> [--versao v2] | cenas <filme>
+here=$(cd "$(dirname "$0")" && pwd)
+MOVIEMAKR_HOME=${MOVIEMAKR_HOME:-$HOME/Projects/moviemakr}
+exec "$MOVIEMAKR_HOME/.venv/bin/python" "$here/tools/dialogo.py" "$@"

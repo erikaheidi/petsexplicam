@@ -1,0 +1,248 @@
+# pesquise-antes v2 - GERADO por tools/dialogo.py a partir de movies/pesquise-antes/roteiro.yaml.
+# Não edite à mão: mude o roteiro (ou a receita em tools/dialogo.py) e rode
+#   ./dialogo gerar pesquise-antes --versao v2
+# Cada cena é independente: dá para refazer uma só com --only N.
+name: pesquise-antes-v2
+backend: comfy
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fastvideo_vsa_datafree_1300step_4step_int8_convrot.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_int8_convrot.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  # 8 passos, start 0.2 / end 1.0: com 4 passos e atenção esparsa desde o
+  # primeiro passo a câmera treme.
+  steps: 8
+  ref_image_size: match
+  sol_attn:
+    mode: vsa
+    keep_percent: 20.0
+    min_tokens: 4096
+    start_percent: 0.2
+    end_percent: 1.0
+    verbose: true
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 107
+  seed: 2026
+  style_suffix: ""
+continuity:
+  anchors: []
+  chain_from_previous: false
+output:
+  container: mp4
+  audio: keep
+  music: null
+scenes:
+  - id: decidi
+    video_frames: 124
+    ref_images: [cenario-sofafrente.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 3> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> proudly announces how he picked his candidate. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at the two ends of the sofa.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the sofa seat, straight on, in a medium-wide shot, and it never moves, pans or zooms. <Subject 1> sits at the left end of the green sofa seat, her body and head turned to the right, seen in profile, looking at <Subject 2>; <Subject 2> sits at the right end of the seat, turned to the left, seen in profile, looking back at her, with a stretch of sofa between them. Both are seen whole, from their paws on the seat to the tips of their ears. Their mouths face each other in profile, so every movement of each mouth stands out against the turquoise wall. The white crocheted throw hangs over the sofa back behind them, and behind it, softly out of focus, the bright turquoise wall of <Subject 3>, the green shutter window on the left and the lamp at the right edge. <Subject 2> bounces on the sofa cushion, beaming with pride, and turns towards <Subject 1>. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Já decidi meu voto! Vou no candidato do vídeo mais engraçado!</d> <Subject 1> keeps her mouth closed. <Subject 1> turns her head slowly towards the right of the frame and stares at him. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: engracado
+    ref_images: [cenario-sofafrente-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1>, deadpan, questions his criterion. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, the white crocheted throw on the green sofa, the turquoise wall and the green shutter window of <Subject 2>. <Subject 1> looks towards the right of the frame with a flat, unimpressed stare. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Engraçado? Você está escolhendo quem vai cuidar do país.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: prometem
+    ref_images: [cenario-sofafrente-pacoca.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Paçoca, the male pug in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 2> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> shrugs that they all promise the same. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus back and ear in the lower-left foreground, and his face sharp, turned towards her.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the French bulldog's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower left, out of focus, are the French bulldog's black back and shoulder and the back of her tall upright bat ear, turned away from the camera; her face is never seen. <Subject 1> sits facing the camera at a three-quarter angle, turned towards her and looking at her, just to the left of the lens; his face, whole muzzle and chest are sharp and fill the right two thirds of the frame. Behind him, softly out of focus, the green sofa back, the turquoise wall of <Subject 2> and the wooden side table with its lamp. <Subject 1> tilts his head and shrugs his round shoulders. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Ué, mas todo mundo promete as mesmas coisas, né?</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: fez
+    ref_images: [cenario-sofafrente-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> says promises are cheap; the record matters. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, the white crocheted throw on the green sofa, the turquoise wall and the green shutter window of <Subject 2>. <Subject 1> shakes her head once, firmly. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Prometer é fácil. Importa o que ele já fez.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: lado
+    ref_images: [cenario-sofafrente.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 3> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> lists what a candidate should have stood for. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at the two ends of the sofa.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the sofa seat, straight on, in a medium-wide shot, and it never moves, pans or zooms. <Subject 1> sits at the left end of the green sofa seat, her body and head turned to the right, seen in profile, looking at <Subject 2>; <Subject 2> sits at the right end of the seat, turned to the left, seen in profile, looking back at her, with a stretch of sofa between them. Both are seen whole, from their paws on the seat to the tips of their ears. Their mouths face each other in profile, so every movement of each mouth stands out against the turquoise wall. The white crocheted throw hangs over the sofa back behind them, and behind it, softly out of focus, the bright turquoise wall of <Subject 3>, the green shutter window on the left and the lamp at the right edge. <Subject 1> leans slightly towards <Subject 2>, serious, counting points with a small nod for each one. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Votou pelo salário mínimo? Pelo SUS? Pela escola pública?</d> <Subject 2> keeps his mouth closed. <Subject 2>'s eyes go wide. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: descubro
+    video_frames: 90
+    ref_images: [cenario-sofafrente-pacoca.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Paçoca, the male pug in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 2> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> realises he never checked, and asks how. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus back and ear in the lower-left foreground, and his face sharp, turned towards her.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the French bulldog's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower left, out of focus, are the French bulldog's black back and shoulder and the back of her tall upright bat ear, turned away from the camera; her face is never seen. <Subject 1> sits facing the camera at a three-quarter angle, turned towards her and looking at her, just to the left of the lens; his face, whole muzzle and chest are sharp and fill the right two thirds of the frame. Behind him, softly out of focus, the green sofa back, the turquoise wall of <Subject 2> and the wooden side table with its lamp. <Subject 1> blinks, his forehead wrinkles deepening as he thinks hard. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Nunca pensei nisso. E como eu descubro?</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: sites
+    video_frames: 124
+    ref_images: [cenario-sofafrente-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> tells him where the voting records are published. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, the white crocheted throw on the green sofa, the turquoise wall and the green shutter window of <Subject 2>. <Subject 1> tilts her head slightly, matter-of-fact, looking towards the right of the frame. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Câmara e Senado mostram na internet como cada um votou.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: aprendi
+    video_frames: 124
+    ref_images: [cenario-sofafrente-pacoca.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Paçoca, the male pug in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 2> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gets it and says it back in his own words. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus back and ear in the lower-left foreground, and his face sharp, turned towards her.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the French bulldog's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower left, out of focus, are the French bulldog's black back and shoulder and the back of her tall upright bat ear, turned away from the camera; her face is never seen. <Subject 1> sits facing the camera at a three-quarter angle, turned towards her and looking at her, just to the left of the lens; his face, whole muzzle and chest are sharp and fill the right two thirds of the frame. Behind him, softly out of focus, the green sofa back, the turquoise wall of <Subject 2> and the wooden side table with its lamp. <Subject 1> sits back up, his face lighting up with understanding. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Então eu tenho que ver quem fica do lado de quem trabalha!</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: aluguel
+    ref_images: [cenario-sofafrente.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 3> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> lands the punchline. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at the two ends of the sofa.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the sofa seat, straight on, in a medium-wide shot, and it never moves, pans or zooms. <Subject 1> sits at the left end of the green sofa seat, her body and head turned to the right, seen in profile, looking at <Subject 2>; <Subject 2> sits at the right end of the seat, turned to the left, seen in profile, looking back at her, with a stretch of sofa between them. Both are seen whole, from their paws on the seat to the tips of their ears. Their mouths face each other in profile, so every movement of each mouth stands out against the turquoise wall. The white crocheted throw hangs over the sofa back behind them, and behind it, softly out of focus, the bright turquoise wall of <Subject 3>, the green shutter window on the left and the lamp at the right edge. <Subject 1> turns her head back to face the camera. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Isso. Vídeo engraçado não paga o seu aluguel.</d> <Subject 2> keeps his mouth closed. <Subject 2> nods slowly, convinced. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: dia-25
+    video_frames: 124
+    ref_images: [cenario-sofafrente-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the living room shown in <Picture 1>, in a modest, traditional Brazilian family home: an old, soft dark-green fabric sofa with a white crocheted throw draped over its back, a bright turquoise wall, a green-painted wooden shutter window on the left letting in warm late-afternoon light, and a small wooden side table with a lamp.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> addresses the viewer directly with the call to action. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, the white crocheted throw on the green sofa, the turquoise wall and the green shutter window of <Subject 2>. <Subject 1> looks straight into the lens, calm and firm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Dia vinte e cinco, vote em quem defende o povo.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
