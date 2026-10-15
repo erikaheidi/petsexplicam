@@ -1,0 +1,287 @@
+# carrossel - imagens da Pretinha e do Paçoca como militantes, base para os
+# posts em carrossel feitos no Canva.
+#
+# DUAS ETAPAS (a receita do foto-perfil):
+#   1. Placas (text-to-image), 4:5 (1024x1280, o formato do carrossel do
+#      Instagram): compram a composição, com uma buldogue preta genérica no
+#      lugar da Pretinha. O terço de cima fica livre para o texto do Canva.
+#        ./mm images movies/carrossel/scripts/v1.yaml
+#   2. Edição da placa escolhida: placa = <image1>, foto da Josy = <image2>,
+#      para a Pretinha ganhar as marcas reais (o modo edição dimensiona a
+#      partir de image_1, então o 4:5 se mantém).
+#
+# Bandeira: vermelha com estrela AMARELA no centro é a bandeira do Vietnã. A
+# passeata sai nas duas versões (estrela amarela e branca) para a Erika escolher.
+#
+# Qwen-Image-2.1 tem licença de pesquisa (uso NÃO comercial): não use estas
+# imagens se o perfil for monetizado.
+kind: images
+name: carrossel
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  width: 1024
+  height: 1280
+  style_suffix: >-
+    Live-action photograph, not an illustration, not a cartoon, not a render.
+    Real fur texture, sharp focus on the two main dogs, natural colours. No
+    text, no letters, no numbers, no logos and no watermark anywhere in the
+    picture.
+
+images:
+  # --- bandanas vermelhas, pata levantada ----------------------------------
+  - id: bandana-a
+    seed: 4101
+    prompt: &bandana >-
+      A vertical photograph of two dogs sitting side by side like proud
+      activists, against a plain, evenly lit warm off-white seamless
+      backdrop. The camera is at the dogs' eye level, straight on. The dogs
+      fill the lower two thirds of the frame, seen from their paws to the
+      tips of their ears; the upper third is empty backdrop.
+
+      ON THE LEFT: a small female French bulldog, compact and muscular, with
+      a short black coat with faint darker brindle striping, a white blaze on
+      the centre of her chest, large upright bat ears, round dark brown eyes
+      and a short wrinkled muzzle. ON THE RIGHT: a male pug, stocky and
+      round, with a short fawn-yellow coat, a jet-black mask over his muzzle
+      and around his eyes, small black folded ears, large round glossy dark
+      eyes, deep forehead wrinkles and a tightly curled tail.
+
+      Each dog wears a plain bright red cotton bandana tied around the neck,
+      with no pattern and no print. Each dog raises one front paw high in the
+      air, like a raised-fist salute at a rally. The French bulldog looks
+      straight into the lens, serious and determined, mouth closed; the pug
+      looks into the lens with an excited, proud open-mouthed grin.
+  - id: bandana-b
+    seed: 4102
+    prompt: *bandana
+
+  # --- passeata: estrela amarela (pedido) ----------------------------------
+  - id: passeata-amarela-a
+    seed: 4201
+    prompt: &passeata-amarela >-
+      A vertical photograph of a joyful street march of pets in a Brazilian
+      city street on a sunny afternoon, seen from the dogs' eye level. In the
+      front, in the centre and in sharp focus, two dogs lead the march side
+      by side, walking towards the camera: ON THE LEFT a small female French
+      bulldog, compact and muscular, with a short black coat with faint
+      darker brindle striping, a white blaze on the centre of her chest,
+      large upright bat ears, round dark brown eyes and a short wrinkled
+      muzzle; ON THE RIGHT a male pug, stocky and round, with a short
+      fawn-yellow coat, a jet-black mask over his muzzle and around his eyes,
+      small black folded ears, large round glossy dark eyes and deep forehead
+      wrinkles. Both wear plain bright red bandanas around their necks.
+
+      Behind them, softly out of focus, a crowd of many other dogs and cats
+      of all breeds and sizes march along, all wearing red accessories - red
+      bandanas, small red caps, red scarves. Above the crowd wave many red
+      flags on short poles, each plain red with a single five-pointed yellow
+      star in the centre and nothing else on it. Colourful two-storey
+      buildings line the street. No humans appear anywhere. The upper third
+      of the picture is sky and waving flags, with room for text.
+  - id: passeata-amarela-b
+    seed: 4202
+    prompt: *passeata-amarela
+
+  # --- passeata: estrela branca (estilo PT, sem o Vietnã) -------------------
+  - id: passeata-branca-a
+    seed: 4301
+    prompt: &passeata-branca >-
+      A vertical photograph of a joyful street march of pets in a Brazilian
+      city street on a sunny afternoon, seen from the dogs' eye level. In the
+      front, in the centre and in sharp focus, two dogs lead the march side
+      by side, walking towards the camera: ON THE LEFT a small female French
+      bulldog, compact and muscular, with a short black coat with faint
+      darker brindle striping, a white blaze on the centre of her chest,
+      large upright bat ears, round dark brown eyes and a short wrinkled
+      muzzle; ON THE RIGHT a male pug, stocky and round, with a short
+      fawn-yellow coat, a jet-black mask over his muzzle and around his eyes,
+      small black folded ears, large round glossy dark eyes and deep forehead
+      wrinkles. Both wear plain bright red bandanas around their necks.
+
+      Behind them, softly out of focus, a crowd of many other dogs and cats
+      of all breeds and sizes march along, all wearing red accessories - red
+      bandanas, small red caps, red scarves. Above the crowd wave many red
+      flags on short poles, each plain red with a single five-pointed white
+      star in the centre and nothing else on it. Colourful two-storey
+      buildings line the street. No humans appear anywhere. The upper third
+      of the picture is sky and waving flags, with room for text.
+  - id: passeata-branca-b
+    seed: 4302
+    prompt: *passeata-branca
+
+  # === lote 2 (2026-10-14): superfícies em branco para o texto do Canva ======
+  # A Erika aprovou as placas como estão (sem a etapa 2 da Pretinha).
+  - id: professora-a
+    seed: 5101
+    prompt: &professora >-
+      A vertical photograph in a simple classroom with warm afternoon light.
+      A large, completely blank dark green chalkboard fills the upper half of
+      the frame, clean, with nothing written or drawn on it. In front of the
+      chalkboard, on the left, stands a small female French bulldog, compact
+      and muscular, with a short black coat with faint darker brindle
+      striping, a white blaze on the centre of her chest, large upright bat
+      ears, round dark brown eyes and a short wrinkled muzzle; she holds a
+      thin wooden pointer in her mouth, pointing at the board, serious like a
+      teacher. On the right, sitting at a small wooden school desk and
+      looking up at the board with wide curious eyes, is a male pug, stocky
+      and round, with a short fawn-yellow coat, a jet-black mask over his
+      muzzle and around his eyes, small black folded ears, large round glossy
+      dark eyes and deep forehead wrinkles. Both wear plain bright red
+      bandanas around their necks.
+  - id: professora-b
+    seed: 5102
+    prompt: *professora
+
+  - id: cartaz-a
+    seed: 5201
+    prompt: &cartaz >-
+      A vertical photograph of a joyful street march of pets in a Brazilian
+      city street on a sunny afternoon, seen from the dogs' eye level. In the
+      front and in sharp focus, two dogs sit side by side holding up between
+      them a large rectangular protest sign of plain white card on a wooden
+      stick; the sign is completely blank, with nothing written or drawn on
+      it, and it fills the upper middle of the frame. ON THE LEFT a small
+      female French bulldog, compact and muscular, with a short black coat
+      with faint darker brindle striping, a white blaze on the centre of her
+      chest, large upright bat ears, round dark brown eyes and a short
+      wrinkled muzzle; ON THE RIGHT a male pug, stocky and round, with a
+      short fawn-yellow coat, a jet-black mask over his muzzle and around his
+      eyes, small black folded ears, large round glossy dark eyes and deep
+      forehead wrinkles. Both wear plain bright red bandanas. Behind them,
+      softly out of focus, a crowd of dogs and cats in red bandanas and red
+      caps, and red flags each with a single five-pointed white star. No
+      humans appear anywhere.
+  - id: cartaz-b
+    seed: 5202
+    prompt: *cartaz
+
+  - id: celular-a
+    seed: 5301
+    prompt: &celular >-
+      A vertical photograph of a male pug, stocky and round, with a short
+      fawn-yellow coat, a jet-black mask over his muzzle and around his eyes,
+      small black folded ears, large round glossy dark eyes and deep forehead
+      wrinkles, lying on a sofa in a cosy, modest Brazilian living room. In
+      front of him, propped up on a cushion and facing the camera, is a large
+      smartphone whose screen is plain white and completely blank, with
+      nothing on it; the phone fills the upper middle of the frame. The pug
+      stares at it with his eyes wide and his mouth open in shock. Beside
+      him, a small female French bulldog, compact and muscular, with a short
+      black coat with faint darker brindle striping, a white blaze on the
+      centre of her chest, large upright bat ears, round dark brown eyes and
+      a short wrinkled muzzle, looks at the phone with a sceptical, raised
+      eyebrow expression. Neither dog wears a collar.
+  - id: celular-b
+    seed: 5302
+    prompt: *celular
+
+  - id: teste-cego-a
+    seed: 5401
+    prompt: &teste-cego >-
+      A vertical photograph at a kitchen table with a red-and-white checked
+      oilcloth, in warm late-afternoon light. On the right sits a male pug,
+      stocky and round, with a short fawn-yellow coat, a jet-black mask over
+      his muzzle, small black folded ears and deep forehead wrinkles, wearing
+      a soft black blindfold over his eyes, his head tilted, curious, his
+      mouth slightly open. On the left sits a small female French bulldog,
+      compact and muscular, with a short black coat with faint darker brindle
+      striping, a white blaze on the centre of her chest, large upright bat
+      ears, round dark brown eyes and a short wrinkled muzzle; in front of
+      her on the table stand two large plain white cards, completely blank,
+      one beside the other, facing the camera. She looks at the camera with
+      a knowing, serious expression. The upper third of the frame is the
+      softly out-of-focus kitchen wall.
+  - id: teste-cego-b
+    seed: 5402
+    prompt: *teste-cego
+
+  - id: farmacia-a
+    seed: 5501
+    prompt: &farmacia >-
+      A vertical photograph inside a small, bright Brazilian neighbourhood
+      pharmacy. Behind a white counter stands a small female French bulldog,
+      compact and muscular, with a short black coat with faint darker brindle
+      striping, a white blaze on the centre of her chest, large upright bat
+      ears, round dark brown eyes and a short wrinkled muzzle, wearing a
+      small white pharmacist's coat, serious and kind. On the counter in
+      front of her sit a few small plain white medicine boxes with no
+      writing, no brand and no label. On this side of the counter a male pug,
+      stocky and round, with a short fawn-yellow coat, a jet-black mask over
+      his muzzle and around his eyes, small black folded ears, large round
+      glossy dark eyes and deep forehead wrinkles, rests his front paws on
+      the counter, delighted, with a small paper bag beside him. Shelves of
+      plain white boxes fill the softly out-of-focus background.
+  - id: farmacia-b
+    seed: 5502
+    prompt: *farmacia
+
+  - id: rg-a
+    seed: 5601
+    prompt: &rg >-
+      A vertical close-up photograph of a male pug, stocky and round, with a
+      short fawn-yellow coat, a jet-black mask over his muzzle and around his
+      eyes, small black folded ears, large round glossy dark eyes, deep
+      forehead wrinkles and a plain bright red bandana, sitting proudly with
+      his chest puffed out, against a plain warm yellow seamless backdrop. He
+      holds up in his front paws, facing the camera, a small light green
+      identity card with a little square photo of his own face on the left
+      side and blank lines with no writing on the right. He beams with pride,
+      mouth open in a happy grin. The upper third of the frame is empty
+      backdrop.
+  - id: rg-b
+    seed: 5602
+    prompt: *rg
+
+  - id: almoco-tio-a
+    seed: 5701
+    prompt: &almoco >-
+      A vertical photograph of a Sunday family lunch at a long table with a
+      white tablecloth, rice, beans and a roast on the plates, in a modest
+      Brazilian home with warm light. At the head of the table, in the
+      middle, sits an older, heavy-set boxer dog with a grey muzzle and a
+      grumpy, stubborn frown, his front paws crossed on the table. On the
+      left side of the table sits a small female French bulldog, compact and
+      muscular, with a short black coat with faint darker brindle striping, a
+      white blaze on the centre of her chest, large upright bat ears, round
+      dark brown eyes and a short wrinkled muzzle, looking at him calmly. On
+      the right side sits a male pug, stocky and round, with a short
+      fawn-yellow coat, a jet-black mask over his muzzle and around his eyes,
+      small black folded ears, large round glossy dark eyes and deep
+      forehead wrinkles, looking at the boxer with big hopeful eyes. No
+      humans appear. The upper third is the softly out-of-focus dining room
+      wall.
+  - id: almoco-tio-b
+    seed: 5702
+    prompt: *almoco
+
+  - id: votar-a
+    seed: 5801
+    prompt: &votar >-
+      A vertical photograph in the corridor of a Brazilian public school used
+      as a polling station on a sunny morning: pale yellow walls, a wooden
+      classroom door, a small cardboard voting booth on a school desk. In the
+      front, in sharp focus, a small female French bulldog, compact and
+      muscular, with a short black coat with faint darker brindle striping, a
+      white blaze on the centre of her chest, large upright bat ears, round
+      dark brown eyes and a short wrinkled muzzle, and a male pug, stocky and
+      round, with a short fawn-yellow coat, a jet-black mask over his muzzle
+      and around his eyes, small black folded ears, large round glossy dark
+      eyes and deep forehead wrinkles, sit side by side in plain bright red
+      bandanas, proud and determined, as if waiting their turn to vote. No
+      humans appear. Any signs or papers on the walls are blank. The upper
+      third of the frame is the softly out-of-focus corridor wall.
+  - id: votar-b
+    seed: 5802
+    prompt: *votar

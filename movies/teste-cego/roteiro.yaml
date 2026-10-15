@@ -1,0 +1,151 @@
+# teste-cego - o Paçoca pesquisou o outro candidato e mudou o voto: no teste
+# cego da Pretinha ele escolhe pelo conteúdo, e só depois descobre os nomes.
+# Rascunho e fontes em drafts/teste-cego.md.
+#
+#   ./dialogo cenas teste-cego     ./dialogo gerar teste-cego
+#
+# Fatos usados (conferir antes de postar - detalhes no rascunho):
+#   - Farmácia Popular 100% grátis desde fev/2025 (Ministério da Saúde).
+#   - Plano do Flávio (TSE) não cita a Farmácia Popular. NÃO dizer "vai acabar".
+#   - PLOA 2023 do governo Jair propôs R$ 842 mi contra R$ 2,04 bi (-59%).
+#   - Fim da 6x1: prioridade do governo Lula, aprovado na Câmara em mai/2026.
+#   - Plano do Flávio: "negociado sobre o legislado", jornada direto com a empresa.
+#   - Flávio promete anistia/indulto ao pai; Jair condenado pelo STF (set/2025).
+# Câmeras: cenas 1-2 no vlog do Paçoca na cozinha (o gancho é ele contando
+# para quem assiste); o resto em campo/contracampo, `dupla` nas viradas.
+cenario: cozinha-frente
+seed: 2026
+
+cenas:
+  - id: mudei
+    camera: vlog-pacoca
+    # "tells his viewers" no resumo pôs um celular no tripé dentro do quadro
+    # (seeds 2027 e 2028) e afastou a cozinha da referência; a cena 2, sem
+    # "viewers", saiu certa. Nada de público/gravação nas ações do vlog.
+    resumo: Paçoca says he researched the other candidate and changed his vote.
+    antes: Paçoca looks straight into the lens, serious, his forehead wrinkled.
+    fala:
+      quem: pacoca
+      texto: "Pesquisei o outro candidato. E mudei meu voto."
+    depois: Paçoca nods once, looking straight into the lens.
+
+  - id: sem-nome
+    camera: vlog-pacoca
+    resumo: Paçoca explains he did not want to choose by name and asked Pretinha for help.
+    antes: Paçoca tilts his head to one side, still looking into the lens.
+    fala:
+      quem: pacoca
+      texto: "Mas eu não quis escolher pelo nome. Pedi ajuda pra Pretinha."
+
+  - id: teste
+    camera: dupla
+    resumo: Pretinha explains the blind test.
+    antes: Pretinha keeps looking at him in profile, calm and serious.
+    fala:
+      quem: pretinha
+      texto: "Teste cego: eu conto o que cada um fez. Sem nome."
+    depois: Paçoca sits up straight and listens closely.
+
+  - id: farmacia-um
+    resumo: Pretinha gives the first side's record on Farmácia Popular.
+    antes: Pretinha raises her chin slightly, matter-of-fact.
+    fala:
+      quem: pretinha
+      texto: "Com um, a Farmácia Popular ficou cem por cento de graça."
+
+  - id: farmacia-plano
+    resumo: Pretinha says the other side's plan does not mention it.
+    antes: Pretinha tilts her head slightly, looking at him.
+    fala:
+      quem: pretinha
+      texto: "No plano do outro, ela nem aparece."
+
+  - id: farmacia-corte
+    resumo: Pretinha says the other side's last government proposed cutting more than half of its budget.
+    antes: Pretinha leans slightly towards him, serious.
+    fala:
+      quem: pretinha
+      texto: "O último governo do lado dele propôs cortar mais da metade."
+
+  - id: vovo
+    resumo: Paçoca picks the first side, thinking of his grandma's blood-pressure pills.
+    antes: Paçoca's eyes go wide and he sits up straight.
+    fala:
+      quem: pacoca
+      texto: "O primeiro! Remédio de pressão da vovó é de lá."
+
+  - id: escala
+    resumo: Pretinha gives the first side's position on work schedules.
+    antes: Pretinha nods once, then looks at him again.
+    fala:
+      quem: pretinha
+      texto: "Trabalho: um defende o fim da escala seis por um."
+
+  - id: patrao
+    resumo: Pretinha gives the other side's position on work schedules.
+    antes: Pretinha tilts her head slightly, matter-of-fact.
+    fala:
+      quem: pretinha
+      texto: "O outro quer você negociando as horas direto com o patrão."
+
+  - id: de-novo
+    resumo: Paçoca recognises the worry from his vlog and picks the first side again.
+    antes: Paçoca frowns, the wrinkles on his forehead deepening, then his eyes widen.
+    fala:
+      quem: pacoca
+      texto: "E se o patrão não quiser? O primeiro de novo!"
+
+  - id: lula
+    camera: dupla
+    resumo: Pretinha reveals the first side.
+    antes: Pretinha keeps looking at him in profile and pauses for a beat.
+    fala:
+      quem: pretinha
+      texto: "O primeiro é o Lula."
+    depois: Paçoca blinks, then leans forward towards her.
+
+  - id: e-o-outro
+    resumo: Paçoca asks who the other one is.
+    antes: Paçoca leans slightly forward, curious.
+    fala:
+      quem: pacoca
+      texto: "E o outro?"
+
+  - id: flavio
+    resumo: Pretinha reveals the other side and who he really is.
+    antes: Pretinha looks at him, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "Flávio Bolsonaro. Promete anistia pro pai, condenado por tentar um golpe."
+
+  - id: de-volta
+    resumo: Paçoca realises what a vote for him means.
+    antes: Paçoca's ears drop slightly and his eyes go round.
+    fala:
+      quem: pacoca
+      texto: "Então votar nele é trazer o Bolsonaro de volta."
+
+  - id: treze
+    camera: dupla
+    resumo: Paçoca announces his decision.
+    antes: Paçoca sits up straight, determined, still looking at her in profile.
+    fala:
+      quem: pacoca
+      texto: "Decidi: dia vinte e cinco é Lula, treze."
+    depois: Pretinha nods slowly, keeps looking at him in profile.
+
+  - id: faz-o-teste
+    camera: vlog-pretinha
+    resumo: Pretinha addresses the viewer with the call to action.
+    antes: Pretinha looks straight into the lens, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "Faz o teste você também."
+
+  - id: esconde
+    camera: vlog-pretinha
+    resumo: Pretinha explains how to do the test.
+    antes: Pretinha keeps looking straight into the lens and nods once.
+    fala:
+      quem: pretinha
+      texto: "Esconde o nome e vê o que cada um fez."

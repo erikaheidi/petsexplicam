@@ -1,0 +1,98 @@
+# frente-cozinha-dupla - plano da dupla na cozinha com a mesa ENTRE os dois.
+#
+#   ./mm images movies/cenarios/scripts/frente-cozinha-dupla.yaml
+#
+# O frente-cozinha-dupla-b punha os dois lado a lado atrás da mesa, só virando
+# a cabeça - não fecha com os closes por cima do ombro, que mostram os dois de
+# frente. Aqui eles sentam nas duas pontas da mesa, frente a frente, e a câmera
+# fica na lateral. A geografia bate com os closes: na parede do fundo, a pia e a
+# prateleira do lado dela (fundo do close dela), o fogão e a geladeira do lado
+# dele (fundo do close dele).
+kind: images
+name: frente-cozinha-dupla
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  - id: mesa-1
+    seed: 8401
+    ref_images: [frente-cozinha-dupla-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are - the
+      same faces, coats, markings and sizes - and keep the same modest
+      Brazilian kitchen, the same red-and-white checked oilcloth and the
+      same warm late-afternoon light. Change the staging: the small table
+      now runs left to right across the frame, seen from its long side, and
+      the two dogs sit on wooden chairs at its two opposite ends, facing
+      each other across the table as if at lunch - the black French bulldog
+      at the left end, turned to the right, seen in profile, looking at the
+      pug; the fawn pug at the right end, turned to the left, seen in
+      profile, looking back at her. The whole length of the table with its
+      checked oilcloth is between them. On the far wall behind the table,
+      with pale yellow square tiles: on the left, behind the French bulldog,
+      a white sink with a dish rack and a wooden shelf with jars; in the
+      middle, a window with warm light; on the right, behind the pug, the
+      old white gas stove with an aluminium pot and the white refrigerator.
+      The camera is at table height, straight on to the long side of the
+      table. Nothing has any text, label or logo.
+  - id: mesa-2
+    seed: 8402
+    ref_images: [frente-cozinha-dupla-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are - the
+      same faces, coats, markings and sizes - and keep the same modest
+      Brazilian kitchen, the same red-and-white checked oilcloth and the
+      same warm late-afternoon light. Change the staging: the small table
+      now runs left to right across the frame, seen from its long side, and
+      the two dogs sit on wooden chairs at its two opposite ends, facing
+      each other across the table as if at lunch - the black French bulldog
+      at the left end, turned to the right, seen in profile, looking at the
+      pug; the fawn pug at the right end, turned to the left, seen in
+      profile, looking back at her. The whole length of the table with its
+      checked oilcloth is between them. On the far wall behind the table,
+      with pale yellow square tiles: on the left, behind the French bulldog,
+      a white sink with a dish rack and a wooden shelf with jars; in the
+      middle, a window with warm light; on the right, behind the pug, the
+      old white gas stove with an aluminium pot and the white refrigerator.
+      The camera is at table height, straight on to the long side of the
+      table. Nothing has any text, label or logo.
+  - id: mesa-3
+    seed: 8403
+    ref_images: [frente-cozinha-dupla-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are - the
+      same faces, coats, markings and sizes - and keep the same modest
+      Brazilian kitchen, the same red-and-white checked oilcloth and the
+      same warm late-afternoon light. Change the staging: the small table
+      now runs left to right across the frame, seen from its long side, and
+      the two dogs sit on wooden chairs at its two opposite ends, facing
+      each other across the table as if at lunch - the black French bulldog
+      at the left end, turned to the right, seen in profile, looking at the
+      pug; the fawn pug at the right end, turned to the left, seen in
+      profile, looking back at her. The whole length of the table with its
+      checked oilcloth is between them. On the far wall behind the table,
+      with pale yellow square tiles: on the left, behind the French bulldog,
+      a white sink with a dish rack and a wooden shelf with jars; in the
+      middle, a window with warm light; on the right, behind the pug, the
+      old white gas stove with an aluminium pot and the white refrigerator.
+      The camera is at table height, straight on to the long side of the
+      table. Nothing has any text, label or logo.

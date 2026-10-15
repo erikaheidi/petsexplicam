@@ -1,0 +1,95 @@
+# fim-da-6x1 - o Senado aprovou o fim da escala 6x1 (14/10/2026). A dupla
+# comemora; o Paçoca acha que até o Flávio estava do lado certo, e a Pretinha
+# mostra que ele votou de longe, em campanha, depois de chamar a proposta de
+# oportunismo. Rascunho e fontes em drafts/fim-da-6x1.md.
+#
+#   ./dialogo cenas fim-da-6x1     ./dialogo gerar fim-da-6x1
+#
+# Fatos usados (conferir antes de postar - detalhes no rascunho):
+#   - Senado, 14/10: PEC 221/2019 aprovada em dois turnos, 75 a 1 (Agência Senado).
+#   - Duas folgas por semana, sem redução de salário; 44h -> 42h -> 40h.
+#   - Flávio votou a favor, remotamente, em agenda no RS; não participou das
+#     discussões (Exame, DM). Disse antes que era movimento "oportunista" do Lula.
+#   - Flávio: "a maioria dos trabalhadores brasileiros querem o fim da 6x1,
+#     então vou votar a favor" (13/10).
+#   - Autor: Reginaldo Lopes (PT-MG); prioridade do governo Lula.
+# Câmeras: sem `camera:`, close de quem fala; `dupla` na comemoração e no fecho.
+cenario: sofa-frente
+seed: 2026
+
+cenas:
+  - id: acabou
+    camera: dupla
+    resumo: Paçoca arrives celebrating the news.
+    antes: Paçoca bounces on the sofa cushion, his curled tail wagging fast, mouth open wide in a happy grin.
+    fala:
+      quem: pacoca
+      texto: "Pretinha! Acabou a escala seis por um! Passou no Senado!"
+    depois: Pretinha's ears perk up and her tail starts wagging, keeps looking at him in profile.
+
+  - id: conquista
+    resumo: Pretinha, happy and proud, celebrates the win for workers.
+    antes: Pretinha's ears stand straight up, her mouth open in a happy grin, her tail wagging.
+    fala:
+      quem: pretinha
+      texto: "Passou! É uma conquista enorme pro trabalhador brasileiro!"
+
+  - id: folgas
+    camera: dupla
+    resumo: Paçoca celebrates what changes; both are happy.
+    antes: Paçoca bounces again, tail wagging fast, while Pretinha keeps looking at him in profile, wagging her tail too.
+    fala:
+      quem: pacoca
+      texto: "Duas folgas por semana, e sem cortar o salário!"
+    depois: Both dogs keep wagging their tails, looking at each other in profile.
+
+  - id: ate-o-flavio
+    resumo: Paçoca, still excited, says even the other candidate voted for it.
+    antes: Paçoca tilts his head, still grinning, eyes bright.
+    fala:
+      quem: pacoca
+      texto: "E olha só: até o Flávio Bolsonaro votou a favor!"
+
+  - id: de-longe
+    resumo: Pretinha points out he did not even go to the Senate.
+    antes: Pretinha's grin fades; she raises one eyebrow, calm and matter-of-fact.
+    fala:
+      quem: pretinha
+      texto: "Votou. Mas nem foi ao Senado: votou à distância, em campanha."
+
+  - id: oportunista
+    resumo: Pretinha recalls what he used to say about the proposal.
+    antes: Pretinha tilts her head slightly, looking at him, serious.
+    fala:
+      quem: pretinha
+      texto: "Até a véspera, dizia que era jogada oportunista do Lula."
+
+  - id: pressao
+    resumo: Paçoca realises why he changed his vote.
+    antes: Paçoca stops wagging, his forehead wrinkles deepening as he thinks hard.
+    fala:
+      quem: pacoca
+      texto: "Então ele só mudou de voto por pressão?"
+
+  - id: ele-disse
+    resumo: Pretinha quotes his own justification.
+    antes: Pretinha nods once, firmly.
+    fala:
+      quem: pretinha
+      texto: "Ele mesmo disse: votou porque a maioria dos trabalhadores quer."
+
+  - id: quem-propos
+    resumo: Pretinha says who proposed it and who made it a priority.
+    antes: Pretinha leans slightly towards him, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "Quem propôs foi o PT. Quem priorizou foi o Lula."
+
+  - id: treze
+    camera: dupla
+    resumo: Paçoca announces his decision, happy again.
+    antes: Paçoca sits up straight, determined, still looking at her in profile.
+    fala:
+      quem: pacoca
+      texto: "Então dia vinte e cinco eu voto em quem defendeu primeiro. Treze!"
+    depois: Paçoca's curled tail wags fast; Pretinha nods slowly and wags her tail, keeps looking at him in profile.

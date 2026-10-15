@@ -70,7 +70,10 @@ cenas:
 
   - id: aprendi
     resumo: Paçoca gets it and says it back in his own words.
-    antes: Paçoca sits back up, his face lighting up with understanding.
+    seed: 2027
+    # "his face lighting up" virou um bonequinho em cima da cabeça dele (v2):
+    # nada de metáfora nas ações - o modelo desenha o que lê.
+    antes: Paçoca sits up straight, his eyes widening as he understands.
     fala:
       quem: pacoca
       texto: "Então eu tenho que ver quem fica do lado de quem trabalha!"

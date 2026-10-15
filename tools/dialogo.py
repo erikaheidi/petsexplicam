@@ -1,6 +1,6 @@
 """Roteiro de diálogo -> script do moviemakr, com a receita validada embutida.
 
-    ./dialogo novo   <filme>              cria movies/<filme>/ com um roteiro.yaml de exemplo
+    ./dialogo novo   <filme> [--vlog pacoca]  cria movies/<filme>/ com um roteiro.yaml de exemplo
     ./dialogo gerar  <filme> [--versao v2]  roteiro.yaml -> scripts/v1.yaml (ou v2...)
     ./dialogo cenas  <filme>              tabela de cenas: quem fala, palavras, duração
 
@@ -26,6 +26,12 @@ A receita (o que o direito-de-votar ensinou, ver ELENCO.md e CLAUDE.md):
   - Duração pela fala: 90/107/124 frames (3,75/4,46/5,17 s). Fala que não cabe
     em 124 é erro - divida em duas cenas.
   - 8 passos com sol_attn start 0.2 / end 1.0: com 4 passos a câmera treme.
+
+Modo vlog (`vlog: pacoca` ou `vlog: pretinha` no roteiro, ou
+`./dialogo novo <filme> --vlog pacoca`): um pet sozinho falando para a lente,
+como num vídeo-diário. Toda cena vai na câmera `vlog-<pet>` do cenário, com o
+pet olhando direto para a câmera. Uma fala do outro pet sai "heard off-screen",
+com a voz de referência dele - dá para o outro interromper de fora do quadro.
 """
 
 from __future__ import annotations
@@ -41,6 +47,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 EXEMPLO = Path(__file__).resolve().parent / "roteiro-exemplo.yaml"
+EXEMPLO_VLOG = Path(__file__).resolve().parent / "roteiro-vlog-exemplo.yaml"
 
 # --------------------------------------------------------------------------
 # elenco - os textos canônicos do ELENCO.md
@@ -94,6 +101,35 @@ ESTILO_CASA = ("The target video is photorealistic live-action footage with warm
                "perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.")
 SOM_CASA = ("Quiet indoor room tone, with faint neighbourhood ambience drifting in through the open window: distant "
             "voices, birdsong and a far-off motorbike. No barking, whining or growling at any point.")
+
+
+def camera_vlog(quem: str, ref: str, fundo: str, lugar: str | None = None, plano: str | None = None) -> dict:
+    """Câmera de vlog: `quem` sozinho, de frente, olhando para a lente.
+
+    `fundo` é o que se vê atrás dele em <Picture 1>, escrito olhando a imagem
+    aprovada ("{L}" vira o rótulo do lugar). `lugar`, se o fundo do close for
+    só um lado do cenário (ver o terraço). `plano`, se a imagem não for um
+    close: o tamanho do pet no quadro, como se vê nela.
+    """
+    e = ELENCO[quem]
+    eu = "{P}" if quem == "pretinha" else "{C}"
+    ele = "she" if quem == "pretinha" else "he"
+    plano = plano or (f"in a medium close-up of {eu} alone, and it never moves, pans or zooms. {eu} faces the "
+                      f"camera straight on and looks directly into the lens, talking to the viewer; {e['pron']} whole "
+                      f"face, muzzle and chest are sharp and centred, {e['pron']} head in the upper half of the frame.")
+    cam = {
+        "ref": ref,
+        "visiveis": [quem],
+        "onde": {quem: ""},
+        "quadro": (
+            f"The camera is completely static on a small tripod at {e['pron']} eye level, like a phone set up to "
+            f"record a video diary, {plano.format(P='{P}', C='{C}')} Behind {'her' if quem == 'pretinha' else 'him'}, softly out of focus, {fundo}"),
+        "abertura": (f"as the shot opens {ele} is framed exactly as in <Picture 1>, facing the lens, "
+                     f"{e['pron']} whole face visible, looking straight into the camera."),
+    }
+    if lugar:
+        cam["lugar"] = lugar
+    return cam
 
 CENARIOS = {
     "sala": {
@@ -242,7 +278,305 @@ CENARIOS = {
             },
         },
     },
+    # A laje no pôr do sol. Geografia do campo/contracampo: atrás do Paçoca (e
+    # da dupla) a mureta, a caixa d'água, o varal, o morro e o sol; atrás da
+    # Pretinha o lado oposto - portinha da escada, vasos, céu já anoitecendo.
+    "terraco-frente": {
+        "lugar": ("the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at "
+                  "sunset: a rough grey concrete floor, low walls of exposed red bricks, a blue water tank, a "
+                  "clothesline with colourful clothes, and a sweeping view of a hillside neighbourhood of "
+                  "unplastered red-brick houses under a warm orange and pink sky"),
+        "estilo": ("The target video is photorealistic live-action footage at sunset, with warm golden light and "
+                   "vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the "
+                   "picture is perfectly steady for the whole video, with no camera shake, no handheld movement "
+                   "and no drift."),
+        "som": ("Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a "
+                "radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. "
+                "Neither of the two dogs barks, whines or growls at any point."),
+        "cameras": {
+            "dupla": {
+                "ref": "cenario-terraco.png",
+                "visiveis": ["pretinha", "pacoca"],
+                "onde": {"pretinha": "on the left", "pacoca": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the bench, straight on, in a "
+                    "medium-wide shot, and it never moves, pans or zooms. {P} sits at the left end of a low, "
+                    "weathered wooden bench, her body and head turned to the right, seen in profile, looking at "
+                    "{C}; {C} sits at the right end, turned to the left, seen in profile, looking back at her. "
+                    "Both are seen whole. Their mouths face each other in profile, so every movement of each mouth "
+                    "stands out against the sky. Behind them, on {L}: the low brick wall, the blue water tank, the "
+                    "clothesline on the left, the hillside of brick houses and the sunset sky."),
+                "abertura": ("as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at "
+                             "the two ends of the bench."),
+            },
+            "pretinha": {
+                "ref": "cenario-terraco-pretinha.png",
+                "lugar": ("the far side of the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest "
+                          "Brazilian house at dusk: a rough grey concrete floor, a low wall of exposed red bricks "
+                          "with a small green metal door at the top of the stairs, terracotta pots with plants, and "
+                          "neighbouring rooftops under a deep blue and violet sky with the first lights coming on. "
+                          "There is no water tank and no clothesline on this side"),
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the pug's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, "
+                    "turned away from the camera; his face is never seen. {P} faces the camera at a three-quarter "
+                    "angle, turned towards the pug and looking at him, just to the right of the lens; her face, "
+                    "whole muzzle and chest are sharp, lit straight on by the warm sunset light. Behind her, softly "
+                    "out of focus, the opposite side of {L}: a low brick wall with the small green metal door to the "
+                    "stairs, potted plants and neighbouring rooftops under a blue and violet dusk sky."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back "
+                             "and ear in the lower-right foreground, and her face sharp, turned towards him."),
+            },
+            "pacoca": {
+                "ref": "cenario-terraco-pacoca.png",
+                "visiveis": ["pacoca"],
+                "onde": {"pacoca": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the French bulldog's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "left, out of focus, are the French bulldog's black back and shoulder and the back of her tall "
+                    "upright bat ear, turned away from the camera; her face is never seen. {C} faces the camera at "
+                    "a three-quarter angle, turned towards her and looking at her, just to the left of the lens; "
+                    "his face, whole muzzle and chest are sharp. Behind him, softly out of focus, {L}: the brick "
+                    "wall, the blue water tank, the clothesline and the hillside of brick houses under the sunset."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's "
+                             "out-of-focus back and ear in the lower-left foreground, and his face sharp, turned "
+                             "towards her."),
+            },
+        },
+    },
+    # A cozinha: os dois nas duas pontas da mesa, frente a frente. No fundo da
+    # dupla, a pia do lado dela e o fogão/geladeira do lado dele - o mesmo que
+    # aparece atrás de cada um nos closes.
+    "cozinha-frente": {
+        "lugar": ("the kitchen shown in <Picture 1>, in a modest, traditional Brazilian family home: pale yellow "
+                  "square wall tiles, an old white four-burner gas stove with an aluminium pot, an old white "
+                  "refrigerator, a window letting in warm late-afternoon light, and a small table covered with a "
+                  "red-and-white checked oilcloth"),
+        "estilo": ESTILO_CASA,
+        "som": ("Quiet kitchen room tone, the faint hum of an old refrigerator and a soft simmer from the pot on "
+                "the stove, with distant neighbourhood voices through the window. No barking, whining or growling "
+                "at any point."),
+        "cameras": {
+            "dupla": {
+                "ref": "cenario-cozinhafrente.png",
+                "visiveis": ["pretinha", "pacoca"],
+                "onde": {"pretinha": "on the left", "pacoca": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod at table height, facing the long side of the "
+                    "table, in a medium-wide shot, and it never moves, pans or zooms. The table with the "
+                    "red-and-white checked oilcloth runs left to right across the frame. {P} sits on a wooden chair "
+                    "at the left end of the table, turned to the right, seen in profile, looking at {C}; {C} sits on "
+                    "a wooden chair at the right end, turned to the left, seen in profile, looking back at her, the "
+                    "whole length of the table between them, as at lunch. Their mouths face each other in profile, "
+                    "so every movement of each mouth is clearly visible. On the far wall of {L}, softly out of "
+                    "focus: the sink and the shelf of jars on the left behind her, the window in the middle, and "
+                    "the stove with its pot and the refrigerator on the right behind him."),
+                "abertura": ("as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at "
+                             "the two ends of the table."),
+            },
+            "pretinha": {
+                "ref": "cenario-cozinhafrente-pretinha.png",
+                "lugar": ("the sink corner of the kitchen shown in <Picture 1>, in a modest, traditional "
+                          "Brazilian family home: pale yellow square wall tiles, a window with warm light, a white "
+                          "corner sink with a dish rack full of white plates, a small shelf of jars, and the side of "
+                          "the white gas stove with its pot at the edge. There is no door and no refrigerator on "
+                          "this side"),
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the pug's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, "
+                    "turned away from the camera; his face is never seen. {P} faces the camera at a three-quarter "
+                    "angle, turned towards the pug and looking at him, just to the right of the lens; her face, "
+                    "whole muzzle and chest are sharp. Behind her, softly out of focus, {L}: the window, the corner "
+                    "sink with its dish rack of white plates, the small shelf of jars, and the side of the stove "
+                    "with its pot at the right edge."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back "
+                             "and ear in the lower-right foreground, and her face sharp, turned towards him."),
+            },
+            "pacoca": {
+                "ref": "cenario-cozinhafrente-pacoca.png",
+                "visiveis": ["pacoca"],
+                "onde": {"pacoca": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the French bulldog's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "left, out of focus, are the French bulldog's black back and shoulder and the back of her tall "
+                    "upright bat ear, turned away from the camera; her face is never seen. {C} faces the camera at "
+                    "a three-quarter angle, turned towards her and looking at her, just to the left of the lens; "
+                    "his face, whole muzzle and chest are sharp. Behind him, softly out of focus, {L}: the stove "
+                    "with its aluminium pot, the refrigerator and the yellow tiles."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's "
+                             "out-of-focus back and ear in the lower-left foreground, and his face sharp, turned "
+                             "towards her."),
+            },
+        },
+    },
+    # A varanda da frente, de onde se vê a rua do bairro (movies/cenarios/scripts/frente-varanda.yaml:
+    # dupla-b, pretinha-a, pacoca-a). No plano da dupla o Paçoca fica a três quartos, não de perfil puro.
+    "varanda-frente": {
+        "lugar": ("the narrow front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in "
+                  "the late afternoon: a terracotta tiled floor, a white wall on the left, a green metal railing "
+                  "with potted plants, and beyond it a street of small colourful single-storey houses - pink, "
+                  "pale green, white - with utility poles and overhead wires against a pale golden sky"),
+        "estilo": ("The target video is photorealistic live-action footage in warm late-afternoon light, with "
+                   "vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the "
+                   "picture is perfectly steady for the whole video, with no camera shake, no handheld movement "
+                   "and no drift."),
+        # Sem moto no som: "a motorbike passing" pôs um motoqueiro na rua ao fundo (direita-nao-e-golpe v1).
+        "som": ("Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far "
+                "away and birds in the trees. The street behind them stays empty, with no people and no vehicles. "
+                "Neither of the two dogs barks, whines or growls at any point."),
+        "cameras": {
+            "dupla": {
+                "ref": "cenario-varandafrente.png",
+                "visiveis": ["pretinha", "pacoca"],
+                "onde": {"pretinha": "on the left", "pacoca": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod a little above the bench, straight on, in a "
+                    "medium-wide shot, and it never moves, pans or zooms. {P} sits on the left half of a low "
+                    "wooden bench on the tiled floor, her body and head turned to the right, seen in profile, "
+                    "looking at {C}; {C} sits on the right half, turned to the left at a three-quarter angle, "
+                    "looking back at her. Both are seen whole. Their mouths face each other, so every movement of "
+                    "each mouth is clearly visible. Behind them, on {L}: the white wall on the left, the green "
+                    "railing with potted plants, and the street of colourful houses with utility poles and wires."),
+                "abertura": ("as the shot opens they sit exactly as in <Picture 1>, facing each other on the "
+                             "bench, she in profile and he at three-quarters."),
+            },
+            "pretinha": {
+                "ref": "cenario-varandafrente-pretinha.png",
+                "lugar": ("the end of the front veranda shown in <Picture 1>, of a modest house on a quiet "
+                          "Brazilian street in the late afternoon: the corner of a white wall, a large terracotta "
+                          "pot with a plant, the green metal railing and, across the street, a pink house with "
+                          "white window frames. There are no utility poles on this side"),
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the pug's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, "
+                    "turned away from the camera; his face is never seen. {P} faces the camera at a three-quarter "
+                    "angle, turned towards the pug and looking at him, just to the right of the lens; her face, "
+                    "whole muzzle and chest are sharp, lit by the warm afternoon light. Behind her, softly out of "
+                    "focus, {L}: the white wall, the terracotta pot, the green railing and the pink house across "
+                    "the street."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back "
+                             "and ear in the lower-right foreground, and her face sharp, turned towards him."),
+            },
+            "pacoca": {
+                "ref": "cenario-varandafrente-pacoca.png",
+                "visiveis": ["pacoca"],
+                "onde": {"pacoca": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the French bulldog's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "left, out of focus, are the French bulldog's black back and shoulder and the back of her tall "
+                    "upright bat ear, turned away from the camera; her face is never seen. {C} faces the camera at "
+                    "a three-quarter angle, turned towards her and looking at her, just to the left of the lens; "
+                    "his face, whole muzzle and chest are sharp. Behind him, softly out of focus, {L}: the green "
+                    "railing and the street of pink and pale green houses with utility poles and wires under the "
+                    "golden sky."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's "
+                             "out-of-focus back and ear in the lower-left foreground, and his face sharp, turned "
+                             "towards her."),
+            },
+        },
+    },
+    # O quartinho do Paçoca: só vlog dele (vlog-quarto-pacoca-c). Rubro-negro
+    # pelas cores, sem escudo: marca registrada, e o modelo deforma brasão.
+    "quarto-pacoca": {
+        "lugar": ("the pug's small bedroom shown in <Picture 1>, in a modest, traditional Brazilian family home: a "
+                  "bed with a colourful crocheted patchwork bedspread, a wall painted warm peach-orange, a small "
+                  "wooden window with a floral cotton curtain on the left letting in warm late-afternoon light, a "
+                  "long knitted scarf in plain red and black stripes hung across the wall, a black-and-white "
+                  "football on a low wooden shelf, a round plush dog bed beside the bed, and a yellow rubber "
+                  "chicken toy on the bedspread"),
+        "estilo": ESTILO_CASA,
+        "som": ("Quiet bedroom room tone, with faint neighbourhood ambience drifting in through the window: distant "
+                "voices, birdsong and a far-off motorbike. No barking, whining or growling at any point."),
+        "cameras": {
+            "vlog-pacoca": camera_vlog(
+                "pacoca", "cenario-quarto-pacoca.png",
+                "{L}: the warm peach-orange wall with the red-and-black striped scarf hung across it, one end "
+                "hanging down on the left, the window with its floral curtain at the left edge, the football on the "
+                "low shelf and the plush dog bed on the right. The yellow rubber chicken toy lies on the bedspread "
+                "in the lower right corner.",
+                plano=("in a medium shot of {C} alone, and it never moves, pans or zooms. {C} sits on the colourful "
+                       "patchwork bedspread facing the camera straight on and looks directly into the lens, talking "
+                       "to the viewer; he is seen whole, from his front paws on the bedspread to the tips of his "
+                       "ears, his face sharp and centred just above the middle of the frame.")),
+            # Ele já deitado (tio-renato): deitar dentro do vídeo saiu torto.
+            "vlog-pacoca-deitado": camera_vlog(
+                "pacoca", "cenario-quarto-pacoca-deitado.png",
+                "{L}: the warm peach-orange wall with the red-and-black striped scarf hung across it, one end "
+                "hanging down on the left, the window with its floral curtain at the left edge, the football on the "
+                "low shelf and the plush dog bed on the right. The yellow rubber chicken toy lies on the bedspread "
+                "at the right edge.",
+                plano=("in a medium shot of {C} alone, and it never moves, pans or zooms. {C} lies on his belly "
+                       "on the colourful patchwork bedspread, facing the camera, his front paws stretched forward "
+                       "and his chin resting low between them; his face is fully visible and sharp in the middle "
+                       "of the frame, his sad round eyes looking up into the lens.")),
+        },
+    },
 }
+
+# Câmeras de vlog dos cenários de diálogo (movies/cenarios/scripts/vlog.yaml,
+# edições dos closes aprovados). Quando o fundo é só um lado do cenário, o
+# vlog reusa o `lugar` do close daquele lado.
+_cams = {n: CENARIOS[n]["cameras"] for n in ("sofa", "cozinha-frente", "terraco-frente", "varanda-frente")}
+_cams["sofa"]["vlog-pacoca"] = camera_vlog(
+    "pacoca", "cenario-sofa-vlog-pacoca.png",
+    "the green sofa back beside him, the bright turquoise wall of {L} and the lamp on the wooden side table at "
+    "the upper right.")
+_cams["sofa"]["vlog-pretinha"] = camera_vlog(
+    "pretinha", "cenario-sofa-vlog-pretinha.png",
+    "the white crocheted throw on the green sofa behind her, the bright turquoise wall of {L} and the green "
+    "shutter window with warm light at the upper left.")
+_cams["cozinha-frente"]["vlog-pacoca"] = camera_vlog(
+    "pacoca", "cenario-cozinha-vlog-pacoca.png",
+    "the wooden back of the chair he sits on, and in {L} the old white gas stove with its aluminium pot and the "
+    "old white refrigerator against the pale yellow tiles.")
+_cams["cozinha-frente"]["vlog-pretinha"] = camera_vlog(
+    "pretinha", "cenario-cozinha-vlog-pretinha.png",
+    "{L}: the window with warm light at the upper left, the corner sink with its dish rack of white plates, the "
+    "small shelf with jars and a kettle, and the white gas stove with its pot on the right.",
+    lugar=_cams["cozinha-frente"]["pretinha"]["lugar"],
+    plano=("in a medium shot of {P} alone, and it never moves, pans or zooms. {P} sits on a wooden chair behind "
+           "the table, the red-and-white checked oilcloth running along the bottom of the frame, her head and "
+           "chest above the table edge; she faces the camera straight on and looks directly into the lens, "
+           "talking to the viewer, her whole face and muzzle sharp and centred."))
+_cams["terraco-frente"]["vlog-pacoca"] = camera_vlog(
+    "pacoca", "cenario-terraco-vlog-pacoca.png",
+    "{L}: the low brick wall, the blue water tank on its concrete base, the clothesline with colourful clothes "
+    "on the left, and the hillside of brick houses under the warm sunset sky.",
+    plano=("in a medium shot of {C} alone, and it never moves, pans or zooms. {C} sits on the rough concrete "
+           "floor facing the camera straight on and looks directly into the lens, talking to the viewer; he is "
+           "seen whole, from his front paws to the tips of his ears, his face sharp and centred in the upper "
+           "half of the frame."))
+_cams["terraco-frente"]["vlog-pretinha"] = camera_vlog(
+    "pretinha", "cenario-terraco-vlog-pretinha.png",
+    "{L}: the low brick wall with the small green metal door at the top of a few steps, terracotta pots with "
+    "plants on the left, and neighbouring rooftops with the first lights coming on under a deep blue and violet "
+    "dusk sky.",
+    lugar=_cams["terraco-frente"]["pretinha"]["lugar"],
+    plano=("in a medium shot of {P} alone, and it never moves, pans or zooms. {P} sits on the rough concrete "
+           "floor facing the camera straight on and looks directly into the lens, talking to the viewer; she is "
+           "seen whole, from her front paws to the tips of her ears, her face sharp and centred in the upper "
+           "half of the frame."))
+_cams["varanda-frente"]["vlog-pretinha"] = camera_vlog(
+    "pretinha", "cenario-varanda-vlog-pretinha.png",
+    "{L}: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the "
+    "terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light.",
+    lugar=_cams["varanda-frente"]["pretinha"]["lugar"],
+    plano=("in a medium shot of {P} alone, and it never moves, pans or zooms. {P} sits on the veranda facing the "
+           "camera straight on and looks directly into the lens, talking to the viewer; she is seen from her "
+           "chest to the tips of her ears, her face sharp and centred in the upper half of the frame."))
+del _cams
 
 FECHO = ("No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear "
          "anywhere in the frame.")
@@ -252,6 +586,19 @@ FECHO_DUPLA = "Each dog's mouth moves only while that dog speaks. "
 FRAMES = (90, 107, 124)
 FPS = 24
 FOLGA_S = 0.9  # respiro antes/depois da fala
+
+# Grafia -> como a voz deve ler. Só o prompt recebe a forma falada; o
+# `legendas` desfaz a troca, e a legenda mostra a grafia certa. "Cleide" saiu
+# "Cléidi" (é aberto); o circunflexo pede o ê fechado. "vinte e dois" saiu
+# truncado (tio-renato): o roteiro escreve "22", a voz lê "vintedois" e a
+# legenda mostra o número da urna.
+PRONUNCIA = {"Cleide": "Clêide", "22": "vintedois"}
+
+
+def pronuncia(texto: str) -> str:
+    for escrita, falada in PRONUNCIA.items():
+        texto = re.sub(rf"\b{escrita}\b", falada, texto)
+    return texto
 
 ENGINE = """\
 backend: comfy
@@ -340,10 +687,13 @@ def duracao(cena: dict) -> int:
         f"({FRAMES[-1] / FPS:.2f} s) - divida a fala em duas cenas.")
 
 
-def camera_da_cena(cena: dict, cenario: dict) -> str:
-    """A pedida; senão o close de quem fala, se o cenário tiver; senão a dupla."""
+def camera_da_cena(cena: dict, cenario: dict, vlog: str | None = None) -> str:
+    """A pedida; no vlog, a do vlogueiro; senão o close de quem fala, se o
+    cenário tiver; senão a dupla."""
     if cena.get("camera"):
         return cena["camera"]
+    if vlog:
+        return f"vlog-{vlog}"
     fala = cena.get("fala")
     if fala and fala["quem"] in cenario["cameras"]:
         return fala["quem"]
@@ -360,7 +710,7 @@ def frase_da_fala(fala: dict, plano: Plano) -> str:
                    f"({quem['voz']}), {quem['pron']} mouth visibly opening and closing in sync with every syllable,")
     else:
         falante = f"{quem['fora'].capitalize()} (S1), heard off-screen in the voice referenced from <Audio 1> ({quem['voz']}),"
-    frase = f"{falante} says: <d>[Portuguese] {texto}</d>"
+    frase = f"{falante} says: <d>[Portuguese] {pronuncia(texto)}</d>"
     outros = [k for k in plano.rotulo if k != fala["quem"]]
     for k in outros:
         frase += f" {plano.rotulo[k]} keeps {ELENCO[k]['pron']} mouth closed."
@@ -374,7 +724,10 @@ def prompt(cena: dict, cenario: dict) -> str:
     defs = [f"{plano.rotulo[k]} is {ELENCO[k]['nome']}, {ELENCO[k]['quem_e']}"
             f"{(' ' + cam['onde'][k]) if cam['onde'][k] else ''} in <Picture 1>: {ELENCO[k]['aparencia']}."
             for k in cam["visiveis"]]
-    defs.append(f"{plano.lugar} is {cenario['lugar']}.")
+    # Uma câmera pode ter o próprio "lugar": no close do contracampo, o lugar do
+    # cenário citaria o que está atrás do OUTRO (a caixa d'água, o fogão) e o
+    # modelo põe de volta, por cima da referência.
+    defs.append(f"{plano.lugar} is {cam.get('lugar', cenario['lugar'])}.")
     prefixo = "[reference generation]"
     ret_voz = []
     if fala:
@@ -441,13 +794,21 @@ def carregar(filme: str, cenario: str | None = None) -> tuple[Path, dict]:
     nome = rot.get("cenario", "sala")
     if nome not in CENARIOS:
         raise RoteiroError(f"cenário desconhecido: {nome} (há: {', '.join(CENARIOS)})")
+    vlog = rot.get("vlog")
+    if vlog and vlog not in ELENCO:
+        raise RoteiroError(f"vlog: {vlog}? (é {' ou '.join(ELENCO)})")
     cams = CENARIOS[nome]["cameras"]
     for c in cenas:
-        cam = camera_da_cena(c, CENARIOS[nome])
+        cam = camera_da_cena(c, CENARIOS[nome], vlog)
         if cam not in cams:
+            com_vlog = [n for n, ce in CENARIOS.items() if cam in ce["cameras"]]
             raise RoteiroError(f"cena '{c['id']}': o cenário {nome} não tem a câmera {cam} "
-                               f"(tem: {', '.join(cams)})")
+                               f"(tem: {', '.join(cams)})"
+                               + (f" - cenários com {cam}: {', '.join(com_vlog)}" if com_vlog else ""))
         c["camera"] = cam
+        ref = cams[cam]["ref"]
+        if not (ROOT / "assets" / ref).is_file():
+            AVISOS.append(f"câmera {cam}: falta assets/{ref} (frame de referência ainda não aprovado)")
         visiveis = CENARIOS[nome]["cameras"][cam]["visiveis"]
         for k, e in ELENCO.items():
             if k in visiveis:
@@ -495,30 +856,42 @@ def gerar(filme: str, versao: str, cenario: str | None = None) -> Path:
 def tabela(filme: str, cenario: str | None = None) -> None:
     _, rot = carregar(filme, cenario)
     total = 0
-    print(f"{'#':>3}  {'cena':16} {'câmera':9} {'quem':9} {'pal':>3} {'dur':>6}  fala")
+    print(f"{'#':>3}  {'cena':16} {'câmera':13} {'quem':9} {'pal':>3} {'dur':>6}  fala")
     for i, c in enumerate(rot["cenas"], 1):
         f = c.get("fala") or {}
         total += c["frames"]
-        print(f"{i:>3}  {c['id']:16} {c['camera']:9} {f.get('quem', '-'):9} {palavras(f.get('texto', '')):>3} "
+        print(f"{i:>3}  {c['id']:16} {c['camera']:13} {f.get('quem', '-'):9} {palavras(f.get('texto', '')):>3} "
               f"{c['frames'] / FPS:5.2f}s  {f.get('texto', '')[:55]}")
     print(f"     total {total / FPS:.1f} s em {len(rot['cenas'])} cenas")
     for aviso in dict.fromkeys(AVISOS):
         print(f"aviso: {aviso}")
 
 
-def novo(filme: str) -> None:
+def novo(filme: str, vlog: str | None = None) -> None:
     pasta = ROOT / "movies" / filme
     if pasta.exists():
         raise RoteiroError(f"{pasta} já existe")
+    if vlog and vlog not in ELENCO:
+        raise RoteiroError(f"--vlog {vlog}? (é {' ou '.join(ELENCO)})")
     subprocess.run([str(ROOT / "mm"), "new", filme, "--template", "none"], check=True)
-    shutil.copyfile(EXEMPLO, pasta / "roteiro.yaml")
+    if vlog:
+        # O exemplo é do Paçoca no quarto dele; para a Pretinha, troque o pet e
+        # ponha um cenário que tenha a câmera vlog-pretinha.
+        texto = EXEMPLO_VLOG.read_text()
+        if vlog == "pretinha":
+            texto = texto.replace("vlog: pacoca", "vlog: pretinha").replace("cenario: quarto-pacoca", "cenario: sofa")
+        (pasta / "roteiro.yaml").write_text(texto)
+    else:
+        shutil.copyfile(EXEMPLO, pasta / "roteiro.yaml")
     print(f"roteiro: {pasta / 'roteiro.yaml'}")
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("novo").add_argument("filme")
+    n = sub.add_parser("novo")
+    n.add_argument("filme")
+    n.add_argument("--vlog", help="pacoca | pretinha: um pet sozinho falando para a câmera")
     g = sub.add_parser("gerar")
     g.add_argument("filme")
     g.add_argument("--versao", default="v1")
@@ -529,7 +902,7 @@ def main() -> int:
     args = ap.parse_args()
     try:
         if args.cmd == "novo":
-            novo(args.filme)
+            novo(args.filme, args.vlog)
         elif args.cmd == "gerar":
             print(gerar(args.filme, args.versao, args.cenario))
             tabela(args.filme, args.cenario)

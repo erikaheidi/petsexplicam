@@ -1,0 +1,89 @@
+# frente-varanda - os dois de frente um para o outro: na varanda (serviços do bairro).
+#
+#   ./mm images movies/cenarios/scripts/frente-varanda.yaml
+#
+# Edições de cenario-varanda.png (o plano aberto escolhido), no modelo do frente-sofa:
+# dupla de perfil + closes por cima do ombro de quem escuta. Os escolhidos viram
+# assets/cenario-varandafrente[-pretinha|-pacoca].png e o cenário
+# "varanda-frente" no tools/dialogo.py.
+kind: images
+name: frente-varanda
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  - id: dupla-a
+    seed: 7201
+    ref_images: [cenario-varanda.png]
+    prompt: &dupla >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are: the black French bulldog with the white chest blaze and the fawn pug with the black mask, the same faces, coats, markings and sizes, on the same low wooden bench on the red terracotta tile floor of the same front veranda, with the same street behind, in the same warm
+      late-afternoon light. Change only their poses: they now face each other,
+      as if in conversation. The French bulldog on the left turns her body and
+      head to the right and looks at the pug, seen in a three-quarter profile;
+      the pug on the right turns his body and head to the left and looks at
+      her, also in a three-quarter profile. Their faces are about a head's
+      length apart, both faces and both mouths clearly visible. The camera
+      stays where it is.
+  - id: dupla-b
+    seed: 7202
+    ref_images: [cenario-varanda.png]
+    prompt: *dupla
+
+  - id: pretinha-a
+    seed: 7211
+    ref_images: [cenario-varanda.png]
+    prompt: &pretinha >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black French bulldog, as in a film conversation. Keep her exactly as she
+      is: the same face, the same black coat with faint brindle, the same white
+      blaze on her chest, the same large upright bat ears and dark eyes. The
+      camera is just behind the pug's left shoulder: the out-of-focus fawn
+      shoulder and the back of the pug's small black folded ear fill the lower
+      right corner of the frame in the foreground. The French bulldog faces
+      the camera at a three-quarter angle, turned towards the pug and looking
+      at him, just to the right of the camera; her sharp face, whole muzzle
+      and upper chest fill the upper left two thirds of the frame. Behind her,
+      softly out of focus, the white wall, the green iron gate and the potted plants, in warm late-afternoon light.
+  - id: pretinha-b
+    seed: 7212
+    ref_images: [cenario-varanda.png]
+    prompt: *pretinha
+
+  - id: pacoca-a
+    seed: 7221
+    ref_images: [cenario-varanda.png]
+    prompt: &pacoca >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      fawn pug, as in a film conversation. Keep him exactly as he is: the same
+      face, the same fawn-yellow coat, the same jet-black mask, the same small
+      black folded ears, large round glossy dark eyes and deep forehead
+      wrinkles. The camera is just behind the French bulldog's right shoulder:
+      the out-of-focus black shoulder and the back of her tall upright bat ear
+      fill the lower left corner of the frame in the foreground. The pug faces
+      the camera at a three-quarter angle, turned towards her and looking at
+      her, just to the left of the camera; his sharp face, whole muzzle and
+      upper chest fill the upper right two thirds of the frame. Behind him,
+      softly out of focus, the quiet street of modest, brightly painted houses with tangled overhead wires and the green iron gate, in warm late-afternoon light.
+  - id: pacoca-b
+    seed: 7222
+    ref_images: [cenario-varanda.png]
+    prompt: *pacoca

@@ -1,0 +1,103 @@
+# frente-terraco-pretinha - close da Pretinha no terraço com o fundo do lado CERTO.
+#
+#   ./mm images movies/cenarios/scripts/frente-terraco-pretinha.yaml
+#
+# Campo/contracampo: o close do Paçoca (pacoca-b) olha para o lado da mureta,
+# da caixa d'água, do varal e do pôr do sol. O close dela é filmado do lado
+# oposto, então atrás dela fica o outro lado da laje - a portinha da escada,
+# vasos, telhados vizinhos e o céu já anoitecendo -, e o sol, que está atrás
+# do Paçoca, bate de frente no rosto dela. As primeiras versões (frente-
+# terraco.yaml) repetiam o fundo dele.
+kind: images
+name: frente-terraco-pretinha
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  - id: de-a-1
+    seed: 8211
+    ref_images: [frente-terraco-pretinha-a.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same grey concrete
+      rooftop floor. Replace only the background behind her with the
+      OPPOSITE side of the same rooftop terrace: a low wall of exposed red
+      bricks with a small, rusty green metal door at the top of the stairs
+      leading down into the house, two terracotta pots with plants on the
+      concrete floor, and beyond the wall the neighbouring flat rooftops of
+      unplastered red-brick houses under a deep blue and violet dusk sky
+      with the first lights coming on. There is no water tank and no
+      clothesline anywhere behind her. The setting sun is behind the camera:
+      warm golden light falls straight onto her face and chest.
+  - id: de-a-2
+    seed: 8212
+    ref_images: [frente-terraco-pretinha-a.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same grey concrete
+      rooftop floor. Replace only the background behind her with the
+      OPPOSITE side of the same rooftop terrace: a low wall of exposed red
+      bricks with a small, rusty green metal door at the top of the stairs
+      leading down into the house, two terracotta pots with plants on the
+      concrete floor, and beyond the wall the neighbouring flat rooftops of
+      unplastered red-brick houses under a deep blue and violet dusk sky
+      with the first lights coming on. There is no water tank and no
+      clothesline anywhere behind her. The setting sun is behind the camera:
+      warm golden light falls straight onto her face and chest.
+  - id: de-b-1
+    seed: 8221
+    ref_images: [frente-terraco-pretinha-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same grey concrete
+      rooftop floor. Replace only the background behind her with the
+      OPPOSITE side of the same rooftop terrace: a low wall of exposed red
+      bricks with a small, rusty green metal door at the top of the stairs
+      leading down into the house, two terracotta pots with plants on the
+      concrete floor, and beyond the wall the neighbouring flat rooftops of
+      unplastered red-brick houses under a deep blue and violet dusk sky
+      with the first lights coming on. There is no water tank and no
+      clothesline anywhere behind her. The setting sun is behind the camera:
+      warm golden light falls straight onto her face and chest.
+  - id: de-b-2
+    seed: 8222
+    ref_images: [frente-terraco-pretinha-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same grey concrete
+      rooftop floor. Replace only the background behind her with the
+      OPPOSITE side of the same rooftop terrace: a low wall of exposed red
+      bricks with a small, rusty green metal door at the top of the stairs
+      leading down into the house, two terracotta pots with plants on the
+      concrete floor, and beyond the wall the neighbouring flat rooftops of
+      unplastered red-brick houses under a deep blue and violet dusk sky
+      with the first lights coming on. There is no water tank and no
+      clothesline anywhere behind her. The setting sun is behind the camera:
+      warm golden light falls straight onto her face and chest.

@@ -1,0 +1,91 @@
+# convencer-o-tio - o Paçoca, já convencido, quer brigar com o tio no almoço de
+# domingo. A Pretinha ensina a conversar em vez de brigar: perguntar o que
+# preocupa ele, falar disso, e responder vídeo de zap com fonte, sem deboche.
+# Rascunho em drafts/convencer-o-tio.md.
+#
+#   ./dialogo cenas convencer-o-tio     ./dialogo gerar convencer-o-tio
+#
+# Fato citado: o Farmácia Popular é um programa federal de remédios gratuitos
+# ou com desconto (conferir em gov.br/saude antes de postar).
+#
+# Cenário: a cozinha (o almoço de domingo).
+cenario: cozinha-frente
+seed: 2026
+
+cenas:
+  - id: domingo
+    camera: dupla
+    resumo: Paçoca, fired up, announces he will confront his uncle at Sunday lunch.
+    antes: Paçoca puffs out his chest, fired up and determined, while Pretinha keeps looking at him.
+    fala:
+      quem: pacoca
+      # "tio Renato": liga com o vlog tio-renato (sem o "eu" para caber na cena).
+      texto: "Domingo no almoço vou dizer pro tio Renato que ele está errado!"
+
+  - id: fecha
+    resumo: Pretinha warns him how that will go.
+    antes: Pretinha keeps looking at Paçoca and slowly shakes her head.
+    fala:
+      quem: pretinha
+      texto: "Aí ele fecha a cara e não escuta mais nada."
+
+  - id: como
+    resumo: Paçoca, frustrated, asks how then.
+    antes: Paçoca's ears droop and his forehead wrinkles in frustration.
+    fala:
+      quem: pacoca
+      texto: "Mas ele vota errado! Como eu convenço ele, então?"
+
+  - id: pergunta
+    resumo: Pretinha tells him to start by asking.
+    antes: Pretinha keeps looking at Paçoca, calm and patient.
+    fala:
+      quem: pretinha
+      texto: "Primeiro pergunta. O que mais preocupa ele hoje?"
+
+  - id: remedio
+    resumo: Paçoca remembers what his uncle always complains about.
+    antes: Paçoca looks up for a moment, thinking hard.
+    fala:
+      quem: pacoca
+      texto: "Ah, ele vive reclamando do preço do remédio."
+
+  - id: farmacia
+    resumo: Pretinha tells him to talk about exactly that.
+    antes: Pretinha gives one small nod, keeping her eyes on Paçoca.
+    fala:
+      quem: pretinha
+      texto: "Então fala disso. Mostra quem defende a Farmácia Popular."
+
+  - id: zap
+    resumo: Paçoca worries about the uncle's WhatsApp videos.
+    antes: Paçoca tilts his head, worried.
+    fala:
+      quem: pacoca
+      texto: "E se ele mandar aquele vídeo do zap?"
+
+  - id: fonte
+    resumo: Pretinha tells him how to answer without mockery.
+    antes: Pretinha keeps looking at Paçoca, serious.
+    fala:
+      quem: pretinha
+      texto: "Sem deboche. Pergunta de onde veio e mostra a fonte."
+
+  - id: entendi
+    camera: dupla
+    resumo: Paçoca sums up what he learned, counting on his paw.
+    antes: Paçoca sits up straight and lifts one front paw, counting.
+    fala:
+      quem: pacoca
+      texto: "Ouvir, perguntar e falar do que importa pra ele!"
+    depois: Pretinha gives one small, approving nod, still looking at him.
+
+  - id: conversando
+    # Câmera de vlog (como o fecho do teste-cego): virar para a lente no meio
+    # do close costuma sair torto.
+    camera: vlog-pretinha
+    resumo: Pretinha addresses the viewer directly.
+    antes: Pretinha looks straight into the lens, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "Ninguém muda de ideia brigando. Muda conversando."

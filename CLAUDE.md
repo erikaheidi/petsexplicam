@@ -119,7 +119,17 @@ profile", não "turns her head towards him": ela já está virada, e o modelo l�
 `movies/cenarios/scripts/` (edições Qwen de um frame aprovado), a escolhida
 vira `assets/cenario-*.png` e uma entrada em `CENARIOS`.
 
-Requer o moviemakr com `ref_audios` (branch `ref-audios` do checkout).
+**Modo vlog** (`./dialogo novo <filme> --vlog pacoca`, ou `vlog: pacoca` no
+roteiro): um pet sozinho falando para a lente, como num vídeo-diário. Toda
+cena vai na câmera `vlog-<pet>` do cenário; fala do outro pet sai "heard
+off-screen" com a voz de referência dele. Continua ref2va: é o que aceita
+`ref_audios` (fl2va descartaria a voz). Cenários com vlog: `quarto-pacoca`
+(o quarto do Paçoca, só ele) e `sofa`, `cozinha-frente`, `terraco-frente`
+(os dois), `varanda-frente` (só a Pretinha). Frames: `movies/cenarios/scripts/vlog.yaml` ->
+`assets/cenario-<cenario>-vlog-<pet>.png` + `camera_vlog(...)` no
+`dialogo.py`. Exemplo em `tools/roteiro-vlog-exemplo.yaml`.
+
+Requer o moviemakr com `ref_audios` (já na `main` do checkout).
 
 Passo a passo:
 

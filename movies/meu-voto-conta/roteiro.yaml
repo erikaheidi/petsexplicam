@@ -1,0 +1,90 @@
+# meu-voto-conta - o Paçoca não vai votar porque "um voto não muda nada". A
+# Pretinha mostra os números do 2º turno de 2022: a eleição foi decidida por
+# menos de cinco votos por seção, e quem ficou em casa era quinze vezes a
+# diferença. Rascunho e fontes em drafts/meu-voto-conta.md.
+#
+#   ./dialogo cenas meu-voto-conta     ./dialogo gerar meu-voto-conta
+#
+# Fatos (TSE, 2º turno de 30/10/2022):
+#   - diferença: 60.345.999 - 58.206.354 = 2.139.645 votos
+#   - 472.075 seções apuradas -> 4,5 votos de diferença por seção ("menos de cinco")
+#   - abstenção: 32.200.558 -> 15,05 vezes a diferença ("quinze vezes")
+# Cenário: o terraço (laje) no pôr do sol - lá de cima se vê o bairro inteiro.
+cenario: terraco-frente
+seed: 2026
+
+cenas:
+  - id: nem-vou
+    camera: dupla
+    resumo: Paçoca announces, slumped and bored, that he won't vote.
+    antes: Paçoca slumps lazily, unbothered, while Pretinha keeps looking at him.
+    fala:
+      quem: pacoca
+      texto: "Nem vou votar dia vinte e cinco. Meu voto não muda nada."
+
+  - id: sabe
+    resumo: Pretinha challenges him with a question.
+    antes: Pretinha keeps looking at Paçoca, one eyebrow slightly raised.
+    fala:
+      quem: pretinha
+      texto: "Sabe a diferença no segundo turno de vinte e dois?"
+
+  - id: chute
+    resumo: Paçoca guesses a huge number, shrugging.
+    antes: Paçoca shrugs, unconcerned.
+    fala:
+      quem: pacoca
+      texto: "Sei lá, uns trinta milhões?"
+
+  - id: cinco
+    resumo: Pretinha gives him the real numbers.
+    antes: Pretinha keeps looking at Paçoca, calm and precise.
+    fala:
+      quem: pretinha
+      texto: "Dois milhões de votos. Menos de cinco por seção eleitoral."
+
+  - id: vizinho
+    camera: dupla
+    resumo: Paçoca is stunned and makes a comic comparison.
+    antes: Paçoca sits bolt upright, his eyes going huge.
+    fala:
+      quem: pacoca
+      texto: "Cinco? Tipo, eu, você e a família do vizinho?"
+    depois: Pretinha gives one slow nod, still looking at him.
+
+  - id: em-casa
+    resumo: Pretinha reveals how many people stayed home.
+    antes: Pretinha leans slightly towards Paçoca.
+    fala:
+      quem: pretinha
+      texto: "E sabe quantos ficaram em casa? Trinta e dois milhões."
+
+  - id: trinta-e-dois
+    resumo: Paçoca is shocked.
+    antes: Paçoca's jaw drops and his ears lift.
+    fala:
+      quem: pacoca
+      texto: "Trinta e dois milhões? Isso é muita gente!"
+
+  - id: quinze
+    resumo: Pretinha drives the point home.
+    antes: Pretinha keeps looking at Paçoca, firm.
+    fala:
+      quem: pretinha
+      texto: "Quinze vezes a diferença. Ficar em casa também é escolher."
+
+  - id: faz-diferenca
+    camera: dupla
+    resumo: Paçoca gets it and changes his mind.
+    antes: Paçoca sits up proud and determined, his curled tail wagging.
+    fala:
+      quem: pacoca
+      texto: "Então meu voto pode ser justamente o que faz a diferença!"
+    depois: Pretinha gives one small, approving nod, still looking at him.
+
+  - id: dia-25
+    resumo: Pretinha addresses the viewer directly with the call to action.
+    antes: Pretinha turns to look straight into the lens, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "Dia vinte e cinco, vote. E leve a família junto."

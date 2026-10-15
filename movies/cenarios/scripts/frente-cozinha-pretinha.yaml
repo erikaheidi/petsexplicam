@@ -1,0 +1,87 @@
+# frente-cozinha-pretinha - close da Pretinha na cozinha com o fundo do lado CERTO.
+#
+#   ./mm images movies/cenarios/scripts/frente-cozinha-pretinha.yaml
+#
+# Campo/contracampo: fogão, panela, geladeira e janela estão atrás do Paçoca
+# (pacoca-b) e no plano da dupla. O close dela é filmado do lado oposto, então
+# atrás dela fica a outra parede da cozinha - pia, prateleira, porta para a
+# sala. O frente-cozinha-pretinha-b repetia o fogão.
+kind: images
+name: frente-cozinha-pretinha
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  - id: de-b-1
+    seed: 8301
+    ref_images: [frente-cozinha-pretinha-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, the black French bulldog sharp, at a three-
+      quarter angle, looking at him, sitting on the same wooden chair at the
+      table with the red-and-white checked oilcloth. Replace only the
+      background behind her with the OPPOSITE wall of the same modest
+      Brazilian kitchen, with the same pale yellow square wall tiles: a
+      white enamel sink with a metal dish rack full of plates, a simple
+      wooden wall shelf with plain glass jars, an aluminium coffee pot and a
+      cloth coffee strainer on a wire stand, and an open doorway to the
+      living room hung with a curtain of coloured beads. There is no stove,
+      no pot on a stove and no refrigerator anywhere behind her. The same
+      warm late-afternoon window light falls on her from the side. Nothing
+      has any text, label or logo.
+  - id: de-b-2
+    seed: 8302
+    ref_images: [frente-cozinha-pretinha-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, the black French bulldog sharp, at a three-
+      quarter angle, looking at him, sitting on the same wooden chair at the
+      table with the red-and-white checked oilcloth. Replace only the
+      background behind her with the OPPOSITE wall of the same modest
+      Brazilian kitchen, with the same pale yellow square wall tiles: a
+      white enamel sink with a metal dish rack full of plates, a simple
+      wooden wall shelf with plain glass jars, an aluminium coffee pot and a
+      cloth coffee strainer on a wire stand, and an open doorway to the
+      living room hung with a curtain of coloured beads. There is no stove,
+      no pot on a stove and no refrigerator anywhere behind her. The same
+      warm late-afternoon window light falls on her from the side. Nothing
+      has any text, label or logo.
+  - id: de-b-3
+    seed: 8303
+    ref_images: [frente-cozinha-pretinha-b.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, the black French bulldog sharp, at a three-
+      quarter angle, looking at him, sitting on the same wooden chair at the
+      table with the red-and-white checked oilcloth. Replace only the
+      background behind her with the OPPOSITE wall of the same modest
+      Brazilian kitchen, with the same pale yellow square wall tiles: a
+      white enamel sink with a metal dish rack full of plates, a simple
+      wooden wall shelf with plain glass jars, an aluminium coffee pot and a
+      cloth coffee strainer on a wire stand, and an open doorway to the
+      living room hung with a curtain of coloured beads. There is no stove,
+      no pot on a stove and no refrigerator anywhere behind her. The same
+      warm late-afternoon window light falls on her from the side. Nothing
+      has any text, label or logo.

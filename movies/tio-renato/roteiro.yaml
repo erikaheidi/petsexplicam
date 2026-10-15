@@ -1,0 +1,91 @@
+# tio-renato - vlog do Paçoca, no quarto dele: o tio Renato vai votar no
+# Flávio mesmo sem nenhuma proposta para os animais. Vem antes do
+# convencer-o-tio. Monólogo da Erika em drafts/tio-renato.md, uma frase por cena.
+#
+#   ./dialogo cenas tio-renato     ./dialogo gerar tio-renato
+#
+# Fatos usados (conferir antes de postar - detalhes no rascunho):
+#   - ProPatinhas: decreto do Lula, 17/04/2025 (castração, microchip, combate ao abandono).
+#   - SinPatinhas ("RG animal"): Lei 15.046/2024, lançado em 17/04/2025.
+#   - Plano do Flávio (TSE) sem proposta específica para os animais.
+# Ações literais e sem público/gravação (ver teste-cego: "viewers" pôs um celular no quadro).
+vlog: pacoca
+cenario: quarto-pacoca
+seed: 2026
+
+cenas:
+  - id: triste
+    resumo: Paçoca says he is sad today.
+    antes: Paçoca looks straight into the lens, his ears drooping and his eyes sad.
+    fala:
+      quem: pacoca
+      texto: "Hoje eu fiquei triste."
+
+  - id: tio-renato
+    resumo: Paçoca says his uncle Renato decided to vote for Flávio.
+    antes: Paçoca lets out a small sigh, still looking into the lens.
+    fala:
+      quem: pacoca
+      texto: "Descobri que o tio Renato decidiu votar no Flávio."
+
+  - id: nenhum-plano
+    resumo: Paçoca says the candidate has no plan to protect animals.
+    antes: Paçoca frowns, the wrinkles on his forehead deepening.
+    fala:
+      quem: pacoca
+      texto: "Mesmo sabendo que ele não tem nenhum plano pra proteger os animais."
+
+  - id: propatinhas
+    resumo: Paçoca says Lula created the ProPatinhas program.
+    antes: Paçoca tilts his head to one side, looking into the lens.
+    fala:
+      quem: pacoca
+      texto: "Mesmo sabendo que o Lula criou o ProPatinhas,"
+
+  - id: controle
+    resumo: Paçoca explains the program helps control the dog and cat population.
+    antes: Paçoca nods slowly, looking into the lens.
+    fala:
+      quem: pacoca
+      texto: "pra ajudar no controle populacional de cães e gatos,"
+
+  - id: abandono
+    resumo: Paçoca says that helps prevent animals from being abandoned.
+    antes: Paçoca's ears drop and his eyes grow sad.
+    fala:
+      quem: pacoca
+      texto: "o que ajuda a evitar o abandono de animais."
+
+  - id: sinpatinhas
+    resumo: Paçoca proudly mentions the SinPatinhas registry that gives pets an ID card.
+    antes: Paçoca sits up straight, his eyes widening with pride.
+    fala:
+      quem: pacoca
+      texto: "E também o SinPatinhas, que nos torna cidadãos com RG e tudo!"
+
+  - id: sabe
+    # "22" (não "vinte e dois"): ver PRONUNCIA no dialogo.py.
+    resumo: Paçoca says he thinks his uncle knows voting for number twenty-two is wrong.
+    antes: Paçoca's ears drop again and he looks into the lens, serious.
+    fala:
+      quem: pacoca
+      texto: "Acho que ele sabe que votar no 22 é errado."
+
+  - id: orgulho
+    resumo: Paçoca says pride does not let his uncle admit it, and ends sad.
+    antes: Paçoca looks into the lens with big, sad round eyes.
+    fala:
+      quem: pacoca
+      texto: "Mas o orgulho não deixa ele admitir."
+    depois: Paçoca keeps looking into the lens with sad eyes, his ears drooping.
+
+  # Final positivo (v3): no lugar do Paçoca deitado e suspirando (o suspiro
+  # saiu com voz de homem velho), ele tem a ideia que leva ao convencer-o-tio.
+  # Mesma câmera da cena 9, sem corte de enquadramento.
+  - id: ja-sei
+    resumo: Paçoca has an idea and decides to ask Pretinha for help to change his uncle's vote.
+    antes: Paçoca's ears lift and his eyes widen as he sits up straight, looking into the lens.
+    fala:
+      quem: pacoca
+      texto: "Já sei! Vou pedir ajuda à Pretinha pra virarmos o voto dele."
+    depois: Paçoca nods firmly, determined, looking straight into the lens.

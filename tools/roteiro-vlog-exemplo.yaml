@@ -1,0 +1,45 @@
+# Roteiro de VLOG - um pet sozinho falando para a câmera, como num vídeo-diário.
+# Vira scripts/v1.yaml com:  ./dialogo gerar <filme>
+#
+# Igual ao roteiro de diálogo (ver tools/roteiro-exemplo.yaml), mas com
+# `vlog:` - toda cena vai na câmera vlog-<pet> do cenário, o pet de frente,
+# olhando para a lente. O outro pet pode falar: sai "heard off-screen", com a
+# voz de referência dele (e o vlogueiro reage olhando para o lado).
+#
+# Nas ações, o vlogueiro olha para a câmera: "looks straight into the lens",
+# "leans a little closer to the lens". Ações literais, sem metáfora.
+#
+# Cenários com vlog (tools/dialogo.py, CENARIOS): quarto-pacoca (só o Paçoca,
+# o quarto rubro-negro dele), e sofa, cozinha-frente e terraco-frente (os dois).
+vlog: pacoca
+cenario: quarto-pacoca
+seed: 2026
+
+cenas:
+  - id: oi
+    resumo: Paçoca greets his viewers, excited.
+    antes: Paçoca looks straight into the lens, his curled tail wagging behind him.
+    fala:
+      quem: pacoca
+      texto: "Oi, gente! Aqui é o Paçoca, e hoje eu descobri uma coisa."
+
+  - id: descoberta
+    resumo: Paçoca shares what he learned, proud.
+    antes: Paçoca leans a little closer to the lens, his eyes wide.
+    fala:
+      quem: pacoca
+      texto: "Eu achava que sem o título eu não podia votar."
+
+  - id: correcao
+    resumo: Pretinha corrects him; he listens.
+    antes: Paçoca turns his head towards the left of the frame, listening.
+    fala:
+      quem: pretinha
+      texto: "Pode sim, com um documento oficial com foto."
+
+  - id: fecho
+    resumo: Paçoca turns back to the camera and passes it on.
+    antes: Paçoca turns back to the lens and nods.
+    fala:
+      quem: pacoca
+      texto: "Viu? Agora manda isso pro seu tio!"

@@ -1,0 +1,252 @@
+# meu-voto-conta v1 - GERADO por tools/dialogo.py a partir de movies/meu-voto-conta/roteiro.yaml.
+# Não edite à mão: mude o roteiro (ou a receita em tools/dialogo.py) e rode
+#   ./dialogo gerar meu-voto-conta
+# Cada cena é independente: dá para refazer uma só com --only N.
+name: meu-voto-conta
+backend: comfy
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fastvideo_vsa_datafree_1300step_4step_int8_convrot.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_int8_convrot.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  # 8 passos, start 0.2 / end 1.0: com 4 passos e atenção esparsa desde o
+  # primeiro passo a câmera treme.
+  steps: 8
+  ref_image_size: match
+  sol_attn:
+    mode: vsa
+    keep_percent: 20.0
+    min_tokens: 4096
+    start_percent: 0.2
+    end_percent: 1.0
+    verbose: true
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 107
+  seed: 2026
+  style_suffix: ""
+continuity:
+  anchors: []
+  chain_from_previous: false
+output:
+  container: mp4
+  audio: keep
+  music: null
+scenes:
+  - id: nem-vou
+    video_frames: 124
+    ref_images: [cenario-terraco.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 3> is the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at sunset: a rough grey concrete floor, low walls of exposed red bricks, a blue water tank, a clothesline with colourful clothes, and a sweeping view of a hillside neighbourhood of unplastered red-brick houses under a warm orange and pink sky.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> announces, slumped and bored, that he won't vote. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at the two ends of the bench.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the bench, straight on, in a medium-wide shot, and it never moves, pans or zooms. <Subject 1> sits at the left end of a low, weathered wooden bench, her body and head turned to the right, seen in profile, looking at <Subject 2>; <Subject 2> sits at the right end, turned to the left, seen in profile, looking back at her. Both are seen whole. Their mouths face each other in profile, so every movement of each mouth stands out against the sky. Behind them, on <Subject 3>: the low brick wall, the blue water tank, the clothesline on the left, the hillside of brick houses and the sunset sky. <Subject 2> slumps lazily, unbothered, while <Subject 1> keeps looking at him. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Nem vou votar dia vinte e cinco. Meu voto não muda nada.</d> <Subject 1> keeps her mouth closed. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: sabe
+    video_frames: 124
+    ref_images: [cenario-terraco-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the far side of the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at dusk: a rough grey concrete floor, a low wall of exposed red bricks with a small green metal door at the top of the stairs, terracotta pots with plants, and neighbouring rooftops under a deep blue and violet sky with the first lights coming on. There is no water tank and no clothesline on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> challenges him with a question. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> faces the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp, lit straight on by the warm sunset light. Behind her, softly out of focus, the opposite side of <Subject 2>: a low brick wall with the small green metal door to the stairs, potted plants and neighbouring rooftops under a blue and violet dusk sky. <Subject 1> keeps looking at the pug off-screen, one eyebrow slightly raised. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Sabe a diferença no segundo turno de vinte e dois?</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: chute
+    video_frames: 90
+    ref_images: [cenario-terraco-pacoca.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Paçoca, the male pug in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 2> is the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at sunset: a rough grey concrete floor, low walls of exposed red bricks, a blue water tank, a clothesline with colourful clothes, and a sweeping view of a hillside neighbourhood of unplastered red-brick houses under a warm orange and pink sky.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> guesses a huge number, shrugging. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus back and ear in the lower-left foreground, and his face sharp, turned towards her.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the French bulldog's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower left, out of focus, are the French bulldog's black back and shoulder and the back of her tall upright bat ear, turned away from the camera; her face is never seen. <Subject 1> faces the camera at a three-quarter angle, turned towards her and looking at her, just to the left of the lens; his face, whole muzzle and chest are sharp. Behind him, softly out of focus, <Subject 2>: the brick wall, the blue water tank, the clothesline and the hillside of brick houses under the sunset. <Subject 1> shrugs, unconcerned. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Sei lá, uns trinta milhões?</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: cinco
+    video_frames: 124
+    ref_images: [cenario-terraco-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the far side of the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at dusk: a rough grey concrete floor, a low wall of exposed red bricks with a small green metal door at the top of the stairs, terracotta pots with plants, and neighbouring rooftops under a deep blue and violet sky with the first lights coming on. There is no water tank and no clothesline on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gives him the real numbers. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> faces the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp, lit straight on by the warm sunset light. Behind her, softly out of focus, the opposite side of <Subject 2>: a low brick wall with the small green metal door to the stairs, potted plants and neighbouring rooftops under a blue and violet dusk sky. <Subject 1> keeps looking at the pug off-screen, calm and precise. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Dois milhões de votos. Menos de cinco por seção eleitoral.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: vizinho
+    ref_images: [cenario-terraco.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 3> is the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at sunset: a rough grey concrete floor, low walls of exposed red bricks, a blue water tank, a clothesline with colourful clothes, and a sweeping view of a hillside neighbourhood of unplastered red-brick houses under a warm orange and pink sky.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> is stunned and makes a comic comparison. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at the two ends of the bench.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the bench, straight on, in a medium-wide shot, and it never moves, pans or zooms. <Subject 1> sits at the left end of a low, weathered wooden bench, her body and head turned to the right, seen in profile, looking at <Subject 2>; <Subject 2> sits at the right end, turned to the left, seen in profile, looking back at her. Both are seen whole. Their mouths face each other in profile, so every movement of each mouth stands out against the sky. Behind them, on <Subject 3>: the low brick wall, the blue water tank, the clothesline on the left, the hillside of brick houses and the sunset sky. <Subject 2> sits bolt upright, his eyes going huge. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Cinco? Tipo, eu, você e a família do vizinho?</d> <Subject 1> keeps her mouth closed. <Subject 1> gives one slow nod, still looking at him. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: em-casa
+    video_frames: 124
+    ref_images: [cenario-terraco-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the far side of the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at dusk: a rough grey concrete floor, a low wall of exposed red bricks with a small green metal door at the top of the stairs, terracotta pots with plants, and neighbouring rooftops under a deep blue and violet sky with the first lights coming on. There is no water tank and no clothesline on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> reveals how many people stayed home. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> faces the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp, lit straight on by the warm sunset light. Behind her, softly out of focus, the opposite side of <Subject 2>: a low brick wall with the small green metal door to the stairs, potted plants and neighbouring rooftops under a blue and violet dusk sky. <Subject 1> leans slightly towards the pug off-screen. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E sabe quantos ficaram em casa? Trinta e dois milhões.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: trinta-e-dois
+    video_frames: 90
+    ref_images: [cenario-terraco-pacoca.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Paçoca, the male pug in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 2> is the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at sunset: a rough grey concrete floor, low walls of exposed red bricks, a blue water tank, a clothesline with colourful clothes, and a sweeping view of a hillside neighbourhood of unplastered red-brick houses under a warm orange and pink sky.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> is shocked. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus back and ear in the lower-left foreground, and his face sharp, turned towards her.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the French bulldog's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower left, out of focus, are the French bulldog's black back and shoulder and the back of her tall upright bat ear, turned away from the camera; her face is never seen. <Subject 1> faces the camera at a three-quarter angle, turned towards her and looking at her, just to the left of the lens; his face, whole muzzle and chest are sharp. Behind him, softly out of focus, <Subject 2>: the brick wall, the blue water tank, the clothesline and the hillside of brick houses under the sunset. <Subject 1>'s jaw drops and his ears lift. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Trinta e dois milhões? Isso é muita gente!</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: quinze
+    video_frames: 124
+    ref_images: [cenario-terraco-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the far side of the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at dusk: a rough grey concrete floor, a low wall of exposed red bricks with a small green metal door at the top of the stairs, terracotta pots with plants, and neighbouring rooftops under a deep blue and violet sky with the first lights coming on. There is no water tank and no clothesline on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> drives the point home. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> faces the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp, lit straight on by the warm sunset light. Behind her, softly out of focus, the opposite side of <Subject 2>: a low brick wall with the small green metal door to the stairs, potted plants and neighbouring rooftops under a blue and violet dusk sky. <Subject 1> keeps looking at the pug off-screen, firm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Quinze vezes a diferença. Ficar em casa também é escolher.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: faz-diferenca
+    video_frames: 124
+    ref_images: [cenario-terraco.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness.
+      <Subject 3> is the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at sunset: a rough grey concrete floor, low walls of exposed red bricks, a blue water tank, a clothesline with colourful clothes, and a sweeping view of a hillside neighbourhood of unplastered red-brick houses under a warm orange and pink sky.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> gets it and changes his mind. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, facing each other in profile at the two ends of the bench.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the bench, straight on, in a medium-wide shot, and it never moves, pans or zooms. <Subject 1> sits at the left end of a low, weathered wooden bench, her body and head turned to the right, seen in profile, looking at <Subject 2>; <Subject 2> sits at the right end, turned to the left, seen in profile, looking back at her. Both are seen whole. Their mouths face each other in profile, so every movement of each mouth stands out against the sky. Behind them, on <Subject 3>: the low brick wall, the blue water tank, the clothesline on the left, the hillside of brick houses and the sunset sky. <Subject 2> sits up proud and determined, his curled tail wagging. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Então meu voto pode ser justamente o que faz a diferença!</d> <Subject 1> keeps her mouth closed. <Subject 1> gives one small, approving nod, still looking at him. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: dia-25
+    video_frames: 124
+    ref_images: [cenario-terraco-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the far side of the flat concrete rooftop terrace shown in <Picture 1>, on top of a modest Brazilian house at dusk: a rough grey concrete floor, a low wall of exposed red bricks with a small green metal door at the top of the stairs, terracotta pots with plants, and neighbouring rooftops under a deep blue and violet sky with the first lights coming on. There is no water tank and no clothesline on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> addresses the viewer directly with the call to action. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus back and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage at sunset, with warm golden light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn back and shoulder and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> faces the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest are sharp, lit straight on by the warm sunset light. Behind her, softly out of focus, the opposite side of <Subject 2>: a low brick wall with the small green metal door to the stairs, potted plants and neighbouring rooftops under a blue and violet dusk sky. <Subject 1> turns to look straight into the lens, calm and firm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Dia vinte e cinco, vote. E leve a família junto.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Open-air rooftop ambience at dusk: a light breeze, distant neighbourhood sounds - voices, a radio far away, a motorbike, a dog barking in the distance - and birds settling for the night. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A

@@ -1,0 +1,223 @@
+# vlog - um pet sozinho falando para a câmera, como num vídeo-diário.
+#
+#   ./mm images movies/cenarios/scripts/vlog.yaml
+#
+# Edições dos closes APROVADOS (mesmo rosto, mesma luz): o outro cachorro sai
+# do quadro e o pet passa a olhar direto para a lente, como um celular num
+# tripezinho na altura dos olhos. Os escolhidos viram
+# assets/cenario-<cenario>-vlog-<pet>.png e a câmera "vlog-<pet>" do cenário
+# no tools/dialogo.py (modo `vlog:` do roteiro).
+#
+# quarto-pacoca é cenário novo: o quartinho do Paçoca, só ele (3 seeds). Ele é
+# rubro-negro: cachecol e flâmula listrados, SEM escudo (marca registrada, e o
+# modelo deforma brasão; ver a conversa de 2026-10-09).
+kind: images
+name: vlog
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  # --- o quarto do Paçoca (cenário novo) ---------------------------------
+  - id: quarto-pacoca-a
+    seed: 9101
+    ref_images: [cenario-sofa-pacoca.png]
+    prompt: &quarto >-
+      Edit the photograph <image1>. Keep the pug exactly as he is: the same
+      face, the same fawn-yellow coat, the same jet-black mask, the same small
+      black folded ears, large round glossy dark eyes and deep forehead
+      wrinkles, at the same size in the frame. Remove the other dog at the
+      left edge completely. Turn him to face the camera straight on, looking
+      directly into the lens, as if recording a video diary on a phone set on
+      a small tripod at his eye level; his head is in the upper half of the
+      frame and his chest below it. Replace the place: he now sits on his own
+      single bed in his small bedroom in a modest Brazilian family home - a
+      colourful crocheted patchwork bedspread under him, a wall painted warm
+      peach-orange behind him, a small wooden window with a printed cotton
+      curtain on the left letting in warm late-afternoon light, a round plush
+      dog bed and a chewed tennis ball on a low wooden shelf on the right,
+      and a rubber squeaky chicken toy lying on the bedspread beside him. He
+      loves football: a long knitted scarf in horizontal red and black
+      stripes is pinned across the wall behind him, a small red-and-black
+      striped pennant hangs beside the window, and a worn black-and-white
+      leather football sits on the shelf. The scarf and the pennant are plain
+      stripes, with no badge, crest, emblem or lettering on them. The
+      background is softly out of focus.
+  - id: quarto-pacoca-b
+    seed: 9102
+    ref_images: [cenario-sofa-pacoca.png]
+    prompt: *quarto
+  - id: quarto-pacoca-c
+    seed: 9103
+    ref_images: [cenario-sofa-pacoca.png]
+    prompt: *quarto
+
+  # --- sofá ---------------------------------------------------------------
+  - id: sofa-pacoca-a
+    seed: 9201
+    ref_images: [cenario-sofa-pacoca.png]
+    prompt: &sofa-pacoca >-
+      Edit the photograph <image1>. Keep the pug exactly as he is: the same
+      face, coat, black mask, folded ears and eyes, at the same size in the
+      frame, on the same green sofa in the same room with the bright
+      turquoise wall and the lamp on the wooden side table, in the same warm
+      light. Remove the other dog at the left edge completely: he is alone.
+      Turn his head and body to face the camera straight on, looking directly
+      into the lens, as if recording a video diary on a phone set on a small
+      tripod at his eye level; his whole face and muzzle are sharp and
+      centred, his head in the upper half of the frame.
+  - id: sofa-pacoca-b
+    seed: 9202
+    ref_images: [cenario-sofa-pacoca.png]
+    prompt: *sofa-pacoca
+  - id: sofa-pretinha-a
+    seed: 9211
+    ref_images: [cenario-sofa-pretinha.png]
+    prompt: &sofa-pretinha >-
+      Edit the photograph <image1>. Keep the black French bulldog exactly as
+      she is: the same face, black coat with faint brindle, white chest
+      blaze, large upright bat ears and dark eyes, at the same size in the
+      frame, on the same green sofa with the white crocheted throw, in the
+      same room with the turquoise wall and the green shutter window, in the
+      same warm light. Remove the other dog at the right edge completely: she
+      is alone. Turn her head to face the camera straight on, looking
+      directly into the lens, as if recording a video diary on a phone set on
+      a small tripod at her eye level; her whole face and muzzle are sharp
+      and centred, her head in the upper half of the frame.
+  - id: sofa-pretinha-b
+    seed: 9212
+    ref_images: [cenario-sofa-pretinha.png]
+    prompt: *sofa-pretinha
+
+  # --- cozinha (dos closes do cozinha-frente) -----------------------------
+  - id: cozinha-pacoca-a
+    seed: 9301
+    ref_images: [cenario-cozinhafrente-pacoca.png]
+    prompt: &cozinha-pacoca >-
+      Edit the photograph <image1>. Keep the pug exactly as he is: the same
+      face, coat, black mask, folded ears and eyes, in the same kitchen with
+      the pale yellow tiles, the white gas stove with its aluminium pot and
+      the refrigerator behind him, in the same warm light. Remove the
+      out-of-focus French bulldog in the foreground completely: he is alone.
+      Turn him to face the camera straight on, looking directly into the
+      lens, as if recording a video diary on a phone set on a small tripod at
+      his eye level; his whole face and muzzle are sharp and centred, his
+      head in the upper half of the frame.
+  - id: cozinha-pacoca-b
+    seed: 9302
+    ref_images: [cenario-cozinhafrente-pacoca.png]
+    prompt: *cozinha-pacoca
+  - id: cozinha-pretinha-a
+    seed: 9311
+    ref_images: [cenario-cozinhafrente-pretinha.png]
+    prompt: &cozinha-pretinha >-
+      Edit the photograph <image1>. Keep the black French bulldog exactly as
+      she is: the same face, black coat with faint brindle, white chest
+      blaze, large upright bat ears and dark eyes, in the same kitchen with
+      the pale yellow tiles, the window, the corner sink with its dish rack
+      and the shelf of jars behind her, in the same warm light. Remove the
+      out-of-focus pug in the foreground completely: she is alone. Turn her
+      to face the camera straight on, looking directly into the lens, as if
+      recording a video diary on a phone set on a small tripod at her eye
+      level; her whole face and muzzle are sharp and centred, her head in the
+      upper half of the frame.
+  - id: cozinha-pretinha-b
+    seed: 9312
+    ref_images: [cenario-cozinhafrente-pretinha.png]
+    prompt: *cozinha-pretinha
+
+  # --- terraço (dos closes do terraco-frente) -----------------------------
+  - id: terraco-pacoca-a
+    seed: 9401
+    ref_images: [cenario-terraco-pacoca.png]
+    prompt: &terraco-pacoca >-
+      Edit the photograph <image1>. Keep the pug exactly as he is: the same
+      face, coat, black mask, folded ears and eyes, on the same rooftop
+      terrace with the brick wall, the blue water tank, the clothesline and
+      the hillside of brick houses behind him, in the same warm sunset light.
+      Remove the out-of-focus French bulldog in the foreground completely: he
+      is alone. Turn him to face the camera straight on, looking directly
+      into the lens, as if recording a video diary on a phone set on a small
+      tripod at his eye level; his whole face and muzzle are sharp and
+      centred, his head in the upper half of the frame.
+  - id: terraco-pacoca-b
+    seed: 9402
+    ref_images: [cenario-terraco-pacoca.png]
+    prompt: *terraco-pacoca
+  - id: terraco-pretinha-a
+    seed: 9411
+    ref_images: [cenario-terraco-pretinha.png]
+    prompt: &terraco-pretinha >-
+      Edit the photograph <image1>. Keep the black French bulldog exactly as
+      she is: the same face, black coat with faint brindle, white chest
+      blaze, large upright bat ears and dark eyes, on the same side of the
+      rooftop terrace, with the brick wall, the small green metal door,
+      the potted plants and the dusk sky behind her, in the same light.
+      Remove the out-of-focus pug in the foreground completely: she is alone.
+      Turn her to face the camera straight on, looking directly into the
+      lens, as if recording a video diary on a phone set on a small tripod at
+      her eye level; her whole face and muzzle are sharp and centred, her
+      head in the upper half of the frame.
+  - id: terraco-pretinha-b
+    seed: 9412
+    ref_images: [cenario-terraco-pretinha.png]
+    prompt: *terraco-pretinha
+  # --- varanda-frente (2026-10-12) ------------------------------------------
+  - id: varanda-pretinha-a
+    seed: 9511
+    ref_images: [cenario-varandafrente-pretinha.png]
+    prompt: &varanda-pretinha >-
+      Edit the photograph <image1>. Keep the black French bulldog exactly as
+      she is: the same face, black coat with faint brindle, white chest
+      blaze, large upright bat ears and dark eyes, on the same front veranda,
+      with the white wall, the terracotta pot, the green metal railing and
+      the pink house across the street behind her, in the same warm
+      afternoon light. Remove the out-of-focus pug in the foreground
+      completely: she is alone. Turn her to face the camera straight on,
+      looking directly into the lens at her eye level; her whole face and
+      muzzle are sharp and centred, her head in the upper half of the frame.
+      No phone, camera or tripod is visible anywhere in the picture.
+  - id: varanda-pretinha-b
+    seed: 9512
+    ref_images: [cenario-varandafrente-pretinha.png]
+    prompt: *varanda-pretinha
+  # --- Paçoca deitado no quarto (tio-renato, 2026-10-13) --------------------
+  # Fazer ele deitar dentro do vídeo saiu torto (cabeça caída, olhos fora da
+  # lente, quarto deslocado): a cena começa com ele já deitado.
+  - id: quarto-pacoca-deitado-a
+    seed: 9601
+    ref_images: [cenario-quarto-pacoca.png]
+    prompt: &quarto-pacoca-deitado >-
+      Edit the photograph <image1>. Keep the fawn pug exactly as he is - the
+      same face, black mask, wrinkles, ears and coat - in the same bedroom,
+      on the same crocheted patchwork bedspread, with the same peach wall,
+      red-and-black striped scarf, shelf, footballs, dog bed and yellow
+      rubber chicken behind him, in the same light, and keep the camera
+      exactly where it is. Change only his pose: he now lies down on his
+      belly on the bedspread, facing the camera, his front paws stretched
+      forward side by side and his chin resting on top of his paws. His
+      head is low but his face is fully visible: his big, sad, round dark
+      eyes look up straight into the lens, his ears droop and his forehead
+      wrinkles with sadness. His whole body is in the frame.
+  - id: quarto-pacoca-deitado-b
+    seed: 9602
+    ref_images: [cenario-quarto-pacoca.png]
+    prompt: *quarto-pacoca-deitado

@@ -38,9 +38,17 @@ senado.leg.br). Nada inventado sobre candidatos.
 - **Olhar**: no `sofa-frente` eles já estão virados um para o outro - escreva
   "keeps looking at him", nunca "turns her head towards him" (o modelo vira
   para a câmera).
+- **Sem metáfora nas ações**: "face lighting up" pôs um objeto na cabeça do
+  Paçoca. Descreva o que se vê ("his eyes widen").
 - **Fora de quadro**: num close, o outro cachorro não pode *fazer* nada
   ("Paçoca's ears droop" num close da Pretinha). O `cenas` avisa.
 - Outra versão em outro cenário: `./dialogo gerar <filme> --versao v2 --cenario <nome>`.
+
+- **Vlog** (um pet sozinho falando para a câmera): `./dialogo novo <filme> --vlog pacoca`.
+  Toda cena vai na câmera `vlog-<pet>`; nas ações o pet olha "straight into
+  the lens"; o outro pet pode falar de fora do quadro. Só cenários com a
+  câmera `vlog-<pet>` servem: `quarto-pacoca` (só Paçoca), `sofa`,
+  `cozinha-frente`, `terraco-frente` (os dois), `varanda-frente` (só a Pretinha).
 
 Mostre a tabela de falas para a Erika aprovar antes de gastar GPU.
 
@@ -102,6 +110,9 @@ Já existem planos abertos (sem closes) de cozinha e varanda em
 | voz uma oitava abaixo | texto da voz contradiz a referência | descrição em texto alinhada ao `<Audio 1>` (já no `dialogo`) |
 | voz sai, boca não mexe | rosto escondido / cabeça baixa | "on screen ... mouth visibly opening", rosto para a câmera |
 | personagem vira para a câmera | ação "turns towards him" quando já está virado | "keeps looking at him" |
+| objeto estranho em cena (bonequinho na cabeça do Paçoca) | metáfora na ação ("his face lighting up") | ações literais: o modelo desenha o que lê; refaça com `seed:` nova |
+| legenda com a cor do personagem errado | (corrigido: a cor vem da voz de referência da cena) | `./legendas <script>` de novo |
+| close traz de volta o fundo do outro (caixa d'água atrás da Pretinha) | o `lugar` do cenário cita o lado do outro e vence a referência | dê ao close do contracampo o próprio `lugar` (só o lado dele) |
 | logo na tampa do notebook | prior do modelo | objeto preto fosco; prompt negativo não funciona no comfy |
 
 Requer o moviemakr do branch `ref-audios` (suporte a `ref_audios`).

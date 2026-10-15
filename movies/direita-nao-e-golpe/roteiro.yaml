@@ -1,0 +1,122 @@
+# direita-nao-e-golpe - a tia Cleide é de direita e vai votar no Lula; a
+# Pretinha explica que ser de direita é uma coisa e bolsonarismo é outra.
+# Rascunho e fontes em drafts/direita-nao-e-golpe.md.
+#
+#   ./dialogo cenas direita-nao-e-golpe     ./dialogo gerar direita-nao-e-golpe
+#
+# Fatos usados (conferir antes de postar - detalhes no rascunho):
+#   - FHC passou a faixa ao Lula em 1º/01/2003.
+#   - Bolsonaro não passou a faixa (viajou aos EUA); condenado pelo STF (set/2025).
+#   - Alckmin, vice do Lula, foi do PSDB de 1988 a 2021.
+#   - FHC declarou voto no Lula no 2º turno de 2022.
+# "Fernando Henrique" por extenso: a sigla arrisca sair soletrada errado.
+# Ações sem público/gravação (ver teste-cego: "viewers" pôs um celular no quadro).
+cenario: varanda-frente
+seed: 2026
+
+cenas:
+  - id: tia-cleide
+    camera: dupla
+    resumo: Paçoca tells Pretinha, puzzled, what his aunt Cleide said.
+    antes: Paçoca keeps looking at her, his forehead wrinkled with confusion.
+    fala:
+      quem: pacoca
+      texto: "A tia Cleide disse que é de direita,"
+    # v1: sem o `depois`, a Pretinha virou para a câmera no fim.
+    depois: Pretinha keeps looking at him in profile, listening.
+
+  - id: nao-entendi
+    resumo: Paçoca says she will vote for Lula and he does not get it.
+    antes: Paçoca tilts his head to one side, puzzled.
+    fala:
+      quem: pacoca
+      texto: "mas vai votar no Lula. Eu não entendi."
+
+  - id: outra-coisa
+    resumo: Pretinha says being right-wing and Bolsonarism are different things.
+    antes: Pretinha nods once, calm and serious.
+    fala:
+      quem: pretinha
+      texto: "Faz sentido. Ser de direita é uma coisa. Bolsonarismo é outra."
+
+  - id: mesma-coisa
+    resumo: Paçoca asks if it is not all the same.
+    antes: Paçoca blinks, his ears lifting slightly.
+    fala:
+      quem: pacoca
+      texto: "Ué, não é tudo a mesma coisa?"
+
+  - id: faixa-fhc
+    resumo: Pretinha says the right of Fernando Henrique handed the presidential sash to Lula.
+    antes: Pretinha tilts her head slightly, matter-of-fact.
+    fala:
+      quem: pretinha
+      texto: "A direita do Fernando Henrique passou a faixa pro Lula."
+
+  - id: faixa-bolsonaro
+    resumo: Pretinha says Bolsonaro lost, did not hand over the sash and left for the United States.
+    antes: Pretinha leans slightly towards him, serious.
+    fala:
+      quem: pretinha
+      texto: "Bolsonaro perdeu, não passou a faixa e foi pros Estados Unidos."
+
+  - id: golpe
+    resumo: Pretinha says he was later convicted for attempting a coup.
+    antes: Pretinha looks at him, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "E depois foi condenado por tentar um golpe."
+
+  - id: nossa
+    camera: dupla
+    resumo: Paçoca realises that is not the right, it is something else.
+    antes: Paçoca's eyes go wide and he sits up straight, still looking at her.
+    fala:
+      quem: pacoca
+      texto: "Nossa. Então isso não é direita, é outra coisa."
+    depois: Pretinha nods slowly, keeps looking at him in profile.
+
+  - id: respeita
+    resumo: Pretinha says the democratic right disagrees with them but respects the vote.
+    antes: Pretinha nods once, her expression softening a little.
+    fala:
+      quem: pretinha
+      texto: "A direita democrática discorda da gente, mas respeita o voto."
+
+  - id: vice
+    resumo: Paçoca remembers Lula's vice-president used to be in the PSDB.
+    antes: Paçoca lifts his head, his eyes widening as he remembers something.
+    fala:
+      quem: pacoca
+      texto: "Peraí, o vice do Lula não foi do PSDB?"
+
+  - id: foi
+    resumo: Pretinha confirms, and starts to add something about the last election.
+    antes: Pretinha nods, matter-of-fact.
+    fala:
+      quem: pretinha
+      texto: "Foi. E em dois mil e vinte e dois,"
+
+  - id: declarou
+    resumo: Pretinha says even Fernando Henrique declared his support for Lula.
+    antes: Pretinha raises her chin slightly, looking at him.
+    fala:
+      quem: pretinha
+      texto: "até o Fernando Henrique declarou apoio ao Lula."
+
+  - id: por-isso
+    camera: dupla
+    resumo: Paçoca finally understands his aunt.
+    antes: Paçoca bounces slightly on the bench, happy, still looking at her.
+    fala:
+      quem: pacoca
+      texto: "Por isso a tia Cleide vai de Lula!"
+    depois: Pretinha nods, keeps looking at him in profile.
+
+  - id: pela-democracia
+    camera: vlog-pretinha
+    resumo: Pretinha addresses the viewer directly.
+    antes: Pretinha looks straight into the lens, calm and warm.
+    fala:
+      quem: pretinha
+      texto: "Você pode ser de direita e votar no Lula pela democracia."

@@ -1,0 +1,131 @@
+# frente-terraco - a dupla de frente um para o outro no terraço (laje) da casa.
+#
+#   ./mm images movies/cenarios/scripts/frente-terraco.yaml
+#
+# Edições das referências APROVADAS do sofa-frente (dupla de perfil e closes
+# por cima do ombro): mesmas poses, mesmos enquadramentos, mesma dupla - só o
+# lugar muda. Os escolhidos viram assets/cenario-terraco[-pretinha|-pacoca].png
+# e o cenário "terraco-frente" no tools/dialogo.py.
+#
+# A laje no fim de tarde: lá de cima se vê o bairro inteiro - todo mundo que vota.
+kind: images
+name: frente-terraco
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  - id: dupla-a
+    seed: 8101
+    ref_images: [cenario-sofafrente.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are - the
+      same faces, coats, markings, sizes and poses, facing each other in
+      three-quarter profile, the French bulldog on the left and the pug on
+      the right - and keep the camera exactly where it is. Replace only the
+      place: instead of the sofa they now sit facing each other on a low,
+      weathered wooden bench on the flat concrete rooftop terrace of the
+      same modest Brazilian house at sunset: a rough grey concrete floor, a
+      low wall of exposed red bricks, a blue water tank on a small concrete
+      base, a clothesline with a few colourful clothes, and beyond the low
+      wall a sweeping view of a hillside neighbourhood of unplastered red-
+      brick houses with flat roofs, under a warm orange and pink sunset sky.
+      Warm golden sunset light from the side, rim-lighting their fur.
+  - id: dupla-b
+    seed: 8102
+    ref_images: [cenario-sofafrente.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep both dogs exactly as they are - the
+      same faces, coats, markings, sizes and poses, facing each other in
+      three-quarter profile, the French bulldog on the left and the pug on
+      the right - and keep the camera exactly where it is. Replace only the
+      place: instead of the sofa they now sit facing each other on a low,
+      weathered wooden bench on the flat concrete rooftop terrace of the
+      same modest Brazilian house at sunset: a rough grey concrete floor, a
+      low wall of exposed red bricks, a blue water tank on a small concrete
+      base, a clothesline with a few colourful clothes, and beyond the low
+      wall a sweeping view of a hillside neighbourhood of unplastered red-
+      brick houses with flat roofs, under a warm orange and pink sunset sky.
+      Warm golden sunset light from the side, rim-lighting their fur.
+  - id: pretinha-a
+    seed: 8111
+    ref_images: [cenario-sofafrente-pretinha.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him. Replace only the background
+      behind her: instead of the living room, the flat concrete rooftop
+      terrace of the same modest Brazilian house at sunset: a rough grey
+      concrete floor, a low wall of exposed red bricks, a blue water tank on
+      a small concrete base, a clothesline with a few colourful clothes, and
+      beyond the low wall a sweeping view of a hillside neighbourhood of
+      unplastered red-brick houses with flat roofs, under a warm orange and
+      pink sunset sky, softly out of focus. Warm golden sunset light from
+      the side, rim-lighting their fur.
+  - id: pretinha-b
+    seed: 8112
+    ref_images: [cenario-sofafrente-pretinha.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him. Replace only the background
+      behind her: instead of the living room, the flat concrete rooftop
+      terrace of the same modest Brazilian house at sunset: a rough grey
+      concrete floor, a low wall of exposed red bricks, a blue water tank on
+      a small concrete base, a clothesline with a few colourful clothes, and
+      beyond the low wall a sweeping view of a hillside neighbourhood of
+      unplastered red-brick houses with flat roofs, under a warm orange and
+      pink sunset sky, softly out of focus. Warm golden sunset light from
+      the side, rim-lighting their fur.
+  - id: pacoca-a
+    seed: 8121
+    ref_images: [cenario-sofafrente-pacoca.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the French bulldog's out-of-focus black back and
+      tall ear in the lower-left foreground, and the fawn pug sharp, at a
+      three-quarter angle, looking at her. Replace only the background
+      behind him: instead of the living room, the flat concrete rooftop
+      terrace of the same modest Brazilian house at sunset: a rough grey
+      concrete floor, a low wall of exposed red bricks, a blue water tank on
+      a small concrete base, a clothesline with a few colourful clothes, and
+      beyond the low wall a sweeping view of a hillside neighbourhood of
+      unplastered red-brick houses with flat roofs, under a warm orange and
+      pink sunset sky, softly out of focus. Warm golden sunset light from
+      the side, rim-lighting their fur.
+  - id: pacoca-b
+    seed: 8122
+    ref_images: [cenario-sofafrente-pacoca.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the French bulldog's out-of-focus black back and
+      tall ear in the lower-left foreground, and the fawn pug sharp, at a
+      three-quarter angle, looking at her. Replace only the background
+      behind him: instead of the living room, the flat concrete rooftop
+      terrace of the same modest Brazilian house at sunset: a rough grey
+      concrete floor, a low wall of exposed red bricks, a blue water tank on
+      a small concrete base, a clothesline with a few colourful clothes, and
+      beyond the low wall a sweeping view of a hillside neighbourhood of
+      unplastered red-brick houses with flat roofs, under a warm orange and
+      pink sunset sky, softly out of focus. Warm golden sunset light from
+      the side, rim-lighting their fur.

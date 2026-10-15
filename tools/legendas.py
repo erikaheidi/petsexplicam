@@ -35,10 +35,23 @@ from moviemakr.config import load_script  # noqa: E402
 from moviemakr.layout import Workspace  # noqa: E402
 from moviemakr.state import load_state  # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dialogo import PRONUNCIA  # noqa: E402
+
 FALA = re.compile(r"<d>\[[^\]]+\]\s*(.*?)</d>", re.S)
 QUEM = re.compile(r"<Subject (\d)>[^<]{0,40}\(S\d\)")
-# <Subject 1> = Pretinha, <Subject 2> = Paçoca em todos os scripts da dupla.
+# Cor por personagem. Quem fala vem da voz de referência da cena (o rótulo
+# <Subject N> não serve: num close do Paçoca, ele é o <Subject 1>); sem voz de
+# referência, cai no rótulo, que nos planos da dupla é 1 = Pretinha, 2 = Paçoca.
 COR = {"1": "&H00FFFFFF", "2": "&H0045D8FF"}  # ASS é &HAABBGGRR: branco, amarelo
+VOZ = {"pretinha-voz.wav": "1", "pacoca-voz.wav": "2"}
+
+
+def grafia(texto: str) -> str:
+    """Desfaz a troca de pronúncia do dialogo (Clêide -> Cleide)."""
+    for escrita, falada in PRONUNCIA.items():
+        texto = texto.replace(falada, escrita)
+    return texto
 
 LARGURA_LINHA = 24   # caracteres por linha: a 544 px, 30 já encostava nas bordas
 MAX_LINHAS = 2
@@ -176,6 +189,15 @@ def quebrar(texto: str) -> list[str]:
             blocos[-1] = (f"{blocos[-1][0]} {p}", True)
         else:
             blocos.append((p, inteiro))
+    # Interjeição sozinha ("Ué,") some da tela antes de ser lida: gruda no
+    # bloco seguinte se couber.
+    i = 0
+    while i < len(blocos) - 1:
+        b, inteiro = blocos[i]
+        if len(b) <= 8 and cabe(f"{b} {blocos[i + 1][0]}"):
+            blocos[i:i + 2] = [(f"{b} {blocos[i + 1][0]}", blocos[i + 1][1])]
+        else:
+            i += 1
     return [_equilibrar(b) for b, _ in blocos]
 
 
@@ -201,17 +223,19 @@ def legendas(script, ate: int | None):
         corte = overlap_trim(cena, state)
         dur = duracao(clip) - corte
         usadas.append((clip, corte))
-        falas = [(m.group(1).strip(), m.start()) for m in FALA.finditer(cena.prompt)]
+        falas = [(grafia(m.group(1).strip()), m.start()) for m in FALA.finditer(cena.prompt)]
         if falas:
             span = trecho_falado(clip, corte, corte + dur) or (0.1, dur - 0.1)
             pesos = [len(f) for f, _ in falas]
             cursor = span[0]
             for (texto, pos), peso in zip(falas, pesos, strict=True):
                 fatia = (span[1] - span[0]) * peso / sum(pesos)
-                quem = (QUEM.findall(cena.prompt[max(0, pos - 400):pos]) or ["1"])[-1]
+                vozes = [VOZ[p.name] for p in cena.ref_audios if p.name in VOZ]
+                quem = vozes[0] if vozes else (QUEM.findall(cena.prompt[max(0, pos - 400):pos]) or ["1"])[-1]
                 # Cada bloco fica na tela pelo tempo proporcional ao seu texto.
                 blocos = quebrar(texto)
-                tamanhos = [len(b.replace("\\N", " ")) for b in blocos]
+                # Peso mínimo: um "Ué," sozinho ainda precisa de ~0,7 s para ser lido.
+                tamanhos = [max(14, len(b.replace("\\N", " "))) for b in blocos]
                 a = cursor
                 for bloco, tam in zip(blocos, tamanhos, strict=True):
                     b = a + fatia * tam / sum(tamanhos)

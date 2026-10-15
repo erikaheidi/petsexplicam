@@ -1,0 +1,102 @@
+# frente-cozinha-pretinha2 - close da Pretinha na cozinha, fundo amarrado na mesa-1.
+#
+#   ./mm images movies/cenarios/scripts/frente-cozinha-pretinha2.yaml
+#
+# Na mesa-1 (assets/cenario-cozinhafrente.png), atrás e à esquerda dela: a
+# janela, a pia de esquina com o escorredor de pratos e uma prateleirinha de
+# potes; encostado na pia, o fogão com a panela; a geladeira fica atrás do
+# Paçoca. Não há porta nem cortina desse lado - a primeira correção
+# (frente-cozinha-pretinha.yaml) inventou as duas.
+kind: images
+name: frente-cozinha-pretinha2
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no logos, no labels and
+    no screens with anything written on them anywhere in the picture.
+
+images:
+  - id: de-b-1-1
+    seed: 8501
+    ref_images: [frente-cozinha-pretinha-de-b-1.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same wooden chair
+      at the table with the red-and-white checked oilcloth. Replace only the
+      background behind her with this corner of the same kitchen, with pale
+      yellow square wall tiles: on the left, a window with warm late-
+      afternoon light; below it, a white corner sink with a wire dish rack
+      full of white plates and a small wooden shelf with a few plain jars
+      above the counter; on the right edge of the frame, where the counter
+      meets it, the side of an old white gas stove with an aluminium pot on
+      it. There is no door, no doorway and no bead curtain anywhere. Nothing
+      has any text, label or logo.
+  - id: de-b-1-2
+    seed: 8502
+    ref_images: [frente-cozinha-pretinha-de-b-1.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same wooden chair
+      at the table with the red-and-white checked oilcloth. Replace only the
+      background behind her with this corner of the same kitchen, with pale
+      yellow square wall tiles: on the left, a window with warm late-
+      afternoon light; below it, a white corner sink with a wire dish rack
+      full of white plates and a small wooden shelf with a few plain jars
+      above the counter; on the right edge of the frame, where the counter
+      meets it, the side of an old white gas stove with an aluminium pot on
+      it. There is no door, no doorway and no bead curtain anywhere. Nothing
+      has any text, label or logo.
+  - id: de-b-2-1
+    seed: 8511
+    ref_images: [frente-cozinha-pretinha-de-b-2.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same wooden chair
+      at the table with the red-and-white checked oilcloth. Replace only the
+      background behind her with this corner of the same kitchen, with pale
+      yellow square wall tiles: on the left, a window with warm late-
+      afternoon light; below it, a white corner sink with a wire dish rack
+      full of white plates and a small wooden shelf with a few plain jars
+      above the counter; on the right edge of the frame, where the counter
+      meets it, the side of an old white gas stove with an aluminium pot on
+      it. There is no door, no doorway and no bead curtain anywhere. Nothing
+      has any text, label or logo.
+  - id: de-b-2-2
+    seed: 8512
+    ref_images: [frente-cozinha-pretinha-de-b-2.png]
+    prompt: >-
+      Edit the photograph <image1>. Keep the framing, the pose and both dogs
+      exactly as they are: the pug's out-of-focus fawn back and ear in the
+      lower-right foreground, and the black French bulldog sharp, at a
+      three-quarter angle, looking at him, sitting on the same wooden chair
+      at the table with the red-and-white checked oilcloth. Replace only the
+      background behind her with this corner of the same kitchen, with pale
+      yellow square wall tiles: on the left, a window with warm late-
+      afternoon light; below it, a white corner sink with a wire dish rack
+      full of white plates and a small wooden shelf with a few plain jars
+      above the counter; on the right edge of the frame, where the counter
+      meets it, the side of an old white gas stove with an aluminium pot on
+      it. There is no door, no doorway and no bead curtain anywhere. Nothing
+      has any text, label or logo.

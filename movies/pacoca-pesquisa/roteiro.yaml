@@ -1,0 +1,60 @@
+# pacoca-pesquisa - primeiro vlog do Paçoca, no quarto dele.
+# Vira scripts/v1.yaml com:  ./dialogo gerar pacoca-pesquisa
+#
+# Monólogo da Erika (drafts/pacoca-pesquisa.md), uma frase por cena. As frases
+# longas foram divididas nos cortes - num vlog, o corte seco no meio da frase é
+# o jeito natural de editar.
+vlog: pacoca
+cenario: quarto-pacoca
+seed: 2026
+
+cenas:
+  - id: pesquisei
+    resumo: Paçoca tells his viewers he researched his candidate's proposals and is now unsure.
+    antes: Paçoca looks straight into the lens, his forehead wrinkled with worry.
+    fala:
+      quem: pacoca
+      texto: "Fui pesquisar as propostas do meu candidato e fiquei na dúvida."
+
+  - id: planos
+    resumo: Paçoca lists what is missing from the proposals.
+    antes: Paçoca tilts his head to one side, still looking into the lens.
+    fala:
+      quem: pacoca
+      texto: "Ele não tem muitos planos pra educação, saúde e proteção aos animais."
+
+  - id: negociar
+    resumo: Paçoca repeats a promise he heard, doubtful.
+    antes: Paçoca leans a little closer to the lens, his eyes wide.
+    fala:
+      quem: pacoca
+      texto: "Ele também disse que vamos poder negociar as horas com o patrão."
+
+  - id: e-se
+    resumo: Paçoca asks the question that worries him.
+    antes: Paçoca frowns, the wrinkles on his forehead deepening, and looks straight into the lens.
+    fala:
+      quem: pacoca
+      texto: "Mas e se o patrão não quiser negociar, como já acontece hoje?"
+
+  - id: quem-garante
+    resumo: Paçoca worries about losing work.
+    antes: Paçoca glances down at the bedspread, then looks back up into the lens.
+    fala:
+      quem: pacoca
+      texto: "Quem garante que não vai faltar serviço,"
+
+  - id: contas
+    resumo: Paçoca worries about paying the bills.
+    antes: Paçoca's ears drop slightly and he looks into the lens with big round eyes.
+    fala:
+      quem: pacoca
+      texto: "e que eu vou conseguir pagar as contas do mês?"
+
+  - id: outro
+    resumo: Paçoca decides to research the other candidate too.
+    antes: Paçoca lets out a short sigh, then sits up straight.
+    fala:
+      quem: pacoca
+      texto: "Acho que preciso pesquisar o outro candidato também."
+    depois: Paçoca nods once, looking straight into the lens.
