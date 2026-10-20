@@ -9,6 +9,8 @@
 #   antes    ação em inglês ANTES da fala (opcional)
 #   fala     quem: pretinha | pacoca, texto: a fala LITERAL em PT-BR
 #            (números por extenso - o modelo fala o que lê; só . , ? ! :)
+#            tom (opcional, em inglês): a emoção desta fala, sem mudar o
+#            timbre - "bright and cheerful, smiling, her voice lifting with joy"
 #   depois   ação em inglês DEPOIS da fala (opcional)
 #   frames   opcional - por padrão sai do tamanho da fala (90/107/124)
 #   seed     opcional - para tentar de novo uma cena com outra variação

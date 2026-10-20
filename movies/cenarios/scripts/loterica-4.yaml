@@ -1,0 +1,67 @@
+# loterica rodada 4 - na dentro-a (loterica-2.yaml) os três não se olham: a
+# Pretinha está no chão e as senhoras nas cadeiras, mais altas (Erika). Agora
+# a Pretinha senta na mesma fileira de cadeiras, na altura delas, de camiseta
+# vermelha lisa. Closes só depois que a Erika escolher este plano.
+#
+#   ./mm images movies/cenarios/scripts/loterica-4.yaml
+kind: images
+name: loterica-4
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real knitted wool, bright even indoor lighting, shallow depth
+      of field, vertical 9:16 framing. No text, no letters, no numbers, no
+      logos, no labels, no price tags, no screens and no signs with anything
+      written on them anywhere in the picture.
+
+images:
+  - id: cadeira-a
+    seed: 9901
+    ref_images: [loterica-dentro-a.png, cenario-varandafrente-pretinha.png]
+    prompt: &cadeira >-
+      Edit the photograph <image1>. Keep the lottery shop exactly as it is -
+      the blue and orange service windows with thick glass and round metal
+      speaking grilles, the beige plastic waiting chairs, the floor and the
+      dogs in the queue at the back - and keep the two elderly lady dogs
+      exactly as they are: the white poodle in the lilac knitted cardigan
+      with the small brown leather handbag on her lap, and the cocker spaniel
+      in the sea-green knitted cardigan, side by side on the chairs on the
+      right. Move the black French bulldog up off the floor: she now sits on
+      a beige plastic waiting chair of the same row, on the left of the
+      frame, at the same height as the two ladies, so that the three heads
+      are level with each other. She is the black French bulldog in <image2>
+      (not the fawn pug at the edge of that picture): the same face, the
+      same large upright bat ears, the same white stripe down the middle of
+      her muzzle and greyish-white chin. She wears a plain red short-sleeved
+      t-shirt with no print, no logo and no lettering, her front legs
+      through the sleeves. She is turned to the right in a three-quarter
+      profile and looks straight across at the poodle's face; the poodle and
+      the cocker spaniel are both turned to the left in a three-quarter
+      profile and look straight back at the French bulldog's face, their
+      eyes level with hers. None of the three looks at the camera. All three
+      are seen whole, from their paws on the chair seats to the tips of
+      their ears, their faces and mouths clearly visible, their mouths
+      closed. No people, no human figures and no human hands anywhere in the
+      picture.
+  - id: cadeira-b
+    seed: 9902
+    ref_images: [loterica-dentro-a.png, cenario-varandafrente-pretinha.png]
+    prompt: *cadeira
+  - id: cadeira-c
+    seed: 9903
+    ref_images: [loterica-dentro-a.png, cenario-varandafrente-pretinha.png]
+    prompt: *cadeira

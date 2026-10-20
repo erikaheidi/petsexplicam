@@ -1,0 +1,161 @@
+# uber - a Pretinha no banco de trás de um carro de aplicativo, conversando
+# com o motorista, o Seu Tião (vira-lata malhado, ELENCO.md).
+#
+#   ./mm images movies/cenarios/scripts/uber.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/uber.yaml
+#
+# Precisa de assets/tiao-referencia.png aprovado (movies/ficha-tiao/).
+#
+# Pretinha: a referência é o close dela no varanda-frente, NÃO a
+# pretinha-referencia.jpg (a Josy). A Pretinha dos vídeos tem focinho com
+# faixa branca, queixo grisalho e mancha branca maior no peito; com a foto da
+# Josy ela saiu quase toda preta (rodada 1: uber-josy-a.png, descartada).
+#
+# Rodada 1 (este arquivo): o plano dos dois, do zero. Câmera no meio do
+# painel, virada para trás: carro brasileiro, volante à esquerda do carro,
+# então o Tião fica à DIREITA do quadro, em primeiro plano; a Pretinha no meio
+# do banco de trás, no vão entre os bancos da frente, sem nada na frente do
+# rosto dela. O Tião vem primeiro nas refs: a ficha dele é 9:16, e numa
+# edição o tamanho da saída segue a 1ª referência.
+# Rodada 2 (depois que a Erika escolher): closes editando o plano escolhido -
+#   pretinha  por cima do ombro do Tião (encosto do motorista, ombro e orelha
+#             dele desfocados à direita, embaixo), ela de frente no banco de trás
+#   tiao      do painel do lado do carona: ele em três quartos, mãos no
+#             volante, cabeça virada para o banco de trás; vidro do motorista
+#             com a rua atrás
+# Escolhidos -> assets/cenario-uber.png / -pretinha.png / -tiao.png e o
+# cenário "uber" no tools/dialogo.py.
+#
+# Figurino do Tião: camisa polo azul-clara, lisa, sem logo. Sem celular com
+# GPS no quadro: tela com mapa vira texto deformado.
+kind: images
+name: uber
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, soft natural daylight coming through the car
+    windows, shallow depth of field, vertical 9:16 framing. No text, no
+    letters, no numbers, no logos, no labels, no screens and no signs with
+    anything written on them anywhere in the picture.
+
+images:
+  - id: dupla-a
+    seed: 8111
+    ref_images: [tiao-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &dupla >-
+      A photograph inside a car of a ride-hailing app, on a city street in
+      Brazil on a bright afternoon, taken from a small camera mounted in the
+      middle of the dashboard and pointing back into the car. The driver is
+      the white dog with black patches in <image1>: the same face, the same
+      black patch over his left ear and eye, tan cheeks, greying muzzle and
+      half-folded ears. He wears a plain light-blue short-sleeved polo shirt
+      with no logo, his front legs through the sleeves. The passenger is the
+      black French bulldog in <image2> (not the fawn pug at the edge of that
+      picture): the same face, the same large upright bat ears, the same
+      white stripe down the middle of her muzzle, greyish-white chin and
+      wide white blaze on her chest, with no collar and no harness. The driver sits in the driver's seat on the right of the
+      frame, in the foreground, his front paws resting on the steering wheel
+      at the bottom right edge, facing the camera with his head turned a
+      little towards the left of the frame, towards the back seat, as if
+      talking to his passenger over his shoulder; his whole face and mouth
+      are clearly visible. The French bulldog sits upright in the middle of
+      the back seat, seen in the gap between the two front seats, facing the
+      camera and looking at the driver; her whole face, both ears and her
+      chest are clearly visible and nothing covers them. The empty front
+      passenger seat is on the left of the frame. The car has a clean grey
+      fabric interior. Through the rear window behind her, softly out of
+      focus, a city street with trees and low buildings in afternoon light.
+      The camera is static. No people anywhere in the picture.
+  - id: dupla-b
+    seed: 8112
+    ref_images: [tiao-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *dupla
+
+  # Rodada 1c - edição da dupla-a (composição boa), trocando só a Pretinha.
+  - id: troca-a
+    seed: 8121
+    ref_images: [uber-josy-a.png, cenario-varandafrente-pretinha.png]
+    prompt: &troca >-
+      Edit the photograph <image1>. Keep everything exactly as it is: the
+      car interior, the driver dog in the light-blue polo shirt with his paw
+      on the steering wheel, his face, pose and size, the seats, the light
+      and the street through the rear window. Change only the black French
+      bulldog sitting on the back seat into the black French bulldog in
+      <image2> (not the fawn pug at the edge of that picture): the same face,
+      the same large upright bat ears, the same white stripe down the middle
+      of her muzzle, greyish-white chin and wide white blaze on her chest,
+      with no collar and no harness. She sits in the same place and at the
+      same size, facing the camera and looking at the driver.
+  - id: troca-b
+    seed: 8122
+    ref_images: [uber-josy-a.png, cenario-varandafrente-pretinha.png]
+    prompt: *troca
+
+  # Rodada 2 - closes, editando o plano escolhido (dupla-a ->
+  # assets/cenario-uber.png). A 2ª referência é a do próprio cachorro do
+  # close, para o rosto ampliado não mudar de cara.
+  # Escolhidos -> assets/cenario-uber-pretinha.png / -tiao.png.
+  - id: pretinha-a
+    seed: 8201
+    ref_images: [cenario-uber.png, cenario-varandafrente-pretinha.png]
+    prompt: &pretinha >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black French bulldog on the back seat, as in a film conversation inside
+      a car. Keep her exactly as she is: the French bulldog from <image1>, who
+      is also the black French bulldog in <image2> (not the fawn pug at the
+      edge of that picture): the same face, the same large upright bat ears,
+      the same white stripe down the middle of her muzzle, greyish-white chin
+      and wide white blaze on her chest, with no collar and no harness. The
+      camera is between the two front seats, just behind the driver's right
+      shoulder: the out-of-focus light-blue polo shirt on the driver's
+      shoulder and the back of his black-patched, half-folded ear fill the
+      lower right corner of the frame in the foreground. The French bulldog
+      sits upright on the grey fabric back seat, facing the camera at a
+      three-quarter angle, turned towards the driver and looking at him, just
+      to the right of the camera; her sharp face, whole muzzle and chest with
+      the white blaze fill the upper left two thirds of the frame, her mouth
+      closed. Behind her, softly out of focus, the grey rear seat headrests
+      and the rear window with a sunny city street, trees and low buildings.
+  - id: pretinha-b
+    seed: 8202
+    ref_images: [cenario-uber.png, cenario-varandafrente-pretinha.png]
+    prompt: *pretinha
+
+  - id: tiao-a
+    seed: 8301
+    ref_images: [cenario-uber.png, tiao-referencia-3q.png]
+    prompt: &tiao >-
+      Change the photograph <image1> into a close-up of the driver dog, as in
+      a film conversation inside a car. Keep him exactly as he is: the white
+      dog with black patches from <image1> and <image2>, the same face, the
+      same black patch over his left ear and eye, tan cheeks, greying muzzle
+      and half-folded ears, wearing the same plain light-blue short-sleeved
+      polo shirt with no logo, his front legs through the sleeves, white fur
+      with black speckles on his legs. The camera is on the dashboard in
+      front of the empty passenger seat, angled towards him. He sits in the
+      driver's seat with one front paw on the black steering wheel at the
+      bottom of the frame, his head turned a little over his right shoulder
+      towards the back seat, as if talking to his passenger behind him; his
+      sharp face, whole muzzle and chest fill the upper two thirds of the
+      frame, at a three-quarter angle, his mouth closed. Behind him, softly
+      out of focus, the driver's side window with a sunny city street, trees
+      and low buildings, and the grey car roof lining.
+  - id: tiao-b
+    seed: 8302
+    ref_images: [cenario-uber.png, tiao-referencia-3q.png]
+    prompt: *tiao

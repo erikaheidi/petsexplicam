@@ -1,3 +1,4 @@
 renders/
 .cache/
 __pycache__/
+*.pid

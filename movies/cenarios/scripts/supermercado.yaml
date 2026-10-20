@@ -1,0 +1,141 @@
+# supermercado - a Pretinha encontra as vizinhas, Dona Cida (poodle) e Dona
+# Lurdes (cocker spaniel), no hortifrúti do supermercado do bairro
+# (ELENCO.md, video secao-mudou).
+#
+#   ./mm images movies/cenarios/scripts/supermercado.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/supermercado.yaml
+#
+# Precisa de assets/cida-referencia.png e lurdes-referencia.png aprovados
+# (movies/ficha-senhoras/). A Dona Cida vem primeiro nas refs: a ficha é 9:16,
+# e numa edição o tamanho da saída segue a 1ª referência.
+#
+# Hortifrúti e não a fila do caixa: caixote de fruta não tem rótulo; gôndola
+# de produto embalado vira texto deformado.
+#
+# Pretinha: a referência é o close dela no varanda-frente, NÃO a
+# pretinha-referencia.jpg (a Josy) - ver uber.yaml.
+#
+# Rodada 1 (este arquivo): o plano dos três, do zero. Câmera baixa, na altura
+# dos cachorros: a Pretinha à esquerda, de perfil três quartos virada para a
+# direita; as duas senhoras lado a lado à direita, viradas para ela.
+# Rodada 2 (depois que a Erika escolher): closes editando o plano escolhido -
+#   pretinha  por cima do ombro das senhoras (pelo crespo branco e cardigã
+#             lilás desfocados embaixo, à direita), ela de frente
+#   senhoras  por cima do ombro da Pretinha (ombro e orelha preta desfocados
+#             embaixo, à esquerda), as duas lado a lado olhando para ela
+# Escolhidos -> assets/cenario-supermercado.png / -pretinha.png /
+# -senhoras.png e o cenário "supermercado" no tools/dialogo.py.
+kind: images
+name: supermercado
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real knitted wool, bright even supermarket lighting, shallow
+    depth of field, vertical 9:16 framing. No text, no letters, no numbers,
+    no logos, no labels, no price tags, no screens and no signs with
+    anything written on them anywhere in the picture.
+
+images:
+  # Rodada 1 - escolhido: trio-a -> assets/cenario-supermercado.png
+  - id: trio-a
+    seed: 9111
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &trio >-
+      A photograph in the fruit and vegetable section of a small
+      neighbourhood supermarket in Brazil, on a weekday morning, taken from a
+      low camera at the dogs' eye level. Three dogs meet and chat on the
+      clean pale floor tiles between the produce stands. On the right of the
+      frame, side by side, sit two elderly lady dogs: nearest the centre the
+      small elderly poodle in <image1>, with the same off-white curly coat,
+      greying muzzle and plain lilac knitted cardigan; beside her, on the
+      right edge, the plump elderly cocker spaniel in <image2>, with the
+      same wavy golden-red coat, white muzzle and plain sea-green knitted
+      cardigan. Both are turned to the left in a three-quarter profile,
+      looking at the third dog. On the left of the frame sits the black
+      French bulldog in <image3> (not the fawn pug at the edge of that
+      picture): the same face, the same large upright bat ears, the same
+      white stripe down the middle of her muzzle, greyish-white chin and
+      wide white blaze on her chest, with no collar and no harness; she is
+      turned to the right in a three-quarter profile, looking at the two
+      ladies. All three are seen whole, from their paws on the floor to the
+      tips of their ears, their faces and mouths clearly visible. A red
+      plastic shopping basket with a few oranges and a bunch of bananas
+      stands on the floor beside the poodle. Behind them, softly out of
+      focus, slanted wooden crates heaped with oranges, tomatoes, green
+      lettuces, bananas and papayas, under bright white ceiling lights. The
+      camera is static. No people anywhere in the picture.
+  - id: trio-b
+    seed: 9112
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *trio
+
+  # Rodada 2 - closes, editando o plano escolhido (trio-a). A 2ª referência é
+  # a de quem fica de frente no close, para o rosto ampliado não mudar de cara.
+  # Escolhidos: pretinha-a, senhoras-a -> assets/cenario-supermercado-pretinha.png / -senhoras.png.
+  - id: pretinha-a
+    seed: 9201
+    ref_images: [cenario-supermercado.png, cenario-varandafrente-pretinha.png]
+    prompt: &pretinha >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black French bulldog, as in a film conversation. Keep her exactly as she
+      is: the French bulldog from <image1>, who is also the black French
+      bulldog in <image2> (not the fawn pug at the edge of that picture): the
+      same face, the same large upright bat ears, the same white stripe down
+      the middle of her muzzle, greyish-white chin and wide white blaze on her
+      chest, with no collar and no harness. The camera is low, just behind the
+      two elderly lady dogs: in the foreground at the lower right, out of
+      focus, are the white poodle's curly shoulder in the lilac knitted
+      cardigan and the back of her long curly ear, turned away from the
+      camera; her face is never seen. The French bulldog sits on the pale
+      floor tiles facing the camera at a three-quarter angle, turned towards
+      the ladies and looking at them, just to the right of the camera; her
+      sharp face, whole muzzle and chest with the white blaze fill the left
+      two thirds of the frame, her mouth closed. Behind her, softly out of
+      focus, the wooden crates heaped with oranges, tomatoes, lettuces and
+      bananas under bright white ceiling lights.
+  - id: pretinha-b
+    seed: 9202
+    ref_images: [cenario-supermercado.png, cenario-varandafrente-pretinha.png]
+    prompt: *pretinha
+
+  - id: senhoras-a
+    seed: 9301
+    ref_images: [cenario-supermercado.png, cida-referencia-3q.png, lurdes-referencia-3q.png]
+    prompt: &senhoras >-
+      Change the photograph <image1> into an over-the-shoulder close shot of
+      the two elderly lady dogs, as in a film conversation. Keep them exactly
+      as they are: the white poodle in the lilac knitted cardigan, who is
+      also the poodle in <image2>, with the same off-white curly coat,
+      greying muzzle and long curly ears; and the cocker spaniel in the
+      sea-green knitted cardigan, who is also the cocker spaniel in <image3>,
+      with the same wavy golden-red coat, white muzzle and long wavy ears.
+      The camera is low, just behind the black French bulldog: in the
+      foreground at the lower left, out of focus, are her black shoulder and
+      the back of her large upright black bat ear, turned away from the
+      camera; her face is never seen. The two ladies sit side by side on the
+      pale floor tiles, the poodle on the left and the cocker spaniel on the
+      right, both facing the camera at a three-quarter angle, turned towards
+      the French bulldog and looking at her, just to the left of the camera;
+      their sharp faces, muzzles and chests in the cardigans fill the right
+      two thirds of the frame, their mouths closed. Behind them, softly out
+      of focus, the wooden crates heaped with oranges, tomatoes, lettuces and
+      bananas and the red shopping basket, under bright white ceiling lights.
+  - id: senhoras-b
+    seed: 9302
+    ref_images: [cenario-supermercado.png, cida-referencia-3q.png, lurdes-referencia-3q.png]
+    prompt: *senhoras

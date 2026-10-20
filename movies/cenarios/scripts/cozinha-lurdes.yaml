@@ -1,0 +1,66 @@
+# cozinha-lurdes - a cozinha da Dona Lurdes, de casa antiga, com a mesa
+# posta para o almoço de domingo: ela, a Dona Cida e a Pretinha conversam
+# (neto-6x1, refeito fora do supermercado). Prato vazio para o neto.
+# Rodada 2: closes pretinha e senhoras.
+#
+#   ./mm images movies/cenarios/scripts/cozinha-lurdes.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/cozinha-lurdes.yaml
+kind: images
+name: cozinha-lurdes
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real knitted wool, warm midday window light, shallow depth of
+      field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+      no labels, no price tags, no screens and no signs with anything written
+      on them anywhere in the picture.
+
+images:
+  # Rodada 1 - o plano principal, do zero (2 seeds). A Erika escolhe.
+  - id: trio-a
+    seed: 9541
+    ref_images: [lurdes-referencia.png, cida-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &p1 >-
+      A photograph in the kitchen of an old modest Brazilian house on a Sunday
+      at midday, taken from a static camera at the height of the table top, in
+      a medium shot. Three dogs sit on wooden chairs around a square kitchen
+      table covered with a red-and-white checked oilcloth, set for Sunday
+      lunch: plates, glasses, a pot of rice, a pot of black beans and a dish
+      of roast chicken, and one empty place with a clean plate. On the right
+      of the frame, side by side, sit two elderly lady dogs: nearest the
+      centre the plump elderly cocker spaniel in <image1>, with the same wavy
+      golden-red coat, white muzzle, long wavy ears and plain sea-green
+      knitted cardigan; beside her, on the right edge, the small elderly
+      poodle in <image2>, with the same off-white curly coat, greying muzzle,
+      long curly ears and plain lilac knitted cardigan. Both are turned to the
+      left in a three-quarter profile, looking at the third dog. On the left
+      of the frame sits the black French bulldog in <image3> (not the fawn pug
+      at the edge of that picture): the same face, the same large upright bat
+      ears, the same white stripe down the middle of her muzzle, greyish-white
+      chin and wide white blaze on her chest, with no collar and no harness;
+      she is turned to the right in a three-quarter profile, looking at the
+      two ladies. All three have their heads and chests above the table top,
+      their faces and mouths clearly visible. Behind them, softly out of
+      focus: pale yellow wall tiles, an old white enamel stove with a steaming
+      pan, a window with a lace curtain and plants on the sill, and a wall
+      clock with a plain face and no numbers. No people anywhere in the
+      picture.
+  - id: trio-b
+    seed: 9542
+    ref_images: [lurdes-referencia.png, cida-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *p1

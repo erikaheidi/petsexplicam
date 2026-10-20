@@ -1,0 +1,75 @@
+# Ficha do primo José - imagens de referência com Qwen-Image-2.1.
+#
+# A descrição é a canônica do ELENCO.md, palavra por palavra. Duas seeds por
+# pose; a Erika escolhe e a escolhida vira assets/jose-referencia.png.
+#   ./mm images movies/ficha-jose/scripts/v1.yaml --dry-run
+#   ./mm images movies/ficha-jose/scripts/v1.yaml --dest assets
+#
+# Qwen-Image-2.1 tem licença de pesquisa (uso NÃO comercial).
+kind: images
+name: ficha-jose
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  width: 1024
+  height: 1024
+  seed: 7
+  style_suffix: >-
+    Photorealistic studio photography, even soft light, plain light grey
+    seamless background, sharp focus, no text, no watermark.
+
+images:
+  - id: frente-a
+    prompt: >-
+      José, a male Brazilian caramelo mixed-breed dog (vira-lata caramelo):
+      medium-sized and lean, a short smooth caramel-golden coat, slightly paler
+      cream fur on his muzzle, throat and chest, medium triangular ears that
+      stand up at the base and fold forward at the tips, warm amber-brown eyes,
+      a longish muzzle with a black nose, and a long tail that curves up in a
+      loose sickle. He wears no collar and no harness.
+      He sits upright facing the camera straight on, head level, calm and
+      attentive, looking into the lens, his whole body visible.
+  - id: frente-b
+    seed: 8
+    prompt: >-
+      José, a male Brazilian caramelo mixed-breed dog (vira-lata caramelo):
+      medium-sized and lean, a short smooth caramel-golden coat, slightly paler
+      cream fur on his muzzle, throat and chest, medium triangular ears that
+      stand up at the base and fold forward at the tips, warm amber-brown eyes,
+      a longish muzzle with a black nose, and a long tail that curves up in a
+      loose sickle. He wears no collar and no harness.
+      He sits upright facing the camera straight on, head level, calm and
+      attentive, looking into the lens, his whole body visible.
+  - id: tres-quartos-a
+    seed: 9
+    prompt: >-
+      José, a male Brazilian caramelo mixed-breed dog (vira-lata caramelo):
+      medium-sized and lean, a short smooth caramel-golden coat, slightly paler
+      cream fur on his muzzle, throat and chest, medium triangular ears that
+      stand up at the base and fold forward at the tips, warm amber-brown eyes,
+      a longish muzzle with a black nose, and a long tail that curves up in a
+      loose sickle. He wears no collar and no harness.
+      He sits turned three-quarters to the left of the frame, head slightly
+      tilted, mouth half open in a friendly, explaining expression.
+  - id: tres-quartos-b
+    seed: 10
+    prompt: >-
+      José, a male Brazilian caramelo mixed-breed dog (vira-lata caramelo):
+      medium-sized and lean, a short smooth caramel-golden coat, slightly paler
+      cream fur on his muzzle, throat and chest, medium triangular ears that
+      stand up at the base and fold forward at the tips, warm amber-brown eyes,
+      a longish muzzle with a black nose, and a long tail that curves up in a
+      loose sickle. He wears no collar and no harness.
+      He sits turned three-quarters to the left of the frame, head slightly
+      tilted, mouth half open in a friendly, explaining expression.

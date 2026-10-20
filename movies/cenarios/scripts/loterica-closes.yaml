@@ -1,0 +1,85 @@
+# loterica rodada 5 - closes por cima do ombro a partir do plano aprovado
+# (loterica-4 cadeira-a -> assets/cenario-loterica.png): os três sentados na
+# mesma fileira de cadeiras, a Pretinha de camiseta vermelha. aposentadoria-subiu.
+#
+#   ./mm images movies/cenarios/scripts/loterica-closes.yaml
+kind: images
+name: loterica-closes
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real knitted wool, bright even indoor lighting, shallow depth
+      of field, vertical 9:16 framing. No text, no letters, no numbers, no
+      logos, no labels, no price tags, no screens and no signs with anything
+      written on them anywhere in the picture.
+
+images:
+  - id: pretinha-a
+    seed: 9911
+    ref_images: [cenario-loterica.png, cenario-varandafrente-pretinha.png]
+    prompt: &pretinha >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black French bulldog, as in a film conversation. Keep her exactly as she
+      is: the French bulldog from <image1>, who is also the black French
+      bulldog in <image2> (not the fawn pug at the edge of that picture): the
+      same face, the same large upright bat ears, the same white stripe down
+      the middle of her muzzle, greyish-white chin, with no collar and no harness, wearing a plain red short-sleeved t-shirt with no print, no logo and no lettering. The camera is low, just behind the
+      two elderly lady dogs on their chairs: in the foreground at the lower
+      right, out of focus, are the white poodle's curly shoulder in the lilac
+      knitted cardigan and the back of her long curly ear, turned away from
+      the camera; her face is never seen. The French bulldog sits on a beige plastic waiting chair facing the camera at a three-quarter angle, turned towards
+      the ladies and looking at them, at the same height as her, just to the right of the camera; her
+      sharp face, whole muzzle and chest in the red t-shirt fill the left
+      two thirds of the frame, her mouth closed. Behind her, softly out of
+      focus, the blue and orange wall of the lottery shop and the end of the
+      counter with its glass service window, under bright white ceiling
+      lights. No people, no human figures and no human hands anywhere in the
+      picture.
+  - id: pretinha-b
+    seed: 9912
+    ref_images: [cenario-loterica.png, cenario-varandafrente-pretinha.png]
+    prompt: *pretinha
+
+  - id: senhoras-a
+    seed: 9921
+    ref_images: [cenario-loterica.png, cida-referencia-3q.png, lurdes-referencia-3q.png]
+    prompt: &senhoras >-
+      Change the photograph <image1> into an over-the-shoulder close shot of
+      the two elderly lady dogs, as in a film conversation. Keep them exactly
+      as they are: the white poodle in the lilac knitted cardigan with the
+      small brown leather handbag on her lap, who is also the poodle in
+      <image2>, with the same off-white curly coat, greying muzzle and long
+      curly ears; and the cocker spaniel in the sea-green knitted cardigan,
+      who is also the cocker spaniel in <image3>, with the same wavy
+      golden-red coat, white muzzle and long wavy ears. The camera is low,
+      just behind the black French bulldog: in the foreground at the lower
+      left, out of focus, are her black shoulder in the red t-shirt and the back of her large
+      upright black bat ear, turned away from the camera; her face is never
+      seen. The two ladies sit side by side on the beige plastic waiting
+      chairs, the poodle on the left and the cocker spaniel on the right,
+      both facing the camera at a three-quarter angle, turned towards the
+      French bulldog and looking at her, at the same height, just to the left of the camera;
+      their sharp faces, muzzles and chests in the cardigans fill the right
+      two thirds of the frame, their mouths closed. Behind them, softly out
+      of focus, the blue and orange service windows of the lottery shop with
+      their thick glass and round metal speaking grilles, under bright white
+      ceiling lights. No people, no human figures and no human hands anywhere
+      in the picture.
+  - id: senhoras-b
+    seed: 9922
+    ref_images: [cenario-loterica.png, cida-referencia-3q.png, lurdes-referencia-3q.png]
+    prompt: *senhoras

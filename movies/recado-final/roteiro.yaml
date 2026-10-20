@@ -1,0 +1,84 @@
+# recado-final - vlog da Pretinha no sofá, postado na véspera (sábado,
+# 24/10): sem explicação nova, só o pedido final para quem ainda está em
+# dúvida, retomando o que a série mostrou (remédio, 6x1, aposentadoria). O
+# Paçoca entra de fora do quadro. Ver drafts/recado-final.md.
+#
+# Cenário varanda-frente, câmera vlog-pretinha. Tom: sério e afetuoso, sem suspiro.
+vlog: pretinha
+cenario: varanda-frente
+seed: 2026
+
+cenas:
+  - id: so-pedir
+    resumo: Pretinha speaks to her viewers, calm and warm.
+    antes: Pretinha looks straight into the lens, calm and serious.
+    fala:
+      quem: pretinha
+      texto: "Oi. Hoje eu não vou explicar nada. Eu vou pedir."
+      tom: soft and warm, sincere, unhurried
+
+  - id: quem-ama
+    resumo: Pretinha speaks to the undecided.
+    fala:
+      quem: pretinha
+      texto: "Se você ainda tá em dúvida, pensa em quem você ama."
+      tom: soft and warm, sincere, unhurried
+
+  - id: mae
+    resumo: Pretinha gives the first example.
+    antes: Pretinha's eyes soften, still looking into the lens.
+    fala:
+      quem: pretinha
+      texto: "Na sua mãe, que pega remédio de graça na farmácia."
+      tom: soft and warm, sincere, unhurried
+
+  - id: filho
+    resumo: Pretinha gives the second example.
+    fala:
+      quem: pretinha
+      texto: "No seu filho, que vai ter duas folgas por semana."
+      tom: soft and warm, sincere, unhurried
+
+  - id: avo
+    resumo: Pretinha gives the third example.
+    fala:
+      quem: pretinha
+      texto: "Na sua avó, que viu a aposentadoria subir de verdade."
+      tom: soft and warm, sincere, unhurried
+
+  - id: esquerda
+    resumo: Pretinha is honest about her position.
+    antes: Pretinha lifts her chin slightly, firm.
+    fala:
+      quem: pretinha
+      texto: "Eu sou de esquerda, e nunca escondi isso de vocês."
+
+  - id: fonte
+    resumo: Pretinha says everything she said has a source.
+    fala:
+      quem: pretinha
+      texto: "Mas tudo que eu disse aqui tem fonte. Pode conferir."
+    depois: Pretinha gives a small firm nod.
+
+  - id: pacoca
+    resumo: Paçoca speaks up from off-screen, cheerful.
+    antes: Pretinha's ears turn towards the side of the frame.
+    fala:
+      quem: pacoca
+      texto: "E eu mudei de ideia, viu? Dá pra mudar!"
+    depois: Pretinha gives a small smile, looking back into the lens.
+
+  - id: leva
+    resumo: Pretinha asks viewers to go and vote.
+    fala:
+      quem: pretinha
+      texto: "Amanhã, vai votar. Leva a vizinha, leva a família."
+      tom: warm and encouraging
+
+  - id: treze
+    resumo: Pretinha closes the series.
+    antes: Pretinha looks straight into the lens with a warm, small smile.
+    fala:
+      quem: pretinha
+      texto: "Dia vinte e cinco, treze. Obrigada por ficar até aqui."
+      tom: warm and grateful, smiling, her voice soft

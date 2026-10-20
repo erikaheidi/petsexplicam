@@ -1,0 +1,79 @@
+# home-office - o cantinho de trabalho do primo José (o caramelo da TI) no
+# apartamento dele: cenário de vlog, só ele, falando para a webcam.
+#
+#   ./mm images movies/cenarios/scripts/home-office.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/home-office.yaml
+#
+# A ficha do José é quadrada (1024x1024) e numa edição o tamanho da saída
+# segue a 1ª referência: a ref aqui é a jose-referencia.png com faixas
+# desfocadas em cima e embaixo até 9:16 (movies/cenarios/assets/
+# jose-referencia-916.png), para o Qwen preencher.
+#
+# A câmera é a webcam em cima do monitor, na altura dos olhos dele: o monitor
+# fica FORA do quadro (tela com texto vira texto deformado). Nada de tela à
+# vista; o "TI" vem do headset no pescoço, do teclado na borda de baixo e do
+# gabinete do computador na prateleira. A bola de futebol na estante liga com
+# a pelada do Paçoca (lanchonete).
+#
+# Escolhido: vlog-jose-c -> assets/cenario-home-office-vlog-jose.png e o cenário
+# "home-office" com a câmera vlog-jose no tools/dialogo.py.
+kind: images
+name: home-office
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+    no labels, no screens and no signs with anything written on them
+    anywhere in the picture.
+
+images:
+  - id: vlog-jose-a
+    seed: 9401
+    ref_images: [jose-referencia-916.png]
+    prompt: &homeoffice >-
+      Edit the photograph <image1>: fill the whole vertical frame with a new
+      scene, replacing the blurred bands and the grey studio background. Keep
+      the dog exactly as he is: the same caramel mixed-breed dog, the same
+      face, the same short smooth caramel-golden coat with paler cream fur on
+      his muzzle, throat and chest, the same ears that stand up at the base
+      and fold forward at the tips, the same warm amber-brown eyes. He wears
+      a plain heather-grey short-sleeved t-shirt with no print and no logo,
+      his front legs through the sleeves, and a pair of plain black over-ear
+      headphones resting around his neck. He sits on a black office chair at
+      his desk in the small home office corner of his modest apartment in a
+      Brazilian city, facing the camera straight on and looking directly into
+      the lens, as if talking on a video call through a webcam on top of his
+      monitor at his eye level; his head is in the upper half of the frame,
+      his chest below it, and his front paws rest on the edge of the desk at
+      the bottom of the frame, beside a dark grey keyboard and a plain white
+      coffee mug with no print. Behind him, softly out of focus: a pale
+      sage-green wall, a simple wooden shelf with a few books with plain,
+      unmarked spines, a small black computer tower, a green potted pothos
+      plant trailing down, and a worn black-and-white football; on the right,
+      a window with the blinds half open, warm late-afternoon light coming
+      in and low apartment buildings outside. The monitor is out of the
+      frame, in front of him. No people anywhere in the picture.
+  - id: vlog-jose-b
+    seed: 9402
+    ref_images: [jose-referencia-916.png]
+    prompt: *homeoffice
+  - id: vlog-jose-c
+    seed: 9403
+    ref_images: [jose-referencia-916.png]
+    prompt: *homeoffice

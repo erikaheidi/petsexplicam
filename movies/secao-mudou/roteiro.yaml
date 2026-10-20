@@ -1,0 +1,99 @@
+# secao-mudou - a Pretinha encontra as vizinhas, Dona Cida e Dona Lurdes, no
+# hortifrúti do supermercado. A Dona Cida vai votar "na escola de sempre"; a
+# Pretinha avisa que o TSE mudou o endereço de mais de quatro mil seções para
+# o segundo turno e ensina a conferir.
+#
+# Ponto factual: são 4.352 seções com endereço novo (TSE, 16/10/2026), por
+# reforma, prédio danificado por chuva, acessibilidade - segundo o TSE. A
+# cena do motivo saiu (pedido da Erika): o vídeo não diz por que mudou, só
+# que mudou e como conferir. NÃO houve redução de
+# seções nem "junção para ter menos urnas" - isso é o boato que a Justiça
+# Eleitoral desmentiu. O roteiro nunca diz que juntaram seções. Fontes no
+# drafts/secao-mudou.md.
+#
+# Cenário supermercado: dupla (os três), closes pretinha (por cima do ombro
+# das senhoras) e senhoras (as duas, por cima do ombro da Pretinha). Sem
+# `camera:`, a cena vai no close de quem fala.
+cenario: supermercado
+seed: 2026
+
+cenas:
+  - id: de-sempre
+    camera: dupla
+    resumo: Cida tells her friend Lurdes where she will vote on Sunday, while Pretinha listens.
+    antes: Cida turns her head a little towards Lurdes, chatty and cheerful.
+    fala:
+      quem: cida
+      texto: "Domingo eu voto lá na escola de sempre, viu, Lurdes?"
+
+  - id: conferiu
+    resumo: Pretinha politely asks Cida a question.
+    antes: Pretinha keeps looking at the two ladies, polite and serious.
+    fala:
+      quem: pretinha
+      texto: "Dona Cida, a senhora já conferiu se o seu local mudou?"
+
+  - id: mudou
+    resumo: Cida is surprised.
+    antes: Cida's eyes widen and she lifts her head.
+    fala:
+      quem: cida
+      texto: "Mudou? Mas eu votei lá no primeiro turno!"
+
+  - id: quatro-mil
+    resumo: Pretinha explains the news.
+    antes: Pretinha nods slowly, calm and patient.
+    fala:
+      quem: pretinha
+      texto: "A Justiça Eleitoral mudou mais de quatro mil seções de lugar."
+
+  - id: como
+    resumo: Lurdes asks how to find out.
+    antes: Lurdes leans in a little towards Pretinha, worried.
+    fala:
+      quem: lurdes
+      texto: "E como é que a gente descobre, minha filha?"
+
+  - id: e-titulo
+    resumo: Pretinha tells them where to check.
+    antes: Pretinha keeps looking at Lurdes, clear and patient.
+    fala:
+      quem: pretinha
+      texto: "No aplicativo e-Título, ou no site da Justiça Eleitoral."
+
+  - id: nao-sei
+    resumo: Cida admits she cannot use apps.
+    antes: Cida lowers her head a little, embarrassed.
+    fala:
+      quem: cida
+      texto: "Ai, eu não sei mexer nesse negócio de aplicativo."
+
+  - id: eu-confiro
+    resumo: Pretinha offers to check it for her, kindly.
+    antes: Pretinha's ears rise and her eyes soften.
+    fala:
+      quem: pretinha
+      texto: "Me passa o seu título que eu confiro agora pra senhora."
+
+  - id: o-meu
+    resumo: Lurdes asks her to check hers too, smiling.
+    antes: Lurdes's tail wags and she lifts her muzzle, smiling.
+    fala:
+      quem: lurdes
+      texto: "Confere o meu também, Pretinha!"
+
+  - id: avo-tias
+    resumo: Pretinha tells everyone to check their polling place and their family's.
+    antes: Pretinha keeps looking at the two ladies, serious and warm.
+    fala:
+      quem: pretinha
+      texto: "Confira o seu. E o da sua avó, das suas tias."
+
+  - id: fecho
+    camera: dupla
+    resumo: Pretinha adds the neighbour and the date with a rallying call, and the two ladies nod.
+    antes: Pretinha keeps looking at the two ladies, then nods firmly.
+    fala:
+      quem: pretinha
+      texto: "E o da vizinha também. Dia vinte e cinco, vamos virar!"
+    depois: Cida and Lurdes nod together, smiling.

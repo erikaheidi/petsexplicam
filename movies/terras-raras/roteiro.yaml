@@ -1,0 +1,109 @@
+# terras-raras - estreia do primo José. Depois da pelada, o Paçoca e o José
+# lancham no boteco da esquina (cenário lanchonete, os dois com a camiseta do
+# time) e o Paçoca pergunta de terras raras. Ver drafts/terras-raras.md.
+#
+#   ./dialogo cenas terras-raras
+#   ./dialogo gerar terras-raras
+#
+# No plano da dupla o Paçoca está à esquerda e o José à direita, já virados um
+# para o outro: "keeps looking at him", nunca "turns towards him".
+# Enquanto assets/jose-voz.wav não existe, as falas do José saem sem voz de
+# referência: a primeira cena boa dele vira a referência (recortar, medir F0).
+cenario: lanchonete
+seed: 2026
+
+cenas:
+  - id: pergunta
+    camera: dupla
+    resumo: After their football game, Paçoca asks his cousin José a question at the snack bar table.
+    antes: Paçoca keeps looking at José across the table, his head tilted, curious.
+    fala:
+      quem: pacoca
+      texto: "Primo, todo mundo tá falando de terras raras. É terra de plantar?"
+    depois: José keeps looking at him, ears perked up.
+
+  - id: elementos
+    resumo: José calmly explains what rare earths are.
+    antes: José keeps looking at Paçoca with a small patient smile.
+    fala:
+      quem: jose
+      texto: "Não, Paçoca. São dezessete elementos químicos escondidos nas rochas."
+
+  - id: celular
+    resumo: José gives everyday examples.
+    antes: José keeps looking at Paçoca, nodding slightly.
+    fala:
+      quem: jose
+      texto: "Estão no seu celular, no computador e no carro elétrico."
+
+  - id: brasil-tem
+    resumo: Paçoca asks if Brazil has them.
+    antes: Paçoca's eyes widen and his ears lift.
+    fala:
+      quem: pacoca
+      texto: "E o Brasil tem isso?"
+
+  - id: reserva
+    resumo: José tells him about Brazil's reserves.
+    antes: José keeps looking at Paçoca and sits up a little taller.
+    fala:
+      quem: jose
+      texto: "A segunda maior reserva do mundo. Só perde pra China."
+
+  - id: vende-tudo
+    resumo: Paçoca jumps to a wrong conclusion with total confidence.
+    antes: Paçoca bounces on his chair, his curled tail wagging fast.
+    fala:
+      quem: pacoca
+      texto: "Então a gente vende tudo e fica rico!"
+
+  - id: pedra-bruta
+    resumo: José gently corrects him.
+    antes: José slowly shakes his head, still smiling.
+    fala:
+      quem: jose
+      texto: "Vender pedra bruta dá pouco. O dinheiro tá em processar aqui."
+
+  - id: lei
+    resumo: José explains the new law.
+    antes: José keeps looking at Paçoca, serious and calm.
+    fala:
+      quem: jose
+      texto: "Em setembro, o Lula sancionou a lei dos minerais críticos."
+
+  - id: incentivo
+    resumo: José explains what the law does.
+    fala:
+      quem: jose
+      texto: "Ela dá incentivo pra quem processa aqui, com emprego brasileiro."
+    depois: José gives a small firm nod.
+
+  - id: flavio
+    resumo: José turns to the other candidate.
+    antes: José raises his eyebrows slightly.
+    fala:
+      quem: jose
+      texto: "Já o Flávio foi aos Estados Unidos encontrar o Trump."
+
+  - id: parceria
+    resumo: José finishes the point.
+    fala:
+      quem: jose
+      texto: "E prometeu aos americanos parceria nas nossas terras raras."
+    depois: José keeps looking at Paçoca, waiting for his reaction.
+
+  - id: craque
+    resumo: Paçoca finally understands, comparing it to football.
+    antes: Paçoca's eyes widen and his ears lift.
+    fala:
+      quem: pacoca
+      texto: "Entendi! É igual craque da várzea: o gringo leva barato!"
+
+  - id: fica-em-casa
+    camera: dupla
+    resumo: José agrees and closes the conversation.
+    antes: José keeps looking at Paçoca with a warm smile.
+    fala:
+      quem: jose
+      texto: "Exato, primo. Dessa vez, o craque fica em casa."
+    depois: Paçoca wags his curled tail fast.

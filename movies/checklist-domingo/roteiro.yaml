@@ -1,0 +1,77 @@
+# checklist-domingo - vlog do primo José no home office, postado na véspera
+# (sábado, 24/10): o que levar e o que saber para votar no domingo.
+# Serviço, sem candidato. Ver drafts/checklist-domingo.md.
+#
+# Câmera vlog-jose (celular apoiado na frente dele).
+vlog: jose
+cenario: varanda-jose
+seed: 3117
+
+cenas:
+  - id: amanha
+    resumo: José greets his viewers and tells them to save the video.
+    antes: José looks straight into the lens and gives a small, friendly nod.
+    fala:
+      quem: jose
+      texto: "Fala, pessoal! Amanhã é segundo turno. Salva esse vídeo."
+
+  - id: horario
+    resumo: José gives the voting hours.
+    antes: José keeps looking straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "A votação vai das oito da manhã às cinco da tarde."
+
+  - id: fuso
+    resumo: José warns about time zones.
+    antes: José raises his eyebrows slightly.
+    fala:
+      quem: jose
+      texto: "No horário de Brasília. Mora em outro fuso? Faz a conta!"
+
+  - id: documento
+    resumo: José says which document to bring.
+    fala:
+      quem: jose
+      texto: "Leva documento oficial com foto. Ou o e-Título com foto."
+
+  - id: colinha
+    resumo: José says the paper cheat sheet is allowed, with a small smile.
+    antes: José gives a small half smile.
+    fala:
+      quem: jose
+      texto: "Pode levar colinha de papel com o número do seu candidato."
+
+  - id: celular
+    resumo: José says the phone stays outside the booth.
+    antes: José shakes his head slightly, serious.
+    fala:
+      quem: jose
+      texto: "Celular não entra na cabine. Fica com os mesários."
+
+  - id: secao
+    resumo: José reminds viewers to check their polling place.
+    fala:
+      quem: jose
+      texto: "Confere se a sua seção mudou, no e-Título."
+
+  - id: fila
+    resumo: José explains the rule for the queue at closing time.
+    antes: José nods slowly.
+    fala:
+      quem: jose
+      texto: "Tá na fila às cinco da tarde? Fica, que você vota."
+
+  - id: onibus
+    resumo: José mentions free public transport.
+    fala:
+      quem: jose
+      texto: "O ônibus é de graça. Confere o horário na sua cidade."
+
+  - id: grupo
+    resumo: José closes, friendly.
+    antes: José gives a warm smile, still looking straight into the lens.
+    fala:
+      quem: jose
+      texto: "Agora manda esse vídeo pro grupo da família. Até amanhã!"
+    depois: José gives a small friendly nod.

@@ -1,0 +1,75 @@
+# jose-tutorial-secao - vlog do primo José, o Caramelo da TI, no home office
+# dele: a tia Pretinha pediu um tutorial de como conferir a seção eleitoral
+# pelo celular. Abertura e fecho aqui; o meio é um screencast que a Erika
+# grava e encaixa na montagem (ver drafts/).
+#
+# Companheiro do secao-mudou: 4.352 seções mudaram de endereço para o 2º turno
+# (TSE, 16/10/2026). O vídeo não diz por que mudou.
+#
+# Cenário home-office, câmera vlog-jose (webcam em cima do monitor).
+vlog: jose
+cenario: home-office
+seed: 2026
+
+cenas:
+  # --- abertura ---------------------------------------------------------
+  - id: fala-pessoal
+    # seed nova: com a 2026 o rabo aparecia atrás da cadeira, à direita.
+    seed: 3117
+    resumo: José greets his viewers, relaxed and friendly.
+    antes: José looks straight into the lens and gives a small, friendly nod.
+    fala:
+      quem: jose
+      texto: "Fala, pessoal! Eu sou o José, primo do Paçoca."
+
+  - id: caramelo-da-ti
+    resumo: José says his nickname, with a proud half smile.
+    antes: José tilts his head slightly, a proud half smile, still looking into the lens.
+    fala:
+      quem: jose
+      texto: "Aqui na área, todo mundo me chama de Caramelo da TI."
+
+  - id: tia-pretinha
+    resumo: José explains what this video is about.
+    antes: José leans a little closer to the lens, his ears up.
+    fala:
+      quem: jose
+      texto: "A tia Pretinha pediu um tutorial: como conferir sua seção eleitoral."
+
+  - id: vamo-la
+    resumo: José gets ready to show the steps.
+    antes: José looks straight into the lens and nods once, ready.
+    fala:
+      quem: jose
+      texto: "Então vamo lá. Dá pra fazer tudo pelo celular."
+
+  # --- [screencast da Erika entra aqui, na montagem] ---------------------
+
+  # --- fecho ------------------------------------------------------------
+  - id: se-mudou
+    resumo: José gives a practical tip.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "Se mudou, anota o endereço novo e já vê como chegar."
+
+  - id: familia
+    resumo: José asks viewers to check their family's too.
+    antes: José raises his eyebrows a little, warm, looking into the lens.
+    fala:
+      quem: jose
+      texto: "E confere o da sua família, principalmente dos mais velhos."
+
+  - id: grupo
+    resumo: José asks viewers to share the video, and signs off.
+    antes: José gives a relaxed smile and a small nod into the lens.
+    fala:
+      quem: jose
+      texto: "Compartilhem esse vídeo pra que todo mundo fique sabendo!"
+
+  - id: ajuda
+    resumo: José reassures viewers who find it hard, kindly.
+    antes: José softens his eyes and looks straight into the lens, warm and patient.
+    fala:
+      quem: jose
+      texto: "E se você tiver dificuldade, peça ajuda de alguém."

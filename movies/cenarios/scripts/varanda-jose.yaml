@@ -1,0 +1,58 @@
+# varanda-jose - vlog do primo José na varandinha do apartamento dele, de
+# manhã cedo (checklist-domingo, refeito fora do home office). Câmera única
+# vlog-jose, ele olha direto para a lente. Camiseta branca lisa. Sem rodada 2.
+#
+#   ./mm images movies/cenarios/scripts/varanda-jose.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/varanda-jose.yaml
+kind: images
+name: varanda-jose
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real fabric, soft early-morning sunlight, shallow depth of
+      field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+      no labels, no price tags, no screens and no signs with anything written
+      on them anywhere in the picture.
+
+images:
+  # Rodada 1 - o plano principal, do zero (2 seeds). A Erika escolhe.
+  - id: vlog-jose-a
+    seed: 9571
+    ref_images: [jose-referencia-916.png]
+    prompt: &p1 >-
+      Edit the photograph <image1>: fill the whole vertical frame with a new
+      scene, replacing the background. Keep the dog exactly as he is: the
+      caramel mixed-breed dog in <image1>: the same face, the same short
+      smooth caramel-golden coat with paler cream fur on his muzzle, throat
+      and chest, the same ears that stand up at the base and fold forward at
+      the tips, the same warm amber-brown eyes. He wears a plain white short-
+      sleeved t-shirt with no print and no logo, his front legs through the
+      sleeves, and no collar. He sits on a small folding wooden chair on the
+      narrow balcony of his modest apartment in a Brazilian city, early in the
+      morning, facing the camera straight on and looking directly into the
+      lens, as if recording a video on a phone propped up in front of him at
+      his eye level; his head is in the upper half of the frame, his chest
+      below it, his whole face and mouth clearly visible. Beside him, a small
+      plant pot with a basil plant and a plain white coffee cup on the balcony
+      ledge. Behind him, softly out of focus: the white balcony railing and,
+      beyond it, a view of the city's apartment blocks and rooftops under a
+      clear early-morning sky. No people anywhere in the picture.
+  - id: vlog-jose-b
+    seed: 9572
+    ref_images: [jose-referencia-916.png]
+    prompt: *p1

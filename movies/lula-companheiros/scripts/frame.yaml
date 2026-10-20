@@ -1,0 +1,98 @@
+# frame - o primeiro frame do fl2va: o Lula esculpido no NomadSculpt diante de
+# um cenário caseiro no mesmo estilo 3D, em verde, amarelo e tons de vermelho.
+#
+#   ./mm images movies/lula-companheiros/scripts/frame.yaml --dry-run
+#   ./mm images movies/lula-companheiros/scripts/frame.yaml
+#
+# Os renders (assets/):
+#   lula-gradiente.png    o render bom (barba grisalha, sombreado suave)
+#   lula-transparente.png outro render, mais chapado: só serve pelo alfa
+#   lula-recorte.png      o RGB do gradiente com o alfa do transparente
+#                         (erodido 2 px para tirar a franja escura)
+#   lula-camada-<enq>.png o recorte em 736x1312 (9:16), por enquadramento:
+#                         medio = chapéu até a coxa, cotovelos cortados (o
+#                         escolhido: rosto maior, boca mais legível)
+#   lula-tela-<enq>.png   a camada sobre cinza liso, para as edições
+#
+# Duas variantes:
+#   fundo-*   (B) só o cenário, vazio, em 736x1312. Depois a lula-camada-<enq>
+#             é colada por cima - a escultura sai pixel a pixel igual ao
+#             render. Se ficar com cara de recorte, uma passada leve de edição
+#             harmoniza luz e sombra.
+#   <enq>-*   (A) edição da lula-tela-<enq>: troca só o fundo cinza. Mais
+#             simples, mas o Qwen pode mexer um pouco no rosto.
+#
+# Sem bandeira, faixa, cartaz nem texto: o modelo deforma letras, e o cenário
+# doméstico é mais sutil que palanque.
+#
+# O escolhido vira assets/lula-frame.png (544x960), o first_frame do v1.yaml.
+kind: images
+name: frame
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  # 9:16, múltiplos de 32 (só vale sem refs; na edição quem manda é resolution)
+  width: 736
+  height: 1312
+  resolution: 1024
+  style_suffix: >-
+    The whole picture is a stylized digital 3D sculpture rendered like a
+    NomadSculpt or clay render: smooth matte clay-like surfaces, soft rounded
+    simplified shapes, gentle subsurface shading, soft warm studio light with
+    soft shadows, slight depth of field, vertical 9:16 framing. Colour palette
+    of greens, warm yellows and reds - brick red, terracotta and burgundy. No
+    text, no letters, no numbers, no logos, no flags, no banners, no posters
+    and no signs anywhere in the picture.
+
+images:
+  # --- B: só o cenário, para colar o render transparente por cima ----------
+  - id: fundo-a
+    seed: 1301
+    prompt: &fundo >-
+      An empty, cosy living room of a simple Brazilian family home, seen
+      straight on from chest height, as the background for a portrait. In the
+      centre of the frame, a few steps back, a burgundy sofa with a mustard
+      yellow cushion and a small crocheted blanket; behind it a sage green
+      painted wall and a window with light green curtains, warm yellow
+      afternoon light coming through. To one side a small wooden shelf with
+      terracotta flower pots and a leafy green plant; a brick red tiled floor.
+      The lower-centre of the frame is open and uncluttered, where a person
+      will stand in front of the camera. No people and no animals anywhere in
+      the picture.
+  - id: fundo-b
+    seed: 1302
+    prompt: *fundo
+
+  # --- A: edição das telas cinza -------------------------------------------
+  - id: medio-a
+    seed: 1311
+    ref_images: [lula-tela-medio.png]
+    prompt: &edicao >-
+      Keep the sculpted man in <image1> exactly as he is: the same face,
+      beard, hair, hat, expression, suit, pose, size, position in the frame,
+      material and lighting on him - do not change him at all. Replace only
+      the plain grey background behind him with a cosy living room of a
+      simple Brazilian family home, slightly out of focus: a burgundy sofa
+      with a mustard yellow cushion behind him, a sage green painted wall, a
+      window with light green curtains and warm yellow afternoon light, a
+      small wooden shelf with terracotta flower pots and a leafy green plant,
+      and a brick red tiled floor. Light the room so he sits naturally in it,
+      with a soft shadow behind him. The room has the same smooth
+      clay-sculpture finish as he does. No other people and no animals in the
+      picture.
+  - id: medio-b
+    seed: 1312
+    ref_images: [lula-tela-medio.png]
+    prompt: *edicao

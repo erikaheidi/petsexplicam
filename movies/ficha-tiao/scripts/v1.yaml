@@ -1,0 +1,70 @@
+# Ficha do Seu Tião, o motorista de aplicativo - imagens de referência com
+# Qwen-Image-2.1.
+#
+# A descrição é a canônica do ELENCO.md, palavra por palavra. Duas seeds por
+# pose; a Erika escolhe e as escolhidas viram assets/tiao-referencia.png
+# (de frente) e assets/tiao-referencia-3q.png.
+#   ./mm images movies/ficha-tiao/scripts/v1.yaml --dry-run
+#   ./mm images movies/ficha-tiao/scripts/v1.yaml --dest assets
+#
+# Vertical (768x1376), não quadrada: no cenário uber ele entra como 1ª
+# referência, e numa edição o tamanho da saída segue a 1ª referência (a
+# lanchonete saiu quadrada por causa da foto do Paçoca).
+#
+# Qwen-Image-2.1 tem licença de pesquisa (uso NÃO comercial).
+kind: images
+name: ficha-tiao
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  width: 768
+  height: 1376
+  style_suffix: >-
+    Photorealistic studio photography, even soft light, plain light grey
+    seamless background, sharp focus, vertical 9:16 framing, no text, no
+    watermark.
+
+images:
+  - id: frente-a
+    seed: 11
+    prompt: &frente >-
+      Tião, a male Brazilian mixed-breed dog (vira-lata malhado): medium-sized
+      and sturdy, a short white coat with large irregular black patches - one
+      black patch covering his left ear and the area around his left eye, and
+      a large black patch across his back - tan-brown markings on his cheeks
+      and above his eyes, a greying muzzle with white hairs around the mouth,
+      semi-floppy ears that stand up at the base and fold over halfway, kind,
+      slightly tired brown eyes, a medium-length muzzle with a black nose, and
+      a long tail. He wears no collar and no harness.
+      He sits upright facing the camera straight on, head level, calm and
+      good-natured, looking into the lens, his whole body visible.
+  - id: frente-b
+    seed: 12
+    prompt: *frente
+  - id: tres-quartos-a
+    seed: 13
+    prompt: &tresquartos >-
+      Tião, a male Brazilian mixed-breed dog (vira-lata malhado): medium-sized
+      and sturdy, a short white coat with large irregular black patches - one
+      black patch covering his left ear and the area around his left eye, and
+      a large black patch across his back - tan-brown markings on his cheeks
+      and above his eyes, a greying muzzle with white hairs around the mouth,
+      semi-floppy ears that stand up at the base and fold over halfway, kind,
+      slightly tired brown eyes, a medium-length muzzle with a black nose, and
+      a long tail. He wears no collar and no harness.
+      He sits turned three-quarters to the left of the frame, head slightly
+      tilted, mouth half open in a relaxed, talking expression.
+  - id: tres-quartos-b
+    seed: 14
+    prompt: *tresquartos

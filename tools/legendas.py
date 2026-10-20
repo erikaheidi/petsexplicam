@@ -40,11 +40,15 @@ from dialogo import PRONUNCIA  # noqa: E402
 
 FALA = re.compile(r"<d>\[[^\]]+\]\s*(.*?)</d>", re.S)
 QUEM = re.compile(r"<Subject (\d)>[^<]{0,40}\(S\d\)")
+QUEM_E = re.compile(r"<Subject (\d)> is ([^\s,]+),")
 # Cor por personagem. Quem fala vem da voz de referência da cena (o rótulo
 # <Subject N> não serve: num close do Paçoca, ele é o <Subject 1>); sem voz de
-# referência, cai no rótulo, que nos planos da dupla é 1 = Pretinha, 2 = Paçoca.
-COR = {"1": "&H00FFFFFF", "2": "&H0045D8FF"}  # ASS é &HAABBGGRR: branco, amarelo
-VOZ = {"pretinha-voz.wav": "1", "pacoca-voz.wav": "2"}
+# referência, do nome que o prompt dá ao <Subject N> que fala.
+COR = {"1": "&H00FFFFFF", "2": "&H0045D8FF", "3": "&H009AE98C", "4": "&H00F0C88A",
+       "5": "&H00FFB4D8", "6": "&H0090C0FF"}  # ASS é &HAABBGGRR: branco, amarelo, verde-claro, azul-claro, lilás, laranja-claro
+VOZ = {"pretinha-voz.wav": "1", "pacoca-voz.wav": "2", "jose-voz.wav": "3", "tiao-voz.wav": "4",
+       "cida-voz.wav": "5", "lurdes-voz.wav": "6"}
+NOME = {"Pretinha": "1", "Paçoca": "2", "José": "3", "Tião": "4", "Cida": "5", "Lurdes": "6"}
 
 
 def grafia(texto: str) -> str:
@@ -231,7 +235,12 @@ def legendas(script, ate: int | None):
             for (texto, pos), peso in zip(falas, pesos, strict=True):
                 fatia = (span[1] - span[0]) * peso / sum(pesos)
                 vozes = [VOZ[p.name] for p in cena.ref_audios if p.name in VOZ]
-                quem = vozes[0] if vozes else (QUEM.findall(cena.prompt[max(0, pos - 400):pos]) or ["1"])[-1]
+                if vozes:
+                    quem = vozes[0]
+                else:
+                    rotulo = (QUEM.findall(cena.prompt[max(0, pos - 400):pos]) or ["1"])[-1]
+                    nomes = dict(QUEM_E.findall(cena.prompt))
+                    quem = NOME.get(nomes.get(rotulo, ""), "1")
                 # Cada bloco fica na tela pelo tempo proporcional ao seu texto.
                 blocos = quebrar(texto)
                 # Peso mínimo: um "Ué," sozinho ainda precisa de ~0,7 s para ser lido.
@@ -301,7 +310,7 @@ def main() -> int:
     ass, srt = escrever(eventos, base, w, h)
     print(f"{len(eventos)} legendas -> {ass.name}, {srt.name}")
     for a, b, quem, texto in eventos:
-        print(f"  {a:6.2f}-{b:6.2f}  {'Pretinha' if quem == '1' else 'Paçoca  '}  {texto.replace(chr(92) + 'N', ' / ')}")
+        print(f"  {a:6.2f}-{b:6.2f}  { {v: k for k, v in NOME.items()}[quem]:8}  {texto.replace(chr(92) + 'N', ' / ')}")
     if args.sem_video:
         return 0
 

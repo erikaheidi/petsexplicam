@@ -1,0 +1,96 @@
+# farmacia-popular - no balcão da farmácia do bairro: o Seu Tião veio comprar
+# o remédio de pressão e de diabetes da mãe. A Pretinha
+# conta que a Farmácia Popular dá esses remédios de graça (todos os 41 itens,
+# desde fevereiro de 2025) e o que levar. Ver drafts/farmacia-popular.md.
+#
+# Ponto factual: o corte do governo anterior foi PROPOSTA (PLOA 2023, -59%
+# na gratuidade), não orçamento aprovado - por isso "chegou a propor".
+#
+# Cenário farmacia: dupla, closes pretinha e tiao.
+cenario: farmacia
+seed: 2026
+
+cenas:
+  - id: demora
+    camera: dupla
+    resumo: Tião meets Pretinha at the pharmacy counter and greets her.
+    antes: Tião keeps looking at Pretinha with a friendly half smile.
+    fala:
+      quem: tiao
+      texto: "Oi, Pretinha! Vim buscar o remédio da minha mãe."
+
+  - id: ela-ta-bem
+    resumo: Pretinha asks about his mother, kind.
+    antes: Pretinha tilts her head slightly, looking at him, kind.
+    fala:
+      quem: pretinha
+      texto: "Oi, Seu Tião! E ela, tá bem?"
+
+  - id: pesa
+    resumo: Tião says the medicine is expensive, tired.
+    antes: Tião lets out a tired breath.
+    fala:
+      quem: tiao
+      texto: "Tá. Mas remédio de pressão e diabetes todo mês pesa."
+
+  - id: de-graca
+    resumo: Pretinha tells him the good news.
+    antes: Pretinha's ears rise and she sits up straight.
+    fala:
+      quem: pretinha
+      texto: "Seu Tião, esse remédio é de graça na Farmácia Popular."
+
+  - id: pegadinha
+    resumo: Tião is suspicious.
+    antes: Tião raises his eyebrows, suspicious.
+    fala:
+      quem: tiao
+      texto: "De graça? E qual é a pegadinha?"
+
+  - id: nenhuma
+    resumo: Pretinha explains.
+    antes: Pretinha shakes her head slightly, calm.
+    fala:
+      quem: pretinha
+      texto: "Nenhuma. Desde o ano passado, tudo no programa é de graça."
+
+  - id: receita
+    resumo: Pretinha tells him what to bring.
+    fala:
+      quem: pretinha
+      texto: "Leva a receita, um documento com foto e o CPF dela."
+
+  - id: placa
+    resumo: Pretinha tells him where to go.
+    fala:
+      quem: pretinha
+      texto: "Vale receita do SUS ou de médico particular."
+
+  - id: pagando
+    resumo: Tião is a little annoyed with himself.
+    antes: Tião slowly shakes his head.
+    fala:
+      quem: tiao
+      texto: "E eu pagando esse tempo todo, rapaz."
+
+  - id: lula
+    resumo: Pretinha tells him who made it free.
+    antes: Pretinha keeps looking at him, serious and calm.
+    fala:
+      quem: pretinha
+      texto: "Foi o governo Lula que deixou tudo de graça."
+
+  - id: corte
+    resumo: Pretinha tells him what the previous government proposed.
+    fala:
+      quem: pretinha
+      texto: "O governo anterior chegou a propor cortar mais da metade."
+    depois: Pretinha gives a small firm nod.
+
+  - id: contar
+    camera: dupla
+    resumo: Tião decides to tell his family, with a warm smile.
+    antes: Tião keeps looking at Pretinha with a warm smile.
+    fala:
+      quem: tiao
+      texto: "Vou contar pra minha mãe. E pros meus irmãos também."

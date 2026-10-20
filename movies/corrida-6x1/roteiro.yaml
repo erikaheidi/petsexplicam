@@ -1,0 +1,90 @@
+# corrida-6x1 - a Pretinha volta para casa de aplicativo com o Seu Tião, o
+# motorista conhecido dela. Ela comemora o fim da 6x1; ele dá de ombros
+# ("faço minhas horas"), até ela lembrar da filha dele.
+#
+# Ponto factual: o fim da 6x1 (PEC 221/2019) vale para quem tem carteira
+# assinada, não para motorista de aplicativo - por isso o Tião é
+# indiferente, e o roteiro nunca diz que vale para ele. Fontes no
+# drafts/corrida-6x1.md (as mesmas do fim-da-6x1).
+#
+# Cenário uber: dupla (painel, virada para trás), closes pretinha (por cima
+# do ombro do Tião) e tiao (do painel do carona). Sem `camera:`, a cena vai
+# no close de quem fala.
+cenario: uber
+seed: 2026
+
+cenas:
+  - id: animada
+    camera: dupla
+    resumo: The driver Tião, who knows Pretinha, notices she is in a good mood.
+    antes: Tião keeps his paw on the steering wheel and glances back at Pretinha with a friendly half smile.
+    fala:
+      quem: tiao
+      texto: "Tá animada hoje, hein, Pretinha?"
+
+  - id: passou
+    resumo: Pretinha tells him the good news, happy.
+    antes: Pretinha sits up straight, her ears high, her eyes bright, her mouth open in a happy grin.
+    fala:
+      quem: pretinha
+      texto: "Tô! Passou no Senado o fim da escala seis por um!"
+      tom: bright and cheerful, smiling as she speaks, her voice warm and lifting with excitement, never curt
+
+  - id: tanto-faz
+    resumo: Tião shrugs it off; as an app driver he makes his own hours.
+    antes: Tião gives a small shrug, unimpressed.
+    fala:
+      quem: tiao
+      texto: "Pra mim tanto faz. No aplicativo eu faço minhas horas."
+
+  - id: filhos
+    resumo: Pretinha asks him a question.
+    antes: Pretinha tilts her head slightly, looking at him.
+    fala:
+      quem: pretinha
+      texto: "Seu Tião, o senhor tem filhos?"
+
+  - id: filha
+    resumo: Tião talks about his daughter, a little proud.
+    antes: Tião's eyes soften.
+    fala:
+      quem: tiao
+      texto: "Tenho uma filha. Dezessete anos, vai começar a trabalhar."
+
+  - id: duas-folgas
+    resumo: Pretinha tells him what changes for his daughter.
+    antes: Pretinha keeps looking at him, warm and serious.
+    fala:
+      quem: pretinha
+      texto: "Que bom. Ela vai começar com duas folgas por semana."
+
+  - id: sem-cortar
+    resumo: Pretinha adds the rest, gently but firmly.
+    antes: Pretinha nods slowly.
+    fala:
+      quem: pretinha
+      texto: "E sem cortar salário. Coisa que a sua geração não teve."
+
+  - id: faz-diferenca
+    camera: dupla
+    resumo: Tião thinks about it and admits it matters.
+    antes: Tião looks ahead at the road for a moment, thinking, then glances back at Pretinha.
+    fala:
+      quem: tiao
+      texto: "É. Pra ela faz diferença, sim."
+
+  - id: quem-lutou
+    resumo: Pretinha says who fought for it.
+    antes: Pretinha keeps looking at him, calm.
+    fala:
+      quem: pretinha
+      texto: "Quem lutou por isso foi o Lula."
+
+  - id: pense-na-filha
+    camera: dupla
+    resumo: Pretinha closes the conversation; Tião is left thinking.
+    antes: Pretinha keeps looking at Tião, serious and kind.
+    fala:
+      quem: pretinha
+      texto: "Dia vinte e cinco, pense na sua filha."
+    depois: Tião looks ahead at the road, thoughtful, and gives a slow nod.

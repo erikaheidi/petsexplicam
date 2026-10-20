@@ -1,0 +1,156 @@
+# lanchonete - o boteco de esquina onde o Paçoca e o primo José lancham
+# depois da pelada. Primeiro cenário externo e o primeiro com o José.
+#
+#   ./mm images movies/cenarios/scripts/lanchonete.yaml
+#
+# Rodada 1 (este arquivo): o plano da dupla, do zero, com as referências dos
+# dois (o José de frente e a três quartos). Precisa de assets/jose-referencia.png aprovado (movies/ficha-jose/).
+# Rodada 2 (depois que a Erika escolher a dupla): closes por cima do ombro,
+# editando o plano escolhido, como no frente-sofa.yaml.
+# O escolhido vira assets/cenario-lanchonete.png e o cenário "lanchonete" no
+# tools/dialogo.py.
+#
+# Figurino: a mesma camiseta do time da pelada nos dois - verde com listras
+# brancas, lisa. Sem escudo, número nem letra: o modelo deforma brasão e texto.
+kind: images
+name: lanchonete
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, warm natural late-afternoon light, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+    no crests, no labels and no signs with anything written on them anywhere
+    in the picture.
+
+images:
+  - id: dupla-a
+    seed: 7101
+    ref_images: [pacoca-referencia.png, jose-referencia.png, jose-referencia-3q.png]
+    prompt: &dupla >-
+      A photograph of two dogs at a small corner snack bar (a Brazilian
+      boteco) on a street corner, at the end of a sunny afternoon. The fawn
+      pug is the pug on the right in <image1>: the same face, black mask,
+      folded ears and round body. The caramel mixed-breed dog is the dog in
+      <image2> and <image3>, the same dog seen from the front and at three
+      quarters: the same face, ears folded forward at the tips, cream chest
+      and muzzle, and caramel-golden coat. Both wear the
+      same short-sleeved football shirt of an amateur neighbourhood team,
+      green with white vertical stripes, plain, with no crest, no number and
+      no lettering, their front legs through the sleeves. They sit on red
+      plastic chairs at a red plastic table on the pavement outside the
+      snack bar, facing each other across the table as if in conversation:
+      the pug on the left, seen in a three-quarter profile turned to the
+      right, and the caramel dog on the right, seen in a three-quarter
+      profile turned to the left, both faces and both mouths clearly visible,
+      their heads and chests above the table top. On the table between them:
+      a plate with two golden fried coxinhas and two glass bottles of a dark
+      soft drink with no labels, and a slightly dirty black-and-white
+      football on the pavement by the pug's chair. Behind them, softly out of
+      focus, the open front of the snack bar: a counter with a glass display
+      case of fried snacks, white wall tiles with a band of blue tiles, and a
+      green metal roll-up door raised above the opening. The camera is static
+      at the height of the table top, straight on to the table, in a medium
+      shot. No people anywhere in the picture.
+  - id: dupla-b
+    seed: 7102
+    ref_images: [pacoca-referencia.png, jose-referencia.png, jose-referencia-3q.png]
+    prompt: *dupla
+
+  # Rodada 1b - a Erika escolheu a dupla-b, que saiu quadrada (o tamanho segue
+  # a 1ª referência, a foto quadrada do Paçoca). lanchonete-b-tela.png é ela
+  # com faixas desfocadas em cima e embaixo até 9:16 (ffmpeg, boxblur); aqui o
+  # Qwen continua a cena nas faixas. A escolhida vira assets/cenario-lanchonete.png.
+  - id: vertical-a
+    seed: 7111
+    ref_images: [lanchonete-b-tela.png]
+    prompt: &vertical >-
+      Edit the photograph <image1>. The middle of it is a finished photograph
+      of a pug and a caramel dog in green-and-white striped football shirts,
+      sitting on red plastic chairs at a red plastic table outside a corner
+      snack bar. Keep that middle part exactly as it is: the same two dogs,
+      their faces, shirts, poses and sizes, the table, the coxinhas, the
+      bottles, the football, the chairs, the snack bar and the light. Replace
+      only the blurred bands at the top and at the bottom with the natural
+      continuation of the same photograph, so it becomes one seamless tall
+      vertical photo: at the top, the rest of the storefront above the
+      opening, the raised green metal roll-up door rolled up under a plain
+      painted wall with weathered paint and a strip of warm late-afternoon
+      sky at the very top; at the bottom, the rest of the red table legs and
+      chair legs standing on the grey, slightly cracked concrete pavement of
+      the street corner, in warm late-afternoon light with soft long shadows.
+      The camera does not move: same angle, same height, same perspective.
+  - id: vertical-b
+    seed: 7112
+    ref_images: [lanchonete-b-tela.png]
+    prompt: *vertical
+
+  # Rodada 2 - closes por cima do ombro, editando a dupla escolhida
+  # (vertical-b -> assets/cenario-lanchonete.png). A 2ª referência é a do
+  # próprio cachorro do close, para o rosto ampliado não mudar de cara.
+  # Escolhidos -> assets/cenario-lanchonete-jose.png / -pacoca.png.
+  - id: jose-a
+    seed: 7201
+    ref_images: [cenario-lanchonete.png, jose-referencia-3q.png]
+    prompt: &jose >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      caramel dog, as in a film conversation. Keep him exactly as he is: the
+      caramel dog from <image1> and <image2>, the same face, the same
+      caramel-golden coat with cream muzzle and chest, the same ears folded
+      forward at the tips, wearing the same green-and-white striped football
+      shirt with no crest, no number and no lettering. The camera is just
+      behind the pug's right shoulder: the out-of-focus fawn shoulder in the
+      green-and-white striped shirt and the back of the pug's small black
+      folded ear fill the lower left corner of the frame in the foreground.
+      The caramel dog sits on his red plastic chair facing the camera at a
+      three-quarter angle, turned towards the pug and looking at him, just
+      to the left of the camera; his sharp face, whole muzzle and upper chest
+      in the striped shirt fill the upper right two thirds of the frame, his
+      mouth closed. Behind him, softly out of focus, the raised green metal
+      roll-up door, the white wall tiles with the band of blue tiles at the
+      side of the opening, and the weathered wall of the corner snack bar, in
+      warm late-afternoon light.
+  - id: jose-b
+    seed: 7202
+    ref_images: [cenario-lanchonete.png, jose-referencia-3q.png]
+    prompt: *jose
+
+  - id: pacoca-a
+    seed: 7301
+    ref_images: [cenario-lanchonete.png, pacoca-referencia.png]
+    prompt: &pacoca >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      fawn pug, as in a film conversation. Keep him exactly as he is: the pug
+      from <image1>, who is also the pug on the right in <image2>, the same
+      face, the same jet-black mask, small black folded ears, round glossy
+      dark eyes and forehead wrinkles, wearing the same green-and-white
+      striped football shirt with no crest, no number and no lettering. The
+      camera is just behind the caramel dog's left shoulder: the out-of-focus
+      caramel shoulder in the green-and-white striped shirt and the back of
+      the caramel dog's folded ear fill the lower right corner of the frame
+      in the foreground. The pug sits on his red plastic chair facing the
+      camera at a three-quarter angle, turned towards the caramel dog and
+      looking up at him, just to the right of the camera; his sharp face,
+      whole muzzle and upper chest in the striped shirt fill the upper left
+      two thirds of the frame, his mouth closed. Behind him, softly out of
+      focus, the open front of the snack bar: the glass display case of fried
+      snacks on the counter, white wall tiles with a band of blue tiles, and
+      the green roll-up door frame, in warm late-afternoon light.
+  - id: pacoca-b
+    seed: 7302
+    ref_images: [cenario-lanchonete.png, pacoca-referencia.png]
+    prompt: *pacoca

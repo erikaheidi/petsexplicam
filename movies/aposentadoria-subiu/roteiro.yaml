@@ -1,0 +1,97 @@
+# v2 (20/10): refeito na calçada da lotérica - a v1 (supermercado) repetia o
+# cenário do secao-mudou. A v1 fica em renders/aposentadoria-subiu/, sem postar.
+#   ./dialogo gerar aposentadoria-subiu --versao v2
+# aposentadoria-subiu - no supermercado, Dona Cida e Dona Lurdes comentam que
+# a aposentadoria veio maior; a Pretinha explica o aumento real do salário
+# mínimo (Lei 14.663/2023) e quem ganha um mínimo de aposentadoria sobe junto.
+# Ver drafts/aposentadoria-subiu.md.
+#
+# Ponto factual: de 2020 a 2022 o mínimo só repôs a inflação (DIEESE); em 2019
+# ainda teve ganho de 1,14% pela lei antiga - por isso "três anos", não
+# "o governo inteiro".
+#
+# Cenário com dupla (os três), closes pretinha e senhoras.
+cenario: loterica
+seed: 2026
+
+cenas:
+  - id: veio-maior
+    camera: dupla
+    resumo: Cida tells her friend Lurdes some news, while Pretinha listens.
+    antes: Cida turns her head a little towards Lurdes, chatty and cheerful.
+    fala:
+      quem: cida
+      texto: "Lurdes, minha aposentadoria veio maior esse ano, sabia?"
+
+  - id: erro-do-banco
+    resumo: Lurdes agrees, surprised.
+    antes: Lurdes's eyes widen and she lifts her muzzle.
+    fala:
+      quem: lurdes
+      texto: "A minha também! Achei que era erro do banco."
+
+  - id: nao-e-erro
+    resumo: Pretinha politely explains.
+    antes: Pretinha keeps looking at the two ladies, polite and warm.
+    fala:
+      quem: pretinha
+      texto: "Não é erro, não. O mínimo voltou a ter aumento real."
+
+  - id: o-que-e
+    resumo: Cida asks what that means.
+    antes: Cida tilts her head, curious.
+    fala:
+      quem: cida
+      texto: "Aumento real? E o que é isso, minha filha?"
+
+  - id: inflacao
+    resumo: Pretinha explains it simply.
+    antes: Pretinha nods slowly, calm and patient.
+    fala:
+      quem: pretinha
+      texto: "É subir mais que a inflação. O dinheiro compra mais."
+
+  - id: sobe-junto
+    # seed nova: com a 2026 apareceu uma pessoa no fundo, atrás dos tomates.
+    seed: 4471
+    resumo: Pretinha explains the link with pensions.
+    fala:
+      quem: pretinha
+      texto: "E quem ganha um mínimo de aposentadoria sobe junto."
+
+  - id: antes
+    resumo: Lurdes asks about the past.
+    antes: Lurdes leans in a little towards Pretinha, curious.
+    fala:
+      quem: lurdes
+      texto: "E antes não era assim?"
+
+  - id: tres-anos
+    resumo: Pretinha tells them about the previous government.
+    antes: Pretinha keeps looking at Lurdes, serious and calm.
+    fala:
+      quem: pretinha
+      texto: "No governo passado, o mínimo ficou três anos sem aumento real."
+
+  - id: regra
+    resumo: Pretinha tells them who brought the rule back.
+    fala:
+      quem: pretinha
+      texto: "Foi o Lula que fez a lei do aumento real."
+    depois: Pretinha gives a small firm nod.
+
+  - id: sei-em-quem
+    resumo: Cida makes up her mind, smiling.
+    antes: Cida's tail wags and she lifts her muzzle, smiling.
+    fala:
+      quem: cida
+      texto: "Então domingo eu sei em quem votar, viu, Lurdes?"
+
+  - id: fecho
+    camera: dupla
+    resumo: Pretinha closes with a rallying call, and the two ladies nod.
+    antes: Pretinha keeps looking at the two ladies, then nods firmly.
+    fala:
+      quem: pretinha
+      texto: "Dia vinte e cinco. E leva a vizinha junto!"
+    depois: Cida and Lurdes nod together, smiling.

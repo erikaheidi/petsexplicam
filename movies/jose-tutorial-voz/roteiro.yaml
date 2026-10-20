@@ -1,0 +1,69 @@
+# jose-tutorial-voz - a narração do screencast do jose-tutorial-secao na voz
+# do José. Daqui só se usa o ÁUDIO de cada cena: ele entra por cima do
+# screencast da Erika (~/Videos/consulta-secao-tutorial.mp4), no começo de
+# cada trecho da narração dela (a montagem está no jose-tutorial-secao).
+#
+# Mesmo cenário e câmera do vlog (home-office, vlog-jose), para a voz sair
+# com o mesmo timbre e ambiente das cenas dele.
+vlog: jose
+cenario: home-office
+seed: 2026
+
+cenas:
+  - id: vo1-site          # 0,0 s
+    # a URL falada é mais longa que as 6 palavras escritas
+    frames: 107
+    resumo: José explains the first step, calm and clear.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "Acesse o site tse.jus.br."
+
+  - id: vo2-menu          # 4,0 s
+    resumo: José explains the next step.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "Vá até o menu Autoatendimento Eleitoral,"
+
+  - id: vo3-onde-votar    # 7,3 s
+    resumo: José explains the next step.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "depois Consultas, e Onde votar."
+
+  - id: vo4-cpf           # 9,9 s
+    resumo: José explains what to fill in.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "Preencha com o número do seu CPF,"
+
+  - id: vo5-nascimento    # 12,6 s
+    resumo: José explains what to fill in.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "a sua data de nascimento,"
+
+  - id: vo6-mae           # 15,0 s
+    resumo: José explains what to fill in.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "e o nome completo da sua mãe."
+
+  - id: vo7-entrar        # 17,2 s
+    resumo: José explains the last step.
+    antes: José looks straight into the lens, calm and clear.
+    fala:
+      quem: jose
+      texto: "Depois é só clicar no botão Entrar."
+
+  - id: vo8-local         # ~19 s
+    resumo: José explains what appears on the screen, pleased.
+    antes: José looks straight into the lens with a small smile.
+    fala:
+      quem: jose
+      texto: "Você verá na tela o seu local de votação atualizado."

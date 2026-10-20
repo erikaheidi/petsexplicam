@@ -1,0 +1,77 @@
+# farmacia rodada 3 - closes por cima do ombro a partir do plano aprovado
+# (olhar-a -> assets/cenario-farmacia.png). farmacia-popular: Pretinha e Tião.
+#
+#   ./mm images movies/cenarios/scripts/farmacia-closes.yaml
+kind: images
+name: farmacia-closes
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright even white indoor lighting, shallow depth of field,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      labels, no price tags, no screens and no signs with anything written on
+      them anywhere in the picture.
+images:
+  - id: pretinha-a
+    seed: 9931
+    ref_images: [cenario-farmacia.png, cenario-varandafrente-pretinha.png]
+    prompt: &pretinha >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black French bulldog, as in a film conversation. Keep her exactly as she
+      is: the black French bulldog from <image1>, who is also the black French
+      bulldog in <image2> (not the fawn pug at the edge of that picture): the
+      same face, the same large upright bat ears, the same white stripe down the
+      middle of her muzzle, greyish-white chin, with no collar and no harness, wearing a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves. The camera is just behind the
+      shoulder of the black-and-white speckled dog in the light-blue polo shirt:
+      in the foreground at the lower right, out of focus, are his light-blue
+      polo shoulder and the back of his black, half-folded ear, turned away from
+      the camera; his face is never seen. The French bulldog sits facing the
+      camera at a three-quarter angle, turned towards him and looking up at him,
+      just to the right of the camera; her sharp face, whole muzzle and chest in the red t-shirt fill the left two thirds of the frame, her mouth
+      closed. Behind her, softly out of focus, the white pharmacy shelves with
+      small boxes in plain colours and the white counter, under bright white
+      ceiling lights. No people, no human figures and no human hands anywhere in
+      the picture.
+  - id: pretinha-b
+    seed: 9932
+    ref_images: [cenario-farmacia.png, cenario-varandafrente-pretinha.png]
+    prompt: *pretinha
+  - id: tiao-a
+    seed: 9941
+    ref_images: [cenario-farmacia.png, tiao-referencia-3q.png]
+    prompt: &tiao >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black-and-white speckled dog in the light-blue polo shirt, as in a film
+      conversation. Keep him exactly as he is: the dog from <image1>, who is
+      also the dog in <image2>, the same face with black head and tan eyebrows,
+      the same white muzzle speckled with black, the same half-folded black
+      ears, wearing the same plain light-blue polo shirt with no logo. The
+      camera is just behind the black French bulldog's shoulder: in the
+      foreground at the lower left, out of focus, are her black shoulder in the red t-shirt and the
+      back of her large upright black bat ear, turned away from the camera; her
+      face is never seen. He stands at the white counter facing the camera at a
+      three-quarter angle, turned towards her and looking down at her, just to
+      the left of the camera; his sharp face, whole muzzle and chest in the polo
+      shirt fill the right two thirds of the frame, his mouth closed. Behind
+      him, softly out of focus, the white pharmacy shelves with small boxes in
+      plain colours and the glowing green cross on the wall, under bright white
+      ceiling lights. No people, no human figures and no human hands anywhere in
+      the picture.
+  - id: tiao-b
+    seed: 9942
+    ref_images: [cenario-farmacia.png, tiao-referencia-3q.png]
+    prompt: *tiao

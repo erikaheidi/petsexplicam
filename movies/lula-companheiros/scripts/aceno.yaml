@@ -1,0 +1,56 @@
+# aceno - clipe curto e mudo, para usar como b-roll numa edição: o Lula de
+# corpo inteiro na sala, a câmera se aproximando devagar enquanto ele balança
+# a cabeça em sinal de "sim" e abre mais o sorriso. Sem fala.
+#
+#   ./mm render movies/lula-companheiros/scripts/aceno.yaml --dry-run
+#   ./mm render movies/lula-companheiros/scripts/aceno.yaml
+#
+# Primeiro frame: assets/lula-frame-inteiro.png = frame-medio-a.png (a edição
+# do Qwen que abriu para corpo inteiro) em 544x960.
+#
+# fl2va: NÃO adicione ref_images nem continuity.anchors - qualquer um troca o
+# grafo para ref2va e o first_frame é descartado em silêncio.
+#
+# 141 frames = 5,875 s (grade 17n+5), sobra para cortar na edição. O áudio é
+# descartado na saída (output.audio: strip); o soundscape só pede silêncio para
+# o modelo não inventar fala e mexer a boca.
+name: lula-aceno
+backend: comfy
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fl2va_pruned_bf16.safetensors
+  lora: minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_fp16.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  steps: 8
+
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 141
+  seed: 3301
+  style_suffix: ""
+
+continuity:
+  chain_from_previous: false
+
+output:
+  container: mp4
+  audio: strip
+
+scenes:
+  - id: aceno
+    first_frame: lula-frame-inteiro.png
+    prompt: |-
+      For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.
+
+      integrated_multimodal_description: [Shot 1] 3D CG, a stylized clay-sculpture animation with smooth matte surfaces and soft warm light, in gentle slow motion, holding the character, clothing, props and lighting of <Picture 1> from the first frame onward. A full-body shot frames a sculpted older man standing in the centre of a cosy living room, facing the camera with his hands on his hips: a straw fedora with a black band, short grey hair, a full grey beard, a white shirt, a red tie, a navy blue suit and dark shoes. Behind him, softly out of focus, a burgundy sofa with a mustard yellow cushion, a sage green wall, light green curtains at a sunlit window and terracotta pots with green plants on a wooden shelf; a terracotta tiled floor. The camera pushes in with small amplitude at slow speed, smoothly and steadily, from the full-body shot to a medium shot of his head and chest by the end of the 5.88 seconds, with no shake. Keeping his hands on his hips and his body still, he nods his head slowly up and down twice in agreement, unhurried, and his slight smile gradually widens into a broad, warm smile that shows his teeth, his eyes crinkling and his cheeks lifting. He does not speak: his lips stay apart only in the smile and never form words. His face, beard, hat and suit keep the same shape and sculpted look throughout. Nothing and nobody else enters the frame.
+
+      overall_soundscape: Near silence, only a very faint room tone. No voices, no speech, no music.
+
+      non_diegetic_music: N/A

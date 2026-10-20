@@ -1,0 +1,61 @@
+# farmacia - o balcão de uma farmácia de bairro: o Seu Tião (de polo, como
+# no uber) e a Pretinha se encontram na fila do balcão (farmacia-popular,
+# refeito fora do uber). Prateleiras com caixinhas SEM rótulo legível: no
+# fundo, desfocadas, em cores lisas. 1ª ref: o Tião em 9:16.
+# Rodada 2: closes pretinha (por cima do ombro do Tião) e tiao.
+#
+#   ./mm images movies/cenarios/scripts/farmacia.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/farmacia.yaml
+kind: images
+name: farmacia
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real fabric, bright clean shop lighting, shallow depth of
+      field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+      no labels, no price tags, no screens and no signs with anything written
+      on them anywhere in the picture.
+
+images:
+  # Rodada 1 - o plano principal, do zero (2 seeds). A Erika escolhe.
+  - id: dupla-a
+    seed: 9531
+    ref_images: [tiao-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &p1 >-
+      A photograph inside a small neighbourhood pharmacy in Brazil, taken from
+      a low static camera at the dogs' eye level, in a medium shot. Two dogs
+      meet in front of the counter and talk. On the right of the frame stands
+      the white mixed-breed dog with black patches in <image1>: the same face,
+      the black patch over his left ear and eye, the tan cheeks, the greying
+      muzzle and the semi-floppy ears; he wears a plain light-blue polo shirt
+      with no logo, his front legs through the sleeves. A small white paper
+      pharmacy bag sits on the counter edge beside him. He is turned to the left in a three-quarter profile, looking at the
+      other dog. On the left sits the black French bulldog in <image2> (not
+      the fawn pug at the edge of that picture): the same face, the same large
+      upright bat ears, the same white stripe down the middle of her muzzle,
+      greyish-white chin and wide white blaze on her chest, with no collar and
+      no harness; she is turned to the right in a three-quarter profile,
+      looking at him. Both faces and both mouths are clearly visible. Behind
+      them, softly out of focus: the white pharmacy counter, and shelves of
+      small plain medicine boxes in soft solid colours with nothing printed on
+      them, under bright white lights, and a green cross-shaped light on the
+      wall with no lettering. No people anywhere in the picture.
+  - id: dupla-b
+    seed: 9532
+    ref_images: [tiao-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *p1

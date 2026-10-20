@@ -1,0 +1,87 @@
+# v2 (20/10): no banco da praça - o home office repetia o jose-tutorial-secao.
+#   ./dialogo gerar audio-falso --versao v2
+# audio-falso - vlog do primo José, o Caramelo da TI, no home office: como
+# não cair no golpe do áudio com voz clonada por IA (o "neto" pedindo Pix) e,
+# no fim, que vídeo de candidato também pode ser falso. Fecha com a gente
+# admitindo que também é IA - mas avisa. Ver drafts/audio-falso.md.
+#
+# Câmera vlog-jose (celular apoiado na frente dele).
+vlog: jose
+cenario: praca
+seed: 3117
+
+cenas:
+  - id: fala-pessoal
+    resumo: José greets his viewers and announces the topic.
+    antes: José looks straight into the lens and gives a small, friendly nod.
+    fala:
+      quem: jose
+      texto: "Fala, pessoal! Hoje o assunto é golpe com voz falsa."
+
+  - id: copia
+    resumo: José explains how voice cloning works.
+    antes: José keeps looking straight into the lens, serious and calm.
+    fala:
+      quem: jose
+      texto: "Com pouco áudio seu, a inteligência artificial copia a sua voz."
+
+  - id: neto
+    resumo: José describes the scam.
+    fala:
+      quem: jose
+      texto: "Aí o golpista manda áudio do seu neto pedindo Pix urgente."
+
+  - id: sinais
+    resumo: José lists the warning signs, counting on his tone.
+    antes: José raises his eyebrows slightly, still looking into the lens.
+    fala:
+      quem: jose
+      texto: "Celular quebrou, número novo, e não conta pra sua mãe."
+
+  - id: liga
+    resumo: José gives the first tip.
+    antes: José nods slowly.
+    fala:
+      quem: jose
+      texto: "Desconfiou? Desliga e liga pro número que você já tem."
+
+  - id: palavra
+    resumo: José gives the best tip, with a small smile.
+    antes: José tilts his head slightly, a small knowing smile.
+    fala:
+      quem: jose
+      texto: "Melhor ainda: combina uma palavra secreta com a família."
+
+  - id: e-golpe
+    resumo: José explains how the secret word works.
+    fala:
+      quem: jose
+      texto: "Pediu dinheiro e não sabe a palavra? É golpe."
+    depois: José gives a small firm nod.
+
+  - id: candidato
+    resumo: José connects it to the election.
+    antes: José leans slightly towards the lens, serious.
+    fala:
+      quem: jose
+      texto: "E vale pra eleição: vídeo de candidato também pode ser falso."
+
+  - id: confere
+    resumo: José tells viewers to check before forwarding.
+    fala:
+      quem: jose
+      texto: "Antes de repassar, vê se saiu num jornal de verdade."
+
+  - id: somos-ia
+    resumo: José admits, with a warm half smile, that he is made with AI too.
+    antes: José gives a warm half smile, still looking straight into the lens.
+    fala:
+      quem: jose
+      texto: "Ah, e a gente aqui também é feito com inteligência artificial."
+
+  - id: avisa
+    resumo: José closes, friendly and firm.
+    fala:
+      quem: jose
+      texto: "Mas a gente avisa. Golpista não avisa. Manda pra sua família."
+    depois: José gives a small friendly nod.

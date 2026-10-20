@@ -1,0 +1,96 @@
+# Ficha das senhoras do supermercado - Dona Cida e Dona Lurdes, vizinhas
+# idosas que a Pretinha encontra no hortifrúti (video secao-mudou).
+# Imagens de referência com Qwen-Image-2.1.
+#
+# A descrição é a canônica do ELENCO.md, palavra por palavra. Duas seeds por
+# pose; a Erika escolhe e as escolhidas viram assets/cida-referencia.png e
+# assets/lurdes-referencia.png (de frente) e -3q.png (três quartos).
+#   ./mm images movies/ficha-senhoras/scripts/v1.yaml --dry-run
+#   ./mm images movies/ficha-senhoras/scripts/v1.yaml
+#
+# Vertical (768x1376): a Dona Cida entra como 1ª referência no cenário
+# supermercado, e numa edição o tamanho da saída segue a 1ª referência.
+# Cardigã liso, sem estampa: estampa floral vira borrão no vídeo.
+#
+# Qwen-Image-2.1 tem licença de pesquisa (uso NÃO comercial).
+kind: images
+name: ficha-senhoras
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  width: 768
+  height: 1376
+  style_suffix: >-
+    Photorealistic studio photography, even soft light, plain light grey
+    seamless background, sharp focus, vertical 9:16 framing, no text, no
+    watermark.
+
+images:
+  - id: cida-frente-a
+    seed: 21
+    prompt: &cidafrente >-
+      Dona Cida, an elderly female poodle: small and slender, a soft curly
+      coat of off-white fur gone slightly creamy with age, a greying muzzle,
+      long curly ears hanging down beside her face, gentle dark brown eyes a
+      little cloudy with age, a narrow muzzle with a black nose. She wears a
+      plain lilac hand-knitted cardigan with no pattern, buttoned at the
+      chest, her front legs through the sleeves, and no collar.
+      She sits upright facing the camera straight on, head level, sweet and
+      a little frail, looking into the lens, her whole body visible.
+  - id: cida-frente-b
+    seed: 22
+    prompt: *cidafrente
+  - id: cida-tres-quartos-a
+    seed: 23
+    prompt: &cida3q >-
+      Dona Cida, an elderly female poodle: small and slender, a soft curly
+      coat of off-white fur gone slightly creamy with age, a greying muzzle,
+      long curly ears hanging down beside her face, gentle dark brown eyes a
+      little cloudy with age, a narrow muzzle with a black nose. She wears a
+      plain lilac hand-knitted cardigan with no pattern, buttoned at the
+      chest, her front legs through the sleeves, and no collar.
+      She sits turned three-quarters to the left of the frame, head slightly
+      tilted, mouth half open in a chatty, talking expression.
+  - id: cida-tres-quartos-b
+    seed: 24
+    prompt: *cida3q
+
+  - id: lurdes-frente-a
+    seed: 31
+    prompt: &lurdesfrente >-
+      Dona Lurdes, an elderly female cocker spaniel: medium-sized and plump,
+      a wavy golden-red coat, a muzzle and eyebrows gone white with age, long
+      silky wavy ears hanging below her jaw, warm, slightly droopy brown
+      eyes, a broad muzzle with a brown nose. She wears a plain sea-green
+      hand-knitted cardigan with no pattern, buttoned at the chest, her front
+      legs through the sleeves, and no collar.
+      She sits upright facing the camera straight on, head level, warm and
+      motherly, looking into the lens, her whole body visible.
+  - id: lurdes-frente-b
+    seed: 32
+    prompt: *lurdesfrente
+  - id: lurdes-tres-quartos-a
+    seed: 33
+    prompt: &lurdes3q >-
+      Dona Lurdes, an elderly female cocker spaniel: medium-sized and plump,
+      a wavy golden-red coat, a muzzle and eyebrows gone white with age, long
+      silky wavy ears hanging below her jaw, warm, slightly droopy brown
+      eyes, a broad muzzle with a brown nose. She wears a plain sea-green
+      hand-knitted cardigan with no pattern, buttoned at the chest, her front
+      legs through the sleeves, and no collar.
+      She sits turned three-quarters to the left of the frame, head slightly
+      tilted, mouth half open in a warm, talking expression.
+  - id: lurdes-tres-quartos-b
+    seed: 34
+    prompt: *lurdes3q

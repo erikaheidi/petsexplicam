@@ -1,0 +1,66 @@
+# loterica - a calçada em frente à casa lotérica do bairro, onde as
+# aposentadas recebem: a Pretinha encontra Dona Cida e Dona Lurdes no banco
+# encostado na parede (aposentadoria-subiu, refeito fora do supermercado).
+# Lotérica sem letreiro: parede pintada, porta de vidro, nada escrito.
+# Rodada 2: closes pretinha (por cima do ombro das senhoras) e senhoras.
+#
+#   ./mm images movies/cenarios/scripts/loterica.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/loterica.yaml
+kind: images
+name: loterica
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, warm morning sunlight on a pavement, shallow depth of field,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      labels, no price tags, no screens and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  # Rodada 1 - o plano principal, do zero (2 seeds). A Erika escolhe.
+  - id: trio-a
+    seed: 9511
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &p1 >-
+      A photograph on the pavement outside the small lottery and bill-payment
+      shop of a Brazilian neighbourhood, on a sunny weekday morning, taken
+      from a low static camera at the dogs' eye level. Three dogs chat beside
+      a simple wooden bench against the wall. On the right of the frame, side
+      by side on the bench, sit two elderly lady dogs: nearest the centre the
+      small elderly poodle in <image1>, with the same off-white curly coat,
+      greying muzzle, long curly ears and plain lilac knitted cardigan; beside
+      her, on the right edge, the plump elderly cocker spaniel in <image2>,
+      with the same wavy golden-red coat, white muzzle, long wavy ears and
+      plain sea-green knitted cardigan. Both are turned to the left in a
+      three-quarter profile, looking at the third dog. The poodle holds a
+      small plain brown leather handbag. On the left of the frame, on the
+      pavement, sits the black French bulldog in <image3> (not the fawn pug at
+      the edge of that picture): the same face, the same large upright bat
+      ears, the same white stripe down the middle of her muzzle, greyish-white
+      chin and wide white blaze on her chest, with no collar and no harness;
+      she is turned to the right in a three-quarter profile, looking at the
+      two ladies. All three are seen whole, their faces and mouths clearly
+      visible. Behind them: the shop front, a wall painted cheerful light
+      green with a plain glass door and a closed metal shutter beside it, a
+      potted plant, and the edge of the street, all softly out of focus. No
+      sign, no lettering and no posters on the wall. No people anywhere in the
+      picture.
+  - id: trio-b
+    seed: 9512
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *p1

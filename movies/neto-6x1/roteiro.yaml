@@ -1,0 +1,101 @@
+# neto-6x1 - a 6x1 contada pelos olhos da avó. No supermercado, Dona Lurdes
+# reclama que o neto, que trabalha seis dias por semana, não vem mais almoçar
+# no domingo; a Pretinha conta que a PEC foi promulgada e explica a
+# transição. Ver drafts/neto-6x1.md.
+#
+# Ponto factual: PEC 221/2019 promulgada em 16/10/2026; 5x2 com 42 h em 60
+# dias (~15/12, "antes do Natal"), 40 h doze meses depois. Vale para carteira
+# assinada (CLT). Conferir a data de publicação no DOU.
+#
+# Cenário com dupla (os três), closes pretinha e senhoras.
+cenario: cozinha-lurdes
+seed: 2026
+
+cenas:
+  - id: domingo
+    camera: dupla
+    resumo: Lurdes complains to her friend Cida, a little sad, while Pretinha listens.
+    antes: Lurdes turns her head a little towards Cida, her eyes a little sad.
+    fala:
+      quem: lurdes
+      texto: "Meu neto nunca mais almoçou comigo no domingo, Cida."
+
+  - id: seis-dias
+    resumo: Lurdes explains why.
+    antes: Lurdes lowers her head a little.
+    fala:
+      quem: lurdes
+      texto: "Trabalha seis dias por semana, coitado. Chega morto."
+
+  - id: vai-mudar
+    resumo: Pretinha gives them good news, warm.
+    antes: Pretinha's ears rise and her eyes brighten.
+    fala:
+      quem: pretinha
+      texto: "Dona Lurdes, isso vai mudar. Acabou a escala seis por um."
+      tom: bright and warm, smiling as she speaks
+
+  - id: acabou
+    resumo: Cida is surprised.
+    antes: Cida's eyes widen and she lifts her head.
+    fala:
+      quem: cida
+      texto: "Acabou? Mas acabou como, minha filha?"
+
+  - id: constituicao
+    resumo: Pretinha explains it is already in the Constitution.
+    antes: Pretinha nods slowly, calm and clear.
+    fala:
+      quem: pretinha
+      texto: "O Congresso promulgou na sexta passada. Já tá na Constituição."
+
+  - id: duas-folgas
+    resumo: Pretinha explains what changes.
+    fala:
+      quem: pretinha
+      texto: "Em dois meses, quem tem carteira assinada ganha duas folgas."
+
+  - id: salario
+    resumo: Pretinha adds the key detail.
+    fala:
+      quem: pretinha
+      texto: "E sem cortar um centavo do salário."
+    depois: Pretinha gives a small firm nod.
+
+  - id: volta
+    resumo: Lurdes asks, hopeful.
+    antes: Lurdes lifts her muzzle, her eyes hopeful.
+    fala:
+      quem: lurdes
+      texto: "Então meu neto volta a almoçar comigo?"
+
+  - id: natal
+    resumo: Pretinha answers, smiling.
+    antes: Pretinha's eyes soften and she smiles.
+    fala:
+      quem: pretinha
+      texto: "Volta. E bem a tempo do Natal."
+      tom: warm and gentle, smiling
+
+  - id: quem-fez
+    resumo: Cida asks who made it happen.
+    antes: Cida tilts her head, curious.
+    fala:
+      quem: cida
+      texto: "E quem fez isso andar, minha filha?"
+
+  - id: pt-lula
+    resumo: Pretinha answers.
+    antes: Pretinha keeps looking at the two ladies, serious and calm.
+    fala:
+      quem: pretinha
+      texto: "Quem propôs foi o PT. Quem priorizou foi o governo Lula."
+
+  - id: pelo-neto
+    camera: dupla
+    resumo: Lurdes makes up her mind, and Cida nods.
+    antes: Lurdes's tail wags and she lifts her muzzle, smiling.
+    fala:
+      quem: lurdes
+      texto: "Então domingo eu voto pelo meu neto!"
+    depois: Cida nods, smiling, and Pretinha smiles at them.

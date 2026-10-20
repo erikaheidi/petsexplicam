@@ -1,0 +1,59 @@
+# feira rodada 2b - pacoca-a encarava a câmera e o pacoca-b duplicou o pug.
+# Olhar descrito pela cabeça, com o José ocupando a borda direita.
+# feira rodada 2 - closes por cima do ombro a partir do plano aprovado
+# (vazia-a -> assets/cenario-feira.png). pix-ameaca: Paçoca e José.
+#
+#   ./mm images movies/cenarios/scripts/feira-closes.yaml
+kind: images
+name: feira-closes-2
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, soft early-morning sunlight under a striped market awning,
+      shallow depth of field, vertical 9:16 framing. No text, no letters, no
+      numbers, no logos, no labels, no price tags, no screens and no signs
+      with anything written on them anywhere in the picture.
+
+images:
+  - id: pacoca-a
+    seed: 9711
+    ref_images: [cenario-feira.png, pacoca-referencia.png]
+    prompt: &pacoca >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      fawn pug, as in a film conversation. Keep him exactly as he is: the pug
+      from <image1>, who is also the pug on the right in <image2>, the same
+      face, the same jet-black mask, small black folded ears, round glossy
+      dark eyes and forehead wrinkles, wearing the same plain mustard-yellow
+      short-sleeved t-shirt with no print, no logo and no lettering. The
+      camera is just behind the caramel dog's left shoulder: the out-of-focus
+      caramel shoulder in the plain red t-shirt and the back of the caramel
+      dog's folded ear fill the lower right corner of the frame in the
+      foreground. The pug sits on his wooden stool facing the camera at a
+      three-quarter angle, with his head turned to the right of the frame and tilted up, his eyes
+      fixed on the caramel dog's face at the right edge, never on the camera; his sharp face, whole muzzle and
+      upper chest in the yellow t-shirt fill the upper left two thirds of the
+      frame, his mouth closed. Behind him, softly out of focus, the yellow-
+      and-blue striped awning and the empty street between the stalls, with
+      crates of fruit and vegetables under coloured awnings, in soft
+      early-morning sunlight. There is only one pug in the picture. Nobody else is in the picture: no people, no
+      human figures, no other dogs and no other animals.
+  - id: pacoca-b
+    seed: 9712
+    ref_images: [cenario-feira.png, pacoca-referencia.png]
+    prompt: *pacoca
+  - id: pacoca-c
+    seed: 9713
+    ref_images: [cenario-feira.png, pacoca-referencia.png]
+    prompt: *pacoca

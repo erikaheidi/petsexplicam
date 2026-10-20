@@ -29,7 +29,9 @@ from moviemakr.config import load_script  # noqa: E402
 from moviemakr.layout import Workspace  # noqa: E402
 from voz import f0_mediano  # noqa: E402
 
-F0_REF = {"pretinha-voz.wav": ("Pretinha", 258.0), "pacoca-voz.wav": ("Paçoca", 296.0)}
+F0_REF = {"pretinha-voz.wav": ("Pretinha", 258.0), "pacoca-voz.wav": ("Paçoca", 296.0),
+          "jose-voz.wav": ("José", 134.0), "tiao-voz.wav": ("Tião", 167.0),
+          "cida-voz.wav": ("Cida", 258.0), "lurdes-voz.wav": ("Lurdes", 143.0)}
 # Assimétrica: a falha real é a voz cair de registro (o Paçoca a 157 Hz, voz de
 # adulto); empolgado ele sobe bastante e continua certo (381 Hz aprovado de
 # ouvido na cena 13 do direito-de-votar, referência 296).

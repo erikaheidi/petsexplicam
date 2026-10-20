@@ -1,0 +1,63 @@
+# salao - o salão de beleza do bairro: Dona Cida e Dona Lurdes debaixo dos
+# secadores de capacete, a Pretinha no banquinho ao lado
+# (voto-depois-dos-70). Sem espelho no quadro (reflexo vira bagunça).
+# Rodada 2: closes pretinha e senhoras.
+#
+#   ./mm images movies/cenarios/scripts/salao.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/salao.yaml
+kind: images
+name: salao
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real knitted wool, soft warm salon lighting, shallow depth of
+      field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+      no labels, no price tags, no screens and no signs with anything written
+      on them anywhere in the picture.
+
+images:
+  # Rodada 1 - o plano principal, do zero (2 seeds). A Erika escolhe.
+  - id: trio-a
+    seed: 9551
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &p1 >-
+      A photograph inside a small old-fashioned neighbourhood beauty salon in
+      Brazil, on a weekday afternoon, taken from a low static camera at the
+      height of the seats, in a medium shot. On the right of the frame, side
+      by side, sit two elderly lady dogs in pink vinyl salon chairs, each
+      under a retro cream-coloured hood hair dryer raised just above her head
+      so that her whole face stays visible: nearest the centre the small
+      elderly poodle in <image1>, with the same off-white curly coat, greying
+      muzzle, long curly ears and plain lilac knitted cardigan; beside her, on
+      the right edge, the plump elderly cocker spaniel in <image2>, with the
+      same wavy golden-red coat, white muzzle, long wavy ears and plain sea-
+      green knitted cardigan. Both are turned to the left in a three-quarter
+      profile, looking at the third dog. On the left of the frame, on a low
+      round stool, sits the black French bulldog in <image3> (not the fawn pug
+      at the edge of that picture): the same face, the same large upright bat
+      ears, the same white stripe down the middle of her muzzle, greyish-white
+      chin, with no collar and no harness, wearing a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves;
+      she is turned to the right in a three-quarter profile, looking at the
+      two ladies. All three faces and mouths are clearly visible. Behind them,
+      softly out of focus: a pastel pink wall, a small shelf with plain
+      unmarked bottles and rolled towels, a potted fern and a ceiling fan. No
+      mirrors in the picture. No people anywhere in the picture.
+  - id: trio-b
+    seed: 9552
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *p1

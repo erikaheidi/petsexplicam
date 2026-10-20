@@ -1,0 +1,269 @@
+# audio-falso v1 - GERADO por tools/dialogo.py a partir de movies/audio-falso/roteiro.yaml.
+# Não edite à mão: mude o roteiro (ou a receita em tools/dialogo.py) e rode
+#   ./dialogo gerar audio-falso
+# Cada cena é independente: dá para refazer uma só com --only N.
+name: audio-falso
+backend: comfy
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fastvideo_vsa_datafree_1300step_4step_int8_convrot.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_int8_convrot.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  # 8 passos, start 0.2 / end 1.0: com 4 passos e atenção esparsa desde o
+  # primeiro passo a câmera treme.
+  steps: 8
+  ref_image_size: match
+  sol_attn:
+    mode: vsa
+    keep_percent: 20.0
+    min_tokens: 4096
+    start_percent: 0.2
+    end_percent: 1.0
+    verbose: true
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 107
+  seed: 3117
+  style_suffix: ""
+continuity:
+  anchors: []
+  chain_from_previous: false
+output:
+  container: mp4
+  audio: keep
+  music: null
+scenes:
+  - id: fala-pessoal
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> greets his viewers and announces the topic. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> looks straight into the lens and gives a small, friendly nod. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Fala, pessoal! Hoje o assunto é golpe com voz falsa.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: copia
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains how voice cloning works. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> keeps looking straight into the lens, serious and calm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Com pouco áudio seu, a inteligência artificial copia a sua voz.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: neto
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> describes the scam. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Aí o golpista manda áudio do seu neto pedindo Pix urgente.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: sinais
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> lists the warning signs, counting on his tone. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> raises his eyebrows slightly, still looking into the lens. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Celular quebrou, número novo, e não conta pra sua mãe.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: liga
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gives the first tip. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> nods slowly. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Desconfiou? Desliga e liga pro número que você já tem.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: palavra
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gives the best tip, with a small smile. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> tilts his head slightly, a small knowing smile. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Melhor ainda: combina uma palavra secreta com a família.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: e-golpe
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains how the secret word works. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Pediu dinheiro e não sabe a palavra? É golpe.</d> <Subject 1> gives a small firm nod. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: candidato
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> connects it to the election. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> leans slightly towards the lens, serious. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E vale pra eleição: vídeo de candidato também pode ser falso.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: confere
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> tells viewers to check before forwarding. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Antes de repassar, vê se saiu num jornal de verdade.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: somos-ia
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> admits, with a warm half smile, that he is made with AI too. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> gives a warm half smile, still looking straight into the lens. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Ah, e a gente aqui também é feito com inteligência artificial.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: avisa
+    video_frames: 124
+    ref_images: [cenario-home-office-vlog-jose.png]
+    ref_audios: [jose-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is José, the male caramel mixed-breed dog in <Picture 1>: a male Brazilian caramelo mixed-breed dog (vira-lata caramelo): medium-sized and lean, a short smooth caramel-golden coat, slightly paler cream fur on his muzzle, throat and chest, medium triangular ears that stand up at the base and fold forward at the tips, warm amber-brown eyes, a longish muzzle with a black nose. He wears no collar and no harness. Here he wears a plain heather-grey short-sleeved t-shirt with no print and no logo, his front legs through the sleeves, and a pair of plain black over-ear headphones resting around his neck.
+      <Subject 2> is the small home office corner of the caramel dog's modest apartment in a Brazilian city, shown in <Picture 1>: a pale sage-green wall, a wooden shelf with a few books and a green trailing pothos plant, a black-and-white football on top of a small black computer tower, a window on the right with half-open blinds and apartment buildings outside, a dark desk with a black keyboard and a plain cream coffee mug, in warm late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> closes, friendly and firm. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens he is framed exactly as in <Picture 1>, facing the lens, his whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage with warm, natural late-afternoon light and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at his eye level, like a phone set up to record a video diary, in a medium shot of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1> sits on a black office chair at his desk, facing the camera straight on and looking directly into the lens, talking to the viewer; his front paws rest on the desk just behind the keyboard, and his face is sharp and centred just above the middle of the frame. He sits still and upright, settled deep in the chair; the tall black back of the office chair fills the space behind him on both sides. Behind him, softly out of focus, <Subject 2>: the sage-green wall, the wooden shelf with books and the trailing pothos plant at the upper left, the football on the black computer tower on the left, and the window with half-open blinds on the right. The out-of-focus black back of a monitor fills the left edge of the frame, the black keyboard runs along the bottom, and the cream coffee mug sits in the lower right corner. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a young adult male voice, a guy of about twenty-three, light and warm, relaxed and friendly, clear, at a steady explaining pace), his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Mas a gente avisa. Golpista não avisa. Manda pra sua família.</d> <Subject 1> gives a small friendly nod. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet room tone in a small apartment, the faint hum of a computer, and soft city ambience drifting in through the window: distant traffic and birdsong. No barking, whining or growling at any point.
+      non_diegetic_music: N/A

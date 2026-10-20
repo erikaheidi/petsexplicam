@@ -1,0 +1,95 @@
+# loterica rodada 1b - a da calçada não parecia lotérica (Erika). Duas ideias:
+# dentro da lotérica (guichês de vidro, azul e laranja, fila de cachorros) e a
+# sala de caixas eletrônicos do banco. Sem letreiro: o que diz o lugar é o guichê.
+#
+#   ./mm images movies/cenarios/scripts/loterica-2.yaml
+kind: images
+name: loterica
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real knitted wool, bright even indoor lighting, shallow depth
+      of field, vertical 9:16 framing. No text, no letters, no numbers, no
+      logos, no labels, no price tags, no screens and no signs with anything
+      written on them anywhere in the picture.
+
+images:
+  - id: dentro-a
+    seed: 9513
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &lot >-
+      A photograph inside a small, busy Brazilian lottery and bill-payment
+      shop (a casa lotérica) on a weekday morning, the day pensions are paid,
+      taken from a low static camera at the dogs' eye level. On the right of
+      the frame, side by side on a row of plain moulded plastic waiting
+      chairs, sit two elderly lady dogs: nearest the centre the small elderly
+      poodle in <image1>, with the same off-white curly coat, greying muzzle,
+      long curly ears and plain lilac knitted cardigan; beside her, on the
+      right edge, the plump elderly cocker spaniel in <image2>, with the same
+      wavy golden-red coat, white muzzle, long wavy ears and plain sea-green
+      knitted cardigan. Both are turned to the left in a three-quarter
+      profile, looking at the third dog. The poodle holds a small plain brown
+      leather handbag on her lap. On the left of the frame, on the floor, sits
+      the black French bulldog in <image3> (not the fawn pug at the edge of
+      that picture): the same face, the same large upright bat ears, the same
+      white stripe down the middle of her muzzle, greyish-white chin and wide
+      white blaze on her chest, with no collar and no harness; she is turned
+      to the right in a three-quarter profile, looking at the two ladies. All
+      three are seen whole, their faces and mouths clearly visible. Behind
+      them, softly out of focus: a long counter divided into three service
+      windows with thick glass panels and small round metal speaking grilles,
+      in the shop's colours of bright blue and orange, with a little slot
+      under each glass for passing money and papers; blue-and-orange wall
+      panels with nothing written on them; a short queue of dogs waiting their
+      turn at the windows; a fan on the wall. No people, no human figures and
+      no human hands anywhere in the picture.
+  - id: dentro-b
+    seed: 9514
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *lot
+  - id: caixa-a
+    seed: 9515
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: &atm >-
+      A photograph in the self-service area of a Brazilian bank branch on a
+      weekday morning, the day pensions are paid, taken from a low static
+      camera at the dogs' eye level. On the right of the frame, side by side
+      on a row of plain moulded plastic waiting chairs, sit two elderly lady
+      dogs: nearest the centre the small elderly poodle in <image1>, with the
+      same off-white curly coat, greying muzzle, long curly ears and plain
+      lilac knitted cardigan; beside her, on the right edge, the plump elderly
+      cocker spaniel in <image2>, with the same wavy golden-red coat, white
+      muzzle, long wavy ears and plain sea-green knitted cardigan. Both are
+      turned to the left in a three-quarter profile, looking at the third dog.
+      The poodle holds a small plain brown leather handbag on her lap. On the
+      left of the frame, on the floor, sits the black French bulldog in
+      <image3> (not the fawn pug at the edge of that picture): the same face,
+      the same large upright bat ears, the same white stripe down the middle
+      of her muzzle, greyish-white chin and wide white blaze on her chest,
+      with no collar and no harness; she is turned to the right in a three-
+      quarter profile, looking at the two ladies. All three are seen whole,
+      their faces and mouths clearly visible. Behind them, softly out of
+      focus: a row of grey cash machines set into a pale wall, each with a
+      dark blank screen and a small keypad, a glass entrance door with
+      daylight outside, a short queue of dogs waiting their turn at the
+      machines, and a potted plant in the corner. No people, no human figures
+      and no human hands anywhere in the picture.
+  - id: caixa-b
+    seed: 9516
+    ref_images: [cida-referencia.png, lurdes-referencia.png, cenario-varandafrente-pretinha.png]
+    prompt: *atm

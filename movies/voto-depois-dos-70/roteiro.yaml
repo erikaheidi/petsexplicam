@@ -1,0 +1,91 @@
+# voto-depois-dos-70 - no supermercado, Dona Cida diz que nem vai votar: com
+# setenta e cinco, não é obrigada. A Pretinha confirma (CF, art. 14), mas
+# mostra que o voto dela conta igual, e tira as desculpas: prioridade na fila
+# e ônibus de graça no domingo. Ver drafts/voto-depois-dos-70.md.
+#
+# Ponto factual: o voto é facultativo para MAIORES de 70. A Lurdes fala
+# "setenta e dois" para não cair no caso de quem tem exatamente 70.
+#
+# Cenário com dupla (os três), closes pretinha e senhoras.
+cenario: salao
+seed: 2026
+
+cenas:
+  - id: nem-vou
+    camera: dupla
+    resumo: Cida tells her friend Lurdes she will not vote, while Pretinha listens.
+    antes: Cida turns her head a little towards Lurdes, chatty and relaxed.
+    fala:
+      quem: cida
+      texto: "Nem vou votar, Lurdes. Na minha idade não precisa."
+
+  - id: e-eu
+    resumo: Lurdes asks about herself.
+    antes: Lurdes tilts her head, curious.
+    fala:
+      quem: lurdes
+      texto: "É mesmo? E eu, que tenho setenta e dois?"
+
+  - id: facultativo
+    resumo: Pretinha confirms, polite.
+    antes: Pretinha keeps looking at the two ladies, polite and calm.
+    fala:
+      quem: pretinha
+      texto: "É verdade: depois dos setenta, o voto não é obrigatório."
+
+  - id: vale-igual
+    resumo: Pretinha makes her point, warm.
+    antes: Pretinha's eyes soften.
+    fala:
+      quem: pretinha
+      texto: "Mas o voto da senhora vale igualzinho ao de todo mundo."
+
+  - id: desculpas
+    resumo: Cida lists her excuses.
+    antes: Cida lets out a small sigh.
+    fala:
+      quem: cida
+      texto: "Ai, e a fila? O calor? A escola longe?"
+
+  - id: prioridade
+    resumo: Pretinha answers the first excuse.
+    antes: Pretinha nods slowly.
+    fala:
+      quem: pretinha
+      texto: "Quem tem mais de sessenta tem prioridade na fila."
+
+  - id: onibus
+    resumo: Pretinha answers the second excuse.
+    fala:
+      quem: pretinha
+      texto: "E domingo o ônibus é de graça. Decisão do Supremo."
+
+  - id: se-nao-for
+    resumo: Lurdes asks what happens if they stay home.
+    antes: Lurdes leans in a little towards Pretinha.
+    fala:
+      quem: lurdes
+      texto: "E se a gente não for, minha filha?"
+
+  - id: neto
+    resumo: Pretinha answers, serious.
+    antes: Pretinha keeps looking at Lurdes, serious and warm.
+    fala:
+      quem: pretinha
+      texto: "Aí quem decide o futuro do seu neto é outra pessoa."
+
+  - id: eu-vou
+    resumo: Cida changes her mind, smiling.
+    antes: Cida lifts her muzzle and her tail wags.
+    fala:
+      quem: cida
+      texto: "Então eu vou. E levo a Lurdes de braço dado!"
+
+  - id: fecho
+    camera: dupla
+    resumo: Pretinha closes with a rallying call, and the two ladies nod.
+    antes: Pretinha keeps looking at the two ladies, then nods firmly.
+    fala:
+      quem: pretinha
+      texto: "E se precisar, eu levo as duas. Dia vinte e cinco!"
+    depois: Cida and Lurdes nod together, smiling.

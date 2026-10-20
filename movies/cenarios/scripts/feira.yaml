@@ -1,0 +1,82 @@
+# feira - barraca de pastel numa feira livre de rua: o Paçoca e o primo José
+# (pix-ameaca, refeito fora da lanchonete). Sem camiseta do time: aqui eles
+# usam a descrição canônica, sem roupa, para não lembrar as terras raras.
+# A 1ª referência é a do José em 9:16 (o tamanho da saída segue a 1ª ref).
+# Rodada 2: closes por cima do ombro (jose, pacoca), editando a dupla escolhida.
+#
+#   ./mm images movies/cenarios/scripts/feira.yaml --dry-run
+#   ./mm images movies/cenarios/scripts/feira.yaml
+kind: images
+name: feira
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright midday sunlight filtered through a striped market
+      awning, shallow depth of field, vertical 9:16 framing. No text, no
+      letters, no numbers, no logos, no labels, no price tags, no screens and
+      no signs with anything written on them anywhere in the picture.
+
+images:
+  # Rodada 1 - o plano principal, do zero (2 seeds). A Erika escolhe.
+  - id: dupla-a
+    seed: 9501
+    ref_images: [jose-referencia-916.png, pacoca-referencia.png]
+    prompt: &p1 >-
+      A photograph of two dogs at a pastel stand in a Brazilian street market
+      (a feira livre) on a sunny Sunday morning, taken from a static camera at
+      the dogs' eye level, in a medium shot. The caramel dog is the caramel
+      mixed-breed dog in <image1>: the same face, the same short smooth
+      caramel-golden coat with paler cream fur on his muzzle, throat and
+      chest, the same ears that stand up at the base and fold forward at the
+      tips, the same warm amber-brown eyes. The pug is the fawn pug on the
+      right in <image2>: the same face, black mask, small folded ears, deep
+      forehead wrinkles and round body. Neither wears clothes, a collar or a
+      harness. They sit on two simple wooden stools at the narrow counter of
+      the stand, facing each other as if in conversation: the pug on the left,
+      seen in a three-quarter profile turned to the right, and the caramel dog
+      on the right, seen in a three-quarter profile turned to the left; both
+      faces and both mouths clearly visible, their heads and chests above the
+      counter. On the counter between them: two golden fried pastéis on white
+      paper napkins and two plastic cups of sugarcane juice. Behind them,
+      softly out of focus: the stand under a striped yellow-and-blue canvas
+      awning, a big pan of frying oil, and beyond it the busy market street
+      with other stalls heaped with fruit and vegetables under coloured
+      awnings. No people anywhere in the picture.
+  - id: dupla-b
+    seed: 9502
+    ref_images: [jose-referencia-916.png, pacoca-referencia.png]
+    prompt: *p1
+
+  # Rodada 1b - a Erika gostou da feira, mas apareceram pessoas ao fundo:
+  # editar as duas opções trocando cada pessoa por um cachorro.
+  - id: semgente-a
+    seed: 9503
+    ref_images: [feira-dupla-a.png]
+    prompt: &semgente >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      pug and the caramel dog in front, their faces, poses and stools, the
+      counter with the pastéis and the cups of juice, the striped awning, the
+      frying pan, the stalls and the light - and change only the background:
+      replace every person in the market street behind them with dogs of
+      different breeds and colours walking between the stalls and looking at
+      the fruit, some carrying small woven shopping bags in their mouths. No
+      people, no human figures and no human hands anywhere in the picture.
+  - id: semgente-b
+    seed: 9504
+    ref_images: [feira-dupla-b.png]
+    prompt: *semgente

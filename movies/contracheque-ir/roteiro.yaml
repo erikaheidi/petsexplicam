@@ -1,0 +1,90 @@
+# contracheque-ir - no sofá, o Paçoca acha que o contracheque veio errado:
+# sumiu o desconto do imposto de renda. A Pretinha explica a isenção até
+# R$ 5 mil (desde janeiro de 2026, proposta do governo Lula) e quem paga a
+# conta (imposto mínimo de quem ganha muito). Ver drafts/contracheque-ir.md.
+#
+# Cenário com dupla e closes por cima do ombro. Sem
+# `camera:`, a cena vai no close de quem fala.
+cenario: ponto-onibus
+seed: 2026
+
+cenas:
+  - id: sumiu
+    camera: dupla
+    resumo: Paçoca shows Pretinha his payslip, alarmed.
+    antes: Paçoca lifts the folded sheet of paper towards Pretinha with one paw, his eyes wide.
+    fala:
+      quem: pacoca
+      texto: "Pretinha, olha meu contracheque! Sumiu o desconto do imposto de renda!"
+    depois: Pretinha keeps looking at him, calm.
+
+  - id: nao-paga
+    resumo: Pretinha explains, calm.
+    antes: Pretinha keeps looking at Paçoca, calm and patient.
+    fala:
+      quem: pretinha
+      texto: "Não é erro. Quem ganha até cinco mil não paga mais."
+
+  - id: desde-quando
+    resumo: Paçoca asks since when.
+    antes: Paçoca tilts his head, his forehead wrinkled.
+    fala:
+      quem: pacoca
+      texto: "Ué, e desde quando?"
+
+  - id: janeiro
+    resumo: Pretinha tells him.
+    fala:
+      quem: pretinha
+      texto: "Desde janeiro. Foi proposta do governo Lula, aprovada no Congresso."
+
+  - id: quem-paga
+    resumo: Paçoca raises a doubt, suspicious.
+    antes: Paçoca narrows his eyes a little, suspicious.
+    fala:
+      quem: pacoca
+      texto: "Mas alguém tem que pagar essa conta, né?"
+
+  - id: super-ricos
+    resumo: Pretinha explains who pays.
+    antes: Pretinha nods slowly.
+    fala:
+      quem: pretinha
+      texto: "Paga quem ganha mais de cinquenta mil por mês."
+
+  - id: milionario
+    resumo: Paçoca works it out, amazed.
+    antes: Paçoca's eyes widen and his ears lift.
+    fala:
+      quem: pacoca
+      texto: "Então quem ganha pouco para de pagar, e o milionário começa?"
+
+  - id: quinze-milhoes
+    resumo: Pretinha confirms, firm.
+    antes: Pretinha gives a small firm nod.
+    fala:
+      quem: pretinha
+      texto: "Exato. São uns quinze milhões de pessoas que deixaram de pagar."
+
+  - id: o-que-faco
+    resumo: Paçoca asks what to do with the money, excited.
+    antes: Paçoca bounces a little on the bench, his curled tail wagging.
+    fala:
+      quem: pacoca
+      texto: "E o que eu faço com esse dinheiro?"
+
+  - id: lembra
+    resumo: Pretinha answers, dry.
+    antes: Pretinha keeps looking at him, a tiny smile.
+    fala:
+      quem: pretinha
+      texto: "Primeiro, lembra disso no dia vinte e cinco."
+
+  - id: pastel
+    camera: dupla
+    resumo: Paçoca has a second idea, and Pretinha sighs.
+    antes: Paçoca's eyes widen and his tail wags fast.
+    fala:
+      quem: pacoca
+      texto: "E depois um pastel! Ou dois!"
+    depois: Pretinha lets out a small sigh and shakes her head, smiling.

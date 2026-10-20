@@ -1,0 +1,108 @@
+# v2 (20/10): refeito na feira livre - a Erika achou a lanchonete parecida demais
+# com as terras raras. A v1 (lanchonete) fica em renders/pix-ameaca/, sem postar.
+#   ./dialogo gerar pix-ameaca --versao v2
+# pix-ameaca - continuação das terras raras. Depois da pelada, no boteco, o
+# Paçoca pergunta ao primo José se vão taxar o Pix (boato de zap). O José
+# explica que ninguém taxou: quem implicou com o Pix foi o governo dos EUA
+# (Seção 301, tarifa de 25% em julho de 2026). Ver drafts/pix-ameaca.md.
+#
+# Ponto factual: o Flávio DEFENDEU o Pix em público ("não vou negociar o
+# Pix"). O roteiro nunca diz que ele é contra. Quem agradeceu o tarifaço foi
+# o irmão, Eduardo - e o próprio Flávio disse que ele errou (TV Globo,
+# 28/08/2026). NÃO dizer que o Eduardo quis negociar/trocar o Pix: ele nega
+# (a fala do Zelle é contestada).
+#
+# No plano da dupla o Paçoca está à esquerda e o José à direita, já virados um
+# para o outro: "keeps looking at him", nunca "turns towards him".
+cenario: feira
+seed: 2026
+
+cenas:
+  - id: zap
+    camera: dupla
+    resumo: After their football game, Paçoca asks his cousin José about a rumour he got on his phone.
+    antes: Paçoca keeps looking at José across the counter, his forehead wrinkled with worry.
+    fala:
+      quem: pacoca
+      texto: "Primo, me mandaram no zap que vão taxar o Pix. É verdade?"
+    depois: José keeps looking at him, ears perked up.
+
+  - id: boato
+    resumo: José calmly tells him it is a rumour.
+    antes: José keeps looking at Paçoca with a small patient smile and slowly shakes his head.
+    fala:
+      quem: jose
+      texto: "Não, Paçoca. Isso é boato. Ninguém taxou o Pix."
+
+  - id: eua
+    resumo: José tells him who really went after Pix.
+    antes: José keeps looking at Paçoca and raises his eyebrows slightly.
+    fala:
+      quem: jose
+      texto: "Quem implicou com o Pix foi o governo dos Estados Unidos."
+
+  - id: meu-pix
+    resumo: Paçoca is confused.
+    antes: Paçoca's eyes widen and his ears lift.
+    fala:
+      quem: pacoca
+      texto: "Os Estados Unidos? E o que eles têm com o meu Pix?"
+
+  - id: de-graca
+    resumo: José explains what Pix is.
+    antes: José keeps looking at Paçoca, nodding slightly.
+    fala:
+      quem: jose
+      texto: "O Pix é de graça e é do Banco Central."
+
+  - id: cartao
+    resumo: José explains why the Americans dislike it.
+    fala:
+      quem: jose
+      texto: "Aí as empresas americanas de cartão perdem dinheiro."
+    depois: José gives a small shrug.
+
+  - id: tarifa
+    resumo: José tells him about the tariff.
+    antes: José keeps looking at Paçoca, serious and calm.
+    fala:
+      quem: jose
+      texto: "Em julho, taxaram produto brasileiro em vinte e cinco por cento."
+
+  - id: lista
+    resumo: José finishes the point.
+    fala:
+      quem: jose
+      texto: "E o Pix tava na lista de reclamações deles."
+
+  - id: flavio
+    resumo: Paçoca remembers something he heard.
+    antes: Paçoca tilts his head, thinking.
+    fala:
+      quem: pacoca
+      texto: "Mas o Flávio não falou que defende o Pix?"
+
+  - id: irmao
+    resumo: José answers carefully.
+    antes: José nods slowly.
+    fala:
+      quem: jose
+      texto: "Falou. Mas o irmão dele agradeceu o tarifaço contra o Brasil."
+    depois: José keeps looking at Paçoca, waiting for his reaction.
+
+  - id: pastel
+    camera: dupla
+    resumo: Paçoca finally understands, comparing it to the snack bar.
+    antes: Paçoca sits up straight on his stool, his eyes wide, his curled tail wagging fast.
+    fala:
+      quem: pacoca
+      texto: "Entendi! O Pix é que nem o pastel daqui: é nosso!"
+
+  - id: soberania
+    camera: dupla
+    resumo: José agrees and closes the conversation.
+    antes: José keeps looking at Paçoca with a warm smile.
+    fala:
+      quem: jose
+      texto: "Isso, primo. O que é nosso, a gente defende no voto."
+    depois: Paçoca wags his curled tail fast.

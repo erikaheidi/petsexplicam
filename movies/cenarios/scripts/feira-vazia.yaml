@@ -1,0 +1,51 @@
+# feira rodada 1c - com cachorros no lugar das pessoas ficou esquisito (todos
+# encarando a câmera). Feira de manhã cedo, ainda vazia; e camiseta lisa nos
+# dois (sem a do time das terras raras), que também cobre a barriga.
+#
+#   ./mm images movies/cenarios/scripts/feira-vazia.yaml
+kind: images
+name: feira
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+defaults:
+  resolution: 1024
+  style_suffix: 'The result is a real photograph, not an illustration, cartoon or render: real fur, bright midday
+    sunlight filtered through a striped market awning, shallow depth of field, vertical 9:16 framing. No text, no
+    letters, no numbers, no logos, no labels, no price tags, no screens and no signs with anything written on them
+    anywhere in the picture.'
+images:
+- id: vazia-a
+  seed: 9505
+  ref_images:
+  - feira-dupla-a.png
+  prompt: 'Edit the photograph <image1>. Keep the pug and the caramel dog exactly as they are - the same faces,
+    the same poses on the wooden stools, turned towards each other - and keep the counter with the pastéis and the
+    cups of juice, the striped yellow-and-blue awning and the frying pan. Dress them: the pug now wears a plain
+    mustard-yellow short-sleeved t-shirt and the caramel dog a plain red short-sleeved t-shirt, both with no print,
+    no logo and no lettering, their front legs through the sleeves. Change the background into the same street market
+    very early in the morning, just after the stalls have been set up and before any shoppers arrive: the street
+    between the stalls is completely empty, with crates of fruit and vegetables under the coloured awnings, soft
+    early sunlight and long shadows. Nobody else is in the picture: no people, no human figures, no other dogs and
+    no other animals.'
+- id: vazia-b
+  seed: 9506
+  ref_images:
+  - feira-dupla-b.png
+  prompt: 'Edit the photograph <image1>. Keep the pug and the caramel dog exactly as they are - the same faces,
+    the same poses on the wooden stools, turned towards each other - and keep the counter with the pastéis and the
+    cups of juice, the striped yellow-and-blue awning and the frying pan. Dress them: the pug now wears a plain
+    mustard-yellow short-sleeved t-shirt and the caramel dog a plain red short-sleeved t-shirt, both with no print,
+    no logo and no lettering, their front legs through the sleeves. Change the background into the same street market
+    very early in the morning, just after the stalls have been set up and before any shoppers arrive: the street
+    between the stalls is completely empty, with crates of fruit and vegetables under the coloured awnings, soft
+    early sunlight and long shadows. Nobody else is in the picture: no people, no human figures, no other dogs and
+    no other animals.'

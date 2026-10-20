@@ -1,0 +1,103 @@
+# teste-cego-2 - o formato que chegou aos de 25 a 44 anos (82% de não
+# seguidores). O Paçoca pede outro teste cego, agora sobre o bolso. A Pretinha
+# conta o que cada lado fez, sem nome; o "primeiro" é sempre o lado do Lula.
+# Ver drafts/teste-cego-2.md.
+#
+# Pontos factuais: "o outro lado" é o governo Bolsonaro / a família, não o
+# Flávio pessoalmente - o Flávio defendeu o Pix em público; quem agradeceu a
+# tarifa e falou em negociar o Pix foi o Eduardo, irmão dele.
+#
+# Cenário com dupla e closes por cima do ombro.
+cenario: terraco-frente
+seed: 2026
+
+cenas:
+  - id: outro-teste
+    camera: dupla
+    resumo: Paçoca asks Pretinha to do another blind test with him, excited.
+    antes: Paçoca bounces a little where he sits, his curled tail wagging.
+    fala:
+      quem: pacoca
+      texto: "Pretinha, faz outro teste cego comigo? Agora sobre o meu bolso!"
+    depois: Pretinha keeps looking at him and nods.
+
+  - id: regras
+    resumo: Pretinha sets the rules.
+    antes: Pretinha keeps looking at Paçoca, calm and serious.
+    fala:
+      quem: pretinha
+      texto: "Faço. Sem nome. Só o que cada lado fez."
+
+  - id: minimo-1
+    resumo: Pretinha gives the first fact.
+    fala:
+      quem: pretinha
+      texto: "Salário mínimo: um fez lei pro mínimo subir acima da inflação."
+
+  - id: minimo-2
+    resumo: Pretinha gives the contrast.
+    fala:
+      quem: pretinha
+      texto: "O outro ficou três anos sem dar aumento real."
+
+  - id: primeiro-1
+    resumo: Paçoca picks the first one.
+    antes: Paçoca's eyes widen and his ears lift.
+    fala:
+      quem: pacoca
+      texto: "O primeiro! O mínimo é o que eu ganho!"
+
+  - id: ir-1
+    resumo: Pretinha gives the second fact.
+    antes: Pretinha nods slowly.
+    fala:
+      quem: pretinha
+      texto: "Imposto de renda: um isentou quem ganha até cinco mil."
+
+  - id: ir-2
+    resumo: Pretinha gives the contrast.
+    fala:
+      quem: pretinha
+      texto: "O outro prometeu isenção na campanha e não entregou."
+
+  - id: primeiro-2
+    resumo: Paçoca picks the first one again.
+    antes: Paçoca nods fast.
+    fala:
+      quem: pacoca
+      texto: "O primeiro de novo! Promessa até eu faço!"
+
+  - id: pix-1
+    resumo: Pretinha gives the third fact.
+    fala:
+      quem: pretinha
+      texto: "Pix: um governo defendeu o Pix contra a tarifa americana."
+
+  - id: pix-2
+    resumo: Pretinha gives the contrast.
+    fala:
+      quem: pretinha
+      texto: "Do outro lado, o irmão do candidato agradeceu a tarifa."
+
+  - id: mexeu
+    resumo: Paçoca reacts, indignant.
+    antes: Paçoca sits up straight, his ears flat, indignant.
+    fala:
+      quem: pacoca
+      texto: "Aí não! Mexeu com o Pix, mexeu comigo!"
+
+  - id: revela
+    resumo: Pretinha reveals the name.
+    antes: Pretinha keeps looking at him, a small smile.
+    fala:
+      quem: pretinha
+      texto: "Nas três, você escolheu o mesmo lado: o do Lula."
+
+  - id: tres-a-zero
+    camera: dupla
+    resumo: Paçoca celebrates his decision.
+    antes: Paçoca's curled tail wags fast and he bounces where he sits.
+    fala:
+      quem: pacoca
+      texto: "Três a zero! Dia vinte e cinco é treze!"
+    depois: Pretinha smiles and shakes her head slowly.

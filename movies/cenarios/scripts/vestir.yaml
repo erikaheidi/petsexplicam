@@ -1,0 +1,58 @@
+# vestir - a Pretinha de camiseta vermelha lisa nos cenários novos (Erika,
+# 20/10). Edita só a roupa nos planos já aprovados da farmácia (olhar-a) e da
+# cozinha-lurdes (trio-a); o resto fica igual.
+#
+#   ./mm images movies/cenarios/scripts/vestir.yaml
+kind: images
+name: vestir
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real knitted wool, bright even indoor lighting, shallow depth
+      of field, vertical 9:16 framing. No text, no letters, no numbers, no
+      logos, no labels, no price tags, no screens and no signs with anything
+      written on them anywhere in the picture.
+
+images:
+  - id: farmacia-a
+    seed: 9951
+    ref_images: [cenario-farmacia.png]
+    prompt: &farmacia >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      place, the light, the framing, every dog's face, pose, position and
+      where each one is looking. Change only one thing: the black French
+      bulldog now wears a plain red short-sleeved t-shirt with no print, no
+      logo and no lettering, her front legs through the sleeves, covering
+      her chest and back. Her face, ears and head stay exactly the same.
+  - id: farmacia-b
+    seed: 9952
+    ref_images: [cenario-farmacia.png]
+    prompt: *farmacia
+  - id: cozinha-lurdes-a
+    seed: 9961
+    ref_images: [cenario-cozinha-lurdes.png]
+    prompt: &cozinhalurdes >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      place, the light, the framing, every dog's face, pose, position and
+      where each one is looking. Change only one thing: the black French
+      bulldog now wears a plain red short-sleeved t-shirt with no print, no
+      logo and no lettering, her front legs through the sleeves, covering
+      her chest and back. Her face, ears and head stay exactly the same.
+  - id: cozinha-lurdes-b
+    seed: 9962
+    ref_images: [cenario-cozinha-lurdes.png]
+    prompt: *cozinhalurdes

@@ -1,0 +1,47 @@
+# farmacia rodada 1b - a Erika escolheu a dupla-b, mas a Pretinha olha para a
+# câmera: editar só o olhar dela, virada para o Tião.
+#
+#   ./mm images movies/cenarios/scripts/farmacia-olhar.yaml
+kind: images
+name: farmacia
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+    The result is a real photograph, not an illustration, cartoon or render:
+    real fur, real fabric, bright clean shop lighting, shallow depth of
+    field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+    no labels and no signs with anything written on them anywhere in the
+    picture.
+
+images:
+  - id: olhar-a
+    seed: 9533
+    ref_images: [farmacia-dupla-b.png, cenario-varandafrente-pretinha.png]
+    prompt: &olhar >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      white dog with black patches in the light-blue polo shirt on the right,
+      his face and pose, the counter, the paper bag, the shelves, the green
+      cross and the light - and change only the black French bulldog on the
+      left, who is the French bulldog in <image2> (not the fawn pug at the
+      edge of that picture), with the same face, bat ears, white muzzle
+      stripe and white chest blaze: turn her head to the right, towards the
+      white dog, so that she is seen in a three-quarter profile, her muzzle
+      pointing at him and her eyes looking up at his face, not at the
+      camera. Her face and mouth stay clearly visible. No people anywhere.
+  - id: olhar-b
+    seed: 9534
+    ref_images: [farmacia-dupla-b.png, cenario-varandafrente-pretinha.png]
+    prompt: *olhar

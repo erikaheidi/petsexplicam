@@ -1,0 +1,278 @@
+# secao-mudou v1 - GERADO por tools/dialogo.py a partir de movies/secao-mudou/roteiro.yaml.
+# Não edite à mão: mude o roteiro (ou a receita em tools/dialogo.py) e rode
+#   ./dialogo gerar secao-mudou
+# Cada cena é independente: dá para refazer uma só com --only N.
+name: secao-mudou
+backend: comfy
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fastvideo_vsa_datafree_1300step_4step_int8_convrot.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_int8_convrot.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  # 8 passos, start 0.2 / end 1.0: com 4 passos e atenção esparsa desde o
+  # primeiro passo a câmera treme.
+  steps: 8
+  ref_image_size: match
+  sol_attn:
+    mode: vsa
+    keep_percent: 20.0
+    min_tokens: 4096
+    start_percent: 0.2
+    end_percent: 1.0
+    verbose: true
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 107
+  seed: 2026
+  style_suffix: ""
+continuity:
+  anchors: []
+  chain_from_previous: false
+output:
+  container: mp4
+  audio: keep
+  music: null
+scenes:
+  - id: de-sempre
+    video_frames: 124
+    ref_images: [cenario-supermercado.png]
+    ref_audios: [cida-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Cida, the elderly female poodle in the middle in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is Lurdes, the elderly female cocker spaniel on the right in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 4> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> tells her friend <Subject 3> where she will vote on Sunday, while <Subject 1> listens. <Picture 1> supplies the three dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> and <Subject 3> (appear in [Shot 1]): fully_preserved - the same three dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>: the French bulldog on the left facing right, and the two old ladies side by side on the right, facing her.
+      <Subject 4> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and all three dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod at the dogs' eye level, in a medium shot, and it never moves, pans or zooms. <Subject 1> sits on the pale floor tiles at the left edge of the frame, turned to the right in a three-quarter profile, looking at the two ladies; <Subject 2> sits in the middle and <Subject 3> beside her on the right, both turned to the left in a three-quarter profile, looking back at <Subject 1>. All three are seen from their paws on the floor to the tips of their ears, their faces and mouths clearly visible, their heads in the middle of the frame. A red plastic shopping basket with oranges and bananas stands on the floor behind the gap between <Subject 1> and <Subject 2>. Behind them, softly out of focus, the slanted wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 4> under the bright ceiling lights. <Subject 2> turns her head a little towards <Subject 3>, chatty and cheerful. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy-five, thin and slightly quavering, sweet and chatty, a little breathless), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Domingo eu voto lá na escola de sempre, viu, Lurdes?</d> <Subject 1> keeps her mouth closed. <Subject 3> keeps her mouth closed. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: conferiu
+    video_frames: 124
+    ref_images: [cenario-supermercado-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> politely asks the old poodle off-screen a question. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the old poodle's out-of-focus head and lilac shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the old poodle's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the back of the poodle's curly off-white head and long curly ear and her shoulder in the lilac knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the old poodle at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest with the white blaze are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 2> under the bright ceiling lights. <Subject 1> keeps looking at the two ladies, polite and serious. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Dona Cida, a senhora já conferiu se o seu local mudou?</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: mudou
+    ref_images: [cenario-supermercado-senhoras.png]
+    ref_audios: [cida-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Cida, the elderly female poodle in the middle in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Lurdes, the elderly female cocker spaniel on the right in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> is surprised. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus black back and ear along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black back and the back of her large upright black bat ear, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame. Behind them, softly out of focus, the red shopping basket on the floor and the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 3> under the bright ceiling lights. <Subject 1>'s eyes widen and she lifts her head. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy-five, thin and slightly quavering, sweet and chatty, a little breathless), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Mudou? Mas eu votei lá no primeiro turno!</d> <Subject 2> keeps her mouth closed. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: quatro-mil
+    video_frames: 124
+    ref_images: [cenario-supermercado-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains the news. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the old poodle's out-of-focus head and lilac shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the old poodle's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the back of the poodle's curly off-white head and long curly ear and her shoulder in the lilac knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the old poodle at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest with the white blaze are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 2> under the bright ceiling lights. <Subject 1> nods slowly, calm and patient. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] A Justiça Eleitoral mudou mais de quatro mil seções de lugar.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: como
+    video_frames: 124
+    ref_images: [cenario-supermercado-senhoras.png]
+    ref_audios: [lurdes-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Cida, the elderly female poodle in the middle in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Lurdes, the elderly female cocker spaniel on the right in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> asks how to find out. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus black back and ear along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black back and the back of her large upright black bat ear, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame. Behind them, softly out of focus, the red shopping basket on the floor and the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 3> under the bright ceiling lights. <Subject 2> leans in a little towards the French bulldog off-screen, worried. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy, low and a little husky, warm and motherly, at an unhurried pace), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E como é que a gente descobre, minha filha?</d> <Subject 1> keeps her mouth closed. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: e-titulo
+    video_frames: 124
+    ref_images: [cenario-supermercado-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> tells them where to check. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the old poodle's out-of-focus head and lilac shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the old poodle's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the back of the poodle's curly off-white head and long curly ear and her shoulder in the lilac knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the old poodle at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest with the white blaze are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 2> under the bright ceiling lights. <Subject 1> keeps looking at the old spaniel off-screen, clear and patient. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] No aplicativo étítulo, ou no site da Justiça Eleitoral.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: nao-sei
+    video_frames: 124
+    ref_images: [cenario-supermercado-senhoras.png]
+    ref_audios: [cida-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Cida, the elderly female poodle in the middle in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Lurdes, the elderly female cocker spaniel on the right in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> admits she cannot use apps. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus black back and ear along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black back and the back of her large upright black bat ear, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame. Behind them, softly out of focus, the red shopping basket on the floor and the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 3> under the bright ceiling lights. <Subject 1> lowers her head a little, embarrassed. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy-five, thin and slightly quavering, sweet and chatty, a little breathless), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Ai, eu não sei mexer nesse negócio de aplicativo.</d> <Subject 2> keeps her mouth closed. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: eu-confiro
+    video_frames: 124
+    ref_images: [cenario-supermercado-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> offers to check it for her, kindly. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the old poodle's out-of-focus head and lilac shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the old poodle's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the back of the poodle's curly off-white head and long curly ear and her shoulder in the lilac knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the old poodle at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest with the white blaze are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 2> under the bright ceiling lights. <Subject 1>'s ears rise and her eyes soften. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Me passa o seu título que eu confiro agora pra senhora.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: o-meu
+    video_frames: 90
+    ref_images: [cenario-supermercado-senhoras.png]
+    ref_audios: [lurdes-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Cida, the elderly female poodle in the middle in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Lurdes, the elderly female cocker spaniel on the right in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> asks her to check hers too, smiling. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus black back and ear along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black back and the back of her large upright black bat ear, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame. Behind them, softly out of focus, the red shopping basket on the floor and the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 3> under the bright ceiling lights. <Subject 2>'s tail wags and she lifts her muzzle, smiling. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy, low and a little husky, warm and motherly, at an unhurried pace), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Confere o meu também, Pretinha!</d> <Subject 1> keeps her mouth closed. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: avo-tias
+    video_frames: 124
+    ref_images: [cenario-supermercado-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> tells everyone to check their polling place and their family's. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the old poodle's out-of-focus head and lilac shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod just behind the old poodle's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the back of the poodle's curly off-white head and long curly ear and her shoulder in the lilac knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits on the pale floor tiles in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the old poodle at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest with the white blaze are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 2> under the bright ceiling lights. <Subject 1> keeps looking at the two ladies, serious and warm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Confira o seu. E o da sua avó, das suas tias.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: fecho
+    video_frames: 124
+    ref_images: [cenario-supermercado.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is Cida, the elderly female poodle in the middle in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is Lurdes, the elderly female cocker spaniel on the right in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 4> is the fruit and vegetable section of the small Brazilian neighbourhood supermarket shown in <Picture 1>: pale floor tiles, slanted wooden crates heaped with oranges, tomatoes, green lettuces, bananas and papayas, a red plastic shopping basket with oranges and bananas on the floor, and bright white ceiling lights.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> adds the neighbour and the date with a rallying call, and the two ladies nod. <Picture 1> supplies the three dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> and <Subject 3> (appear in [Shot 1]): fully_preserved - the same three dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>: the French bulldog on the left facing right, and the two old ladies side by side on the right, facing her.
+      <Subject 4> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and all three dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage inside a supermarket in the morning, in bright, even white overhead light and vibrant but natural colours, shot from a locked-off static camera on a low tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a low tripod at the dogs' eye level, in a medium shot, and it never moves, pans or zooms. <Subject 1> sits on the pale floor tiles at the left edge of the frame, turned to the right in a three-quarter profile, looking at the two ladies; <Subject 2> sits in the middle and <Subject 3> beside her on the right, both turned to the left in a three-quarter profile, looking back at <Subject 1>. All three are seen from their paws on the floor to the tips of their ears, their faces and mouths clearly visible, their heads in the middle of the frame. A red plastic shopping basket with oranges and bananas stands on the floor behind the gap between <Subject 1> and <Subject 2>. Behind them, softly out of focus, the slanted wooden crates of oranges, tomatoes, lettuces and bananas of <Subject 4> under the bright ceiling lights. <Subject 1> keeps looking at the two ladies, then nods firmly. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and calm, with precise diction and an unhurried pace, dry and slightly weary), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E o da vizinha também. Dia vinte e cinco, vamos virar!</d> <Subject 2> keeps her mouth closed. <Subject 3> keeps her mouth closed. <Subject 2> and <Subject 3> nod together, smiling. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Soft, empty supermarket ambience: the low steady hum of refrigerated produce counters and the faint buzz of the ceiling lights. No music, no announcements, no voices other than the dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
