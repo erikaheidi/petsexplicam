@@ -82,6 +82,19 @@ Mostre a tabela de falas para a Erika aprovar antes de gastar GPU.
 - Arquivo: `movies/<filme>/renders/<nome>/<nome>-legendado.mp4`
   (`./legendas <script>` refaz; `--previa N` legenda só as N primeiras cenas).
 - Legenda do post + hashtags em `movies/<filme>/drafts/<filme>.md`.
+- **Capa** com `./capa` (1080x1920, frame do vídeo, título amarelo com
+  contorno, subtítulo branco, texto no recorte 3:4 do grid):
+  ```bash
+  ./capa movies/<filme>/scripts/v2.yaml --frames      # folha de frames (renders/<nome>/frames-capa.png)
+  ./capa movies/<filme>/scripts/v2.yaml 2 "VÃO TAXAR|O PIX?" "o primo da TI explica" --frame 70
+  ./capa movies/<filme>/scripts/v2.yaml --folha       # compara as capa-*.png (renders/<nome>/capas.png)
+  ```
+  Sai em `movies/<filme>/assets/capa-<slug>.png`; `|` quebra a linha. Ajuste
+  `--y` (topo do título) e `--tamanho` até o texto não cobrir rosto nem
+  orelha - leia a folha antes de mostrar. Faça 2-3 opções; frame com boca
+  aberta e olhar vivo. Título: a pergunta que o público 55+ recebe no zap
+  ("VÃO TAXAR O PIX?"), ou a fórmula que trouxe seguidores ("o primo da TI
+  explica"). Curto: 2 linhas de título, 1-2 de subtítulo.
 - Checklist: rótulo de IA ligado; sem impulsionamento pago (só candidatos e
   partidos podem); nada novo no dia da votação (até a véspera, 24/10); fatos
   conferidos na fonte oficial.

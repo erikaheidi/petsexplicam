@@ -1,0 +1,5 @@
+#!/bin/sh
+# Capa do post a partir de um frame do vídeo (tools/capa.py), com o Python do
+# sistema (Pillow).  ./capa movies/<filme>/scripts/v2.yaml --frames | <cena> "TÍTULO" "sub"
+here=$(cd "$(dirname "$0")" && pwd)
+exec python3 "$here/tools/capa.py" "$@"

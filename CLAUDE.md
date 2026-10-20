@@ -151,6 +151,9 @@ Passo a passo:
    do overlap como a montagem faz + trecho com som de fala). Quebra na
    pontuação, 2 linhas de até 24 caracteres; Paçoca amarelo, Pretinha
    branca; posição fora da área da interface do Reels.
+6. **Capa**: `./capa movies/<nome>/scripts/v1.yaml --frames` para escolher o
+   frame, depois `./capa <script> <cena> "TÍTULO|LINHA 2" "subtítulo"` ->
+   `movies/<nome>/assets/capa-*.png` (receita no skill `petsexplicam-video`).
 
 Outros formatos (um pet só, fl2va a partir de foto) partem dos templates
 abaixo e do skill `h3-prompt-writing` (Ref2VA de seis seções,
