@@ -1,0 +1,83 @@
+# rua-festa - a rua da comunidade enfeitada para o domingo de eleição: os seis
+# personagens juntos, de branco, cantando (vídeo de 25/10, sem candidato
+# nenhum). Bandeirinhas verde e amarelo com um pouco de vermelho (Erika).
+# Os seis vêm de três frames aprovados: lotérica (Pretinha, Cida, Lurdes),
+# feira (Paçoca, José) e a referência do Tião.
+# grupo-*: plano geral, os seis lado a lado. rua-*: a rua sem ninguém.
+#
+#   ./mm images movies/cenarios/scripts/rua-festa.yaml
+kind: images
+name: rua-festa
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright warm morning sunlight, vibrant but natural colours,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      flags of any party, no banners and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  - id: grupo-a
+    seed: 9971
+    ref_images: [cenario-loterica.png, cenario-feira.png, tiao-referencia.png]
+    prompt: &grupo >-
+      A new photograph, not an edit of the shop: a festive street in a
+      working-class Brazilian neighbourhood (a comunidade) on a sunny Sunday
+      morning, taken from a static camera at the dogs' eye level, in a wide
+      shot. Strings of small paper bunting flags zigzag across the street
+      overhead between the houses, mostly green and yellow with a few red
+      ones; green and yellow streamers hang from the windows. The houses are
+      small, colourful and side by side, with unplastered brick on some
+      walls, a steep street rising behind. Six dogs sit side by side in one
+      row on the pavement in the middle of the street, close together,
+      facing the camera, happy, their mouths open as if singing together:
+      from left to right, the black French bulldog from <image1>, the fawn
+      pug from <image2>, the caramel dog from <image2>, the white dog with
+      large black patches from <image3>, the elderly white poodle from
+      <image1> and the elderly golden-red cocker spaniel from <image1>. Each
+      keeps exactly the same face, coat, ears and markings as in their
+      picture. All six are dressed in white: the French bulldog, the pug, the
+      caramel dog and the patched dog each wear a plain white short-sleeved
+      t-shirt, and the poodle and the cocker spaniel each wear a plain white
+      knitted cardigan, all with no print, no logo and no lettering. All six
+      are seen whole, from their paws to the tips of their ears, their faces
+      and mouths clearly visible. No people and no other animals anywhere in
+      the picture.
+  - id: grupo-b
+    seed: 9972
+    ref_images: [cenario-loterica.png, cenario-feira.png, tiao-referencia.png]
+    prompt: *grupo
+  - id: grupo-c
+    seed: 9973
+    ref_images: [cenario-loterica.png, cenario-feira.png, tiao-referencia.png]
+    prompt: *grupo
+
+  - id: rua-a
+    seed: 9981
+    prompt: &rua >-
+      A festive street in a working-class Brazilian neighbourhood (a
+      comunidade) on a sunny Sunday morning, taken from a static camera at
+      the height of a small dog, in a wide shot. Strings of small paper
+      bunting flags zigzag across the street overhead between the houses,
+      mostly green and yellow with a few red ones; green and yellow
+      streamers hang from the windows. The houses are small, colourful and
+      side by side, with unplastered brick on some walls, a steep street
+      rising behind. The street is empty and quiet. No people and no animals
+      anywhere in the picture.
+  - id: rua-b
+    seed: 9982
+    prompt: *rua

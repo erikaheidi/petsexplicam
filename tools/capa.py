@@ -58,6 +58,13 @@ def frame(video: Path, n: int, largura: int, altura: int, saida: Path) -> None:
                     "-frames:v", "1", str(saida)], check=True)
 
 
+def n_frames(video: Path) -> int:
+    r = subprocess.run(["ffprobe", "-v", "error", "-count_packets", "-select_streams", "v:0", "-show_entries",
+                        "stream=nb_read_packets", "-of", "csv=p=0", str(video)],
+                       check=True, capture_output=True, text=True)
+    return int(r.stdout.strip())
+
+
 def slug(texto: str) -> str:
     t = unicodedata.normalize("NFKD", texto.replace("|", " ")).encode("ascii", "ignore").decode()
     return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
@@ -86,7 +93,9 @@ def capa(base: Path, saida: Path, titulo: str, sub: str, y0: int, tam: int) -> N
         mascara.putpixel((0, y), int(150 * max(0.0, 1 - abs(y - meio) / 520)))
     im = Image.composite(Image.new("RGB", im.size), im, mascara.resize(im.size))
     d = ImageDraw.Draw(im)
-    y = bloco(d, titulo.upper().split("|"), tam, AMARELO, y0, 10)
+    # caixa alta, mas "6x1" fica com o x minúsculo (como na capa do fim-da-6x1)
+    titulo = re.sub(r"(\d)X(\d)", r"\1x\2", titulo.upper())
+    y = bloco(d, titulo.split("|"), tam, AMARELO, y0, 10)
     if sub:
         y = bloco(d, sub.split("|"), 62, "white", y + 15, 6)
     if y0 < GRID[0] or y > GRID[1]:
@@ -126,17 +135,19 @@ def main() -> None:
     assets = a.script.parent.parent / "assets"
 
     if a.frames:
-        quadros = [0, 30, 60, 90]
+        # 4 frames por cena, proporcionais: as cenas vão de 90 a 124 frames.
+        partes = (0.05, 0.35, 0.65, 0.9)
         clipes = sorted((rd / "scenes").glob("*.mp4"))
         with tempfile.TemporaryDirectory() as tmp:
             imgs, rots = [], []
             for c in clipes:
-                for n in quadros:
+                total = n_frames(c)
+                for n in (int(total * x) for x in partes):
                     p = Path(tmp) / f"{c.stem}-{n}.png"
                     frame(c, n, 270, 480, p)
                     imgs.append(p)
                     rots.append(f"{c.stem.split('-')[0].lstrip('0')} f{n}")
-            folha(imgs, rd / "frames-capa.png", len(quadros), rots)
+            folha(imgs, rd / "frames-capa.png", len(partes), rots)
         return
     if a.folha:
         capas = sorted(assets.glob("capa-*.png"))

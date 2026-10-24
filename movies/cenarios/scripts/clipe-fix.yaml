@@ -1,0 +1,207 @@
+# clipe-fix - refaz 4 imagens do clipe (Erika, 24/10):
+# - Pretinha saiu com o corpo branco: referência trocada pela foto real
+#   (pretinha-referencia.jpg) e "pelo todo preto, patas pretas" escrito.
+# - Cida com bolsa flutuante: sem bolsa.
+#
+#   ./mm images movies/cenarios/scripts/clipe-fix.yaml
+kind: images
+name: clipe-fix
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright, soft Sunday-morning sunlight, vibrant but natural colours,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      flags of any party, no banners and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  - id: pretinha-acao-a
+    seed: 10201
+    ref_images: [cenario-rua-bairro.png, pretinha-referencia.jpg]
+    prompt: >-
+      A photograph on the same tidy residential street of a middle-class
+      Brazilian neighbourhood as in <image1>: single-storey houses in soft
+      colours with low front walls, iron gates and small front gardens, trees
+      along the sidewalk, a blooming yellow ipê tree, and strings of small
+      green, yellow and a few red paper bunting flags across the street, on a
+      sunny Sunday morning, taken from a static camera at the dog's eye level,
+      in a medium-wide shot. In the middle of the frame is the black French
+      bulldog from the photograph <image2>: her whole coat is solid black with
+      faint dark brindle, her four legs and paws are black, and the only white
+      on her is a small blaze in the middle of her chest; the same large upright
+      bat ears and the same face, dressed in a plain white short-sleeved t-shirt
+      with no print that covers only her chest and back, her black legs and
+      black paws clearly visible below it, her front legs through the sleeves,
+      and no collar. She walks calmly along the sidewalk towards the camera,
+      mid-stride, her head high, serene and determined. Her whole body, face and
+      mouth are clearly visible; she keeps exactly the same face, coat and
+      markings as in <image2>. No people anywhere in the picture. Her legs,
+      paws, belly and head are black, never white.
+  - id: pretinha-acao-b
+    seed: 10202
+    ref_images: [cenario-rua-bairro.png, pretinha-referencia.jpg]
+    prompt: >-
+      A photograph on the same tidy residential street of a middle-class
+      Brazilian neighbourhood as in <image1>: single-storey houses in soft
+      colours with low front walls, iron gates and small front gardens, trees
+      along the sidewalk, a blooming yellow ipê tree, and strings of small
+      green, yellow and a few red paper bunting flags across the street, on a
+      sunny Sunday morning, taken from a static camera at the dog's eye level,
+      in a medium-wide shot. In the middle of the frame is the black French
+      bulldog from the photograph <image2>: her whole coat is solid black with
+      faint dark brindle, her four legs and paws are black, and the only white
+      on her is a small blaze in the middle of her chest; the same large upright
+      bat ears and the same face, dressed in a plain white short-sleeved t-shirt
+      with no print that covers only her chest and back, her black legs and
+      black paws clearly visible below it, her front legs through the sleeves,
+      and no collar. She walks calmly along the sidewalk towards the camera,
+      mid-stride, her head high, serene and determined. Her whole body, face and
+      mouth are clearly visible; she keeps exactly the same face, coat and
+      markings as in <image2>. No people anywhere in the picture. Her legs,
+      paws, belly and head are black, never white.
+  - id: pretinha-close-a
+    seed: 10203
+    ref_images: [cenario-rua-bairro.png, pretinha-referencia.jpg]
+    prompt: >-
+      A beautiful cinematic low-angle close-up portrait (contra-plongée) on the
+      same tidy residential street of a middle-class Brazilian neighbourhood as
+      in <image1>: single-storey houses in soft colours with low front walls,
+      iron gates and small front gardens, trees along the sidewalk, a blooming
+      yellow ipê tree, and strings of small green, yellow and a few red paper
+      bunting flags across the street, on a sunny Sunday morning: the black
+      French bulldog from the photograph <image2>: her whole coat is solid black
+      with faint dark brindle, her four legs and paws are black, and the only
+      white on her is a small blaze in the middle of her chest; the same large
+      upright bat ears and the same face, dressed all in white: a plain white
+      short-sleeved t-shirt with no print. The camera is low, below her chin,
+      looking up at her: her head and shoulders fill the frame at a
+      three-quarter angle, seen from below against a bright blue sky, looking
+      ahead down the street just to the side of the camera with a warm, hopeful,
+      dignified expression, the soft morning sun lighting the edge of her fur.
+      Above and behind her, softly out of focus, the colourful bunting flags
+      against the sky, the branches of the yellow ipê tree and the tops of the
+      houses. She keeps exactly the same face, coat and markings as in <image2>.
+      No people anywhere in the picture. Her legs, paws, belly and head are
+      black, never white.
+  - id: pretinha-close-b
+    seed: 10204
+    ref_images: [cenario-rua-bairro.png, pretinha-referencia.jpg]
+    prompt: >-
+      A beautiful cinematic low-angle close-up portrait (contra-plongée) on the
+      same tidy residential street of a middle-class Brazilian neighbourhood as
+      in <image1>: single-storey houses in soft colours with low front walls,
+      iron gates and small front gardens, trees along the sidewalk, a blooming
+      yellow ipê tree, and strings of small green, yellow and a few red paper
+      bunting flags across the street, on a sunny Sunday morning: the black
+      French bulldog from the photograph <image2>: her whole coat is solid black
+      with faint dark brindle, her four legs and paws are black, and the only
+      white on her is a small blaze in the middle of her chest; the same large
+      upright bat ears and the same face, dressed all in white: a plain white
+      short-sleeved t-shirt with no print. The camera is low, below her chin,
+      looking up at her: her head and shoulders fill the frame at a
+      three-quarter angle, seen from below against a bright blue sky, looking
+      ahead down the street just to the side of the camera with a warm, hopeful,
+      dignified expression, the soft morning sun lighting the edge of her fur.
+      Above and behind her, softly out of focus, the colourful bunting flags
+      against the sky, the branches of the yellow ipê tree and the tops of the
+      houses. She keeps exactly the same face, coat and markings as in <image2>.
+      No people anywhere in the picture. Her legs, paws, belly and head are
+      black, never white.
+  - id: cida-acao-a
+    seed: 10205
+    ref_images: [cenario-rua-bairro.png, cida-referencia.png]
+    prompt: >-
+      A photograph on the same tidy residential street of a middle-class
+      Brazilian neighbourhood as in <image1>: single-storey houses in soft
+      colours with low front walls, iron gates and small front gardens, trees
+      along the sidewalk, a blooming yellow ipê tree, and strings of small
+      green, yellow and a few red paper bunting flags across the street, on a
+      sunny Sunday morning, taken from a static camera at the dog's eye level,
+      in a medium-wide shot. In the middle of the frame is the small elderly
+      poodle from <image2>, with the same off-white curly coat, greying muzzle
+      and long curly ears, dressed all in white: a plain white hand-knitted
+      cardigan, her front legs through the sleeves, and no collar. She walks out
+      of the front garden of her pink house onto the sidewalk, and waves a front
+      paw towards a little neighbour dog looking out of an open window. Her
+      whole body, face and mouth are clearly visible; she keeps exactly the same
+      face, coat and markings as in <image2>. No people anywhere in the picture.
+      She carries nothing: no bag, no handbag, no purse and no objects anywhere
+      near her.
+  - id: cida-acao-b
+    seed: 10206
+    ref_images: [cenario-rua-bairro.png, cida-referencia.png]
+    prompt: >-
+      A photograph on the same tidy residential street of a middle-class
+      Brazilian neighbourhood as in <image1>: single-storey houses in soft
+      colours with low front walls, iron gates and small front gardens, trees
+      along the sidewalk, a blooming yellow ipê tree, and strings of small
+      green, yellow and a few red paper bunting flags across the street, on a
+      sunny Sunday morning, taken from a static camera at the dog's eye level,
+      in a medium-wide shot. In the middle of the frame is the small elderly
+      poodle from <image2>, with the same off-white curly coat, greying muzzle
+      and long curly ears, dressed all in white: a plain white hand-knitted
+      cardigan, her front legs through the sleeves, and no collar. She walks out
+      of the front garden of her pink house onto the sidewalk, and waves a front
+      paw towards a little neighbour dog looking out of an open window. Her
+      whole body, face and mouth are clearly visible; she keeps exactly the same
+      face, coat and markings as in <image2>. No people anywhere in the picture.
+      She carries nothing: no bag, no handbag, no purse and no objects anywhere
+      near her.
+  - id: cida-close-a
+    seed: 10207
+    ref_images: [cenario-rua-bairro.png, cida-referencia.png]
+    prompt: >-
+      A beautiful cinematic low-angle close-up portrait (contra-plongée) on the
+      same tidy residential street of a middle-class Brazilian neighbourhood as
+      in <image1>: single-storey houses in soft colours with low front walls,
+      iron gates and small front gardens, trees along the sidewalk, a blooming
+      yellow ipê tree, and strings of small green, yellow and a few red paper
+      bunting flags across the street, on a sunny Sunday morning: the small
+      elderly poodle from <image2>, with the same off-white curly coat, greying
+      muzzle and long curly ears, dressed all in white: a plain white
+      hand-knitted cardigan. The camera is low, below her chin, looking up at
+      her: her head and shoulders fill the frame at a three-quarter angle, seen
+      from below against a bright blue sky, looking ahead down the street just
+      to the side of the camera with a warm, hopeful, dignified expression, the
+      soft morning sun lighting the edge of her fur. Above and behind her,
+      softly out of focus, the colourful bunting flags against the sky, the
+      branches of the yellow ipê tree and the tops of the houses. She keeps
+      exactly the same face, coat and markings as in <image2>. No people
+      anywhere in the picture. She carries nothing: no bag, no handbag, no purse
+      and no objects anywhere near her.
+  - id: cida-close-b
+    seed: 10208
+    ref_images: [cenario-rua-bairro.png, cida-referencia.png]
+    prompt: >-
+      A beautiful cinematic low-angle close-up portrait (contra-plongée) on the
+      same tidy residential street of a middle-class Brazilian neighbourhood as
+      in <image1>: single-storey houses in soft colours with low front walls,
+      iron gates and small front gardens, trees along the sidewalk, a blooming
+      yellow ipê tree, and strings of small green, yellow and a few red paper
+      bunting flags across the street, on a sunny Sunday morning: the small
+      elderly poodle from <image2>, with the same off-white curly coat, greying
+      muzzle and long curly ears, dressed all in white: a plain white
+      hand-knitted cardigan. The camera is low, below her chin, looking up at
+      her: her head and shoulders fill the frame at a three-quarter angle, seen
+      from below against a bright blue sky, looking ahead down the street just
+      to the side of the camera with a warm, hopeful, dignified expression, the
+      soft morning sun lighting the edge of her fur. Above and behind her,
+      softly out of focus, the colourful bunting flags against the sky, the
+      branches of the yellow ipê tree and the tops of the houses. She keeps
+      exactly the same face, coat and markings as in <image2>. No people
+      anywhere in the picture. She carries nothing: no bag, no handbag, no purse
+      and no objects anywhere near her.

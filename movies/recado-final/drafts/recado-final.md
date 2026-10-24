@@ -7,14 +7,13 @@ Sem explicação nova: a Pretinha fala direto para a lente com quem ainda está
 em dúvida. "Pensa em quem você ama": a mãe que pega remédio de graça, o filho
 que vai ter duas folgas, a avó que viu a aposentadoria subir. Ela assume o
 lado - "eu sou de esquerda, e nunca escondi isso" - mas "tudo que eu disse
-aqui tem fonte". O Paçoca entra de fora do quadro: "E eu mudei de ideia, viu?
-Dá pra mudar!" Fecho: "Amanhã, vai votar. Leva a vizinha, leva a família." /
+aqui tem fonte". (A fala do Paçoca de fora do quadro saiu - Erika, 23/10:
+o vídeo é só da Pretinha.) Fecho: "Amanhã, vai votar. Leva a vizinha, leva a família." /
 "Dia vinte e cinco, treze. Obrigada por ficar até aqui."
 
 **Por que assim:** recapitula a semana em três exemplos que viraram vídeo
 (Farmácia Popular, 6x1, aposentadoria) e fecha a série com honestidade:
-posição assumida + fonte. O "dá pra mudar" do Paçoca é o arco do perfil
-inteiro, dito para o eleitor indeciso.
+posição assumida + fonte.
 
 Falas: `roteiro.yaml` (`./dialogo cenas recado-final`), 10 cenas, ~50 s.
 
@@ -43,7 +42,7 @@ Se você ainda está em dúvida, pensa em quem você ama:
 Eu sou de esquerda, e nunca escondi isso. Mas tudo o que eu disse aqui tem
 fonte - está nas legendas de cada vídeo. Pode conferir.
 
-E o Paçoca tem razão: dá pra mudar de ideia. 🐶
+Ainda dá tempo de mudar de ideia. 💭
 
 Amanhã, vai votar. Leva a vizinha, leva a família. 13. ✊
 

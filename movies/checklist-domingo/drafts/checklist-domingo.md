@@ -2,8 +2,8 @@
 
 **Postar:** sáb 24/10 (véspera). Vlog do José, `home-office`.
 
-O José dá o checklist para votar amanhã: horário (8h às 17h, horário de
-Brasília - quem está em outro fuso faz a conta), documento oficial com foto
+O José dá o checklist para votar amanhã: horário (8h às 17h; o fuso fica só
+na legenda, porque no exterior o horário é o local - Erika, 23/10), documento oficial com foto
 ou e-Título com foto, colinha de papel pode, celular não entra na cabine,
 conferir se a seção mudou, quem está na fila às 17h vota, ônibus de graça.
 Fecho: "manda esse vídeo pro grupo da família. Até amanhã!"
@@ -33,14 +33,14 @@ Falas: `roteiro.yaml` (`./dialogo cenas checklist-domingo`), 10 cenas, ~50 s.
 
 📌 SALVA ESSE VÍDEO: amanhã é segundo turno!
 
-🕗 Das 8h às 17h, horário de Brasília
-   (Acre: 6h às 15h; AM, RO, RR, MT e MS: 7h às 16h)
+🕗 No Brasil, das 8h às 17h, horário de Brasília
+   (Acre: 6h às 15h; AM, RO, RR, MT e MS: 7h às 16h, no horário local)
+🌍 Vota no exterior? O horário é o local: confira no site do consulado
 🪪 Documento oficial com foto, ou e-Título com foto
-📝 Colinha de papel pode!
 📵 Celular não entra na cabine
 📍 Confira se a sua seção mudou: e-Título ou tse.jus.br
 ⏰ Chegou na fila até as 17h? Você vota
-🚌 Ônibus de graça - confira os horários na sua cidade
+👵 Tem 60+? Prioridade na fila
 
 Manda pro grupo da família. 💛 Até amanhã!
 

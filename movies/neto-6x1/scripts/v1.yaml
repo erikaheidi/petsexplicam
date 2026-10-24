@@ -1,0 +1,296 @@
+# neto-6x1 v1 - GERADO por tools/dialogo.py a partir de movies/neto-6x1/roteiro.yaml.
+# Não edite à mão: mude o roteiro (ou a receita em tools/dialogo.py) e rode
+#   ./dialogo gerar neto-6x1
+# Cada cena é independente: dá para refazer uma só com --only N.
+name: neto-6x1
+backend: comfy
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fastvideo_vsa_datafree_1300step_4step_int8_convrot.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_int8_convrot.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  # 8 passos, start 0.2 / end 1.0: com 4 passos e atenção esparsa desde o
+  # primeiro passo a câmera treme.
+  steps: 8
+  ref_image_size: match
+  sol_attn:
+    mode: vsa
+    keep_percent: 20.0
+    min_tokens: 4096
+    start_percent: 0.2
+    end_percent: 1.0
+    verbose: true
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 107
+  seed: 2026
+  style_suffix: ""
+continuity:
+  anchors: []
+  chain_from_previous: false
+output:
+  container: mp4
+  audio: keep
+  music: null
+scenes:
+  - id: domingo
+    video_frames: 124
+    ref_images: [cenario-cozinha-lurdes.png]
+    ref_audios: [lurdes-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is Lurdes, the elderly female cocker spaniel in the middle in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is Cida, the elderly female poodle on the right in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 4> is the kitchen of an old, modest Brazilian house shown in <Picture 1>, at Sunday lunch: a square table with a red-and-white checked oilcloth set with plates, glasses, a pot of rice, a pot of black beans and a dish of roast chicken, one empty place with a clean plate, pale yellow wall tiles, an old white enamel stove with a steaming pan, a window with a lace curtain and plants on the sill, and a round wall clock, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> complains to her friend <Subject 3>, a little sad, while <Subject 1> listens. <Picture 1> supplies the three dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> and <Subject 3> (appear in [Shot 1]): fully_preserved - the same three dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>: the French bulldog in the red t-shirt on the left facing right, and the two old ladies side by side on the right, facing her.
+      <Subject 4> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and all three dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top, in a medium shot, and it never moves, pans or zooms. The three sit on wooden chairs at the kitchen table, their heads and chests above the checked oilcloth: <Subject 1> on the left, turned to the right in a three-quarter profile, looking at the two ladies; <Subject 2> in the middle and <Subject 3> beside her on the right, both turned to the left in a three-quarter profile, looking back at <Subject 1>. Their faces and mouths are clearly visible, and none of them looks into the lens. On the table in front of them are the pots of rice and beans, the dish of roast chicken and the glasses. Behind them, softly out of focus, the old white stove with the steaming pan and the window of <Subject 4>. <Subject 2> turns her head a little towards <Subject 3>, her eyes a little sad. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy, low and a little husky, warm and motherly, at an unhurried pace), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Meu neto nunca mais almoçou comigo no domingo, Cida.</d> <Subject 1> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. <Subject 3> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 2> speaks. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: seis-dias
+    ref_images: [cenario-cozinha-lurdes-senhoras.png]
+    ref_audios: [lurdes-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Lurdes, the elderly female cocker spaniel on the left in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Cida, the elderly female poodle on the right in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the kitchen of an old, modest Brazilian house shown in <Picture 1>, at Sunday lunch: a square table with a red-and-white checked oilcloth set with plates, glasses, a pot of rice, a pot of black beans and a dish of roast chicken, one empty place with a clean plate, pale yellow wall tiles, an old white enamel stove with a steaming pan, a window with a lace curtain and plants on the sill, and a round wall clock, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains why. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus head and red shoulder along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black head, the back of her large upright bat ear and her shoulder in the red t-shirt, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame, above the pots of rice and beans and the dish of roast chicken. Behind them, softly out of focus, the window with plants on the sill, the wall clock and the stove of <Subject 3>. <Subject 1> lowers her head a little. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy, low and a little husky, warm and motherly, at an unhurried pace), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Trabalha seis dias por semana, coitado. Chega morto.</d> <Subject 2> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 1> speaks. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: vai-mudar
+    video_frames: 124
+    ref_images: [cenario-cozinha-lurdes-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the kitchen of an old, modest Brazilian house shown in <Picture 1>: the red-and-white checked oilcloth, pale yellow wall tiles, the old white enamel stove with a steaming pan and the window with plants on the sill, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gives them good news, warm. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the cocker spaniel's out-of-focus ear and green shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the cocker spaniel's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the cocker spaniel's long wavy golden-red ear and her shoulder in the sea-green knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the cocker spaniel at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest in the red t-shirt are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the old white stove with the steaming pan and the window of <Subject 2>. <Subject 1>'s ears rise and her eyes brighten. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds bright and warm, smiling as she speaks, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Dona Lurdes, isso vai mudar. Acabou a escala seis por um.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: acabou
+    video_frames: 90
+    ref_images: [cenario-cozinha-lurdes-senhoras.png]
+    ref_audios: [cida-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Lurdes, the elderly female cocker spaniel on the left in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Cida, the elderly female poodle on the right in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the kitchen of an old, modest Brazilian house shown in <Picture 1>, at Sunday lunch: a square table with a red-and-white checked oilcloth set with plates, glasses, a pot of rice, a pot of black beans and a dish of roast chicken, one empty place with a clean plate, pale yellow wall tiles, an old white enamel stove with a steaming pan, a window with a lace curtain and plants on the sill, and a round wall clock, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> is surprised. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus head and red shoulder along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black head, the back of her large upright bat ear and her shoulder in the red t-shirt, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame, above the pots of rice and beans and the dish of roast chicken. Behind them, softly out of focus, the window with plants on the sill, the wall clock and the stove of <Subject 3>. <Subject 2>'s eyes widen and she lifts her head. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy-five, thin and slightly quavering, sweet and chatty, a little breathless), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Acabou? Mas acabou como, minha filha?</d> <Subject 1> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 2> speaks. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: constituicao
+    video_frames: 124
+    ref_images: [cenario-cozinha-lurdes-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the kitchen of an old, modest Brazilian house shown in <Picture 1>: the red-and-white checked oilcloth, pale yellow wall tiles, the old white enamel stove with a steaming pan and the window with plants on the sill, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains it is already in the Constitution. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the cocker spaniel's out-of-focus ear and green shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the cocker spaniel's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the cocker spaniel's long wavy golden-red ear and her shoulder in the sea-green knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the cocker spaniel at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest in the red t-shirt are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the old white stove with the steaming pan and the window of <Subject 2>. <Subject 1> nods slowly, calm and clear. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] O Congresso promulgou na sexta passada. Já tá na Constituição.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: duas-folgas
+    video_frames: 124
+    ref_images: [cenario-cozinha-lurdes-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the kitchen of an old, modest Brazilian house shown in <Picture 1>: the red-and-white checked oilcloth, pale yellow wall tiles, the old white enamel stove with a steaming pan and the window with plants on the sill, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains what changes. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the cocker spaniel's out-of-focus ear and green shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the cocker spaniel's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the cocker spaniel's long wavy golden-red ear and her shoulder in the sea-green knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the cocker spaniel at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest in the red t-shirt are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the old white stove with the steaming pan and the window of <Subject 2>. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Em dois meses, quem tem carteira assinada ganha duas folgas.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: salario
+    video_frames: 90
+    ref_images: [cenario-cozinha-lurdes-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the kitchen of an old, modest Brazilian house shown in <Picture 1>: the red-and-white checked oilcloth, pale yellow wall tiles, the old white enamel stove with a steaming pan and the window with plants on the sill, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> adds the key detail. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the cocker spaniel's out-of-focus ear and green shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the cocker spaniel's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the cocker spaniel's long wavy golden-red ear and her shoulder in the sea-green knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the cocker spaniel at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest in the red t-shirt are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the old white stove with the steaming pan and the window of <Subject 2>. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E sem cortar um centavo do salário.</d> <Subject 1> gives a small firm nod. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: volta
+    ref_images: [cenario-cozinha-lurdes-senhoras.png]
+    ref_audios: [lurdes-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Lurdes, the elderly female cocker spaniel on the left in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Cida, the elderly female poodle on the right in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the kitchen of an old, modest Brazilian house shown in <Picture 1>, at Sunday lunch: a square table with a red-and-white checked oilcloth set with plates, glasses, a pot of rice, a pot of black beans and a dish of roast chicken, one empty place with a clean plate, pale yellow wall tiles, an old white enamel stove with a steaming pan, a window with a lace curtain and plants on the sill, and a round wall clock, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> asks, hopeful. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus head and red shoulder along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black head, the back of her large upright bat ear and her shoulder in the red t-shirt, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame, above the pots of rice and beans and the dish of roast chicken. Behind them, softly out of focus, the window with plants on the sill, the wall clock and the stove of <Subject 3>. <Subject 1> lifts her muzzle, her eyes hopeful. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy, low and a little husky, warm and motherly, at an unhurried pace), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Então meu neto volta a almoçar comigo?</d> <Subject 2> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 1> speaks. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: natal
+    video_frames: 90
+    ref_images: [cenario-cozinha-lurdes-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the kitchen of an old, modest Brazilian house shown in <Picture 1>: the red-and-white checked oilcloth, pale yellow wall tiles, the old white enamel stove with a steaming pan and the window with plants on the sill, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> answers, smiling. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the cocker spaniel's out-of-focus ear and green shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the cocker spaniel's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the cocker spaniel's long wavy golden-red ear and her shoulder in the sea-green knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the cocker spaniel at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest in the red t-shirt are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the old white stove with the steaming pan and the window of <Subject 2>. <Subject 1>'s eyes soften and she smiles. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds warm and gentle, smiling, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Volta. E bem a tempo do Natal.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: quem-fez
+    ref_images: [cenario-cozinha-lurdes-senhoras.png]
+    ref_audios: [cida-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Lurdes, the elderly female cocker spaniel on the left in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 2> is Cida, the elderly female poodle on the right in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is the kitchen of an old, modest Brazilian house shown in <Picture 1>, at Sunday lunch: a square table with a red-and-white checked oilcloth set with plates, glasses, a pot of rice, a pot of black beans and a dish of roast chicken, one empty place with a clean plate, pale yellow wall tiles, an old white enamel stove with a steaming pan, a window with a lace curtain and plants on the sill, and a round wall clock, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> asks who made it happen. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus head and red shoulder along the left edge, and the two old ladies side by side, sharp, turned towards her.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, out of focus, are the French bulldog's black head, the back of her large upright bat ear and her shoulder in the red t-shirt, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the middle of the frame and <Subject 2> beside her on the right, both facing the camera at a three-quarter angle, turned to the left towards the French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans are sharp, their heads in the upper half of the frame, above the pots of rice and beans and the dish of roast chicken. Behind them, softly out of focus, the window with plants on the sill, the wall clock and the stove of <Subject 3>. <Subject 2> tilts her head, curious. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy-five, thin and slightly quavering, sweet and chatty, a little breathless), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E quem fez isso andar, minha filha?</d> <Subject 1> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 2> speaks. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: pt-lula
+    video_frames: 124
+    ref_images: [cenario-cozinha-lurdes-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the kitchen of an old, modest Brazilian house shown in <Picture 1>: the red-and-white checked oilcloth, pale yellow wall tiles, the old white enamel stove with a steaming pan and the window with plants on the sill, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> answers. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the cocker spaniel's out-of-focus ear and green shoulder along the right edge, and her face sharp, turned towards the ladies.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top just behind the cocker spaniel's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, out of focus, are the cocker spaniel's long wavy golden-red ear and her shoulder in the sea-green knitted cardigan, turned away from the camera; her face is never seen. <Subject 1> sits at the table in the left two thirds of the frame, her head turned to the right of the frame in a three-quarter view, towards the cocker spaniel at the right edge, and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and chest in the red t-shirt are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the old white stove with the steaming pan and the window of <Subject 2>. <Subject 1> keeps looking at the two ladies, serious and calm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Quem propôs foi o PT. Quem priorizou foi o governo Lula.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: pelo-neto
+    ref_images: [cenario-cozinha-lurdes.png]
+    ref_audios: [lurdes-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is Lurdes, the elderly female cocker spaniel in the middle in <Picture 1>: medium-sized and plump, a wavy golden-red coat, a muzzle and eyebrows gone white with age, long silky wavy ears hanging below her jaw, warm, slightly droopy brown eyes, a broad muzzle with a brown nose. She wears a plain sea-green hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 3> is Cida, the elderly female poodle on the right in <Picture 1>: small and slender, a soft curly coat of off-white fur gone slightly creamy with age, a greying muzzle, long curly ears hanging down beside her face, gentle dark brown eyes a little cloudy with age, a narrow muzzle with a black nose. She wears a plain lilac hand-knitted cardigan with no pattern, buttoned at the chest, her front legs through the sleeves, and no collar.
+      <Subject 4> is the kitchen of an old, modest Brazilian house shown in <Picture 1>, at Sunday lunch: a square table with a red-and-white checked oilcloth set with plates, glasses, a pot of rice, a pot of black beans and a dish of roast chicken, one empty place with a clean plate, pale yellow wall tiles, an old white enamel stove with a steaming pan, a window with a lace curtain and plants on the sill, and a round wall clock, in warm midday light.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> makes up her mind, and <Subject 3> nods. <Picture 1> supplies the three dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> and <Subject 3> (appear in [Shot 1]): fully_preserved - the same three dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>: the French bulldog in the red t-shirt on the left facing right, and the two old ladies side by side on the right, facing her.
+      <Subject 4> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and all three dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in a home kitchen at midday, in warm, natural light from the window and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the table top, in a medium shot, and it never moves, pans or zooms. The three sit on wooden chairs at the kitchen table, their heads and chests above the checked oilcloth: <Subject 1> on the left, turned to the right in a three-quarter profile, looking at the two ladies; <Subject 2> in the middle and <Subject 3> beside her on the right, both turned to the left in a three-quarter profile, looking back at <Subject 1>. Their faces and mouths are clearly visible, and none of them looks into the lens. On the table in front of them are the pots of rice and beans, the dish of roast chicken and the glasses. Behind them, softly out of focus, the old white stove with the steaming pan and the window of <Subject 4>. <Subject 2>'s tail wags and she lifts her muzzle, smiling. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (an elderly female voice, a woman of about seventy, low and a little husky, warm and motherly, at an unhurried pace), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Então domingo eu voto pelo meu neto!</d> <Subject 1> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. <Subject 3> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 2> speaks. <Subject 3> nods, smiling, and <Subject 1> smiles at them. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of the wall clock and faint birdsong through the window. No music, no voices other than the three dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A

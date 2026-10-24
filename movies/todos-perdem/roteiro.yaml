@@ -1,0 +1,69 @@
+# todos-perdem - postar em 23/10/2026 à noite. Cada coadjuvante, no close do
+# seu cenário, diz numa frase o que perde; fecho com os 7 juntos numa rua de
+# bairro enfeitada: "Se o Bolsonaro ganha... todos perdem!" (ideia da Erika).
+# Cada cena com `cenario:` próprio. Ver drafts/todos-perdem.md.
+#
+# Fatos (só o que tem fonte - ver o rascunho):
+#   - Tião: PLOA 2023 do governo Bolsonaro propôs -59% na gratuidade da
+#     Farmácia Popular ("tentaram cortar" - foi proposta, não corte).
+#   - Cida: 2020-2022 sem aumento real do mínimo (DIEESE, nota técnica 283).
+#   - José: Flávio prometeu parceria com os EUA nas terras raras (CNN, set/2026).
+#   - Renato: PL 3.723/2019 tira a marcação das munições; o Flávio defendeu na CCJ.
+#   - NÃO usar 6x1 (o Flávio votou a favor) nem Pix (ele defende).
+cenario: rua-bairro
+seed: 2026
+
+cenas:
+  - id: tiao
+    cenario: uber
+    camera: tiao
+    resumo: Tião, driving, says they already tried to cut his mother's medicine.
+    antes: Tião glances back over his shoulder towards the back seat, serious.
+    fala:
+      quem: tiao
+      texto: "Já tentaram cortar o remédio da minha mãe."
+
+  - id: cida
+    cenario: salao
+    camera: senhoras
+    resumo: Cida says her pension went three years without a real raise.
+    antes: Cida shakes her head slowly, indignant.
+    fala:
+      quem: cida
+      texto: "Minha aposentadoria ficou três anos sem aumento."
+
+  - id: jose
+    cenario: lanchonete
+    camera: jose
+    resumo: José says Flávio promised the Americans our rare earths.
+    antes: José raises his eyebrows, indignant.
+    fala:
+      quem: jose
+      texto: "Nossas terras raras, ele prometeu pros americanos."
+
+  - id: renato
+    cenario: sala-renato
+    camera: close
+    resumo: Renato says unmarked bullets only help criminals.
+    antes: Renato frowns at the phone, his jowls set.
+    fala:
+      quem: renato
+      texto: "Bala sem identificação só ajuda bandido."
+
+  - id: se-ganha
+    camera: todos
+    resumo: Pretinha starts the final line, firm.
+    antes: Pretinha looks at the others, firm.
+    fala:
+      quem: pretinha
+      texto: "Se o Bolsonaro ganha,"
+      tom: firm and serious
+
+  - id: todos-perdem
+    camera: todos
+    resumo: All seven shout the end of the line together.
+    antes: All seven dogs face the camera together.
+    fala:
+      quem: todos
+      texto: "todos perdem!"
+      tom: loud and united

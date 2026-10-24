@@ -1,0 +1,59 @@
+# sala-renato rodada 3 - o take de frente. O "celular" da rodada 2 (ele olhando
+# para a lente, afundado no sofá, sem pata) não serviu (Erika): agora ele senta
+# direito, as patas da frente à mostra, e olha para o celular na mesinha.
+#
+#   ./mm images movies/cenarios/scripts/sala-renato-frente.yaml
+kind: images
+name: sala-renato-frente
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, warm natural late-afternoon light from the window, vibrant but
+      natural colours, vertical 9:16 framing. No text, no letters, no numbers,
+      no logos and no screens showing anything anywhere in the picture.
+
+images:
+  - id: frente-a
+    seed: 10001
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: &frente >-
+      Change the photograph <image1> into a medium shot taken from in front of
+      him, from the other side of the coffee table, a little to the right, at
+      the height of the sofa seat. Keep the same English bulldog from <image1>,
+      who is also the bulldog in <image2> and <image3>: the same massive
+      wrinkled face, heavy jowls, white coat with fawn-brindle patches over his
+      ears and eyes, greying muzzle and small rose ears, in the same traditional
+      short-sleeved blue-and-white checked button-up shirt with a pointed collar
+      and a breast pocket. Keep the same living room: the worn brown sofa with
+      the colourful crocheted throw, the lace curtain, the fern, the wooden
+      sideboard with the small saint, the round wall clock. He sits upright and
+      alert on the front edge of the sofa cushion, not sunk into it, his chest
+      lifted and both front legs straight, his two white front paws clearly
+      visible resting on the cushion in front of him. His body faces the camera,
+      his head is turned a little down and to the left of the frame, and his
+      eyes are fixed on the smartphone in its small black stand on the coffee
+      table at the lower left of the frame, never on the camera; only the plain
+      black back of the phone is seen. His face, mouth, chest in the shirt and
+      front paws are sharp. No people and no other animals anywhere.
+  - id: frente-b
+    seed: 10002
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: *frente
+  - id: frente-c
+    seed: 10003
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: *frente

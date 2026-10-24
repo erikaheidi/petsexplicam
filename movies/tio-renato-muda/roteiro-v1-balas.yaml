@@ -1,0 +1,130 @@
+# tio-renato-muda - o Tio Renato (buldogue inglês, tio do Paçoca, votava 22)
+# liga para a Pretinha por vídeo e desabafa: depois do debate de domingo
+# pesquisou, viu o projeto que tira a identificação das munições e mudou o
+# voto. Monólogo da Erika (21/10), uma frase por cena; postar em 22/10.
+# Continua o tio-renato e o convencer-o-tio. Ver drafts/tio-renato-muda.md.
+#
+# Fatos (conferir antes de postar - fontes no rascunho):
+#   - Debate da Band, domingo 18/10/2026: o Lula cobrou o Flávio sobre a
+#     identificação das munições. (A Erika tinha escrito "sexta"; na sexta
+#     16/10 foi a entrevista do Flávio na Globo, o "detalhezinho".)
+#   - PL 3.723/2019: tira a marcação dos cartuchos e o código de barras das
+#     embalagens; o Flávio defendeu votar na CCJ do Senado.
+#   - "Favorece bandido e policial corrupto" é opinião do personagem.
+#
+# Câmeras (cenário sala-renato): "frente", "lado", "close" e "aberto" - em
+# todas ele fala com o celular na mesinha, nunca para a lente. Varie para
+# não repetir.
+cenario: sala-renato
+seed: 2026
+
+cenas:
+  - id: votei-22
+    resumo: Renato starts the video call, heavy-hearted.
+    camera: frente
+    antes: Renato looks at the phone on the coffee table, serious, and lets out a slow breath.
+    fala:
+      quem: renato
+      texto: "Pretinha, você sabe que eu votei vinte e dois."
+
+  - id: historias
+    resumo: Renato admits he dismissed the stories.
+    camera: lado
+    antes: Renato keeps looking at the phone on the coffee table, his brow heavy.
+    fala:
+      quem: renato
+      texto: "Eu achei que aquelas histórias que falavam dele"
+
+  - id: fake-news
+    resumo: Renato says he thought it was all fake news.
+    camera: close
+    antes: Renato shakes his head slowly, his jowls swaying.
+    fala:
+      quem: renato
+      texto: "era tudo fake news."
+
+  - id: debate
+    resumo: Renato says the debate worried him.
+    camera: aberto
+    antes: Renato sits on the sofa, his brow furrowed, looking down for a moment and then back at the phone.
+    fala:
+      quem: renato
+      texto: "Aí, depois do debate de domingo, fiquei preocupado."
+
+  - id: pesquisei
+    resumo: Renato says he looked things up.
+    camera: lado
+    antes: Renato leans a little towards the phone on the coffee table.
+    fala:
+      quem: renato
+      texto: "Pesquisei umas coisas."
+
+  - id: balas
+    resumo: Renato brings up the ammunition-marking bill.
+    camera: frente
+    antes: Renato leans a little towards the phone, his eyes narrowing.
+    fala:
+      quem: renato
+      texto: "Aquela história lá de remover a identificação das balas,"
+
+  - id: bandido
+    resumo: Renato says it only helps criminals and corrupt police.
+    camera: close
+    antes: Renato shakes his head, his jowls trembling, indignant.
+    fala:
+      quem: renato
+      texto: "aquilo é coisa que só vai favorecer bandido."
+
+  - id: corrupto
+    resumo: Renato adds corrupt police, bitter.
+    camera: frente
+    antes: Renato keeps looking at the phone and raises his heavy brow.
+    fala:
+      quem: renato
+      texto: "E policial corrupto."
+      tom: bitter and firm
+
+  - id: vizinho
+    resumo: Renato remembers his neighbour's son, his voice softer.
+    camera: lado
+    antes: Renato looks away from the phone, towards the window, his eyes sad.
+    fala:
+      quem: renato
+      texto: "Meu vizinho perdeu um filho pra bala perdida."
+      tom: quiet and sad, his voice softer
+
+  - id: lembro
+    resumo: Renato says he remembers it vividly.
+    camera: close
+    antes: Renato's eyes glisten and he swallows, still looking towards the window.
+    fala:
+      quem: renato
+      texto: "Eu lembro como se fosse hoje."
+      tom: quiet and moved
+
+  - id: mudar
+    resumo: Renato says he decided to change his vote.
+    camera: frente
+    antes: Renato turns back to the phone and sits up straight, firm.
+    fala:
+      quem: renato
+      texto: "Resolvi mudar meu voto."
+      tom: firm and decided
+
+  - id: lula
+    resumo: Renato asks Pretinha to tell Paçoca he will vote Lula.
+    camera: aberto
+    antes: Renato sits up on the sofa and lifts a front paw, his eyes wide and his mouth in a broad smile.
+    fala:
+      quem: renato
+      texto: "Avise o Paçoca: domingo eu vou de Lula!"
+      tom: energetic and proud
+
+  - id: seguranca
+    resumo: Renato closes, moved and firm.
+    camera: frente
+    antes: Renato looks at the phone, serious again.
+    fala:
+      quem: renato
+      texto: "Pela segurança do meu povo."
+      tom: firm and heartfelt

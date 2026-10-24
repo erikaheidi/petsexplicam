@@ -1,0 +1,98 @@
+# sala-renato rodada 2 - os takes "celular", "lado" e "close" editados do
+# aberto escolhido (assets/cenario-sala-renato.png), para a sala e o tio serem
+# os mesmos em todos. tio-renato-muda.
+#
+#   ./mm images movies/cenarios/scripts/sala-renato-takes.yaml
+kind: images
+name: sala-renato-takes
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, warm natural late-afternoon light from the window, vibrant but
+      natural colours, vertical 9:16 framing. No text, no letters, no numbers,
+      no logos and no screens showing anything anywhere in the picture.
+
+images:
+  - id: celular-a
+    seed: 9993
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: &celular >-
+      Change the photograph <image1> into the picture seen by the front camera
+      of the smartphone on the coffee table, during a video call: the camera is
+      just below his eye level, straight in front of him, in a medium close
+      shot. Keep the same English bulldog from <image1>, who is also the bulldog
+      in <image2> and <image3>: the same massive wrinkled face, heavy jowls,
+      white coat with fawn-brindle patches over his ears and eyes, greying
+      muzzle and small rose ears, in the same traditional short-sleeved blue-
+      and-white checked button-up shirt with a pointed collar and a breast
+      pocket. Keep the same living room: the worn brown sofa with the colourful
+      crocheted throw, the lace curtain, the fern, the wooden sideboard, the
+      round wall clock. He sits on the sofa facing the camera straight on and
+      looks directly into the lens, his face, whole muzzle and chest in the
+      shirt sharp and centred, his head in the upper half of the frame. Behind
+      him, softly out of focus, the crocheted throw on the sofa back and the
+      window with the lace curtain. No people and no other animals anywhere.
+  - id: celular-b
+    seed: 9994
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: *celular
+  - id: lado-a
+    seed: 9995
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: &lado >-
+      Change the photograph <image1> into a medium side shot from the end of the
+      sofa: the camera is at the height of the sofa seat, to his left. Keep the
+      same English bulldog from <image1>, who is also the bulldog in <image2>
+      and <image3>: the same massive wrinkled face, heavy jowls, white coat with
+      fawn-brindle patches over his ears and eyes, greying muzzle and small rose
+      ears, in the same traditional short-sleeved blue-and-white checked button-
+      up shirt with a pointed collar and a breast pocket. Keep the same living
+      room: the worn brown sofa with the colourful crocheted throw, the lace
+      curtain, the fern, the wooden sideboard, the round wall clock. He sits on
+      the sofa in profile, turned to the right of the frame, looking down at the
+      smartphone propped in its small black stand on the coffee table at the
+      right edge of the frame; only the plain black back of the phone is seen.
+      His face, mouth and chest in the shirt are sharp. Behind him, softly out
+      of focus, the window with the lace curtain and the fern. No people and no
+      other animals anywhere.
+  - id: lado-b
+    seed: 9996
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: *lado
+  - id: close-a
+    seed: 9997
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: &close >-
+      Change the photograph <image1> into a close-up of his face, as in a film:
+      the camera is just to the side of the smartphone on the coffee table. Keep
+      the same English bulldog from <image1>, who is also the bulldog in
+      <image2> and <image3>: the same massive wrinkled face, heavy jowls, white
+      coat with fawn-brindle patches over his ears and eyes, greying muzzle and
+      small rose ears, in the same traditional short-sleeved blue-and-white
+      checked button-up shirt with a pointed collar and a breast pocket. Keep
+      the same living room: the worn brown sofa with the colourful crocheted
+      throw, the lace curtain, the fern, the wooden sideboard, the round wall
+      clock. He faces the camera at a three-quarter angle, his head turned a
+      little to the right of the frame, looking at the phone just beside the
+      lens, never into the lens; his wrinkled face, heavy jowls and the collar
+      of the shirt are sharp and fill the frame, his mouth closed. Behind him,
+      softly out of focus, the round wall clock and the wooden sideboard. No
+      people and no other animals anywhere.
+  - id: close-b
+    seed: 9998
+    ref_images: [cenario-sala-renato.png, renato-referencia.png, renato-referencia-3q.png]
+    prompt: *close

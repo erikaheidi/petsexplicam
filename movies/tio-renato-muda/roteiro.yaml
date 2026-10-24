@@ -1,0 +1,106 @@
+# tio-renato-muda v2 - o Tio Renato (buldogue inglês, tio do Paçoca, votava
+# 22) liga para a Pretinha e conta, meio rabugento e de bom humor, que mudou o
+# voto: o Paçoca não parava de mandar vídeo, ele pesquisou e viu o que mudou na
+# vida dele. Versão leve, aprovada pela Erika em 22/10; a v1 (balas, vizinho,
+# voz solene) ficou pesada - roteiro em roteiro-v1-balas.yaml.
+#
+#   ./dialogo gerar tio-renato-muda --versao v2
+#
+# Fatos (fontes nos rascunhos dos vídeos da série):
+#   - Remédio de pressão de graça: Farmácia Popular, todos os 41 itens
+#     gratuitos desde fevereiro de 2025 (farmacia-popular).
+#   - Aposentadoria acima da inflação: política de aumento real do salário
+#     mínimo, lei do governo Lula; vale para quem ganha o mínimo
+#     (aposentadoria-subiu).
+#   - Duas folgas: PEC do fim da 6x1, promulgada em 16/10/2026 (neto-6x1).
+#
+# Câmeras (sala-renato): frente, lado, close, aberto - ele sempre fala com o
+# celular na mesinha, nunca para a lente. Tom leve em todas as ações.
+cenario: sala-renato
+seed: 2026
+
+cenas:
+  - id: votei-22
+    resumo: Renato starts the video call, a bit sheepish.
+    camera: frente
+    antes: Renato looks at the phone on the coffee table and clears his throat, a little sheepish.
+    fala:
+      quem: renato
+      texto: "Pretinha, você sabe que eu votei 22."
+
+  - id: pacoca-videos
+    resumo: Renato grumbles, half joking, about Paçoca's videos.
+    camera: lado
+    antes: Renato rolls his eyes and shakes his head, half smiling.
+    fala:
+      quem: renato
+      texto: "Mas o Paçoca não parou de me mandar vídeo."
+      tom: grumbling but amused
+
+  - id: pesquisei
+    resumo: Renato admits he looked things up.
+    camera: lado
+    antes: Renato shrugs his heavy shoulders, still looking at the phone.
+    fala:
+      quem: renato
+      texto: "Pesquisei umas coisas."
+
+  - id: remedio
+    resumo: Renato mentions his free blood-pressure medicine.
+    camera: close
+    antes: Renato raises his heavy brow, impressed.
+    fala:
+      quem: renato
+      texto: "O remédio da minha pressão, eu pego de graça na farmácia."
+
+  - id: aposentadoria
+    resumo: Renato mentions his pension rising above inflation.
+    camera: frente
+    antes: Renato nods to himself, counting on his memory.
+    fala:
+      quem: renato
+      texto: "Minha aposentadoria subiu mais que a inflação."
+
+  - id: neto
+    resumo: Renato mentions his grandson's two days off, softening.
+    camera: aberto
+    antes: Renato sits back on the sofa, his eyes softening, still looking at the phone.
+    fala:
+      quem: renato
+      texto: "E meu neto vai ter duas folgas por semana."
+      tom: warm and a little proud
+
+  - id: quem-fez
+    resumo: Renato asks himself who made all this happen.
+    camera: close
+    antes: Renato tilts his head and narrows his eyes, thinking.
+    fala:
+      quem: renato
+      texto: "Aí eu pensei: quem fez isso tudo?"
+
+  - id: mudar
+    resumo: Renato says he changed his vote.
+    camera: frente
+    antes: Renato sits up straight on the sofa, decided.
+    fala:
+      quem: renato
+      texto: "Resolvi mudar meu voto."
+      tom: firm and a little proud
+
+  - id: lula
+    resumo: Renato asks Pretinha to tell Paçoca he will vote Lula.
+    camera: aberto
+    antes: Renato lifts a front paw, his eyes wide and his mouth in a broad smile.
+    fala:
+      quem: renato
+      texto: "Avise o Paçoca: domingo eu vou de Lula!"
+      tom: cheerful and energetic
+
+  - id: parar-videos
+    resumo: Renato closes with a joke about the videos.
+    camera: frente
+    antes: Renato chuckles and wags a front paw at the phone, teasing.
+    fala:
+      quem: renato
+      texto: "E fala pra ele parar de me mandar vídeo!"
+      tom: joking and affectionate

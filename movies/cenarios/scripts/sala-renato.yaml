@@ -1,0 +1,58 @@
+# sala-renato - a sala da casa do Tio Renato (tio-renato-muda): ele no sofá,
+# em chamada de vídeo com a Pretinha, o celular apoiado na mesinha de centro.
+# Rodada 1: o plano aberto (vira o frame da câmera "aberto" e a base dos
+# outros takes). Rodada 2 (sala-renato-takes.yaml): celular, lado e close
+# editados do aberto escolhido, para a sala ser a mesma em todos.
+# Camisa social xadrez miúdo azul e branco, bem tradicional (Erika). Celular sem tela visível: a Pretinha não aparece.
+#
+#   ./mm images movies/cenarios/scripts/sala-renato.yaml
+kind: images
+name: sala-renato
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, warm natural late-afternoon light from the window, vibrant but
+      natural colours, vertical 9:16 framing. No text, no letters, no numbers,
+      no logos and no screens showing anything anywhere in the picture.
+
+images:
+  - id: aberto-a
+    seed: 9991
+    ref_images: [renato-referencia.png, renato-referencia-3q.png]
+    prompt: &aberto >-
+      A photograph of the living room of an older man's modest house in a
+      Brazilian city, late afternoon, taken from a static camera at the height
+      of the sofa seat, in a wide shot. On a worn brown fabric sofa with a
+      colourful crocheted throw over its back sits the English bulldog from
+      <image1> and <image2>: the same massive wrinkled face, heavy jowls,
+      white coat with fawn-brindle patches over his ears and eyes, greying
+      muzzle and small rose ears. He wears the same traditional
+      short-sleeved cotton button-up shirt in a small blue-and-white check as
+      in <image1>, with a pointed collar and a breast pocket, neatly buttoned
+      up, his front legs through the sleeves. He sits on the left half of the sofa, turned to the right in a
+      three-quarter profile, looking down at a smartphone propped upright in a
+      small black stand on a low wooden coffee table in front of him; the
+      phone's screen faces him, away from the camera, so only the plain black
+      back of the phone is seen. His face and mouth are clearly visible. The
+      room: a window with a lace curtain on the left letting in warm light,
+      a potted fern on a wooden stand, a wooden sideboard with a doily and a
+      small plaster saint, an old round wall clock, a woven rug on a
+      terracotta tile floor. No people and no other animals anywhere.
+  - id: aberto-b
+    seed: 9992
+    ref_images: [renato-referencia.png, renato-referencia-3q.png]
+    prompt: *aberto

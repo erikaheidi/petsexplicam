@@ -1,8 +1,11 @@
-# checklist-domingo - vlog do primo José no home office, postado na véspera
+# checklist-domingo - vlog do primo José na varandinha dele, postado na véspera
 # (sábado, 24/10): o que levar e o que saber para votar no domingo.
 # Serviço, sem candidato. Ver drafts/checklist-domingo.md.
 #
 # Câmera vlog-jose (celular apoiado na frente dele).
+# 23/10 (Erika): sem a fala do fuso (no exterior vota-se no horário local - na
+# Holanda, 9h às 17h), sem a colinha, e sem "ônibus de graça" (não vale); no
+# lugar, a prioridade na fila para 60+.
 vlog: jose
 cenario: varanda-jose
 seed: 3117
@@ -22,25 +25,11 @@ cenas:
       quem: jose
       texto: "A votação vai das oito da manhã às cinco da tarde."
 
-  - id: fuso
-    resumo: José warns about time zones.
-    antes: José raises his eyebrows slightly.
-    fala:
-      quem: jose
-      texto: "No horário de Brasília. Mora em outro fuso? Faz a conta!"
-
   - id: documento
     resumo: José says which document to bring.
     fala:
       quem: jose
       texto: "Leva documento oficial com foto. Ou o e-Título com foto."
-
-  - id: colinha
-    resumo: José says the paper cheat sheet is allowed, with a small smile.
-    antes: José gives a small half smile.
-    fala:
-      quem: jose
-      texto: "Pode levar colinha de papel com o número do seu candidato."
 
   - id: celular
     resumo: José says the phone stays outside the booth.
@@ -66,7 +55,7 @@ cenas:
     resumo: José mentions free public transport.
     fala:
       quem: jose
-      texto: "O ônibus é de graça. Confere o horário na sua cidade."
+      texto: "Tem mais de sessenta? Tem prioridade na fila."
 
   - id: grupo
     resumo: José closes, friendly.

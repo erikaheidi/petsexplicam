@@ -1,0 +1,68 @@
+# rua-bairro - a rua de um bairro residencial arrumado (a Erika não quis a rua
+# de favela da rua-festa), enfeitada de verde e amarelo com um pouco de
+# vermelho: os 7 personagens juntos, cada um com a roupa de sempre, para o
+# fecho do todos-perdem ("Se o Bolsonaro ganha, todos perdem!").
+# Refs: lotérica (Pretinha de vermelho, Cida, Lurdes), feira (Paçoca de
+# amarelo, José de vermelho), farmácia (Tião de polo azul), Renato (camisa xadrez).
+#
+#   ./mm images movies/cenarios/scripts/rua-bairro.yaml
+kind: images
+name: rua-bairro
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright warm late-afternoon sunlight, vibrant but natural colours,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      flags of any party, no banners and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  - id: todos-a
+    seed: 10031
+    ref_images: [cenario-loterica.png, cenario-feira.png, cenario-farmacia-tiao.png, renato-referencia.png]
+    prompt: &todos >-
+      A new photograph, not an edit of any of the pictures: a quiet, well-kept
+      residential street in a middle-class Brazilian neighbourhood on a sunny
+      late afternoon, taken from a static camera at the height of the dogs'
+      heads, in a wide shot. Tidy single-storey houses painted in soft colours,
+      with low front walls, iron gates and small front gardens, a clean paved
+      sidewalk lined with trees and one blooming yellow ipê tree, the street
+      smooth and empty. Strings of small paper bunting flags cross the street
+      overhead from house to house, mostly green and yellow with a few red ones.
+      Seven dogs are gathered together in the middle of the street, close to
+      each other, facing the camera, all seen whole with their faces and mouths
+      clearly visible. In the front row, sitting: the black French bulldog from
+      <image1> in her plain red t-shirt, the fawn pug from <image2> in his plain
+      mustard-yellow t-shirt, the elderly white poodle from <image1> in her
+      lilac knitted cardigan and the elderly golden-red cocker spaniel from
+      <image1> in her sea-green knitted cardigan. In the back row, standing a
+      little higher behind them: the caramel dog from <image2> in his plain red
+      t-shirt, the white dog with large black patches from <image3> in his plain
+      light-blue polo shirt, and the white English bulldog with fawn-brindle
+      patches from <image4> in his traditional blue-and-white checked button-up
+      shirt. Every dog keeps exactly the same face, coat, ears, markings and
+      clothes as in their picture, and every one of them is dressed; none of
+      them wears a collar. No people and no other animals anywhere in the
+      picture.
+  - id: todos-b
+    seed: 10032
+    ref_images: [cenario-loterica.png, cenario-feira.png, cenario-farmacia-tiao.png, renato-referencia.png]
+    prompt: *todos
+  - id: todos-c
+    seed: 10033
+    ref_images: [cenario-loterica.png, cenario-feira.png, cenario-farmacia-tiao.png, renato-referencia.png]
+    prompt: *todos

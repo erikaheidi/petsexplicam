@@ -1,0 +1,111 @@
+# clipe-domingo - o videoclipe do domingo, 25/10 (ideia da Erika): ao som de
+# "Andar com Fé" (Gilberto Gil, posta no Reels por cima), cada um sai de casa
+# no bairro, de branco, acenando para os vizinhos; um close em contra-plongée
+# de cada um; no fim os 7 se encontram e cantam o refrão juntos.
+# Sem fala até o refrão. Nenhum candidato citado.
+# Ordem (Erika): Lurdes, Tião, Cida, José, Renato, Paçoca, Pretinha.
+#
+# Cenário clipe: câmeras <pet>-acao, <pet>-close e todos.
+# Refrão: voz guia da Erika (assets/andar-com-fe.mp3, 18,4 s, o refrão 2x),
+# fatiada em movies/clipe-domingo/assets/refrao-{1,2}.wav (0-3,65 s e
+# 4,5-8,8 s) como referência de melodia e ritmo (`audio:`).
+cenario: clipe
+seed: 2026
+
+cenas:
+  - id: lurdes-sai
+    frames: 107
+    camera: lurdes-acao
+    resumo: Lurdes steps out of her gate and waves to a neighbour.
+    antes: Lurdes steps out through her open gate onto the sidewalk and waves a front paw towards the neighbour dog across the street, smiling.
+  - id: lurdes-close
+    camera: lurdes-close
+    resumo: Low-angle close-up of Lurdes, hopeful.
+    antes: Lurdes lifts her head a little and smiles softly, the breeze moving her long ears.
+
+  - id: tiao-sai
+    frames: 107
+    camera: tiao-acao
+    resumo: Tião waves to a neighbour from the sidewalk.
+    antes: Tião lifts a front paw and waves to the neighbour dog, then turns and starts walking down the sidewalk.
+  - id: tiao-close
+    camera: tiao-close
+    resumo: Low-angle close-up of Tião, calm.
+    antes: Tião breathes in the morning air and gives a calm, kind smile.
+
+  - id: cida-sai
+    frames: 107
+    camera: cida-acao
+    resumo: Cida walks out and waves to a little neighbour dog.
+    antes: Cida walks along the sidewalk with small careful steps and waves a front paw towards the little dog at the window.
+  - id: cida-close
+    camera: cida-close
+    resumo: Low-angle close-up of Cida, grandmotherly smile.
+    antes: Cida tilts her head and smiles warmly, her curly ears swaying.
+
+  - id: jose-sai
+    frames: 107
+    camera: jose-acao
+    resumo: José walks down the street and greets a neighbour dog.
+    antes: José walks down the sidewalk towards the camera and nods hello to the neighbour dog behind the gate, wagging his tail.
+  - id: jose-close
+    camera: jose-close
+    resumo: Low-angle close-up of José, big smile.
+    antes: José looks ahead down the street and breaks into a big, open smile.
+
+  - id: renato-sai
+    frames: 107
+    camera: renato-acao
+    resumo: Renato sets off down the street and waves.
+    antes: Renato sets off walking slowly down the street towards the camera on his four short legs, then stops and lifts one front paw to wave at a neighbour, smiling.
+  - id: renato-close
+    camera: renato-close
+    resumo: Low-angle close-up of Renato, moved.
+    antes: Renato looks ahead, his heavy face softening into a moved, proud smile.
+
+  - id: pacoca-sai
+    frames: 107
+    camera: pacoca-acao
+    resumo: Paçoca bounds out happily.
+    antes: Paçoca trots happily down the street towards the camera, his ears bouncing and his tongue out.
+  - id: pacoca-close
+    camera: pacoca-close
+    resumo: Low-angle close-up of Paçoca, delighted.
+    antes: Paçoca looks ahead with wide, shining eyes and a delighted grin.
+
+  - id: pretinha-sai
+    frames: 107
+    camera: pretinha-acao
+    resumo: Pretinha walks calmly along the sidewalk.
+    antes: Pretinha walks calmly along the sidewalk towards the camera, her head high, serene and determined.
+  - id: pretinha-close
+    camera: pretinha-close
+    resumo: Low-angle close-up of Pretinha, the last and most beautiful.
+    antes: Pretinha looks ahead down the street, calm and confident, and gives a small, warm smile.
+
+  - id: encontro
+    camera: todos
+    resumo: The seven friends together, happy to be reunited.
+    antes: The seven friends look at each other and then at the camera, smiling, their tails wagging.
+
+  - id: refrao-1
+    camera: todos
+    frames: 107
+    audio: refrao-1.wav
+    resumo: All seven sing the first half of the chorus together.
+    antes: The seven friends face the camera together, smiling.
+    fala:
+      quem: todos
+      texto: "Andar com fé eu vou,"
+      tom: singing together joyfully, like a choir of friends
+
+  - id: refrao-2
+    camera: todos
+    frames: 107
+    audio: refrao-2.wav
+    resumo: All seven sing the end of the chorus together.
+    antes: The seven friends sway gently side by side, smiling.
+    fala:
+      quem: todos
+      texto: "que a fé não costuma faiá!"
+      tom: singing together joyfully, like a choir of friends

@@ -1,0 +1,70 @@
+# Ficha do Tio Renato, o tio do Paçoca que votava 22 - imagens de referência
+# com Qwen-Image-2.1. Buldogue inglês, de camisa social xadrez miúdo bem
+# tradicional (escolhas da Erika, 21/10). Duas seeds por
+# pose; as escolhidas viram assets/renato-referencia.png (de frente) e
+# assets/renato-referencia-3q.png.
+#   ./mm images movies/ficha-renato/scripts/v1.yaml
+#
+# Qwen-Image-2.1 tem licença de pesquisa (uso NÃO comercial).
+kind: images
+name: ficha-renato
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  width: 768
+  height: 1376
+  style_suffix: >-
+    Photorealistic studio photography, even soft light, plain light grey
+    seamless background, sharp focus, vertical 9:16 framing, no text, no
+    watermark.
+
+images:
+  - id: frente-a
+    seed: 21
+    prompt: &frente >-
+      Renato, a male English bulldog of about sixty: heavy and low-set, with a
+      broad deep chest and thick shoulders, a short smooth white coat with
+      large fawn-brindle patches over both ears, around his eyes and across
+      his back, a massive wrinkled head with deep folds over a short pushed-in
+      muzzle, heavy drooping jowls, a slight underbite with two lower teeth
+      just showing, small rose ears folded back, dark, serious eyes under a
+      heavy brow, a greying muzzle with white hairs around the mouth, and a
+      short tail. He wears no dog collar and no harness, and he is dressed in a traditional
+      short-sleeved cotton button-up shirt in a small blue-and-white check, with
+      a pointed collar, a breast pocket and white buttons, neatly buttoned up,
+      his front legs through the sleeves, like an old-fashioned Brazilian uncle.
+      He sits upright facing the camera straight on, head level, serious but
+      kind, looking into the lens, his whole body visible.
+  - id: frente-b
+    seed: 22
+    prompt: *frente
+  - id: tres-quartos-a
+    seed: 23
+    prompt: &tresquartos >-
+      Renato, a male English bulldog of about sixty: heavy and low-set, with a
+      broad deep chest and thick shoulders, a short smooth white coat with
+      large fawn-brindle patches over both ears, around his eyes and across
+      his back, a massive wrinkled head with deep folds over a short pushed-in
+      muzzle, heavy drooping jowls, a slight underbite with two lower teeth
+      just showing, small rose ears folded back, dark, serious eyes under a
+      heavy brow, a greying muzzle with white hairs around the mouth, and a
+      short tail. He wears no dog collar and no harness, and he is dressed in a traditional
+      short-sleeved cotton button-up shirt in a small blue-and-white check, with
+      a pointed collar, a breast pocket and white buttons, neatly buttoned up,
+      his front legs through the sleeves, like an old-fashioned Brazilian uncle.
+      He sits turned three-quarters to the left of the frame, head slightly
+      tilted, mouth half open in a worried, talking expression.
+  - id: tres-quartos-b
+    seed: 24
+    prompt: *tresquartos

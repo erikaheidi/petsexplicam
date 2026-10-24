@@ -62,6 +62,10 @@ MAX_LINHAS = 2
 LIMIAR_DB = -30
 MIN_SILENCIO = 0.12
 MARGEM = 0.08        # antes/depois do trecho falado
+# Distância da legenda ao pé da tela, em fração da altura. 0.30 fica abaixo
+# dos rostos da dupla em plano médio; num close (recado-final) o rosto desce
+# até ali - use --altura 0.20 (em cima da roupa, ainda acima da interface).
+ALTURA = 0.30
 RAJADA = 0.45        # som mais curto que isso nas pontas da cena não é fala (a porta na cena 1: 0,4 s)
 
 ASS_CABECALHO = """\
@@ -258,7 +262,7 @@ def legendas(script, ate: int | None):
 def escrever(eventos, base: Path, w: int, h: int) -> tuple[Path, Path]:
     ass = base.with_suffix(".ass")
     linhas = [ASS_CABECALHO.format(w=w, h=h, fs=round(h * 0.036), ol=max(2, round(h * 0.0035)),
-                                   ml=round(w * 0.07), mr=round(w * 0.13), mv=round(h * 0.30))]
+                                   ml=round(w * 0.07), mr=round(w * 0.13), mv=round(h * ALTURA))]
     for a, b, quem, texto in eventos:
         cor = COR.get(quem, COR["1"])
         linhas.append(f"Dialogue: 0,{ts_ass(a)},{ts_ass(b)},Fala,,0,0,0,,{{\\c{cor}}}{texto}\n")
@@ -300,7 +304,11 @@ def main() -> int:
     ap.add_argument("--previa", type=int, metavar="N",
                     help="só as N primeiras cenas, montadas num vídeo de prévia")
     ap.add_argument("--sem-video", action="store_true", help="só escreve .ass e .srt")
+    ap.add_argument("--altura", type=float, default=0.30,
+                    help="distância da legenda ao pé da tela, fração da altura (padrão 0.30)")
     args = ap.parse_args()
+    global ALTURA
+    ALTURA = args.altura
 
     script = load_script(args.script.resolve(), Workspace.resolve(ROOT))
     w, h = script.primary_size

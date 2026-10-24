@@ -1,0 +1,227 @@
+# recado-final v1 - GERADO por tools/dialogo.py a partir de movies/recado-final/roteiro.yaml.
+# Não edite à mão: mude o roteiro (ou a receita em tools/dialogo.py) e rode
+#   ./dialogo gerar recado-final
+# Cada cena é independente: dá para refazer uma só com --only N.
+name: recado-final
+backend: comfy
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fastvideo_vsa_datafree_1300step_4step_int8_convrot.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_int8_convrot.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  # 8 passos, start 0.2 / end 1.0: com 4 passos e atenção esparsa desde o
+  # primeiro passo a câmera treme.
+  steps: 8
+  ref_image_size: match
+  sol_attn:
+    mode: vsa
+    keep_percent: 20.0
+    min_tokens: 4096
+    start_percent: 0.2
+    end_percent: 1.0
+    verbose: true
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 107
+  seed: 2026
+  style_suffix: ""
+continuity:
+  anchors: []
+  chain_from_previous: false
+output:
+  container: mp4
+  audio: keep
+  music: null
+scenes:
+  - id: so-pedir
+    video_frames: 124
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> speaks to her viewers, calm and warm. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> looks straight into the lens, calm and serious. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds soft and warm, sincere, unhurried, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Oi. Hoje eu não vou explicar nada. Eu vou pedir.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: quem-ama
+    video_frames: 124
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> speaks to the undecided. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds soft and warm, sincere, unhurried, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Se você ainda tá em dúvida, pensa em quem você ama.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: mae
+    video_frames: 124
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gives the first example. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1>'s eyes soften, still looking into the lens. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds soft and warm, sincere, unhurried, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Na sua mãe, que pega remédio de graça na farmácia.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: filho
+    video_frames: 124
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gives the second example. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds soft and warm, sincere, unhurried, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] No seu filho, que vai ter duas folgas por semana.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: avo
+    video_frames: 124
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> gives the third example. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds soft and warm, sincere, unhurried, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Na sua avó, que viu a aposentadoria subir de verdade.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: esquerda
+    video_frames: 124
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> is honest about her position. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> lifts her chin slightly, firm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Eu sou de esquerda, e nunca escondi isso de vocês.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: fonte
+    video_frames: 124
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> says everything she said has a source. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Mas tudo que eu disse aqui tem fonte. Pode conferir.</d> <Subject 1> gives a small firm nod. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: leva
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> asks viewers to go and vote. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds warm and encouraging, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Amanhã, vai votar. Leva a vizinha, leva a família.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A
+  - id: treze
+    ref_images: [cenario-varanda-vlog-pretinha-vermelha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness.
+      <Subject 2> is the end of the front veranda shown in <Picture 1>, of a modest house on a quiet Brazilian street in the late afternoon: the corner of a white wall, a large terracotta pot with a plant, the green metal railing and, across the street, a pink house with white window frames. There are no utility poles on this side.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> closes the series. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens she is framed exactly as in <Picture 1>, facing the lens, her whole face visible, looking straight into the camera.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage in warm late-afternoon light, with vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a small tripod at her eye level, like a phone set up to record a video diary, in a medium close-up of <Subject 1> alone, and it never moves, pans or zooms. <Subject 1>, a female dog, sits on the veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face is sharp and fills the upper half of the frame. Behind her, softly out of focus, <Subject 2>: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light. <Subject 1> looks straight into the lens with a warm, small smile. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds warm and grateful, smiling, her voice soft, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Dia vintecinco, treze. Obrigada por ficar até aqui.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Quiet street ambience in the late afternoon: a light breeze, faint distant voices, a radio far away and birds in the trees. The street behind them stays empty, with no people and no vehicles. Neither of the two dogs barks, whines or growls at any point.
+      non_diegetic_music: N/A

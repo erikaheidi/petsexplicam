@@ -159,10 +159,36 @@ ELENCO = {
         "pron": "her",
         "palavras_por_s": 2.4,
     },
+    # Tio Renato, o tio do Paçoca que votava 22 (tio-renato-muda). Buldogue
+    # inglês, escolha da Erika. Ficha em movies/ficha-renato/. A voz_ref sai
+    # recortada da primeira cena boa dele, como a do José e a do Tião.
+    "renato": {
+        "nome": "Renato",
+        "quem_e": "the male English bulldog",
+        "aparencia": ("a male English bulldog of about sixty: heavy and low-set, with a broad deep chest and thick "
+                      "shoulders, a short smooth white coat with large fawn-brindle patches over both ears, around "
+                      "his eyes and across his back, a massive wrinkled head with deep folds over a short pushed-in "
+                      "muzzle, heavy drooping jowls, a slight underbite with two lower teeth just showing, small "
+                      "rose ears folded back, dark, serious eyes under a heavy brow, a greying muzzle with white "
+                      "hairs around the mouth, and a short tail. He wears no collar and no harness"),
+        "fora": "the old bulldog off-screen",
+        "voz_ref": "renato-voz.wav",
+        # A voz da v1 (~93 Hz, grave e solene) ficou "sorumbática" (Erika,
+        # 22/10): guardada em movies/tio-renato-muda/assets/renato-voz-v1-solene.wav.
+        # 1ª tentativa leve (v2a, ~108 Hz) ainda soou igual à solene: o modelo
+        # puxa "buldogue de 65 anos, rouco" para o grave. Agora o tom é dito com
+        # todas as letras (tenor, agudo, fino), sem "deep" nem "raspy": ~186 Hz na
+        # referência (v2, cena 2, 0-4,4 s), aprovada de ouvido pela Erika.
+        "voz": ("a light, rather high-pitched elderly man's voice in the tenor range, thin, bright and a little "
+                "nasal, with a slight old-age creak, quick and chatty like a cheerful grandpa telling a story at the "
+                "bakery, playful and teasing, never deep, never booming, never solemn"),
+        "pron": "his",
+        "palavras_por_s": 2.6,  # v2: voz mais leve e conversadora
+    },
 }
 F0_REF = {"pretinha": 258, "pacoca": 296, "jose": 134, "tiao": 167, "cida": 258, "lurdes": 143}  # Hz, para o QC de voz
 # Rótulo de cada um nos textos de câmera: {P}, {C}, {J}, {T}.
-MARCA = {"pretinha": "P", "pacoca": "C", "jose": "J", "tiao": "T", "cida": "I", "lurdes": "U"}
+MARCA = {"pretinha": "P", "pacoca": "C", "jose": "J", "tiao": "T", "cida": "I", "lurdes": "U", "renato": "R"}
 
 
 def ele(quem: str) -> str:
@@ -174,7 +200,14 @@ def o(quem: str) -> str:
 
 
 def tem_voz(quem: str) -> bool:
+    if quem == CORO:
+        return False
     return (ROOT / "assets" / ELENCO[quem]["voz_ref"]).is_file()
+
+
+# `quem: todos` - todos os que estão no quadro falam juntos, em coro (o fecho do
+# todos-perdem). Sem voz de referência: o node aceita no máximo 3 áudios.
+CORO = "todos"
 
 # --------------------------------------------------------------------------
 # cenários - cada câmera com seu frame de referência em assets/
@@ -756,10 +789,13 @@ CENARIOS = {
     # (cadeira-a) e loterica-closes.yaml. Os três sentados na mesma altura: com
     # a Pretinha no chão os olhares não se encontravam. Pretinha de vermelho.
     "loterica": {
-        "lugar": ("the small, busy Brazilian lottery and bill-payment shop (a casa lotérica) shown in <Picture 1>: "
-                  "a long counter of service windows with thick glass panels and round metal speaking grilles in "
-                  "bright blue and orange, a row of beige moulded plastic waiting chairs, pale floor tiles, a fan on "
-                  "the wall and a short queue of dogs waiting at the windows, under bright white ceiling lights"),
+        # Sem "casa lotérica" no texto: o modelo escreveu "lotérica" num
+        # letreiro, e pôs gente atrás dos guichês (aposentadoria-subiu v2).
+        "lugar": ("the small, busy Brazilian bill-payment shop shown in <Picture 1>: a long counter of service "
+                  "windows with thick glass panels and round metal speaking grilles in bright blue and orange, with "
+                  "nobody behind the glass, a plain blue and orange wall above them with no sign, no logo and no "
+                  "writing, a row of beige moulded plastic waiting chairs, pale floor tiles, a fan on the wall and "
+                  "a short queue of dogs waiting at the windows, under bright white ceiling lights"),
         "estilo": ("The target video is photorealistic live-action footage inside a lottery shop in the morning, in "
                    "bright, even white overhead light and vibrant but natural colours, shot from a locked-off static "
                    "camera on a low tripod: the picture is perfectly steady for the whole video, with no camera "
@@ -792,7 +828,476 @@ CENARIOS = {
                              "t-shirt on the left facing right, and the two old ladies side by side on the right, "
                              "facing her."),
             },
+            "pretinha": {
+                "ref": "cenario-loterica-pretinha.png",
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "lugar": ("the small Brazilian lottery shop shown in <Picture 1>: the blue and orange service windows "
+                          "with thick glass, the orange wall and the beige plastic waiting chairs, under bright white "
+                          "ceiling lights"),
+                "quadro": (
+                    "The camera is completely static on a low tripod just behind the old poodle's shoulder, in an "
+                    "over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, "
+                    "out of focus, are the back of the poodle's curly off-white head and her shoulder in the lilac "
+                    "knitted cardigan, turned away from the camera; her face is never seen. {P} sits on a beige "
+                    "plastic waiting chair in the left two thirds of the frame, her head turned to the right of the "
+                    "frame in a three-quarter view, towards the old poodle at the right edge, and she keeps looking "
+                    "at her the whole time, never into the lens; her face, whole muzzle and chest in the red t-shirt "
+                    "are sharp, her head in the upper half of the frame. Behind her, softly out of focus, the blue "
+                    "and orange service windows of {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the old poodle's "
+                             "out-of-focus head and lilac shoulder along the right edge, and her face sharp, turned "
+                             "towards the ladies."),
+            },
+            "senhoras": {
+                "ref": "cenario-loterica-senhoras.png",
+                "visiveis": ["cida", "lurdes"],
+                "onde": {"cida": "in the middle", "lurdes": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a low tripod just behind the French bulldog's shoulder, in "
+                    "an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, "
+                    "out of focus, are the French bulldog's black back in the red t-shirt and the back of her large "
+                    "upright black bat ear, turned away from the camera; her face is never seen. {I} sits on a beige "
+                    "plastic waiting chair in the middle of the frame with a small brown leather handbag on her lap, "
+                    "and {U} beside her on the right, both facing the camera at a three-quarter angle, turned to the "
+                    "left towards the French bulldog and looking at her; their faces, muzzles and chests in the "
+                    "knitted cardigans are sharp, their heads in the upper half of the frame. Behind them, softly "
+                    "out of focus, the blue and orange service windows of {L} with their round metal speaking "
+                    "grilles."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's "
+                             "out-of-focus black back and red t-shirt along the left edge, and the two old ladies "
+                             "side by side, sharp, turned towards her."),
+            },
         },
+    },
+    # A cozinha da Dona Lurdes no almoço de domingo, com um prato vazio para o
+    # neto: a Pretinha e as vizinhas à mesa (neto-6x1, refeito fora do
+    # supermercado). Frames em movies/cenarios/scripts/cozinha-lurdes.yaml
+    # (trio-a, vestido em vestir.yaml -a) e cozinha-lurdes-closes.yaml
+    # (pretinha-a, senhoras-b). Aqui a cocker (Lurdes) fica no meio e a poodle
+    # (Cida) na ponta direita - o contrário da lotérica.
+    "cozinha-lurdes": {
+        "lugar": ("the kitchen of an old, modest Brazilian house shown in <Picture 1>, at Sunday lunch: a square "
+                  "table with a red-and-white checked oilcloth set with plates, glasses, a pot of rice, a pot of "
+                  "black beans and a dish of roast chicken, one empty place with a clean plate, pale yellow wall "
+                  "tiles, an old white enamel stove with a steaming pan, a window with a lace curtain and plants on "
+                  "the sill, and a round wall clock, in warm midday light"),
+        "estilo": ("The target video is photorealistic live-action footage in a home kitchen at midday, in warm, "
+                   "natural light from the window and vibrant but natural colours, shot from a locked-off static "
+                   "camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera "
+                   "shake, no handheld movement and no drift."),
+        "som": ("Quiet kitchen ambience at Sunday lunch: the soft bubbling of a pan on the stove, the slow tick of "
+                "the wall clock and faint birdsong through the window. No music, no voices other than the three "
+                "dogs', and no barking, whining or growling at any point."),
+        "figurino": {
+            "pretinha": ("Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, "
+                         "her front legs through the sleeves."),
+        },
+        "cameras": {
+            "dupla": {
+                "ref": "cenario-cozinha-lurdes.png",
+                "visiveis": ["pretinha", "lurdes", "cida"],
+                "onde": {"pretinha": "on the left", "lurdes": "in the middle", "cida": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the table top, in a medium shot, "
+                    "and it never moves, pans or zooms. The three sit on wooden chairs at the kitchen table, their "
+                    "heads and chests above the checked oilcloth: {P} on the left, turned to the right in a "
+                    "three-quarter profile, looking at the two ladies; {U} in the middle and {I} beside her on the "
+                    "right, both turned to the left in a three-quarter profile, looking back at {P}. Their faces "
+                    "and mouths are clearly visible, and none of them looks into the lens. On the table in front of "
+                    "them are the pots of rice and beans, the dish of roast chicken and the glasses. Behind them, "
+                    "softly out of focus, the old white stove with the steaming pan and the window of {L}."),
+                "abertura": ("as the shot opens they sit exactly as in <Picture 1>: the French bulldog in the red "
+                             "t-shirt on the left facing right, and the two old ladies side by side on the right, "
+                             "facing her."),
+            },
+            "pretinha": {
+                "ref": "cenario-cozinha-lurdes-pretinha.png",
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "lugar": ("the kitchen of an old, modest Brazilian house shown in <Picture 1>: the red-and-white "
+                          "checked oilcloth, pale yellow wall tiles, the old white enamel stove with a steaming pan "
+                          "and the window with plants on the sill, in warm midday light"),
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the table top just behind the "
+                    "cocker spaniel's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. "
+                    "Along the right edge of the frame, out of focus, are the cocker spaniel's long wavy golden-red "
+                    "ear and her shoulder in the sea-green knitted cardigan, turned away from the camera; her face "
+                    "is never seen. {P} sits at the table in the left two thirds of the frame, her head turned to "
+                    "the right of the frame in a three-quarter view, towards the cocker spaniel at the right edge, "
+                    "and she keeps looking at her the whole time, never into the lens; her face, whole muzzle and "
+                    "chest in the red t-shirt are sharp, her head in the upper half of the frame. Behind her, softly "
+                    "out of focus, the old white stove with the steaming pan and the window of {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the cocker spaniel's "
+                             "out-of-focus ear and green shoulder along the right edge, and her face sharp, turned "
+                             "towards the ladies."),
+            },
+            "senhoras": {
+                "ref": "cenario-cozinha-lurdes-senhoras.png",
+                "visiveis": ["lurdes", "cida"],
+                "onde": {"lurdes": "on the left", "cida": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the table top just behind the "
+                    "French bulldog's shoulder, in an over-the-shoulder shot, and it never moves, pans or zooms. "
+                    "Along the left edge of the frame, out of focus, are the French bulldog's black head, the back "
+                    "of her large upright bat ear and her shoulder in the red t-shirt, turned away from the camera; "
+                    "her face is never seen. {U} sits at the table in the middle of the frame and {I} beside her on "
+                    "the right, both facing the camera at a three-quarter angle, turned to the left towards the "
+                    "French bulldog and looking at her; their faces, muzzles and chests in the knitted cardigans "
+                    "are sharp, their heads in the upper half of the frame, above the pots of rice and beans and "
+                    "the dish of roast chicken. Behind them, softly out of focus, the window with plants on the "
+                    "sill, the wall clock and the stove of {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's "
+                             "out-of-focus head and red shoulder along the left edge, and the two old ladies side by "
+                             "side, sharp, turned towards her."),
+            },
+        },
+    },
+    # O balcão da farmácia do bairro: o Seu Tião (de polo, como no uber) e a
+    # Pretinha de vermelho (farmacia-popular, refeito fora do uber). Frames em
+    # movies/cenarios/scripts/farmacia-olhar.yaml (olhar-a, vestido em
+    # vestir.yaml -a) e farmacia-closes.yaml (pretinha-a, tiao-b). Prateleiras
+    # sem rótulo legível; sem gente atrás do balcão.
+    "farmacia": {
+        "lugar": ("the counter of a small neighbourhood pharmacy in a Brazilian city shown in <Picture 1>: a white "
+                  "counter with a small white paper bag on it, white shelves behind it with small boxes in plain "
+                  "colours and nothing legible on them, a glowing green cross on the wall, and nobody behind the "
+                  "counter, under bright white ceiling lights"),
+        "estilo": ("The target video is photorealistic live-action footage inside a pharmacy in the daytime, in "
+                   "bright, even white overhead light and clean, natural colours, shot from a locked-off static "
+                   "camera on a tripod: the picture is perfectly steady for the whole video, with no camera shake, "
+                   "no handheld movement and no drift."),
+        "som": ("Quiet pharmacy ambience: the low hum of the ceiling lights and of a refrigerator, and now and then "
+                "the soft rustle of a paper bag. No music, no announcements, no voices other than the two dogs', "
+                "and no barking, whining or growling at any point."),
+        "figurino": {
+            "pretinha": ("Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, "
+                         "her front legs through the sleeves."),
+            "tiao": ("Here he wears a plain light-blue short-sleeved polo shirt with no logo, his front legs through "
+                     "the sleeves."),
+        },
+        "cameras": {
+            "dupla": {
+                "ref": "cenario-farmacia.png",
+                "visiveis": ["pretinha", "tiao"],
+                "onde": {"pretinha": "on the left", "tiao": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the counter, in a medium shot, "
+                    "and it never moves, pans or zooms. {P} sits up at the white counter on the left, in the "
+                    "foreground, turned to the right in a three-quarter profile, looking up at {T}; {T} stands at "
+                    "the counter on the right, a little taller, turned to the left in a three-quarter profile, "
+                    "looking down at her. Their faces and mouths are clearly visible, and neither looks into the "
+                    "lens. A small white paper bag rests on the counter at the lower right. Behind them, softly out "
+                    "of focus, the white shelves of small boxes and the glowing green cross of {L}."),
+                "abertura": ("as the shot opens they are exactly as in <Picture 1>: the French bulldog in the red "
+                             "t-shirt on the left looking up, and the dog in the light-blue polo on the right "
+                             "looking down at her."),
+            },
+            "pretinha": {
+                "ref": "cenario-farmacia-pretinha.png",
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the shoulder of the dog in the "
+                    "light-blue polo, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the "
+                    "foreground at the lower right, out of focus, are his light-blue polo shoulder and the back of "
+                    "his black, half-folded ear, turned away from the camera; his face is never seen. {P} sits "
+                    "facing the camera at a three-quarter angle, her head turned to the right of the frame and "
+                    "tilted up towards him, and she keeps looking up at him the whole time, never into the lens; her "
+                    "face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the "
+                    "frame. Behind her, softly out of focus, the white shelves of small boxes of {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: his out-of-focus blue "
+                             "shoulder and ear in the lower-right foreground, and her face sharp, looking up at "
+                             "him."),
+            },
+            "tiao": {
+                "ref": "cenario-farmacia-tiao.png",
+                "visiveis": ["tiao"],
+                "onde": {"tiao": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the French bulldog's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. Along the left edge of the "
+                    "frame, out of focus, are the French bulldog's black head, the back of her large upright bat "
+                    "ear and her shoulder in the red t-shirt, turned away from the camera; her face is never seen. "
+                    "{T} stands at the white counter facing the camera at a three-quarter angle, his head turned "
+                    "to the left of the frame and tilted down towards her, and he keeps looking down at her the "
+                    "whole time, never into the lens; his face, whole muzzle and chest in the light-blue polo are "
+                    "sharp and fill the right two thirds of the frame. Behind him, softly out of focus, the white "
+                    "shelves of small boxes and the glowing green cross of {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: her out-of-focus black "
+                             "head and red shoulder along the left edge, and his face sharp, looking down at her."),
+            },
+        },
+    },
+    # A sala da casa do Tio Renato: ele no sofá, em chamada de vídeo com a
+    # Pretinha, o celular num suporte na mesinha de centro (tio-renato-muda).
+    # Frames em movies/cenarios/scripts/sala-renato.yaml (aberto-b) e
+    # sala-renato-takes.yaml. Um personagem só, quatro takes para variar:
+    # "frente" (de frente, ele olha para o celular), "lado",
+    # "close" e "aberto". A tela do celular nunca aparece (a Pretinha não entra).
+    "sala-renato": {
+        "lugar": ("the living room of an older man's modest house in a Brazilian city shown in <Picture 1>: a worn "
+                  "brown fabric sofa with a colourful crocheted throw over its back, a window with a lace curtain "
+                  "letting in warm light, a potted fern on a wooden stand, a wooden sideboard with a doily and a "
+                  "small plaster saint, an old round wall clock, a low wooden coffee table with a smartphone in a "
+                  "small black stand, and a woven rug on a terracotta tile floor, in warm late-afternoon light"),
+        "estilo": ESTILO_CASA,
+        "som": ("Quiet living-room tone in an old house, the slow tick of the wall clock and faint neighbourhood "
+                "ambience through the window: distant birdsong and a far-off motorbike. No music, no voices other "
+                "than his, and no barking, whining or growling at any point."),
+        "figurino": {
+            "renato": ("Here he wears a traditional short-sleeved cotton button-up shirt in a small blue-and-white "
+                       "check, with a pointed collar, a breast pocket and white buttons, neatly buttoned up, his front "
+                       "legs through the sleeves."),
+        },
+        "cameras": {
+            "aberto": {
+                "ref": "cenario-sala-renato.png",
+                "visiveis": ["renato"],
+                "onde": {"renato": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the sofa seat, in a wide shot of "
+                    "the living room, and it never moves, pans or zooms. {R} sits on the sofa just left of centre, "
+                    "turned to the right in a three-quarter profile, talking to the smartphone propped in its small "
+                    "black stand on the coffee table in front of him; only the plain black back of the phone is "
+                    "seen, never its screen. He is seen whole, from his paws on the sofa to the tips of his ears, "
+                    "his face and mouth clearly visible, and he never looks into the lens. Around him {L}."),
+                "abertura": ("as the shot opens he sits exactly as in <Picture 1>: on the sofa, turned "
+                             "towards the phone on the coffee table."),
+            },
+            # O take do celular olhando para a lente não serviu (Erika): de frente,
+            # mas ele olha para o celular, sentado direito, patas à mostra.
+            "frente": {
+                "ref": "cenario-sala-renato-frente.png",
+                "visiveis": ["renato"],
+                "onde": {"renato": ""},
+                "lugar": ("the living room shown in <Picture 1>: the worn brown sofa with the colourful crocheted "
+                          "throw, the window with the lace curtain, the fern and the wooden sideboard with the "
+                          "small saint, in warm late-afternoon light"),
+                "quadro": (
+                    "The camera is completely static on a tripod in front of him, on the other side of the coffee "
+                    "table, at the height of the sofa seat, in a medium shot, and it never moves, pans or zooms. "
+                    "{R} sits upright on the front edge of the sofa cushion, his chest lifted and his two white "
+                    "front paws resting on the cushion, his body facing the camera and his head turned a little "
+                    "down and to the left of the frame, talking to the smartphone in its small black stand on the "
+                    "coffee table at the lower left; only the plain black back of the phone is seen. He keeps "
+                    "looking at the phone the whole time, never into the lens; his face, mouth, chest in the "
+                    "checked shirt and front paws are sharp. Behind him, softly out of focus, {L}."),
+                "abertura": ("as the shot opens he is framed exactly as in <Picture 1>: sitting up on the sofa, "
+                             "his paws on the cushion, looking down at the phone."),
+            },
+            "lado": {
+                "ref": "cenario-sala-renato-lado.png",
+                "visiveis": ["renato"],
+                "onde": {"renato": ""},
+                "lugar": ("the living room shown in <Picture 1>: the worn brown sofa, the window with the lace "
+                          "curtain and the fern, in warm late-afternoon light"),
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the sofa seat, at the end of the "
+                    "sofa, in a medium side shot, and it never moves, pans or zooms. {R} sits on the sofa in "
+                    "profile, turned to the right of the frame, talking to the smartphone in its small black stand "
+                    "on the coffee table at the right edge; only the plain black back of the phone is seen. His "
+                    "face, mouth and chest in the checked shirt are sharp, and he never looks into the lens. Behind "
+                    "him, softly out of focus, {L}."),
+                "abertura": ("as the shot opens he is framed exactly as in <Picture 1>: in profile on the sofa, "
+                             "facing the phone at the right edge."),
+            },
+            "close": {
+                "ref": "cenario-sala-renato-close.png",
+                "visiveis": ["renato"],
+                "onde": {"renato": ""},
+                "lugar": ("the living room shown in <Picture 1>: the round wall clock and the wooden sideboard, in "
+                          "warm late-afternoon light"),
+                "quadro": (
+                    "The camera is completely static on a tripod just beside the smartphone on the coffee table, in "
+                    "a close-up of his face, and it never moves, pans or zooms. {R} faces the camera at a "
+                    "three-quarter angle, his head turned a little to the right of the frame, talking to the phone "
+                    "just beside the lens, never into the lens; his wrinkled face, heavy jowls and the collar of "
+                    "the checked shirt are sharp and fill the frame. Behind him, softly out of focus, {L}."),
+                "abertura": ("as the shot opens he is framed exactly as in <Picture 1>: his face in three-quarter "
+                             "view, turned towards the phone beside the lens."),
+            },
+        },
+    },
+    # O salão de beleza do bairro: a Pretinha de vermelho no banquinho, a Cida e
+    # a Lurdes nas cadeiras rosa sob os secadores de capacete
+    # (voto-depois-dos-70). Frames em movies/cenarios/scripts/salao.yaml
+    # (trio-a) e salao-closes.yaml (pretinha-a, senhoras-b). Sem espelho no quadro (reflexo vira
+    # bagunça) e sem gente.
+    "salao": {
+        "lugar": ("the small neighbourhood beauty salon in a Brazilian city shown in <Picture 1>: pale pink walls, "
+                  "pink leather salon chairs under cream hood hair dryers, a shelf with folded white towels, a few "
+                  "plain bottles and a potted plant, a window letting in soft daylight, a ceiling fan and a beige "
+                  "tiled floor, with no mirrors and nobody else in the room"),
+        "estilo": ("The target video is photorealistic live-action footage inside a beauty salon in the morning, in "
+                   "soft, even daylight and gentle pastel colours, shot from a locked-off static camera on a low "
+                   "tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld "
+                   "movement and no drift."),
+        "som": ("Quiet beauty-salon ambience: the low whir of the hood hair dryers and the soft turning of the "
+                "ceiling fan. No music, no radio, no voices other than the three dogs', and no barking, whining or "
+                "growling at any point."),
+        "figurino": {
+            "pretinha": ("Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, "
+                         "her front legs through the sleeves."),
+        },
+        "cameras": {
+            "dupla": {
+                "ref": "cenario-salao.png",
+                "visiveis": ["pretinha", "cida", "lurdes"],
+                "onde": {"pretinha": "on the left", "cida": "in the middle", "lurdes": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a low tripod at the height of the dogs' heads, in a medium "
+                    "shot, and it never moves, pans or zooms. {P} sits on a round beige stool at the left edge of "
+                    "the frame, turned to the right in a three-quarter profile, looking at the two ladies; {I} sits "
+                    "in the middle and {U} beside her on the right, on pink salon chairs under the cream hood "
+                    "dryers, both turned to the left in a three-quarter profile, looking back at {P}. Their heads "
+                    "are level with each other, their faces and mouths clearly visible, and none of them looks into "
+                    "the lens. Behind them, softly out of focus, the pale pink wall, the shelf with folded towels "
+                    "and the window of {L}."),
+                "abertura": ("as the shot opens they sit exactly as in <Picture 1>: the French bulldog in the red "
+                             "t-shirt on her stool on the left facing right, and the two old ladies side by side on "
+                             "the right under the dryers, facing her."),
+            },
+            "pretinha": {
+                "ref": "cenario-salao-pretinha.png",
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "lugar": ("the small beauty salon shown in <Picture 1>: the pale pink wall, the window and the shelf "
+                          "with folded towels and a potted plant, in soft daylight"),
+                "quadro": (
+                    "The camera is completely static on a low tripod just behind the old poodle's shoulder, in an "
+                    "over-the-shoulder shot, and it never moves, pans or zooms. Along the right edge of the frame, "
+                    "out of focus, are the back of the poodle's curly off-white head and her shoulder in the lilac "
+                    "knitted cardigan, turned away from the camera; her face is never seen. {P} sits on her round "
+                    "stool in the left two thirds of the frame, her head turned to the right of the frame in a "
+                    "three-quarter view, towards the ladies, and she keeps looking at them the whole time, never "
+                    "into the lens; her face, whole muzzle and chest in the red t-shirt are sharp, her head in the "
+                    "upper half of the frame. Behind her, softly out of focus, {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the old poodle's "
+                             "out-of-focus head and lilac shoulder along the right edge, and her face sharp, turned "
+                             "towards the ladies."),
+            },
+            "senhoras": {
+                "ref": "cenario-salao-senhoras.png",
+                "visiveis": ["cida", "lurdes"],
+                "onde": {"cida": "on the left", "lurdes": "on the right"},
+                "lugar": ("the small beauty salon shown in <Picture 1>: the cream hood hair dryers over the pink "
+                          "salon chairs and the pale pink wall, in soft daylight"),
+                "quadro": (
+                    "The camera is completely static on a low tripod just behind the French bulldog's shoulder, in "
+                    "an over-the-shoulder shot, and it never moves, pans or zooms. Along the left edge of the frame, "
+                    "out of focus, are the French bulldog's black head, the back of her large upright bat ear and "
+                    "her shoulder in the red t-shirt, turned away from the camera; her face is never seen. {I} and "
+                    "{U} sit side by side on the pink salon chairs under the cream hood dryers, {I} on the left and "
+                    "{U} on the right, both facing the camera at a three-quarter angle, turned to the left towards "
+                    "the French bulldog and looking at her; their faces, muzzles and chests in the knitted "
+                    "cardigans are sharp, their heads in the upper half of the frame. Behind them, softly out of "
+                    "focus, {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's "
+                             "out-of-focus head and red shoulder along the left edge, and the two old ladies side by "
+                             "side, sharp, turned towards her."),
+            },
+        },
+    },
+    # Uma rua de bairro residencial arrumado (não a de favela da rua-festa),
+    # enfeitada de verde e amarelo com um pouco de vermelho: os 7 juntos, cada
+    # um com a roupa de sempre (todos-perdem). Frame em
+    # movies/cenarios/scripts/rua-bairro.yaml (todos-b). Uma câmera só, "todos".
+    "rua-bairro": {
+        "lugar": ("the quiet residential street of a middle-class Brazilian neighbourhood shown in <Picture 1>, on a "
+                  "sunny late afternoon: tidy single-storey houses in soft colours with low front walls and iron "
+                  "gates, a clean sidewalk lined with trees and a blooming yellow ipê tree, and strings of small "
+                  "green, yellow and a few red paper bunting flags across the street overhead"),
+        "estilo": ("The target video is photorealistic live-action footage, outdoors on a residential street in "
+                   "warm, golden late-afternoon light with soft long shadows and vibrant but natural colours, shot "
+                   "from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole "
+                   "video, with no camera shake, no handheld movement and no drift."),
+        "som": ("Calm residential street ambience at the end of the afternoon: birdsong, leaves rustling in a light "
+                "breeze and the soft flutter of the paper bunting. The street stays empty, with no people and no "
+                "moving cars. No music, and no barking, whining or growling at any point."),
+        "figurino": {
+            "pretinha": "Here she wears a plain red short-sleeved t-shirt with no print.",
+            "pacoca": "Here he wears a plain mustard-yellow short-sleeved t-shirt with no print.",
+            "jose": "Here he wears a plain red short-sleeved t-shirt with no print.",
+            "tiao": "Here he wears a plain light-blue short-sleeved polo shirt with no logo.",
+            "renato": "Here he wears a short-sleeved light-blue button-up shirt with a collar.",
+        },
+        "cameras": {
+            "todos": {
+                "ref": "cenario-rua-bairro.png",
+                "visiveis": ["pretinha", "pacoca", "cida", "lurdes", "jose", "tiao", "renato"],
+                "onde": {"pretinha": "in the front row, on the left", "pacoca": "in the front row, second from the left",
+                         "cida": "in the front row, second from the right", "lurdes": "in the front row, on the right",
+                         "jose": "in the back row, on the left", "tiao": "in the back row, in the middle",
+                         "renato": "in the back row, on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the dogs' heads, in a medium-wide "
+                    "shot of the seven dogs together in the middle of the street, and it never moves, pans or "
+                    "zooms. In the front row sit {P}, {C}, {I} and {U}, from left to right; in the back row, a "
+                    "little higher behind them, stand {J}, {T} and {R}, from left to right. All seven face the "
+                    "camera, close together, every face and mouth clearly visible. Behind them, {L}."),
+                "abertura": ("as the shot opens the seven dogs are gathered exactly as in <Picture 1>, four in front "
+                             "and three behind, facing the camera."),
+            },
+        },
+    },
+    # A varandinha do apartamento do primo José, de manhã cedo: só vlog dele
+    # (checklist-domingo, refeito fora do home office). Frame em
+    # movies/cenarios/scripts/varanda-jose.yaml (vlog-jose-a). Camiseta branca.
+    "varanda-jose": {
+        "lugar": ("the narrow balcony of the caramel dog's modest apartment in a Brazilian city shown in "
+                  "<Picture 1>, early in the morning: a white balcony railing, a small potted basil plant and a "
+                  "plain white coffee cup, and beyond it a view of low apartment buildings and red-tiled roofs "
+                  "under a soft morning sky"),
+        "estilo": ("The target video is photorealistic live-action footage on an apartment balcony early in the "
+                   "morning, in soft, warm early sunlight and natural colours, shot from a locked-off static "
+                   "camera on a small tripod: the picture is perfectly steady for the whole video, with no camera "
+                   "shake, no handheld movement and no drift."),
+        "sem_rabo": ["jose"],
+        "som": ("Quiet early-morning city ambience from a balcony: birdsong, a light breeze and very faint "
+                "distant traffic far below. No music, no voices other than his, and no barking, whining or "
+                "growling at any point."),
+        "figurino": {
+            "jose": ("Here he wears a plain white short-sleeved t-shirt with no print and no logo, his front legs "
+                     "through the sleeves."),
+        },
+        "cameras": {
+            "vlog-jose": camera_vlog(
+                "jose", "cenario-varanda-jose-vlog-jose.png",
+                "{L}: the white railing behind him, the basil plant and the coffee cup at the lower left, and the "
+                "low buildings and red-tiled roofs of the city in the distance.",
+                plano=("in a medium shot of {J} alone, and it never moves, pans or zooms. {J} sits upright on a "
+                       "small wooden stool, facing the camera straight on and looking directly into the lens, "
+                       "talking to the viewer; his front paws rest on the stool in front of him, and his face is "
+                       "sharp and centred in the upper half of the frame. He sits still the whole time.")),
+        },
+    },
+    # O videoclipe de domingo ("Andar com Fé", Gilberto Gil; sem fala, só o
+    # refrão em coro no fim): cada um sai de casa no bairro da rua-bairro, de
+    # branco, e depois um close em contra-plongée; no fim, os 7 juntos. Frames
+    # em movies/cenarios/scripts/clipe*.yaml -> assets/cenario-clipe-*.png.
+    # Câmeras "<pet>-acao", "<pet>-close" e "todos" (montadas em _clipe()).
+    "clipe": {
+        "lugar": ("a quiet, tidy residential street of a middle-class Brazilian neighbourhood shown in <Picture 1>, "
+                  "on a sunny Sunday morning: single-storey houses in soft colours with low front walls, iron gates "
+                  "and small gardens, trees along the sidewalk, a blooming yellow ipê tree, and strings of small "
+                  "green, yellow and a few red paper bunting flags across the street"),
+        "estilo": ("The target video is photorealistic live-action footage, outdoors on a residential street on a "
+                   "bright Sunday morning, in soft, warm sunlight and vibrant but natural colours, cinematic and "
+                   "joyful, shot from a locked-off static camera on a tripod: the picture is perfectly steady for "
+                   "the whole video, with no camera shake, no handheld movement and no drift; only the dogs move."),
+        "som": ("Gentle Sunday-morning street ambience: birdsong, a light breeze, the soft flutter of the paper "
+                "bunting and distant church bells. No music and no barking, whining or growling at any point."),
+        "figurino": {
+            "pretinha": "Here she wears a plain white short-sleeved t-shirt with no print.",
+            "pacoca": "Here he wears a plain white short-sleeved t-shirt with no print.",
+            "jose": "Here he wears a plain white short-sleeved t-shirt with no print.",
+            "tiao": "Here he wears a plain white short-sleeved polo shirt with no logo.",
+            "renato": "Here he wears a plain white short-sleeved button-up shirt with a collar.",
+            "cida": "Here she wears a plain white knitted cardigan and carries nothing.",
+            "lurdes": "Here she wears a plain white knitted cardigan.",
+        },
+        "cameras": {},
     },
     # O carro de aplicativo do Seu Tião, a Pretinha no banco de trás. Frames em
     # movies/cenarios/scripts/uber.yaml (dupla-a, pretinha-b, tiao-b). Câmera
@@ -1104,7 +1609,64 @@ _cams["varanda-frente"]["vlog-pretinha"] = camera_vlog(
     plano=("in a medium shot of {P} alone, and it never moves, pans or zooms. {P} sits on the veranda facing the "
            "camera straight on and looks directly into the lens, talking to the viewer; she is seen from her "
            "chest to the tips of her ears, her face sharp and centred in the upper half of the frame."))
+# A mesma varanda com a Pretinha de camiseta vermelha, como nos vídeos da
+# última semana (recado-final, Erika 23/10). Frame: vestir-varanda.yaml.
+_cams["varanda-frente"]["vlog-pretinha-vermelha"] = camera_vlog(
+    "pretinha", "cenario-varanda-vlog-pretinha-vermelha.png",
+    "{L}: the white wall on the left, a terracotta pot with a plant, the green metal railing running along the "
+    "terracotta tiled floor on the right, and the pink house across the street in the warm afternoon light.",
+    lugar=_cams["varanda-frente"]["pretinha"]["lugar"],
+    # Frame recortado do peito para cima: no corpo inteiro, a mancha clara
+    # entre as patas virou genitália no vídeo (recado-final, cena 1, 23/10).
+    plano=("in a medium close-up of {P} alone, and it never moves, pans or zooms. {P}, a female dog, sits on the "
+           "veranda facing the camera straight on and looks directly into the lens, talking to the viewer; she "
+           "wears a plain red short-sleeved t-shirt with no print; the frame shows only her head and her chest "
+           "in the red t-shirt, and everything below the t-shirt stays out of frame and is never seen; her face "
+           "is sharp and fills the upper half of the frame."))
 del _cams
+
+# As câmeras do clipe: para cada pet, "<pet>-acao" (sai de casa, plano médio
+# aberto, acena para um vizinho) e "<pet>-close" (contra-plongée, só ele);
+# e "todos" (os 7 juntos, de branco).
+def _clipe() -> None:
+    cams = CENARIOS["clipe"]["cameras"]
+    for k in ("lurdes", "tiao", "cida", "jose", "renato", "pacoca", "pretinha"):
+        eu = "{" + MARCA[k] + "}"
+        cams[f"{k}-acao"] = {
+            "ref": f"cenario-clipe-{k}-acao.png",
+            "visiveis": [k], "onde": {k: ""},
+            "quadro": (f"The camera is completely static on a tripod at {ELENCO[k]['pron']} eye level, in a "
+                       f"medium-wide shot, and it never moves, pans or zooms. {eu} is the only one of the "
+                       f"seven friends in the picture, moving naturally along {{L}}; a friendly neighbour dog may "
+                       f"be seen in the background. {eu}'s whole body and face stay clearly visible."),
+            "abertura": f"as the shot opens {ele(k)} is exactly as in <Picture 1>.",
+        }
+        cams[f"{k}-close"] = {
+            "ref": f"cenario-clipe-{k}-close.png",
+            "visiveis": [k], "onde": {k: ""},
+            "quadro": (f"The camera is completely static, low and below {ELENCO[k]['pron']} chin, looking up at "
+                       f"{o(k)} in a low-angle close-up (contra-plongée), and it never moves, pans or zooms. "
+                       f"{eu}'s head and shoulders fill the frame against the bright blue sky, the bunting and "
+                       f"the yellow ipê of {{L}} softly out of focus above and behind; {ELENCO[k]['pron']} face is "
+                       f"sharp, looking ahead down the street just beside the lens, never into it."),
+            "abertura": f"as the shot opens {ele(k)} is framed exactly as in <Picture 1>, seen from below.",
+        }
+    cams["todos"] = {
+        "ref": "cenario-clipe-todos.png",
+        "visiveis": ["jose", "tiao", "renato", "pretinha", "pacoca", "cida", "lurdes"],
+        "onde": {"jose": "in the back row, on the left", "tiao": "in the back row, in the middle",
+                 "renato": "in the back row, on the right", "pretinha": "in the front row, on the left",
+                 "pacoca": "in the front row, second from the left", "cida": "in the front row, second from the right",
+                 "lurdes": "in the front row, on the right"},
+        "quadro": ("The camera is completely static on a tripod at the height of the dogs' heads, in a medium-wide "
+                   "shot of the seven friends together in the middle of {L}, all dressed in white, and it never "
+                   "moves, pans or zooms. In the back row stand {J}, {T} and {R}; in the front row sit {P}, {C}, "
+                   "{I} and {U}. Every face and mouth is clearly visible."),
+        "abertura": "as the shot opens the seven friends are gathered exactly as in <Picture 1>.",
+    }
+
+
+_clipe()
 
 FECHO = ("No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear "
          "anywhere in the frame.")
@@ -1130,7 +1692,7 @@ FOLGA_S = 0.9  # respiro antes/depois da fala
 # "CPF" e a URL (jose-tutorial-voz): a URL na forma que a Erika pediu saiu
 # certa ("tê-ésse-é" dentro de uma frase com "ponto jus ponto BR" funcionou,
 # ao contrário do "TSE" solto da Pretinha).
-PRONUNCIA = {"Cleide": "Clêide", "22": "vintedois", "Paçoca": "Paçóca", "e-Título": "étítulo", "TI": "têí",
+PRONUNCIA = {"Cleide": "Clêide", "22": "vintedois", "25": "vintecinco", "Paçoca": "Paçóca", "e-Título": "étítulo", "TI": "têí",
              "CPF": "cêpêéfe", "tse.jus.br": "tê-ésse-é ponto jus ponto BR"}
 
 
@@ -1215,8 +1777,8 @@ def duracao(cena: dict) -> int:
     fala = cena.get("fala")
     if not fala:
         return FRAMES[0]
-    quem = ELENCO[fala["quem"]]
-    precisa = (palavras(fala["texto"]) / quem["palavras_por_s"] + FOLGA_S) * FPS
+    pps = 2.2 if fala["quem"] == CORO else ELENCO[fala["quem"]]["palavras_por_s"]
+    precisa = (palavras(fala["texto"]) / pps + FOLGA_S) * FPS
     for f in FRAMES:
         if precisa <= f:
             return f
@@ -1244,10 +1806,16 @@ def camera_da_cena(cena: dict, cenario: dict, vlog: str | None = None) -> str:
 
 
 def frase_da_fala(fala: dict, plano: Plano) -> str:
-    quem = ELENCO[fala["quem"]]
     texto = fala["texto"].strip()
     if texto[-1] not in ".?!,:":
         texto += "."
+    if fala["quem"] == CORO:
+        todos = " and ".join(plano.rotulo.values())
+        tom = f", {fala['tom'].strip().rstrip('.')}" if fala.get("tom") else ""
+        return (f"{todos} (S1), all on screen, shout together in chorus, in their own different voices at the "
+                f"same moment{tom}, every mouth visibly opening and closing in sync with every syllable, says: "
+                f"<d>[Portuguese] {pronuncia(texto)}</d>")
+    quem = ELENCO[fala["quem"]]
     voz = (f"in the voice referenced from <Audio 1> ({quem['voz']})" if tem_voz(fala["quem"])
            else f"in {quem['voz']}")
     # `tom:` (opcional, em inglês) muda só a emoção da fala, não o timbre: a
@@ -1261,9 +1829,15 @@ def frase_da_fala(fala: dict, plano: Plano) -> str:
     else:
         falante = f"{quem['fora'].capitalize()} (S1), heard off-screen {voz},"
     frase = f"{falante} says: <d>[Portuguese] {pronuncia(texto)}</d>"
+    # Só "keeps her mouth closed" não bastou: no close das duas senhoras lado a
+    # lado as duas falaram a mesma frase juntas (aposentadoria-subiu v2, cena 2).
     outros = [k for k in plano.rotulo if k != fala["quem"]]
     for k in outros:
-        frase += f" {plano.rotulo[k]} keeps {ELENCO[k]['pron']} mouth closed."
+        pron = ELENCO[k]["pron"]
+        frase += (f" {plano.rotulo[k]} does not speak at all: {'he' if pron == 'his' else 'she'} only listens, "
+                  f"silent, {pron} lips pressed together and still for the whole shot.")
+    if outros and fala["quem"] in plano.rotulo:
+        frase += f" Only {plano.rotulo[fala['quem']]} speaks."
     return frase
 
 
@@ -1296,6 +1870,13 @@ def prompt(cena: dict, cenario: dict) -> str:
         prefixo = "[reference generation + audio reference]"
         ret_voz = [f"<Audio 1>: reference - {alvo}'s voice follows the timbre, pitch and delivery of <Audio 1> "
                    "without copying the original signal or its words."]
+    elif cena.get("audio"):
+        # `audio:` numa cena = referência de melodia e ritmo (o refrão cantado do
+        # clipe-domingo, na voz guia da Erika), não de timbre.
+        defs.append("<Audio 1> is the melody and rhythm reference for the singing.")
+        prefixo = "[reference generation + audio reference]"
+        ret_voz = ["<Audio 1>: reference - the dogs sing the words with the same melody, rhythm and timing as "
+                   "<Audio 1>, in their own dog voices, without copying the original signal or its timbre."]
     visiveis = " and ".join(plano.rotulo.values())
     um = len(plano.rotulo) == 1
     n = NUMERO.get(len(plano.rotulo), str(len(plano.rotulo)))
@@ -1348,7 +1929,7 @@ def carregar(filme: str, cenario: str | None = None) -> tuple[Path, dict]:
             raise RoteiroError(f"id repetido: {c['id']}")
         vistos.add(c["id"])
         f = c.get("fala")
-        if f and (f.get("quem") not in ELENCO or not f.get("texto")):
+        if f and ((f.get("quem") not in ELENCO and f.get("quem") != CORO) or not f.get("texto")):
             raise RoteiroError(f"cena '{c['id']}': fala precisa de quem ({'/'.join(ELENCO)}) e texto")
         c["frames"] = duracao(c)
     nome = rot.get("cenario", "sala")
@@ -1357,22 +1938,28 @@ def carregar(filme: str, cenario: str | None = None) -> tuple[Path, dict]:
     vlog = rot.get("vlog")
     if vlog and vlog not in ELENCO:
         raise RoteiroError(f"vlog: {vlog}? (é {' ou '.join(ELENCO)})")
-    cams = CENARIOS[nome]["cameras"]
     for c in cenas:
-        cam = camera_da_cena(c, CENARIOS[nome], vlog)
+        # `cenario:` numa cena troca o cenário só dela (todos-perdem: cada
+        # coadjuvante no seu); sem ele, vale o do roteiro.
+        cn = c.get("cenario", nome)
+        if cn not in CENARIOS:
+            raise RoteiroError(f"cena '{c['id']}': cenário desconhecido: {cn} (há: {', '.join(CENARIOS)})")
+        c["_cenario"] = cn
+        cams = CENARIOS[cn]["cameras"]
+        cam = camera_da_cena(c, CENARIOS[cn], vlog)
         if cam not in cams:
             com_vlog = [n for n, ce in CENARIOS.items() if cam in ce["cameras"]]
-            raise RoteiroError(f"cena '{c['id']}': o cenário {nome} não tem a câmera {cam} "
+            raise RoteiroError(f"cena '{c['id']}': o cenário {cn} não tem a câmera {cam} "
                                f"(tem: {', '.join(cams)})"
                                + (f" - cenários com {cam}: {', '.join(com_vlog)}" if com_vlog else ""))
         c["camera"] = cam
-        if c.get("fala") and not tem_voz(c["fala"]["quem"]):
+        if c.get("fala") and c["fala"]["quem"] != CORO and not tem_voz(c["fala"]["quem"]):
             AVISOS.append(f"{ELENCO[c['fala']['quem']]['nome']} ainda sem assets/"
                           f"{ELENCO[c['fala']['quem']]['voz_ref']}: as falas {'dela' if ELENCO[c['fala']['quem']]['pron'] == 'her' else 'dele'} saem sem voz de referência")
         ref = cams[cam]["ref"]
         if not (ROOT / "assets" / ref).is_file():
             AVISOS.append(f"câmera {cam}: falta assets/{ref} (frame de referência ainda não aprovado)")
-        visiveis = CENARIOS[nome]["cameras"][cam]["visiveis"]
+        visiveis = cams[cam]["visiveis"]
         for k, e in ELENCO.items():
             if k in visiveis:
                 continue
@@ -1388,7 +1975,6 @@ def carregar(filme: str, cenario: str | None = None) -> tuple[Path, dict]:
 
 def gerar(filme: str, versao: str, cenario: str | None = None) -> Path:
     pasta, rot = carregar(filme, cenario)
-    cenario = CENARIOS[rot.get("cenario", "sala")]
     nome = rot.get("nome") or (filme if versao == "v1" else f"{filme}-{versao}")
     partes = [
         f"# {filme} {versao} - GERADO por tools/dialogo.py a partir de movies/{filme}/roteiro.yaml.\n"
@@ -1400,6 +1986,7 @@ def gerar(filme: str, versao: str, cenario: str | None = None) -> Path:
         "scenes:\n",
     ]
     for c in rot["cenas"]:
+        cenario = CENARIOS[c["_cenario"]]
         partes.append(f"  - id: {c['id']}\n")
         if c["frames"] != 107:
             partes.append(f"    video_frames: {c['frames']}\n")
@@ -1408,6 +1995,8 @@ def gerar(filme: str, versao: str, cenario: str | None = None) -> Path:
         partes.append(f"    ref_images: [{cenario['cameras'][c['camera']]['ref']}]\n")
         if c.get("fala") and tem_voz(c["fala"]["quem"]):
             partes.append(f"    ref_audios: [{ELENCO[c['fala']['quem']]['voz_ref']}]\n")
+        elif c.get("audio"):
+            partes.append(f"    ref_audios: [{c['audio']}]\n")
         partes.append("    prompt: |-\n")
         partes.extend(f"      {linha}\n" for linha in prompt(c, cenario).split("\n"))
     destino = pasta / "scripts" / f"{versao}.yaml"

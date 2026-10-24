@@ -1,15 +1,16 @@
 # recado-final - vlog da Pretinha no sofá, postado na véspera (sábado,
 # 24/10): sem explicação nova, só o pedido final para quem ainda está em
 # dúvida, retomando o que a série mostrou (remédio, 6x1, aposentadoria). O
-# Paçoca entra de fora do quadro. Ver drafts/recado-final.md.
+# Ver drafts/recado-final.md. Sem o Paçoca (Erika, 23/10): só a Pretinha.
 #
-# Cenário varanda-frente, câmera vlog-pretinha. Tom: sério e afetuoso, sem suspiro.
+# Cenário varanda-frente, câmera vlog-pretinha-vermelha (de camiseta vermelha, Erika 23/10). Tom: sério e afetuoso, sem suspiro.
 vlog: pretinha
 cenario: varanda-frente
 seed: 2026
 
 cenas:
   - id: so-pedir
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha speaks to her viewers, calm and warm.
     antes: Pretinha looks straight into the lens, calm and serious.
     fala:
@@ -18,6 +19,7 @@ cenas:
       tom: soft and warm, sincere, unhurried
 
   - id: quem-ama
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha speaks to the undecided.
     fala:
       quem: pretinha
@@ -25,6 +27,7 @@ cenas:
       tom: soft and warm, sincere, unhurried
 
   - id: mae
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha gives the first example.
     antes: Pretinha's eyes soften, still looking into the lens.
     fala:
@@ -33,6 +36,7 @@ cenas:
       tom: soft and warm, sincere, unhurried
 
   - id: filho
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha gives the second example.
     fala:
       quem: pretinha
@@ -40,6 +44,7 @@ cenas:
       tom: soft and warm, sincere, unhurried
 
   - id: avo
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha gives the third example.
     fala:
       quem: pretinha
@@ -47,6 +52,7 @@ cenas:
       tom: soft and warm, sincere, unhurried
 
   - id: esquerda
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha is honest about her position.
     antes: Pretinha lifts her chin slightly, firm.
     fala:
@@ -54,21 +60,15 @@ cenas:
       texto: "Eu sou de esquerda, e nunca escondi isso de vocês."
 
   - id: fonte
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha says everything she said has a source.
     fala:
       quem: pretinha
       texto: "Mas tudo que eu disse aqui tem fonte. Pode conferir."
     depois: Pretinha gives a small firm nod.
 
-  - id: pacoca
-    resumo: Paçoca speaks up from off-screen, cheerful.
-    antes: Pretinha's ears turn towards the side of the frame.
-    fala:
-      quem: pacoca
-      texto: "E eu mudei de ideia, viu? Dá pra mudar!"
-    depois: Pretinha gives a small smile, looking back into the lens.
-
   - id: leva
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha asks viewers to go and vote.
     fala:
       quem: pretinha
@@ -76,9 +76,10 @@ cenas:
       tom: warm and encouraging
 
   - id: treze
+    camera: vlog-pretinha-vermelha
     resumo: Pretinha closes the series.
     antes: Pretinha looks straight into the lens with a warm, small smile.
     fala:
       quem: pretinha
-      texto: "Dia vinte e cinco, treze. Obrigada por ficar até aqui."
+      texto: "Dia 25, treze. Obrigada por ficar até aqui."
       tom: warm and grateful, smiling, her voice soft
