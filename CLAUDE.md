@@ -82,6 +82,15 @@ movies/<nome>/
   (o elenco fixo do perfil); senão fica no `assets/` do filme.
 - Só `renders/` e `.cache/` são descartáveis. Roteiros e referências são o
   trabalho — commite-os.
+- **Candidatos não entram no git**: as variantes `-a/-b/-c` de
+  `movies/cenarios/assets/`, as folhas de contato e os `*.log` estão no
+  `.gitignore`. O aprovado vira `assets/cenario-*.png` (exceção: `git add -f`).
+- **Filme encerrado vai para o arquivo**: `./arquivar <filme>` (só mostra) e
+  depois `--executar`. O `renders/` (só a montagem e o legendado) e os binários
+  do filme vão para `~/Arquivo/petsexplicam/<filme>.tar.zst`; roteiros e drafts
+  ficam no repo. `./arquivar --candidatos` faz o mesmo com os candidatos de
+  cenário que ninguém cita. O índice é o [ARQUIVO.md](ARQUIVO.md);
+  `./arquivar --restaurar <filme>` traz o filme de volta.
 - **Não mude `name:`** de um script que já renderizou, nem mova o script para
   outro filme: o diretório de render deriva de `name:` e do filme, e os clipes
   ficam órfãos.

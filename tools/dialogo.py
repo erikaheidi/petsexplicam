@@ -174,7 +174,7 @@ ELENCO = {
         "fora": "the old bulldog off-screen",
         "voz_ref": "renato-voz.wav",
         # A voz da v1 (~93 Hz, grave e solene) ficou "sorumbática" (Erika,
-        # 22/10): guardada em movies/tio-renato-muda/assets/renato-voz-v1-solene.wav.
+        # 22/10): guardada no pacote tio-renato-muda (ARQUIVO.md), em assets/renato-voz-v1-solene.wav.
         # 1ª tentativa leve (v2a, ~108 Hz) ainda soou igual à solene: o modelo
         # puxa "buldogue de 65 anos, rouco" para o grave. Agora o tom é dito com
         # todas as letras (tenor, agudo, fino), sem "deep" nem "raspy": ~186 Hz na

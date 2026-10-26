@@ -1,0 +1,5 @@
+#!/bin/sh
+# Arquiva filmes encerrados fora do git (tools/arquivo.py), com o Python do
+# sistema.  ./arquivar <filme>... | --todos | --candidatos [--executar]
+here=$(cd "$(dirname "$0")" && pwd)
+exec python3 "$here/tools/arquivo.py" "$@"

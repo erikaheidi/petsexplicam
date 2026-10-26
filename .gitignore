@@ -2,3 +2,7 @@ renders/
 .cache/
 __pycache__/
 *.pid
+*.log
+# candidatos das edições Qwen e folhas de contato: o aprovado vira assets/cenario-*.png
+movies/cenarios/*-folha.png
+movies/cenarios/assets/*-[a-z].png
