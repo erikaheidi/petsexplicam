@@ -1,0 +1,108 @@
+# clipe-cortejo-grupo2 - 2ª rodada do frame do grupo. Na 1ª o modelo
+# DUPLICOU a Pretinha e o Renato ao pedir a Pretinha no centro.
+#   amplia: o cenario-clipe-todos reduzido sobre fundo borrado (todos-pad), o
+#           Qwen completa a rua - os sete ficam como estão, só abre o quadro.
+#   centro: a Pretinha no centro, com a contagem dita (sete, um de cada).
+#
+#   ./mm images movies/cenarios/scripts/clipe-cortejo-grupo2.yaml
+kind: images
+name: clipe-cortejo-grupo2
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright, soft Sunday-morning sunlight, vibrant but natural colours,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      flags of any party, no banners and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  - id: amplia-a
+    seed: 10801
+    ref_images: [cenario-clipe-todos-pad.png]
+    prompt: >-
+      The same photograph as <image1>, completed: <image1> is a sharp photo
+      placed in the middle of a blurred border. Replace the whole blurred
+      border with real, sharp continuation of the same scene, seamlessly: more
+      of the same tidy residential street on a sunny Sunday morning, the
+      asphalt on both sides and below the dogs, the sidewalks, houses with low
+      front walls and iron gates, the yellow ipê tree and the green, yellow
+      and red paper bunting across the sky. The seven dogs in the sharp middle
+      part stay exactly as they are - the same dogs, the same faces, clothes,
+      sizes and positions - and no dog is added: there are exactly seven dogs
+      in total, all fully inside the frame with open street on both sides of
+      the group. The result is one single seamless real photograph with no
+      visible border, frame or blur.
+  - id: amplia-b
+    seed: 10802
+    ref_images: [cenario-clipe-todos-pad.png]
+    prompt: >-
+      The same photograph as <image1>, completed: <image1> is a sharp photo
+      placed in the middle of a blurred border. Replace the whole blurred
+      border with real, sharp continuation of the same scene, seamlessly: more
+      of the same tidy residential street on a sunny Sunday morning, the
+      asphalt on both sides and below the dogs, the sidewalks, houses with low
+      front walls and iron gates, the yellow ipê tree and the green, yellow
+      and red paper bunting across the sky. The seven dogs in the sharp middle
+      part stay exactly as they are - the same dogs, the same faces, clothes,
+      sizes and positions - and no dog is added: there are exactly seven dogs
+      in total, all fully inside the frame with open street on both sides of
+      the group. The result is one single seamless real photograph with no
+      visible border, frame or blur.
+  - id: centro-a
+    seed: 10803
+    ref_images: [cenario-clipe-todos.png]
+    prompt: >-
+      A photograph of EXACTLY SEVEN dogs - one of each, no duplicates - the
+      same seven dogs as in <image1>, all dressed in white exactly as in
+      <image1>, gathered in the middle of the same tidy residential street as
+      in <image1>, on a sunny Sunday morning, with the yellow ipê tree and the
+      green, yellow and red paper bunting. The camera is level, at the height
+      of the dogs' heads, further back than in <image1>, in a wide shot: all
+      seven fully inside the frame from ears to paws, open street on both
+      sides of the group. The arrangement differs from <image1> only in this:
+      the one black French bulldog sits in the centre of the front row
+      instead of at its left end. Front row, sitting, from left to right: the
+      fawn pug, the black French bulldog (centre), the elderly off-white
+      curly poodle and the elderly golden-red cocker spaniel. Back row,
+      standing behind them, from left to right: the caramel mixed-breed dog,
+      the white dog with black patches and a long muzzle, and the short,
+      broad English bulldog. There is only one French bulldog and only one
+      English bulldog in the picture. Every dog keeps its face, coat,
+      markings, size and clothes exactly as in <image1>, smiling a big happy
+      dog smile. No people and no other dogs.
+  - id: centro-b
+    seed: 10804
+    ref_images: [cenario-clipe-todos.png]
+    prompt: >-
+      A photograph of EXACTLY SEVEN dogs - one of each, no duplicates - the
+      same seven dogs as in <image1>, all dressed in white exactly as in
+      <image1>, gathered in the middle of the same tidy residential street as
+      in <image1>, on a sunny Sunday morning, with the yellow ipê tree and the
+      green, yellow and red paper bunting. The camera is level, at the height
+      of the dogs' heads, further back than in <image1>, in a wide shot: all
+      seven fully inside the frame from ears to paws, open street on both
+      sides of the group. The arrangement differs from <image1> only in this:
+      the one black French bulldog sits in the centre of the front row
+      instead of at its left end. Front row, sitting, from left to right: the
+      fawn pug, the black French bulldog (centre), the elderly off-white
+      curly poodle and the elderly golden-red cocker spaniel. Back row,
+      standing behind them, from left to right: the caramel mixed-breed dog,
+      the white dog with black patches and a long muzzle, and the short,
+      broad English bulldog. There is only one French bulldog and only one
+      English bulldog in the picture. Every dog keeps its face, coat,
+      markings, size and clothes exactly as in <image1>, smiling a big happy
+      dog smile. No people and no other dogs.

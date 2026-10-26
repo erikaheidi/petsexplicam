@@ -1,0 +1,95 @@
+# clipe-cortejo-5 - frame de abertura da cena 5 do cortejo (corte seco).
+# A cena 5 encadeada herdou a câmera inclinada para o céu e gerou o Renato
+# gigante, de pernas compridas (Erika, 25/10). Aqui: câmera nivelada, os quatro
+# andando, o Renato baixinho e largo no portão à esquerda.
+#
+#   ./mm images movies/cenarios/scripts/clipe-cortejo-5.yaml
+kind: images
+name: clipe-cortejo-5
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright, soft Sunday-morning sunlight, vibrant but natural colours,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      flags of any party, no banners and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  - id: renato-abertura-a
+    seed: 10601
+    ref_images: [cenario-clipe-todos.png, cenario-clipe-lurdes-abertura.png]
+    prompt: >-
+      A photograph of the same seven-friends cast as in <image1>, on the same
+      tidy residential street of a middle-class Brazilian neighbourhood seen in
+      <image2>: single-storey houses in soft colours with low front walls, iron
+      gates and small front gardens, trees along the sidewalk, a blooming yellow
+      ipê tree, and strings of small green, yellow and a few red paper bunting
+      flags across the street, on a sunny Sunday morning. The camera is LEVEL,
+      at the height of the dogs' heads, in the middle of the street, looking
+      straight down it, in a medium-wide shot: the street runs away into the
+      distance through the middle of the frame, and only a narrow band of sky
+      shows at the very top. Walking side by side down the middle of the street
+      towards the camera, at a slow, calm stroll, are four of the dogs from
+      <image1>, from left to right: the elderly off-white curly poodle in a
+      white knitted cardigan, the elderly golden-red cocker spaniel in a white
+      knitted cardigan, the white dog with black patches in a white polo shirt,
+      and the caramel mixed-breed dog in a white t-shirt. All four are fully in
+      the frame from ears to paws, with a strip of asphalt below their paws,
+      filling the lower half of the frame, each with a big happy dog smile, the
+      mouth open and the pink tongue showing. On the LEFT-hand sidewalk, just
+      beside them and at the same distance from the camera, the English bulldog
+      from <image1> stands at the open iron gate of his house in his white
+      short-sleeved button-up shirt, smiling and raising one front paw to wave
+      at them. He is SHORT, low to the ground and broad: short thick bowed legs,
+      a deep wide chest close to the ground, a massive wrinkled head, his back
+      no higher than the cocker spaniel's back and his head only at the height
+      of the patched dog's chest; the patched dog and the caramel dog are the
+      tallest. Keep every dog's face, coat, markings and clothes exactly as in
+      <image1>. The French bulldog and the pug of <image1> do not appear. No
+      people anywhere in the picture, and no other dogs.
+  - id: renato-abertura-b
+    seed: 10602
+    ref_images: [cenario-clipe-todos.png, cenario-clipe-lurdes-abertura.png]
+    prompt: >-
+      A photograph of the same seven-friends cast as in <image1>, on the same
+      tidy residential street of a middle-class Brazilian neighbourhood seen in
+      <image2>: single-storey houses in soft colours with low front walls, iron
+      gates and small front gardens, trees along the sidewalk, a blooming yellow
+      ipê tree, and strings of small green, yellow and a few red paper bunting
+      flags across the street, on a sunny Sunday morning. The camera is LEVEL,
+      at the height of the dogs' heads, in the middle of the street, looking
+      straight down it, in a medium-wide shot: the street runs away into the
+      distance through the middle of the frame, and only a narrow band of sky
+      shows at the very top. Walking side by side down the middle of the street
+      towards the camera, at a slow, calm stroll, are four of the dogs from
+      <image1>, from left to right: the elderly off-white curly poodle in a
+      white knitted cardigan, the elderly golden-red cocker spaniel in a white
+      knitted cardigan, the white dog with black patches in a white polo shirt,
+      and the caramel mixed-breed dog in a white t-shirt. All four are fully in
+      the frame from ears to paws, with a strip of asphalt below their paws,
+      filling the lower half of the frame, each with a big happy dog smile, the
+      mouth open and the pink tongue showing. On the LEFT-hand sidewalk, just
+      beside them and at the same distance from the camera, the English bulldog
+      from <image1> stands at the open iron gate of his house in his white
+      short-sleeved button-up shirt, smiling and raising one front paw to wave
+      at them. He is SHORT, low to the ground and broad: short thick bowed legs,
+      a deep wide chest close to the ground, a massive wrinkled head, his back
+      no higher than the cocker spaniel's back and his head only at the height
+      of the patched dog's chest; the patched dog and the caramel dog are the
+      tallest. Keep every dog's face, coat, markings and clothes exactly as in
+      <image1>. The French bulldog and the pug of <image1> do not appear. No
+      people anywhere in the picture, and no other dogs.

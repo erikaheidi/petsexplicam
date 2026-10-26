@@ -1,0 +1,84 @@
+# clipe-cortejo-grupo - o grupo reunido, mais aberto e com a Pretinha no centro.
+# O cenario-clipe-todos cortava a Pretinha na borda esquerda nas cenas do
+# refrão (Erika, 25/10), e ela pediu mais destaque para a Pretinha.
+#
+#   ./mm images movies/cenarios/scripts/clipe-cortejo-grupo.yaml
+kind: images
+name: clipe-cortejo-grupo
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright, soft Sunday-morning sunlight, vibrant but natural colours,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      flags of any party, no banners and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  - id: grupo-a
+    seed: 10701
+    ref_images: [cenario-clipe-todos.png, cenario-clipe-lurdes-abertura.png]
+    prompt: >-
+      A photograph of the same seven dogs as in <image1>, all dressed in white
+      exactly as in <image1>, gathered together in the middle of the same tidy
+      residential street of a middle-class Brazilian neighbourhood seen in
+      <image2>: single-storey houses in soft colours with low front walls,
+      iron gates and small front gardens, a blooming yellow ipê tree, and
+      strings of small green, yellow and a few red paper bunting flags across
+      the street, on a sunny Sunday morning. The camera is LEVEL, at the height
+      of the dogs' heads, and further back than in <image1>, in a wide shot:
+      all seven dogs are fully inside the frame from ears to paws, nobody is
+      cut off at either edge, with open street on both sides of the group, a
+      strip of asphalt below their paws, and the houses and bunting above
+      them. The group fills the middle of the frame. In the centre, one step in
+      front of the others, sits the small black French bulldog, the star of
+      the group, beaming. Beside her in the front row sit, on her left, the
+      fawn pug and the elderly off-white curly poodle, and on her right the
+      short, broad English bulldog (low to the ground, his head no higher than
+      the others in the front row) and the elderly golden-red cocker spaniel.
+      Standing in a back row behind the gaps are the two tallest dogs: the
+      caramel mixed-breed dog and the white dog with black patches and a long
+      muzzle. Everyone turns towards the French bulldog in the centre with a
+      big happy dog smile, mouths open and tongues showing. Keep every dog's
+      face, coat, markings, size and clothes exactly as in <image1>. No people
+      anywhere in the picture, and no other dogs.
+  - id: grupo-b
+    seed: 10702
+    ref_images: [cenario-clipe-todos.png, cenario-clipe-lurdes-abertura.png]
+    prompt: >-
+      A photograph of the same seven dogs as in <image1>, all dressed in white
+      exactly as in <image1>, gathered together in the middle of the same tidy
+      residential street of a middle-class Brazilian neighbourhood seen in
+      <image2>: single-storey houses in soft colours with low front walls,
+      iron gates and small front gardens, a blooming yellow ipê tree, and
+      strings of small green, yellow and a few red paper bunting flags across
+      the street, on a sunny Sunday morning. The camera is LEVEL, at the height
+      of the dogs' heads, and further back than in <image1>, in a wide shot:
+      all seven dogs are fully inside the frame from ears to paws, nobody is
+      cut off at either edge, with open street on both sides of the group, a
+      strip of asphalt below their paws, and the houses and bunting above
+      them. The group fills the middle of the frame. In the centre, one step in
+      front of the others, sits the small black French bulldog, the star of
+      the group, beaming. Beside her in the front row sit, on her left, the
+      fawn pug and the elderly off-white curly poodle, and on her right the
+      short, broad English bulldog (low to the ground, his head no higher than
+      the others in the front row) and the elderly golden-red cocker spaniel.
+      Standing in a back row behind the gaps are the two tallest dogs: the
+      caramel mixed-breed dog and the white dog with black patches and a long
+      muzzle. Everyone turns towards the French bulldog in the centre with a
+      big happy dog smile, mouths open and tongues showing. Keep every dog's
+      face, coat, markings, size and clothes exactly as in <image1>. No people
+      anywhere in the picture, and no other dogs.

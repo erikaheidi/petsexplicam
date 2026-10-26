@@ -1,0 +1,124 @@
+# clipe-cortejo - frame de abertura do cortejo (clipe-domingo/cortejo.py).
+# O cenario-clipe-lurdes-acao punha o portão de frente para a câmera e a rua
+# atrás dele: no vídeo o muro ficou no meio da pista (Erika, 24/10). Aqui o
+# portão fica num muro paralelo à rua, na calçada da direita.
+#
+#   ./mm images movies/cenarios/scripts/clipe-cortejo.yaml
+kind: images
+name: clipe-cortejo
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, bright, soft Sunday-morning sunlight, vibrant but natural colours,
+      vertical 9:16 framing. No text, no letters, no numbers, no logos, no
+      flags of any party, no banners and no signs with anything written on
+      them anywhere in the picture.
+
+images:
+  - id: lurdes-abertura-a
+    seed: 10501
+    ref_images: [cenario-clipe-tiao-acao.png, cenario-clipe-lurdes-acao.png]
+    prompt: >-
+      A photograph taken from a static camera standing in the middle of the
+      same tidy residential street of a middle-class Brazilian neighbourhood
+      as in <image1>, at a small dog's eye level, looking straight down the
+      street: the asphalt runs straight away from the camera through the
+      middle of the frame into the distance, with single-storey houses in soft
+      colours, low front walls, iron gates and small front gardens along both
+      sidewalks, trees along the sidewalk, a blooming yellow ipê tree, and
+      strings of small green, yellow and a few red paper bunting flags across
+      the street, on a sunny Sunday morning. On the RIGHT side of the frame,
+      on the right-hand sidewalk, the low front wall of a pale-yellow house
+      runs along the kerb, parallel to the street, and its iron gate stands
+      open towards the sidewalk. Stepping out through that open gate onto the
+      sidewalk, side-on to the street and turning her head towards the
+      camera, is the elderly cocker spaniel from <image2>, with the same wavy
+      golden-red coat, white-gone muzzle and eyebrows and long silky wavy
+      ears, dressed in the same plain white knitted cardigan, her front legs
+      through the sleeves, and no collar. She smiles a big, happy dog smile:
+      mouth open and relaxed, the corners of the mouth pulled up, the pink
+      tongue showing, eyes bright and soft, and she raises one front paw in a
+      wave. Her whole body is visible, filling about a third of the frame
+      height in the lower right. The middle and left of the frame are open
+      street: nothing stands in the middle of the asphalt, and no wall, gate
+      or fence crosses the street. No people anywhere in the picture. Use
+      <image1> only as a reference for the look of the neighbourhood and the
+      street's perspective: the dogs, the parked car and the pole of <image1>
+      do not appear. This dog is completely alone in the picture: no other
+      dog anywhere, not behind walls, gates or windows.
+  - id: lurdes-abertura-b
+    seed: 10502
+    ref_images: [cenario-clipe-tiao-acao.png, cenario-clipe-lurdes-acao.png]
+    prompt: >-
+      A photograph taken from a static camera standing in the middle of the
+      same tidy residential street of a middle-class Brazilian neighbourhood
+      as in <image1>, at a small dog's eye level, looking straight down the
+      street: the asphalt runs straight away from the camera through the
+      middle of the frame into the distance, with single-storey houses in soft
+      colours, low front walls, iron gates and small front gardens along both
+      sidewalks, trees along the sidewalk, a blooming yellow ipê tree, and
+      strings of small green, yellow and a few red paper bunting flags across
+      the street, on a sunny Sunday morning. On the RIGHT side of the frame,
+      on the right-hand sidewalk, the low front wall of a pale-yellow house
+      runs along the kerb, parallel to the street, and its iron gate stands
+      open towards the sidewalk. Stepping out through that open gate onto the
+      sidewalk, side-on to the street and turning her head towards the
+      camera, is the elderly cocker spaniel from <image2>, with the same wavy
+      golden-red coat, white-gone muzzle and eyebrows and long silky wavy
+      ears, dressed in the same plain white knitted cardigan, her front legs
+      through the sleeves, and no collar. She smiles a big, happy dog smile:
+      mouth open and relaxed, the corners of the mouth pulled up, the pink
+      tongue showing, eyes bright and soft, and she raises one front paw in a
+      wave. Her whole body is visible, filling about a third of the frame
+      height in the lower right. The middle and left of the frame are open
+      street: nothing stands in the middle of the asphalt, and no wall, gate
+      or fence crosses the street. No people anywhere in the picture. Use
+      <image1> only as a reference for the look of the neighbourhood and the
+      street's perspective: the dogs, the parked car and the pole of <image1>
+      do not appear. This dog is completely alone in the picture: no other
+      dog anywhere, not behind walls, gates or windows.
+  - id: lurdes-abertura-c
+    seed: 10503
+    ref_images: [cenario-clipe-tiao-acao.png, cenario-clipe-lurdes-acao.png]
+    prompt: >-
+      A photograph taken from a static camera standing in the middle of the
+      same tidy residential street of a middle-class Brazilian neighbourhood
+      as in <image1>, at a small dog's eye level, looking straight down the
+      street: the asphalt runs straight away from the camera through the
+      middle of the frame into the distance, with single-storey houses in soft
+      colours, low front walls, iron gates and small front gardens along both
+      sidewalks, trees along the sidewalk, a blooming yellow ipê tree, and
+      strings of small green, yellow and a few red paper bunting flags across
+      the street, on a sunny Sunday morning. On the RIGHT side of the frame,
+      on the right-hand sidewalk, the low front wall of a pale-yellow house
+      runs along the kerb, parallel to the street, and its iron gate stands
+      open towards the sidewalk. Stepping out through that open gate onto the
+      sidewalk, side-on to the street and turning her head towards the
+      camera, is the elderly cocker spaniel from <image2>, with the same wavy
+      golden-red coat, white-gone muzzle and eyebrows and long silky wavy
+      ears, dressed in the same plain white knitted cardigan, her front legs
+      through the sleeves, and no collar. She smiles a big, happy dog smile:
+      mouth open and relaxed, the corners of the mouth pulled up, the pink
+      tongue showing, eyes bright and soft, and she raises one front paw in a
+      wave. Her whole body is visible, filling about a third of the frame
+      height in the lower right. The middle and left of the frame are open
+      street: nothing stands in the middle of the asphalt, and no wall, gate
+      or fence crosses the street. No people anywhere in the picture. Use
+      <image1> only as a reference for the look of the neighbourhood and the
+      street's perspective: the dogs, the parked car and the pole of <image1>
+      do not appear. This dog is completely alone in the picture: no other
+      dog anywhere, not behind walls, gates or windows.
