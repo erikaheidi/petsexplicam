@@ -1,0 +1,89 @@
+# democracia-todo-dia - primeiro vídeo pós-eleição (segunda, 26/10): o Lula
+# ganhou e o Paçoca quer "desligar". A Pretinha comemora, mas pede para não
+# se desmobilizar: acompanhar o Congresso, checar antes de compartilhar,
+# continuar por aqui. Ver drafts/democracia-todo-dia.md.
+#
+# Cenário sofa-frente. Tom: alegre na abertura, firme e afetuoso depois.
+cenario: sofa-frente
+seed: 2026
+
+cenas:
+  - id: ganhou
+    camera: dupla
+    resumo: Paçoca celebrates the result, excited, and asks if he can switch off.
+    # v1: "bounces on the sofa" e ele foi falar em cima da cara dela (Erika, 26/10).
+    antes: Paçoca stays sitting at his own end of the sofa, keeping the stretch of sofa between them, his curled tail wagging fast, looking at Pretinha.
+    depois: Paçoca stays at his end of the sofa, never leaning in towards her face.
+    fala:
+      quem: pacoca
+      texto: "Pretinha, o Lula ganhou! Agora eu posso desligar o celular?"
+      tom: overjoyed and breathless, grinning
+
+  - id: descansar
+    resumo: Pretinha smiles, then gets firm.
+    antes: Pretinha keeps looking at Paçoca with a warm, small smile.
+    fala:
+      quem: pretinha
+      texto: "Descansar hoje, pode. Desligar da política, não."
+      tom: warm and happy, smiling, then firm on the last words
+
+  - id: acabou
+    resumo: Paçoca is confused.
+    antes: Paçoca tilts his head, his forehead wrinkles deepening.
+    fala:
+      quem: pacoca
+      texto: "Ué, mas a eleição não acabou ontem?"
+      tom: puzzled, genuinely confused
+
+  - id: acompanhar
+    resumo: Pretinha explains the next step.
+    antes: Pretinha keeps looking at Paçoca, calm and patient.
+    fala:
+      quem: pretinha
+      texto: "A eleição acabou. Agora é hora de acompanhar quem foi eleito."
+
+  - id: zap
+    resumo: Paçoca admits he only knows how to use WhatsApp.
+    antes: Paçoca's ears flatten a little and he gives a sheepish look.
+    fala:
+      quem: pacoca
+      texto: "E como eu acompanho? Eu só sei mexer no zap."
+      tom: sheepish, a little embarrassed
+
+  - id: camara
+    resumo: Pretinha tells him where to look.
+    fala:
+      quem: pretinha
+      texto: "No site da Câmara, você vê como cada deputado votou."
+    depois: Pretinha gives a small firm nod.
+
+  - id: grupo
+    resumo: Paçoca asks about strange news in the family group.
+    antes: Paçoca leans forward, eyes wide.
+    fala:
+      quem: pacoca
+      texto: "E se chegar notícia estranha no grupo da família?"
+
+  - id: pesquisa
+    resumo: Pretinha reminds him the habit continues.
+    fala:
+      quem: pretinha
+      texto: "Pesquisa antes de compartilhar. Isso não acabou no domingo."
+
+  - id: todo-dia
+    camera: dupla
+    resumo: Paçoca gets it and is excited again.
+    antes: Paçoca's eyes widen and his tail starts wagging.
+    fala:
+      quem: pacoca
+      texto: "Então democracia não é só um domingo. É todo dia!"
+      tom: delighted, eager, grinning
+
+  - id: com-a-gente
+    resumo: Pretinha turns to the viewers and asks them to like and follow.
+    antes: Pretinha turns her head to look straight into the lens, with a confident smile.
+    fala:
+      quem: pretinha
+      texto: "Curte esse vídeo e segue a gente: vem muito mais aí!"
+      tom: upbeat and confident, smiling, energetic and direct
+    depois: Pretinha gives a firm nod to the lens.

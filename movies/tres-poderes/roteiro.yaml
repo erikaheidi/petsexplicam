@@ -1,0 +1,91 @@
+# tres-poderes - no ponto de ônibus, na volta do trabalho, o Paçoca ouviu que
+# "o PL vai mandar no Lula". A Pretinha explica os três poderes, o que o
+# presidente pode (propor, vetar) e que maior bancada não é maioria: o PL
+# sozinho não barra o governo, depende do centrão. Ver drafts/tres-poderes.md.
+#
+# Cenário ponto-onibus (primeiro uso; closes de ponto-onibus-closes.yaml).
+# Tom: didático e firme, sem suspiro; o Paçoca termina entendendo.
+cenario: ponto-onibus
+seed: 2026
+
+cenas:
+  - id: mandar
+    camera: dupla
+    resumo: Paçoca repeats a worried rumour to Pretinha.
+    antes: Paçoca keeps looking at Pretinha, his forehead wrinkled with worry.
+    fala:
+      quem: pacoca
+      texto: "Pretinha, tão dizendo que o PL vai mandar no Lula. É verdade?"
+      tom: worried, a little anxious
+
+  - id: tres
+    resumo: Pretinha answers calmly and firmly.
+    antes: Pretinha keeps looking at Paçoca, calm and firm.
+    fala:
+      quem: pretinha
+      texto: "Ninguém manda sozinho. O Brasil tem três poderes."
+
+  - id: congresso
+    resumo: Pretinha explains the Legislative.
+    fala:
+      quem: pretinha
+      texto: "O Congresso faz as leis e aprova o orçamento."
+
+  - id: presidente
+    resumo: Pretinha explains the Executive.
+    fala:
+      quem: pretinha
+      texto: "O presidente governa: executa o orçamento e comanda os ministérios."
+
+  - id: judiciario
+    resumo: Pretinha explains the Judiciary.
+    fala:
+      quem: pretinha
+      texto: "E o Judiciário confere se tudo respeita a Constituição."
+    depois: Pretinha gives a small firm nod.
+
+  - id: lei
+    resumo: Paçoca is surprised.
+    antes: Paçoca's eyes widen.
+    fala:
+      quem: pacoca
+      texto: "Então o presidente não pode fazer lei nenhuma?"
+      tom: surprised, genuinely curious
+
+  - id: vetar
+    resumo: Pretinha explains what the president can do.
+    fala:
+      quem: pretinha
+      texto: "Pode propor, e pode vetar o que o Congresso aprovar."
+
+  - id: barrar
+    resumo: Paçoca asks about the PL.
+    antes: Paçoca tilts his head, thinking.
+    fala:
+      quem: pacoca
+      texto: "E o PL? Sozinho, ele consegue barrar o governo?"
+      tom: curious, thinking it through
+
+  - id: centrao
+    resumo: Pretinha explains that the PL depends on the centre parties.
+    fala:
+      quem: pretinha
+      texto: "Sozinho, não. Depende do centrão, e o centrão negocia."
+
+  - id: ninguem
+    camera: dupla
+    resumo: Paçoca gets it.
+    antes: Paçoca's eyes widen and he sits up straight on the bench.
+    fala:
+      quem: pacoca
+      texto: "Então ninguém manda sozinho. Nem o PL, nem o Lula!"
+      tom: delighted, proud of understanding, grinning
+
+  - id: segue
+    resumo: Pretinha turns to the viewers and asks them to like and follow.
+    antes: Pretinha turns her head to look straight into the lens, with a confident smile.
+    fala:
+      quem: pretinha
+      texto: "Isso. Curte, segue, e fica de olho no Congresso!"
+      tom: upbeat and confident, smiling, energetic and direct
+    depois: Pretinha gives a firm nod to the lens.

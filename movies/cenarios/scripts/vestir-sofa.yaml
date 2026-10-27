@@ -1,0 +1,84 @@
+# vestir-sofa - a dupla de roupinha no sofa-frente (Erika, 26/10, pós-eleição):
+# Pretinha de camiseta vermelha lisa, Paçoca com a camisa do time do bairro
+# (verde com listras brancas, a da lanchonete). Edita só a roupa nos três
+# frames aprovados (dupla e os dois closes); o resto fica igual.
+#
+#   ./mm images movies/cenarios/scripts/vestir-sofa.yaml
+kind: images
+name: vestir-sofa
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real knitted wool, bright even indoor lighting, shallow depth
+      of field, vertical 9:16 framing. No text, no letters, no numbers, no
+      logos, no labels, no price tags, no screens and no signs with anything
+      written on them anywhere in the picture.
+
+images:
+  - id: dupla-a
+    seed: 10261
+    ref_images: [cenario-sofafrente.png]
+    prompt: &dupla >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      room, the sofa, the light, the framing, both dogs' faces, poses,
+      positions and where each one is looking. Change only two things: the
+      black French bulldog on the left now wears a plain red short-sleeved
+      t-shirt with no print, no logo and no lettering, her front legs
+      through the sleeves, covering her chest and back; and the fawn pug on
+      the right now wears a short-sleeved football shirt of an amateur
+      neighbourhood team, green with white vertical stripes, plain, with no
+      crest, no number and no lettering, his front legs through the
+      sleeves. Their faces, ears and heads stay exactly the same.
+  - id: dupla-b
+    seed: 10262
+    ref_images: [cenario-sofafrente.png]
+    prompt: *dupla
+  - id: pretinha-a
+    seed: 10263
+    ref_images: [cenario-sofafrente-pretinha.png]
+    prompt: &pretinha >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      room, the light, the framing, the black French bulldog's face, pose
+      and where she is looking, and the out-of-focus pug's back in the
+      foreground. Change only two things: the black French bulldog now
+      wears a plain red short-sleeved t-shirt with no print, no logo and no
+      lettering, her front legs through the sleeves, covering her chest;
+      and the out-of-focus pug's back and shoulder in the lower-right
+      foreground are now covered by a green-and-white vertically striped
+      football shirt. Her face, ears and head stay exactly the same.
+  - id: pretinha-b
+    seed: 10264
+    ref_images: [cenario-sofafrente-pretinha.png]
+    prompt: *pretinha
+  - id: pacoca-a
+    seed: 10265
+    ref_images: [cenario-sofafrente-pacoca.png]
+    prompt: &pacoca >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      room, the light, the framing, the pug's face, pose and where he is
+      looking, and the out-of-focus French bulldog's back in the foreground.
+      Change only two things: the fawn pug now wears a short-sleeved
+      football shirt of an amateur neighbourhood team, green with white
+      vertical stripes, plain, with no crest, no number and no lettering,
+      his front legs through the sleeves, covering his chest; and the
+      out-of-focus French bulldog's black back and shoulder in the
+      lower-left foreground are now covered by a plain red t-shirt. His
+      face, ears and head stay exactly the same.
+  - id: pacoca-b
+    seed: 10266
+    ref_images: [cenario-sofafrente-pacoca.png]
+    prompt: *pacoca

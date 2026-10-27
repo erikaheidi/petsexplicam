@@ -1,0 +1,103 @@
+# ponto-onibus-closes - rodada 2 do ponto de ônibus (tres-poderes, Erika
+# 27/10): a dupla sem o papel no banco, e os closes por cima do ombro.
+# Pretinha de camiseta vermelha, Paçoca de polo azul-marinho de uniforme.
+# Geografia: ela à esquerda, de costas para o vidro do abrigo; ele à direita,
+# com a avenida atrás.
+#
+#   ./mm images movies/cenarios/scripts/ponto-onibus-closes.yaml
+kind: images
+name: ponto-onibus-closes
+
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: qwen_image_2.1_bf16.safetensors
+  text_encoder: qwen3vl_8b_bf16.safetensors
+  vae: qwen_image_2.1_vae_bf16.safetensors
+  # 25, não 8: com 8 passos uma edição se afasta da referência.
+  steps: 25
+  cfg: 1.0
+  sampler: euler
+  scheduler: simple
+
+defaults:
+  resolution: 1024
+  style_suffix: >-
+      The result is a real photograph, not an illustration, cartoon or render:
+      real fur, real fabric, golden late-afternoon light, shallow depth of
+      field, vertical 9:16 framing. No text, no letters, no numbers, no logos,
+      no labels, no price tags, no screens and no signs with anything written
+      on them anywhere in the picture.
+
+images:
+  - id: dupla-a
+    seed: 10271
+    ref_images: [cenario-ponto-onibus.png]
+    prompt: &dupla >-
+      Edit the photograph <image1>. Keep everything exactly as it is - the
+      bus shelter, the bench, the avenue, the light, the framing, both dogs'
+      faces, clothes, poses, positions and where each one is looking. Change
+      only one thing: remove the folded sheet of white paper from the bench;
+      the pug's front paw rests on the bare wooden bench and the bench is
+      empty where the paper was.
+  - id: dupla-b
+    seed: 10272
+    ref_images: [cenario-ponto-onibus.png]
+    prompt: *dupla
+
+  - id: pretinha-a
+    seed: 10273
+    ref_images: [cenario-ponto-onibus.png, cenario-varandafrente-pretinha.png]
+    prompt: &pretinha >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      black French bulldog, as in a film conversation. Keep her exactly as she
+      is: the French bulldog from <image1>, who is also the black French
+      bulldog in <image2> (not the fawn pug at the edge of that picture): the
+      same face, the same large upright bat ears, the same white stripe down
+      the middle of her muzzle, greyish-white chin, with no collar and no
+      harness, wearing a plain red short-sleeved t-shirt with no print, no
+      logo and no lettering. The camera is low, just behind the pug on the
+      bench: in the foreground at the lower right, out of focus, are the
+      pug's fawn neck and shoulder in the navy-blue polo shirt and the back of
+      his small black folded ear, turned away from the camera; his face is
+      never seen. The French bulldog sits on the bus shelter bench facing the
+      camera at a three-quarter angle, turned towards the pug and looking at
+      him, just to the right of the camera; her sharp face, whole muzzle and
+      chest in the red t-shirt fill the left two thirds of the frame, her
+      mouth closed. Behind her, softly out of focus, the clear glass back
+      panel of the shelter with its dark green metal frame, and through it
+      the warm golden light of the end of the afternoon. No paper on the
+      bench. No advertising, no sign and no timetable anywhere. No people, no
+      human figures and no human hands anywhere in the picture.
+  - id: pretinha-b
+    seed: 10274
+    ref_images: [cenario-ponto-onibus.png, cenario-varandafrente-pretinha.png]
+    prompt: *pretinha
+
+  - id: pacoca-a
+    seed: 10275
+    ref_images: [cenario-ponto-onibus.png, pacoca-referencia.png]
+    prompt: &pacoca >-
+      Change the photograph <image1> into an over-the-shoulder close-up of the
+      fawn pug, as in a film conversation. Keep him exactly as he is: the pug
+      from <image1>, who is also the fawn pug on the right in <image2>: the
+      same face, black mask, small black folded ears, deep forehead wrinkles
+      and round body, with no collar and no harness, wearing the plain
+      navy-blue work polo shirt with no logo. The camera is low, just behind
+      the French bulldog on the bench: in the foreground at the lower left,
+      out of focus, are her black shoulder in the red t-shirt and the back of
+      her large upright black bat ear, turned away from the camera; her face
+      is never seen. The pug sits on the bus shelter bench facing the camera
+      at a three-quarter angle, turned towards the French bulldog and looking
+      at her, just to the left of the camera; his sharp face, whole muzzle
+      and chest in the navy polo fill the right two thirds of the frame, his
+      mouth closed. Behind him, softly out of focus, the avenue in warm
+      golden late-afternoon light: passing cars, trees, utility poles and low
+      buildings. No paper on the bench. No advertising, no sign and no
+      timetable anywhere. No people, no human figures and no human hands
+      anywhere in the picture.
+  - id: pacoca-b
+    seed: 10276
+    ref_images: [cenario-ponto-onibus.png, pacoca-referencia.png]
+    prompt: *pacoca

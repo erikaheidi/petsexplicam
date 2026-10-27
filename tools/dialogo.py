@@ -1556,6 +1556,110 @@ CENARIOS = {
                        "of the frame, his sad round eyes looking up into the lens.")),
         },
     },
+    # O ponto de ônibus da avenida no fim da tarde, na volta do trabalho
+    # (tres-poderes, Erika 27/10). Frames em movies/cenarios/scripts/
+    # ponto-onibus-closes.yaml (dupla-a sem o papel do contracheque,
+    # pretinha-a, pacoca-a); o cenario-ponto-onibus.png com o papel fica para
+    # o contracheque-ir. Ela à esquerda, de costas para o vidro do abrigo; ele
+    # à direita, com a avenida atrás. O close dela tem o próprio `lugar`, só
+    # com o vidro: a avenida é o fundo dele.
+    "ponto-onibus": {
+        "lugar": ("the bus stop shown in <Picture 1>, on a busy avenue in a Brazilian city at the end of the "
+                  "afternoon: a dark wooden bench with a metal frame under a bus shelter with a clear glass back "
+                  "panel in a dark green metal frame, with nothing on it, and beyond it the avenue with passing "
+                  "cars, trees, utility poles and low buildings in warm golden light"),
+        "estilo": ("The target video is photorealistic live-action footage outdoors at the end of the afternoon, "
+                   "in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a "
+                   "locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole "
+                   "video, with no camera shake, no handheld movement and no drift."),
+        "som": ("Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on "
+                "the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no "
+                "music, no voices other than the two dogs', and no barking, whining or growling at any point."),
+        "figurino": {
+            "pretinha": ("Here she wears a plain red short-sleeved t-shirt with no print, no logo and no "
+                         "lettering, her front legs through the sleeves."),
+            "pacoca": ("Here he wears a plain navy-blue work polo shirt with no logo, his front legs through the "
+                       "sleeves."),
+        },
+        "cameras": {
+            "dupla": {
+                "ref": "cenario-pontoonibus.png",
+                "visiveis": ["pretinha", "pacoca"],
+                "onde": {"pretinha": "on the left", "pacoca": "on the right"},
+                "quadro": (
+                    "The camera is completely static on a tripod at the height of the bench, straight on, in a "
+                    "medium shot, and it never moves, pans or zooms. {P} sits on the left of the bench in the red "
+                    "t-shirt, turned to the right in a three-quarter profile, looking at {C}; {C} sits on the "
+                    "right of the bench in the navy polo, turned to the left in a three-quarter profile, looking "
+                    "back at her. Both are seen whole, from their paws on the bench to the tips of their ears, "
+                    "and both faces and mouths are clearly visible. Behind them, softly out of focus, {L}: the "
+                    "glass back panel of the shelter with its dark green frame behind her on the left, and the "
+                    "avenue with its passing cars behind him on the right."),
+                "abertura": ("as the shot opens they sit exactly as in <Picture 1>, side by side on the bench, "
+                             "turned towards each other."),
+            },
+            "pretinha": {
+                "ref": "cenario-pontoonibus-pretinha.png",
+                "visiveis": ["pretinha"],
+                "onde": {"pretinha": ""},
+                "lugar": ("the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green "
+                          "metal frame, in warm golden late-afternoon light"),
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the pug's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of "
+                    "his small black ear, turned away from the camera; his face is never seen. {P} sits on the "
+                    "bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, "
+                    "just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp "
+                    "and fill the left two thirds of the frame. Behind her, softly out of focus, {L}."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus "
+                             "shoulder and ear in the lower-right foreground, and her face sharp, turned towards "
+                             "him."),
+            },
+            "pacoca": {
+                "ref": "cenario-pontoonibus-pacoca.png",
+                "visiveis": ["pacoca"],
+                "onde": {"pacoca": ""},
+                "quadro": (
+                    "The camera is completely static on a tripod just behind the French bulldog's shoulder, in an "
+                    "over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower "
+                    "left, out of focus, are the French bulldog's black shoulder in the red t-shirt and the back of "
+                    "her tall upright bat ear, turned away from the camera; her face is never seen. {C} sits on "
+                    "the bench facing the camera at a three-quarter angle, turned towards her and looking at her, "
+                    "just to the left of the lens; his face, whole muzzle and chest in the navy polo are sharp and "
+                    "fill the right two thirds of the frame. Behind him, softly out of focus, the avenue of {L} "
+                    "in warm golden light: passing cars, trees, utility poles and low buildings."),
+                "abertura": ("as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's "
+                             "out-of-focus shoulder and ear in the lower-left foreground, and his face sharp, "
+                             "turned towards her."),
+            },
+        },
+    },
+}
+
+# O sofa-frente de roupinha (democracia-todo-dia, Erika 26/10): Pretinha de
+# camiseta vermelha, Paçoca com a camisa listrada do time da lanchonete.
+# Frames em movies/cenarios/scripts/vestir-sofa.yaml (dupla-a, pretinha-a,
+# pacoca-a: listras largas iguais nos três planos). O resto é o sofa-frente.
+CENARIOS["sofa-frente-roupa"] = {
+    **CENARIOS["sofa-frente"],
+    "figurino": {
+        "pretinha": ("Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, "
+                     "her front legs through the sleeves."),
+        "pacoca": ("Here he wears a short-sleeved football shirt of an amateur neighbourhood team, green with "
+                   "white vertical stripes, plain, with no crest, no number and no lettering, his front legs "
+                   "through the sleeves."),
+    },
+    "cameras": {
+        nome: {**cam,
+               "ref": cam["ref"].replace("cenario-sofafrente", "cenario-sofafrente-roupa"),
+               "quadro": cam["quadro"]
+               .replace("the pug's fawn back and shoulder",
+                        "the pug's fawn back and shoulder in the green-and-white striped shirt")
+               .replace("the French bulldog's black back and shoulder",
+                        "the French bulldog's black back and shoulder in the red t-shirt")}
+        for nome, cam in CENARIOS["sofa-frente"]["cameras"].items()
+    },
 }
 
 # Câmeras de vlog dos cenários de diálogo (movies/cenarios/scripts/vlog.yaml,

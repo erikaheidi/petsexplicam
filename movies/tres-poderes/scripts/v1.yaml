@@ -1,0 +1,266 @@
+# tres-poderes v1 - GERADO por tools/dialogo.py a partir de movies/tres-poderes/roteiro.yaml.
+# Não edite à mão: mude o roteiro (ou a receita em tools/dialogo.py) e rode
+#   ./dialogo gerar tres-poderes
+# Cada cena é independente: dá para refazer uma só com --only N.
+name: tres-poderes
+backend: comfy
+comfy:
+  url: http://127.0.0.1:8188
+  input_dir: /home/erika/Projects/rocm-comfyui/data/input
+  output_dir: /home/erika/Projects/rocm-comfyui/data/output
+  diffusion_model: minimax_h3_fastvideo_vsa_datafree_1300step_4step_int8_convrot.safetensors
+  text_encoder: qwen3vl_32b_minimax_h3_bf16.safetensors
+  video_vae: minimax_h3_video_vae_int8_convrot.safetensors
+  audio_vae: minimax_h3_audio_vae_fp32.safetensors
+  # 8 passos, start 0.2 / end 1.0: com 4 passos e atenção esparsa desde o
+  # primeiro passo a câmera treme.
+  steps: 8
+  ref_image_size: match
+  sol_attn:
+    mode: vsa
+    keep_percent: 20.0
+    min_tokens: 4096
+    start_percent: 0.2
+    end_percent: 1.0
+    verbose: true
+defaults:
+  width: 544
+  height: 960
+  fps: 24
+  video_frames: 107
+  seed: 2026
+  style_suffix: ""
+continuity:
+  anchors: []
+  chain_from_previous: false
+output:
+  container: mp4
+  audio: keep
+  music: null
+scenes:
+  - id: mandar
+    video_frames: 124
+    ref_images: [cenario-pontoonibus.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness. Here he wears a plain navy-blue work polo shirt with no logo, his front legs through the sleeves.
+      <Subject 3> is the bus stop shown in <Picture 1>, on a busy avenue in a Brazilian city at the end of the afternoon: a dark wooden bench with a metal frame under a bus shelter with a clear glass back panel in a dark green metal frame, with nothing on it, and beyond it the avenue with passing cars, trees, utility poles and low buildings in warm golden light.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> repeats a worried rumour to <Subject 1>. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, side by side on the bench, turned towards each other.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the bench, straight on, in a medium shot, and it never moves, pans or zooms. <Subject 1> sits on the left of the bench in the red t-shirt, turned to the right in a three-quarter profile, looking at <Subject 2>; <Subject 2> sits on the right of the bench in the navy polo, turned to the left in a three-quarter profile, looking back at her. Both are seen whole, from their paws on the bench to the tips of their ears, and both faces and mouths are clearly visible. Behind them, softly out of focus, <Subject 3>: the glass back panel of the shelter with its dark green frame behind her on the left, and the avenue with its passing cars behind him on the right. <Subject 2> keeps looking at <Subject 1>, his forehead wrinkled with worry. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), but on this line he sounds worried, a little anxious, his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Pretinha, tão dizendo que o PL vai mandar no Lula. É verdade?</d> <Subject 1> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 2> speaks. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: tres
+    ref_images: [cenario-pontoonibus-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green metal frame, in warm golden late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> answers calmly and firmly. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus shoulder and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, <Subject 2>. <Subject 1> keeps looking at the pug off-screen, calm and firm. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Ninguém manda sozinho. O Brasil tem três poderes.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: congresso
+    ref_images: [cenario-pontoonibus-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green metal frame, in warm golden late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains the Legislative. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus shoulder and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, <Subject 2>. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] O Congresso faz as leis e aprova o orçamento.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: presidente
+    video_frames: 124
+    ref_images: [cenario-pontoonibus-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green metal frame, in warm golden late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains the Executive. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus shoulder and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, <Subject 2>. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] O presidente governa: executa o orçamento e comanda os ministérios.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: judiciario
+    ref_images: [cenario-pontoonibus-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green metal frame, in warm golden late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains the Judiciary. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus shoulder and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, <Subject 2>. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E o Judiciário confere se tudo respeita a Constituição.</d> <Subject 1> gives a small firm nod. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: lei
+    video_frames: 90
+    ref_images: [cenario-pontoonibus-pacoca.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Paçoca, the male pug in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness. Here he wears a plain navy-blue work polo shirt with no logo, his front legs through the sleeves.
+      <Subject 2> is the bus stop shown in <Picture 1>, on a busy avenue in a Brazilian city at the end of the afternoon: a dark wooden bench with a metal frame under a bus shelter with a clear glass back panel in a dark green metal frame, with nothing on it, and beyond it the avenue with passing cars, trees, utility poles and low buildings in warm golden light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> is surprised. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus shoulder and ear in the lower-left foreground, and his face sharp, turned towards her.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the French bulldog's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower left, out of focus, are the French bulldog's black shoulder in the red t-shirt and the back of her tall upright bat ear, turned away from the camera; her face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards her and looking at her, just to the left of the lens; his face, whole muzzle and chest in the navy polo are sharp and fill the right two thirds of the frame. Behind him, softly out of focus, the avenue of <Subject 2> in warm golden light: passing cars, trees, utility poles and low buildings. <Subject 1>'s eyes widen. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), but on this line he sounds surprised, genuinely curious, his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Então o presidente não pode fazer lei nenhuma?</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: vetar
+    video_frames: 124
+    ref_images: [cenario-pontoonibus-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green metal frame, in warm golden late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains what the president can do. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus shoulder and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, <Subject 2>. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Pode propor, e pode vetar o que o Congresso aprovar.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: barrar
+    ref_images: [cenario-pontoonibus-pacoca.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Paçoca, the male pug in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness. Here he wears a plain navy-blue work polo shirt with no logo, his front legs through the sleeves.
+      <Subject 2> is the bus stop shown in <Picture 1>, on a busy avenue in a Brazilian city at the end of the afternoon: a dark wooden bench with a metal frame under a bus shelter with a clear glass back panel in a dark green metal frame, with nothing on it, and beyond it the avenue with passing cars, trees, utility poles and low buildings in warm golden light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> asks about the PL. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the French bulldog's out-of-focus shoulder and ear in the lower-left foreground, and his face sharp, turned towards her.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the French bulldog's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower left, out of focus, are the French bulldog's black shoulder in the red t-shirt and the back of her tall upright bat ear, turned away from the camera; her face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards her and looking at her, just to the left of the lens; his face, whole muzzle and chest in the navy polo are sharp and fill the right two thirds of the frame. Behind him, softly out of focus, the avenue of <Subject 2> in warm golden light: passing cars, trees, utility poles and low buildings. <Subject 1> tilts his head, thinking. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), but on this line he sounds curious, thinking it through, his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] E o PL? Sozinho, ele consegue barrar o governo?</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: centrao
+    ref_images: [cenario-pontoonibus-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green metal frame, in warm golden late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> explains that the PL depends on the centre parties. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus shoulder and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, <Subject 2>. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Sozinho, não. Depende do centrão, e o centrão negocia.</d> No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: ninguem
+    ref_images: [cenario-pontoonibus.png]
+    ref_audios: [pacoca-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog on the left in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is Paçoca, the male pug on the right in <Picture 1>: stocky and round, a short fawn-yellow coat, a jet-black mask over his muzzle and around his eyes, small black folded ears, large round glossy dark eyes, deep wrinkles on his forehead, and a tightly curled tail. He wears no collar and no harness. Here he wears a plain navy-blue work polo shirt with no logo, his front legs through the sleeves.
+      <Subject 3> is the bus stop shown in <Picture 1>, on a busy avenue in a Brazilian city at the end of the afternoon: a dark wooden bench with a metal frame under a bus shelter with a clear glass back panel in a dark green metal frame, with nothing on it, and beyond it the avenue with passing cars, trees, utility poles and low buildings in warm golden light.
+      <Audio 1> is the voice-timbre reference for <Subject 2>.
+      summary:
+      [reference generation + audio reference] <Subject 2> gets it. <Picture 1> supplies the two dogs, the room and the framing.
+      retention_analysis:
+      <Subject 1> and <Subject 2> (appear in [Shot 1]): fully_preserved - the same two dogs as in <Picture 1>, unchanged from the first frame to the last; as the shot opens they sit exactly as in <Picture 1>, side by side on the bench, turned towards each other.
+      <Subject 3> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and both dogs in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 2>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod at the height of the bench, straight on, in a medium shot, and it never moves, pans or zooms. <Subject 1> sits on the left of the bench in the red t-shirt, turned to the right in a three-quarter profile, looking at <Subject 2>; <Subject 2> sits on the right of the bench in the navy polo, turned to the left in a three-quarter profile, looking back at her. Both are seen whole, from their paws on the bench to the tips of their ears, and both faces and mouths are clearly visible. Behind them, softly out of focus, <Subject 3>: the glass back panel of the shelter with its dark green frame behind her on the left, and the avenue with its passing cars behind him on the right. <Subject 2>'s eyes widen and he sits up straight on the bench. <Subject 2> (S1), on screen, in the voice referenced from <Audio 1> (a high-pitched, boyish voice, like an excited young boy, bright and slightly nasal, fast, his words tumbling over each other), but on this line he sounds delighted, proud of understanding, grinning, his mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Então ninguém manda sozinho. Nem o PL, nem o Lula!</d> <Subject 1> does not speak at all: she only listens, silent, her lips pressed together and still for the whole shot. Only <Subject 2> speaks. Each dog's mouth moves only while that dog speaks. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
+  - id: segue
+    ref_images: [cenario-pontoonibus-pretinha.png]
+    ref_audios: [pretinha-voz.wav]
+    prompt: |-
+      subject_definitions:
+      <Subject 1> is Pretinha, the small female French bulldog in <Picture 1>: compact and muscular, a short black coat with faint darker brindle striping, a white blaze covering the centre of her chest, large upright bat ears set high and wide, round dark brown eyes, and a short deeply wrinkled muzzle with a flat black nose. She wears no collar and no harness. Here she wears a plain red short-sleeved t-shirt with no print, no logo and no lettering, her front legs through the sleeves.
+      <Subject 2> is the bus shelter shown in <Picture 1>: the clear glass back panel in its dark green metal frame, in warm golden late-afternoon light.
+      <Audio 1> is the voice-timbre reference for <Subject 1>.
+      summary:
+      [reference generation + audio reference] <Subject 1> turns to the viewers and asks them to like and follow. <Picture 1> supplies the dog, the room and the framing.
+      retention_analysis:
+      <Subject 1> (appears in [Shot 1]): fully_preserved - the same dog as in <Picture 1>, unchanged from the first frame to the last; as the shot opens the framing is exactly as in <Picture 1>: the pug's out-of-focus shoulder and ear in the lower-right foreground, and her face sharp, turned towards him.
+      <Subject 2> (appears in [Shot 1]): fully_preserved - the room, the furniture and the light stay exactly as they are, and the camera framing does not change.
+      <Picture 1> (composition and subject reference for [Shot 1]): fully_preserved - the shot opens on exactly this composition: the same camera position, framing and scale, the same furniture, and the dog in the same place and at the same size. The framing never widens, tilts or drifts.
+      <Audio 1>: reference - <Subject 1>'s voice follows the timbre, pitch and delivery of <Audio 1> without copying the original signal or its words.
+      detailed_description:
+      The target video is photorealistic live-action footage outdoors at the end of the afternoon, in warm, golden low sunlight with soft long shadows and vibrant but natural colours, shot from a locked-off static camera on a heavy tripod: the picture is perfectly steady for the whole video, with no camera shake, no handheld movement and no drift.
+      [Shot 1] The shot opens on the composition of <Picture 1>. The camera is completely static on a tripod just behind the pug's shoulder, in an over-the-shoulder close shot, and it never moves, pans or zooms. In the foreground at the lower right, out of focus, are the pug's fawn neck and shoulder in the navy-blue polo and the back of his small black ear, turned away from the camera; his face is never seen. <Subject 1> sits on the bench facing the camera at a three-quarter angle, turned towards the pug and looking at him, just to the right of the lens; her face, whole muzzle and chest in the red t-shirt are sharp and fill the left two thirds of the frame. Behind her, softly out of focus, <Subject 2>. <Subject 1> turns her head to look straight into the lens, with a confident smile. <Subject 1> (S1), on screen, in the voice referenced from <Audio 1> (an adult female voice, low and warm, with precise diction and an unhurried pace, firm but friendly), but on this line she sounds upbeat and confident, smiling, energetic and direct, her mouth visibly opening and closing in sync with every syllable, says: <d>[Portuguese] Isso. Curte, segue, e fica de olho no Congresso!</d> <Subject 1> gives a firm nod to the lens. No humans appear at any point, and no text, lettering, watermark, letterboxing or black bars appear anywhere in the frame.
+      overall_soundscape: Calm street ambience at a bus stop at the end of the afternoon: the low, steady hum of traffic on the avenue, a car passing now and then, and birds in the trees. No horns, no engines revving, no music, no voices other than the two dogs', and no barking, whining or growling at any point.
+      non_diegetic_music: N/A
